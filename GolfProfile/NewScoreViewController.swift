@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import Parse
 
 class NewScoreViewController: UIViewController {
+    @IBOutlet weak var golfCourseName: UITextField!
+    @IBOutlet weak var gameScore: UITextField!
+    @IBOutlet weak var gameDate: UITextField!
 
+    @IBOutlet weak var scoreCardImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,15 +27,36 @@ class NewScoreViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func saveScoreButton(sender: AnyObject) {
+        
+        let imageData = UIImagePNGRepresentation(self.scoreCardImage.image!)
+        let parseImageFile = PFFile(name: "scoreCard.png", data: imageData!)
+        
+        var golfScore = PFObject(className:"GolfScore")
+        golfScore["score"] = gameScore.text!
+        golfScore["playerName"] = PFUser.currentUser()
+        golfScore["GolfCourse"] = golfCourseName.text!
+        golfScore["date"] = gameDate.text!
+        golfScore["scoreCardImage"] = parseImageFile
+        golfScore.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            if (success) {
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+            
+            
+//            golfScore["scoreCardImage"]
+            
+            } else {
+                // There was a problem, check error.description
+            }
+        }
+        
+        self.navigationController?.popToRootViewControllerAnimated(true)
+        
+        
     }
-    */
+
+    
+    
 
 }
