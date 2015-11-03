@@ -15,6 +15,30 @@
 		C038BF361BE80AA4004AE33E /* GolfProfileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF351BE80AA4004AE33E /* GolfProfileUITests.swift */; };
 		C038BF441BE80BAA004AE33E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF431BE80BAA004AE33E /* ProfileViewController.swift */; };
 		C038BF461BE80C8C004AE33E /* GolfScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF451BE80C8C004AE33E /* GolfScoresViewController.swift */; };
+		C038BF481BE81C16004AE33E /* Golfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF471BE81C16004AE33E /* Golfer.swift */; };
+		C038BF4E1BE83EFC004AE33E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF4D1BE83EFC004AE33E /* AudioToolbox.framework */; };
+		C038BF501BE83F04004AE33E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF4F1BE83F04004AE33E /* CFNetwork.framework */; };
+		C038BF521BE83F14004AE33E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF511BE83F14004AE33E /* CoreGraphics.framework */; };
+		C038BF541BE83F1A004AE33E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF531BE83F1A004AE33E /* CoreLocation.framework */; };
+		C038BF561BE83F20004AE33E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF551BE83F20004AE33E /* QuartzCore.framework */; };
+		C038BF581BE83F25004AE33E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF571BE83F25004AE33E /* Security.framework */; };
+		C038BF5A1BE83F2C004AE33E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF591BE83F2C004AE33E /* StoreKit.framework */; };
+		C038BF5C1BE83F36004AE33E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF5B1BE83F36004AE33E /* SystemConfiguration.framework */; };
+		C038BF5E1BE83F40004AE33E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF5D1BE83F40004AE33E /* libz.tbd */; };
+		C038BF601BE83F4A004AE33E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF5F1BE83F4A004AE33E /* libsqlite3.tbd */; };
+		C038BF621BE83F67004AE33E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF611BE83F67004AE33E /* Accounts.framework */; };
+		C038BF641BE83F6E004AE33E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF631BE83F6E004AE33E /* Social.framework */; };
+		C038BF6C1BE84072004AE33E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF651BE84072004AE33E /* Bolts.framework */; };
+		C038BF6D1BE84072004AE33E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF661BE84072004AE33E /* Parse.framework */; };
+		C038BF6E1BE84072004AE33E /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF671BE84072004AE33E /* ParseCrashReporting.framework */; };
+		C038BF6F1BE84072004AE33E /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF681BE84072004AE33E /* ParseFacebookUtils.framework */; };
+		C038BF701BE84072004AE33E /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF691BE84072004AE33E /* ParseFacebookUtilsV4.framework */; };
+		C038BF711BE84072004AE33E /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF6A1BE84072004AE33E /* ParseTwitterUtils.framework */; };
+		C038BF721BE84072004AE33E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF6B1BE84072004AE33E /* ParseUI.framework */; };
+		C038BF761BE84287004AE33E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF751BE84287004AE33E /* LoginViewController.swift */; };
+		C038BF781BE842F4004AE33E /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF771BE842F4004AE33E /* FriendsViewController.swift */; };
+		C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */; };
+		C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00931BE9027E00A514FE /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +73,30 @@
 		C038BF371BE80AA4004AE33E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C038BF431BE80BAA004AE33E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
 		C038BF451BE80C8C004AE33E /* GolfScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfScoresViewController.swift; sourceTree = "<group>"; };
+		C038BF471BE81C16004AE33E /* Golfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Golfer.swift; sourceTree = "<group>"; };
+		C038BF4D1BE83EFC004AE33E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C038BF4F1BE83F04004AE33E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C038BF511BE83F14004AE33E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C038BF531BE83F1A004AE33E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C038BF551BE83F20004AE33E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C038BF571BE83F25004AE33E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C038BF591BE83F2C004AE33E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C038BF5B1BE83F36004AE33E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C038BF5D1BE83F40004AE33E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		C038BF5F1BE83F4A004AE33E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		C038BF611BE83F67004AE33E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		C038BF631BE83F6E004AE33E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C038BF651BE84072004AE33E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		C038BF661BE84072004AE33E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		C038BF671BE84072004AE33E /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
+		C038BF681BE84072004AE33E /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		C038BF691BE84072004AE33E /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		C038BF6A1BE84072004AE33E /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseTwitterUtils.framework; sourceTree = "<group>"; };
+		C038BF6B1BE84072004AE33E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		C038BF751BE84287004AE33E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C038BF771BE842F4004AE33E /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendScoresViewController.swift; sourceTree = "<group>"; };
+		C06D00931BE9027E00A514FE /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +104,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C038BF641BE83F6E004AE33E /* Social.framework in Frameworks */,
+				C038BF6E1BE84072004AE33E /* ParseCrashReporting.framework in Frameworks */,
+				C038BF621BE83F67004AE33E /* Accounts.framework in Frameworks */,
+				C038BF601BE83F4A004AE33E /* libsqlite3.tbd in Frameworks */,
+				C038BF711BE84072004AE33E /* ParseTwitterUtils.framework in Frameworks */,
+				C038BF5E1BE83F40004AE33E /* libz.tbd in Frameworks */,
+				C038BF5C1BE83F36004AE33E /* SystemConfiguration.framework in Frameworks */,
+				C038BF5A1BE83F2C004AE33E /* StoreKit.framework in Frameworks */,
+				C038BF581BE83F25004AE33E /* Security.framework in Frameworks */,
+				C038BF6C1BE84072004AE33E /* Bolts.framework in Frameworks */,
+				C038BF721BE84072004AE33E /* ParseUI.framework in Frameworks */,
+				C038BF561BE83F20004AE33E /* QuartzCore.framework in Frameworks */,
+				C038BF541BE83F1A004AE33E /* CoreLocation.framework in Frameworks */,
+				C038BF6D1BE84072004AE33E /* Parse.framework in Frameworks */,
+				C038BF521BE83F14004AE33E /* CoreGraphics.framework in Frameworks */,
+				C038BF501BE83F04004AE33E /* CFNetwork.framework in Frameworks */,
+				C038BF701BE84072004AE33E /* ParseFacebookUtilsV4.framework in Frameworks */,
+				C038BF6F1BE84072004AE33E /* ParseFacebookUtils.framework in Frameworks */,
+				C038BF4E1BE83EFC004AE33E /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +150,7 @@
 				C038BF291BE80AA4004AE33E /* GolfProfileTests */,
 				C038BF341BE80AA4004AE33E /* GolfProfileUITests */,
 				C038BF131BE80AA4004AE33E /* Products */,
+				C038BF4A1BE83E62004AE33E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,10 +170,15 @@
 				C038BF151BE80AA4004AE33E /* AppDelegate.swift */,
 				C038BF431BE80BAA004AE33E /* ProfileViewController.swift */,
 				C038BF451BE80C8C004AE33E /* GolfScoresViewController.swift */,
+				C038BF751BE84287004AE33E /* LoginViewController.swift */,
+				C038BF771BE842F4004AE33E /* FriendsViewController.swift */,
+				C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */,
+				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
 				C038BF1C1BE80AA4004AE33E /* Assets.xcassets */,
 				C038BF1E1BE80AA4004AE33E /* LaunchScreen.storyboard */,
 				C038BF211BE80AA4004AE33E /* Info.plist */,
+				C038BF491BE81C20004AE33E /* Model */,
 			);
 			path = GolfProfile;
 			sourceTree = "<group>";
@@ -126,6 +199,41 @@
 				C038BF371BE80AA4004AE33E /* Info.plist */,
 			);
 			path = GolfProfileUITests;
+			sourceTree = "<group>";
+		};
+		C038BF491BE81C20004AE33E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C038BF471BE81C16004AE33E /* Golfer.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C038BF4A1BE83E62004AE33E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C038BF651BE84072004AE33E /* Bolts.framework */,
+				C038BF661BE84072004AE33E /* Parse.framework */,
+				C038BF671BE84072004AE33E /* ParseCrashReporting.framework */,
+				C038BF681BE84072004AE33E /* ParseFacebookUtils.framework */,
+				C038BF691BE84072004AE33E /* ParseFacebookUtilsV4.framework */,
+				C038BF6A1BE84072004AE33E /* ParseTwitterUtils.framework */,
+				C038BF6B1BE84072004AE33E /* ParseUI.framework */,
+				C038BF631BE83F6E004AE33E /* Social.framework */,
+				C038BF611BE83F67004AE33E /* Accounts.framework */,
+				C038BF5F1BE83F4A004AE33E /* libsqlite3.tbd */,
+				C038BF5D1BE83F40004AE33E /* libz.tbd */,
+				C038BF5B1BE83F36004AE33E /* SystemConfiguration.framework */,
+				C038BF591BE83F2C004AE33E /* StoreKit.framework */,
+				C038BF571BE83F25004AE33E /* Security.framework */,
+				C038BF551BE83F20004AE33E /* QuartzCore.framework */,
+				C038BF531BE83F1A004AE33E /* CoreLocation.framework */,
+				C038BF511BE83F14004AE33E /* CoreGraphics.framework */,
+				C038BF4F1BE83F04004AE33E /* CFNetwork.framework */,
+				C038BF4D1BE83EFC004AE33E /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
+			path = GolfProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +369,11 @@
 			files = (
 				C038BF461BE80C8C004AE33E /* GolfScoresViewController.swift in Sources */,
 				C038BF441BE80BAA004AE33E /* ProfileViewController.swift in Sources */,
+				C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */,
+				C038BF481BE81C16004AE33E /* Golfer.swift in Sources */,
+				C038BF761BE84287004AE33E /* LoginViewController.swift in Sources */,
+				C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */,
+				C038BF781BE842F4004AE33E /* FriendsViewController.swift in Sources */,
 				C038BF161BE80AA4004AE33E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +516,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GolfProfile",
+				);
 				INFOPLIST_FILE = GolfProfile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfile;
@@ -414,6 +531,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GolfProfile",
+				);
 				INFOPLIST_FILE = GolfProfile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfile;
@@ -488,6 +609,7 @@
 				C038BF3C1BE80AA4004AE33E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C038BF3D1BE80AA4004AE33E /* Build configuration list for PBXNativeTarget "GolfProfileTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +618,7 @@
 				C038BF3F1BE80AA4004AE33E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C038BF401BE80AA4004AE33E /* Build configuration list for PBXNativeTarget "GolfProfileUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +627,7 @@
 				C038BF421BE80AA4004AE33E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
