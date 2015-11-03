@@ -39,6 +39,7 @@
 		C038BF781BE842F4004AE33E /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF771BE842F4004AE33E /* FriendsViewController.swift */; };
 		C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */; };
 		C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00931BE9027E00A514FE /* SignUpViewController.swift */; };
+		C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		C038BF771BE842F4004AE33E /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendScoresViewController.swift; sourceTree = "<group>"; };
 		C06D00931BE9027E00A514FE /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScoreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				C038BF771BE842F4004AE33E /* FriendsViewController.swift */,
 				C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */,
 				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
+				C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
 				C038BF1C1BE80AA4004AE33E /* Assets.xcassets */,
 				C038BF1E1BE80AA4004AE33E /* LaunchScreen.storyboard */,
@@ -367,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */,
 				C038BF461BE80C8C004AE33E /* GolfScoresViewController.swift in Sources */,
 				C038BF441BE80BAA004AE33E /* ProfileViewController.swift in Sources */,
 				C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */,
