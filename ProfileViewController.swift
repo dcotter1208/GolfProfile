@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         if (PFUser.currentUser() == nil) {
             performSegueWithIdentifier("showLogin", sender: self)
             print(PFUser.currentUser())
