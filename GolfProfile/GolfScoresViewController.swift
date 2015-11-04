@@ -45,16 +45,21 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let cell:UserLeaderboardCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UserLeaderboardCell
         
-        let scoreCard:PFObject = self.scoreCardData.reverse()[indexPath.row] as PFObject
+        let scorecard:PFObject = self.scoreCardData.reverse()[indexPath.row] as PFObject
         
-        cell.golfCourseCellLabel.text = scoreCard.objectForKey("GolfCourse") as? String
-        cell.dateCellLabel.text = scoreCard.objectForKey("date") as? String
-        cell.scoreCellLabel.text = scoreCard.objectForKey("score") as? String
+        cell.golfCourseCellLabel.text = scorecard.objectForKey("GolfCourse") as? String
+        cell.dateCellLabel.text = scorecard.objectForKey("date") as? String
+        cell.scoreCellLabel.text = scorecard.objectForKey("score") as? String
         
-        if scoreCard.objectForKey("scoreCardImage") == nil {
-            cell.scorecardCellImage.image = UIImage(named: "scorecard")! as UIImage } else {
-        cell.scorecardCellImage.image = scoreCard.objectForKey("scoreCardImage") as? UIImage
-        }
+        //downcast it to a PFFIle - which is what the Parse images are stored as. I then grab the data/image in the background and it is stored as an NSData which is the (result) inside of the getDataInBackgroundWithBlock and pass it to the UIImage and set the cell's image..... UIImage(date: ____) accepts a type of NSData.
+        let pfImage = scorecard.objectForKey("scoreCardImage") as? PFFile
+        
+        pfImage!.getDataInBackgroundWithBlock({
+            (result, error) in
+            cell.scorecardCellImage.image = UIImage(data: result!)
+        })
+        
+
         return cell
     }
     

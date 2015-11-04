@@ -71,37 +71,29 @@ class ProfileViewController: UIViewController {
             (profile: PFObject?, error: NSError?) -> Void in
             if error == nil {
                 
-                self.golferNameLabel.text = profile!["name"] as! String
-                self.golferAge.text = profile!["age"] as! String
-                self.golferCountry.text = profile!["country"] as! String
-                self.golferDriver.text = profile!["driver"] as! String
-                self.golferIron.text = profile!["irons"] as! String
-                self.favoriteCourse.text = profile!["favoriteCourse"] as! String
+                self.golferNameLabel.text = profile!["name"] as? String
+                self.golferAge.text = profile!["age"] as? String
+                self.golferCountry.text = profile!["country"] as? String
+                self.golferDriver.text = profile!["driver"] as? String
+                self.golferIron.text = profile!["irons"] as? String
+                self.favoriteCourse.text = profile!["favoriteCourse"] as? String
 //                self.golferProfileImage.image = UIImage(named: "profileImage")! as UIImage
+                
+                let pfImage = profile!["profileImage"] as? PFFile
+                
+                pfImage!.getDataInBackgroundWithBlock({
+                    (result, error) in
+                    self.golferProfileImage.image = UIImage(data: result!)
+                })
                 
                 print(profile)
             } else {
                 print(error)
             }
         }
-
-//       cell.golfCourseCellLabel.text = scoreCard.objectForKey("GolfCourse") as? String
-                    
-
-//        golferAge
-//        golferCountry
-//        golferDriver
-//        golferIron
-//        favoriteCourse
-//        golferProfileImage
-                    
+        
         }
-    
-    
-    
-    func setProfileInfo() {
-//        golferNameLabel.text = prof
-    }
+
     
     
     }

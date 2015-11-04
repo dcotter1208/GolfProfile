@@ -21,7 +21,7 @@ class EditProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,6 +34,7 @@ class EditProfileViewController: UIViewController {
         let imageData = UIImagePNGRepresentation(self.profileImage.image!)
         let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
         
+        
         let golferProfile = PFObject(className:"GolfProfile")
         golferProfile["name"] = golferNameTextField.text!
         golferProfile["age"] = golferAgeTextField.text!
@@ -41,7 +42,7 @@ class EditProfileViewController: UIViewController {
         golferProfile["driver"] = driverTextField.text!
         golferProfile["irons"] = ironsTextField.text!
         golferProfile["favoriteCourse"] = favoriteCourseTextField.text!
-        golferProfile["profileImage"] = golferImageFile
+
         golferProfile.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
