@@ -36,11 +36,13 @@ class LoginViewController: UIViewController {
     
     func logIn() {
         //Taking the user that is typed into the text fields and seeing if it is valid with the Parse network.
-        var user = PFUser()
+        let user = PFUser()
         user.username = usernameTextField.text?.lowercaseString
         user.password = passwordTextField.text?.lowercaseString
         
         PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!)
     }
+    
+    
 
 }

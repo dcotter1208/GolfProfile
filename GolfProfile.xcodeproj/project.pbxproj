@@ -40,6 +40,8 @@
 		C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */; };
 		C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00931BE9027E00A514FE /* SignUpViewController.swift */; };
 		C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */; };
+		C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */; };
+		C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendScoresViewController.swift; sourceTree = "<group>"; };
 		C06D00931BE9027E00A514FE /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScoreViewController.swift; sourceTree = "<group>"; };
+		C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLeaderboardCell.swift; sourceTree = "<group>"; };
+		C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +175,9 @@
 			children = (
 				C038BF151BE80AA4004AE33E /* AppDelegate.swift */,
 				C038BF431BE80BAA004AE33E /* ProfileViewController.swift */,
+				C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */,
 				C038BF451BE80C8C004AE33E /* GolfScoresViewController.swift */,
+				C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */,
 				C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */,
 				C038BF751BE84287004AE33E /* LoginViewController.swift */,
 				C038BF771BE842F4004AE33E /* FriendsViewController.swift */,
@@ -370,8 +376,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */,
 				C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */,
 				C038BF461BE80C8C004AE33E /* GolfScoresViewController.swift in Sources */,
+				C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */,
 				C038BF441BE80BAA004AE33E /* ProfileViewController.swift in Sources */,
 				C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */,
 				C038BF481BE81C16004AE33E /* Golfer.swift in Sources */,

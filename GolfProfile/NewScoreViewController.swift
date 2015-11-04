@@ -32,7 +32,7 @@ class NewScoreViewController: UIViewController {
         let imageData = UIImagePNGRepresentation(self.scoreCardImage.image!)
         let parseImageFile = PFFile(name: "scoreCard.png", data: imageData!)
         
-        var golfScore = PFObject(className:"GolfScore")
+        let golfScore = PFObject(className:"GolfScore")
         golfScore["score"] = gameScore.text!
         golfScore["playerName"] = PFUser.currentUser()
         golfScore["GolfCourse"] = golfCourseName.text!
@@ -41,20 +41,16 @@ class NewScoreViewController: UIViewController {
         golfScore.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
-
-            
-            
-//            golfScore["scoreCardImage"]
-            
+                
+                
             } else {
                 // There was a problem, check error.description
             }
         }
         
-        self.navigationController?.popToRootViewControllerAnimated(true)
-        
         
     }
+
 
     
     
