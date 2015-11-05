@@ -22,10 +22,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       loadProfile()
+       getProfileFromBackground()
         
-        print(PFUser.currentUser())
-        
+        print(PFUser.currentUser()!)
         
         if (PFUser.currentUser() == nil) {
             performSegueWithIdentifier("showLogin", sender: self)
@@ -35,6 +34,9 @@ class ProfileViewController: UIViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
+        self.reloadInputViews()
+        
+        
         if (PFUser.currentUser() == nil) {
             performSegueWithIdentifier("showLogin", sender: self)
         }
@@ -63,40 +65,47 @@ class ProfileViewController: UIViewController {
         
     }
     
-    func loadProfile() {
+    func getProfileFromBackground() {
         
         let query = PFQuery(className:"GolfProfile")
-//        query.getObjectInBackgroundWithId((PFUser.currentUser()?.objectId)!)
-            query.getObjectInBackgroundWithId("GwwIlTwydE") {
-            (profile: PFObject?, error: NSError?) -> Void in
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        
+        query.findObjectsInBackgroundWithBlock { (profiles: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 
-                self.golferNameLabel.text = profile!["name"] as? String
-                self.golferAge.text = profile!["age"] as? String
-                self.golferCountry.text = profile!["country"] as? String
-                self.golferDriver.text = profile!["driver"] as? String
-                self.golferIron.text = profile!["irons"] as? String
-                self.favoriteCourse.text = profile!["favoriteCourse"] as? String
-//                self.golferProfileImage.image = UIImage(named: "profileImage")! as UIImage
-                
-                let pfImage = profile!["profileImage"] as? PFFile
-                
-                pfImage!.getDataInBackgroundWithBlock({
-                    (result, error) in
-                    self.golferProfileImage.image = UIImage(data: result!)
-                })
-                
-                print(profile)
-            } else {
+                for object:PFObject in profiles! {
+                    self.profileData.append(object)
+                    print(self.profileData)
+                    
+                            for data in self.profileData {
+                                self.golferNameLabel.text = data.objectForKey("name") as? String
+                                self.golferAge.text = data.objectForKey("age") as? String
+                                self.golferCountry.text = data.objectForKey("country")as? String
+                                self.golferDriver.text = data.objectForKey("driver")as? String
+                                self.golferIron.text = data.objectForKey("irons") as? String
+                                self.favoriteCourse.text = data.objectForKey("favoriteCourse") as? String
+                                
+                                let pfImage = data.objectForKey("profileImage") as? PFFile
+                                pfImage?.getDataInBackgroundWithBlock({
+                                    (result, error) in
+                                    
+                                    self.golferProfileImage.image = UIImage(data: result!)
+                                })
+                            }
+
+                    
+                    }
+                } else {
                 print(error)
             }
         }
         
-        }
-
-    
-    
     }
+    
+    
+    
+}
+
 
 
 
