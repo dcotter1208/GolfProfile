@@ -13,10 +13,17 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var loginButton: UIButton!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if PFUser.currentUser() != nil {
+            
+            self.performSegueWithIdentifier("showUserProfile", sender: self)
+        }
+
 
         // Do any additional setup after loading the view.
     }
@@ -27,22 +34,34 @@ class LoginViewController: UIViewController {
     }
     
     
-    
     @IBAction func login(sender: AnyObject) {
-        
-        logIn()
-    }
-    
-    
-    func logIn() {
-        //Taking the user that is typed into the text fields and seeing if it is valid with the Parse network.
         let user = PFUser()
-        user.username = usernameTextField.text?.lowercaseString
-        user.password = passwordTextField.text?.lowercaseString
+        user.username = self.usernameTextField.text?.lowercaseString
+        user.password = self.passwordTextField.text?.lowercaseString
         
-        PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!)
+        PFUser.logInWithUsernameInBackground(self.usernameTextField.text!, password: self.passwordTextField.text!) {
+            (user: PFUser?, error: NSError?) -> Void in
+            if user != nil {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.performSegueWithIdentifier("showUserProfile", sender: self)
+                    
+                }
+                
+            }
+            
+        }
+    
+        
     }
     
+    
+    @IBAction func unwindSignupLogin(segue: UIStoryboardSegue) {
+        
+        usernameTextField.text = ""
+        passwordTextField.text = ""
+        
+    }
     
 
 }
+

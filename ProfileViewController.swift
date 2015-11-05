@@ -22,23 +22,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       getProfileFromBackground()
-        
-        print(PFUser.currentUser()!)
-        
-        if (PFUser.currentUser() == nil) {
-            performSegueWithIdentifier("showLogin", sender: self)
-            
-        }
+        navigationItem.hidesBackButton = true
 
     }
 
     override func viewWillAppear(animated: Bool) {
-    
-        
-        if (PFUser.currentUser() == nil) {
-            performSegueWithIdentifier("showLogin", sender: self)
-        }
+
+        getProfileFromBackground()
     }
     
     
@@ -49,13 +39,8 @@ class ProfileViewController: UIViewController {
     
     @IBAction func logOut(sender: AnyObject) {
         PFUser.logOut()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as UIViewController
-        self.presentViewController(vc, animated: true, completion: nil)
         
-    }
-    
-    @IBAction func unwindSignupLogin(segue: UIStoryboardSegue) {
+        print(PFUser.currentUser())
         
     }
     
@@ -67,14 +52,17 @@ class ProfileViewController: UIViewController {
     func getProfileFromBackground() {
         
         let query = PFQuery(className:"GolfProfile")
+        if PFUser.currentUser() != nil {
         query.whereKey("user", equalTo: PFUser.currentUser()!)
-        
+            
+        }
         query.findObjectsInBackgroundWithBlock { (profiles: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 
+                self.profileData.removeAll()
+                
                 for object:PFObject in profiles! {
                     self.profileData.append(object)
-                    print(self.profileData)
                     
                             for data in self.profileData {
                                 self.golferNameLabel.text = data.objectForKey("name") as? String
@@ -92,7 +80,6 @@ class ProfileViewController: UIViewController {
                                 })
                             }
 
-                    
                     }
                 } else {
                 print(error)
@@ -100,6 +87,8 @@ class ProfileViewController: UIViewController {
         }
         
     }
+    
+
     
     
     
