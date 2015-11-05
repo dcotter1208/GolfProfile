@@ -13,7 +13,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var userScoreTableView: UITableView!
     
-    var scoreCardData = [PFObject]()
+    var scorecardData = [PFObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +24,6 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         loadData()
         userScoreTableView.reloadData()
     }
-//    
-//    override func viewDidAppear(animated: Bool) {
-//        loadData()
-//        userScoreTableView.reloadData()
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -37,7 +32,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return scoreCardData.count
+            return scorecardData.count
         }
     
 
@@ -45,14 +40,14 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let cell:UserLeaderboardCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UserLeaderboardCell
         
-        let scorecard:PFObject = self.scoreCardData.reverse()[indexPath.row] as PFObject
+        let scorecard:PFObject = self.scorecardData.reverse()[indexPath.row] as PFObject
         
         cell.golfCourseCellLabel.text = scorecard.objectForKey("GolfCourse") as? String
         cell.dateCellLabel.text = scorecard.objectForKey("date") as? String
         cell.scoreCellLabel.text = scorecard.objectForKey("score") as? String
         
         //downcast it to a PFFIle - which is what the Parse images are stored as. I then grab the data/image in the background and it is stored as an NSData which is the (result) inside of the getDataInBackgroundWithBlock and pass it to the UIImage and set the cell's image..... UIImage(date: ____) accepts a type of NSData.
-        let pfImage = scorecard.objectForKey("scoreCardImage") as? PFFile
+        let pfImage = scorecard.objectForKey("scorecardImage") as? PFFile
         
         pfImage!.getDataInBackgroundWithBlock({
             (result, error) in
@@ -65,22 +60,23 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     
     func loadData() {
         //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
-        scoreCardData.removeAll()
+        scorecardData.removeAll()
         
         let query = PFQuery(className: "GolfScorecard")
+        query.whereKey("playerName", equalTo: PFUser.currentUser()!)
         query.orderByAscending("createdAt")
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
             
                 for object:PFObject in scoreCards! {
-                    self.scoreCardData.append(object)
-                    print(self.scoreCardData.count)
+                    self.scorecardData.append(object)
+                    print(self.scorecardData.count)
                 }
-                dispatch_async(dispatch_get_main_queue()) {
+//                dispatch_async(dispatch_get_main_queue()) {
                 
                 self.userScoreTableView.reloadData()
                     
-                }
+//                }
                 
             } else {
                 print(error)

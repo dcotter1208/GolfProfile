@@ -237,8 +237,8 @@
                         <outlet property="golferAgeTextField" destination="So3-UK-Pfq" id="xbU-UL-pbQ"/>
                         <outlet property="golferCountryTextField" destination="Cz0-Qg-n4r" id="bRH-An-axA"/>
                         <outlet property="golferNameTextField" destination="as0-K9-vkd" id="uHs-2D-mef"/>
+                        <outlet property="golferProfileImage" destination="3ON-wR-p90" id="ZkC-gH-bWe"/>
                         <outlet property="ironsTextField" destination="qLz-Mx-pQ3" id="VC4-KK-TZC"/>
-                        <outlet property="profileImage" destination="3ON-wR-p90" id="tPy-m9-hK3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="weG-8D-Fb0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -394,7 +394,7 @@
                         <outlet property="gameDate" destination="G4R-bb-4lE" id="2Ui-kN-Mc3"/>
                         <outlet property="gameScore" destination="YGd-5y-M0d" id="rBr-iq-euV"/>
                         <outlet property="golfCourseName" destination="rDR-2Z-mX1" id="hxQ-L8-Ddc"/>
-                        <outlet property="scoreCardImage" destination="HBa-nX-iA8" id="hgA-Ua-g3f"/>
+                        <outlet property="scorecardImage" destination="HBa-nX-iA8" id="xbU-yC-4Lg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tsh-K6-Kol" userLabel="First Responder" sceneMemberID="firstResponder"/>

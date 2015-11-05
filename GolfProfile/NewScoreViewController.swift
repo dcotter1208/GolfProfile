@@ -13,8 +13,7 @@ class NewScoreViewController: UIViewController {
     @IBOutlet weak var golfCourseName: UITextField!
     @IBOutlet weak var gameScore: UITextField!
     @IBOutlet weak var gameDate: UITextField!
-
-    @IBOutlet weak var scoreCardImage: UIImageView!
+    @IBOutlet weak var scorecardImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +28,15 @@ class NewScoreViewController: UIViewController {
     
     @IBAction func saveScoreButton(sender: AnyObject) {
         
-        let imageData = UIImagePNGRepresentation(self.scoreCardImage.image!)
-        let parseImageFile = PFFile(name: "scoreCard.png", data: imageData!)
+        let imageData = UIImagePNGRepresentation(self.scorecardImage.image!)
+        let parseImageFile = PFFile(name: "scorecard.png", data: imageData!)
         
         let golfScore = PFObject(className:"GolfScorecard")
         golfScore["score"] = gameScore.text!
         golfScore["playerName"] = PFUser.currentUser()
         golfScore["GolfCourse"] = golfCourseName.text!
         golfScore["date"] = gameDate.text!
-        golfScore["scoreCardImage"] = parseImageFile
+        golfScore["scorecardImage"] = parseImageFile
         golfScore.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
