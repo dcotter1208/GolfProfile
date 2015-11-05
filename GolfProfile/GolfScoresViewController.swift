@@ -63,6 +63,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         scorecardData.removeAll()
         
         let query = PFQuery(className: "GolfScorecard")
+        query.whereKey("playerName", equalTo: PFUser.currentUser()!)
         query.orderByAscending("createdAt")
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {

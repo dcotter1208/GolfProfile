@@ -34,8 +34,7 @@ class ProfileViewController: UIViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        self.reloadInputViews()
-        
+    
         
         if (PFUser.currentUser() == nil) {
             performSegueWithIdentifier("showLogin", sender: self)
