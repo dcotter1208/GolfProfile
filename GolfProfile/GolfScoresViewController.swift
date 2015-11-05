@@ -67,7 +67,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
         scoreCardData.removeAll()
         
-        let query = PFQuery(className: "GolfScore")
+        let query = PFQuery(className: "GolfScorecard")
         query.orderByAscending("createdAt")
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
