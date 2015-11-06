@@ -18,14 +18,21 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.hidesBackButton = true
+
         
         if PFUser.currentUser() != nil {
             
             self.performSegueWithIdentifier("showUserProfile", sender: self)
         }
+        
+    
+        func viewWillAppear() {
+            navigationItem.hidesBackButton = true
 
+        }
+        
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

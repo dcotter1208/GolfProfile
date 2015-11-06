@@ -40,10 +40,13 @@ class NewScoreViewController: UIViewController {
         golfScore.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
-                print("YES?")
+                
                 
             } else {
-                // There was a problem, check error.description
+                
+                
+                
+                
             }
         }
         

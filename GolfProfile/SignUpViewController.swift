@@ -39,13 +39,41 @@ class SignUpViewController: UIViewController {
         // If creating the user was successful then we log them in and display the ProfielViewController....***I HOOKED THIS UP TO A UNWIND SEGUE***
         
         user.signUpInBackgroundWithBlock {(succeeded: Bool, error: NSError?) -> Void in
-            //            if error == nil { dispatch_async(dispatch_get_main_queue()) {
-            //                self.performSegueWithIdentifier("ToTableView", sender: self) }
-            //            }
+                        if error == nil {
+        //********IF THE NEW USER CREATION IS SUCCESSFUL IT THEN MAKES DEFAULT USER NAME FOR THAT USER*********
+                            let golferProfile = PFObject(className:"GolfProfile")
+                            
+                            golferProfile["user"] = PFUser.currentUser()
+                            golferProfile["name"] = ""
+                            golferProfile["age"] = ""
+                            golferProfile["country"] = ""
+                            golferProfile["driver"] = ""
+                            golferProfile["irons"] = ""
+                            golferProfile["favoriteCourse"] = ""
+                            
+                            let imageData = UIImagePNGRepresentation(UIImage(named: "defaultUser")!)
+                            let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
+                            golferProfile["profileImage"] = golferImageFile
+
+                            golferProfile.saveInBackgroundWithBlock {
+                                (success: Bool, error: NSError?) -> Void in
+                                if (success) {
+                                    
+                                    print("YES IT IS SAVED!!!")
+                                    
+                                } else {
+                                    print(error)
+                                    
+                                }
+                            }
+                            
+                        }
             
-        }
+                    }
+            
+                }
         
-    }
+            }
 
 
-}
+

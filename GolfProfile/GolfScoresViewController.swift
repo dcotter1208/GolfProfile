@@ -72,6 +72,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
                     self.scorecardData.append(object)
                     print(self.scorecardData.count)
                 }
+                
 //                dispatch_async(dispatch_get_main_queue()) {
                 
                 self.userScoreTableView.reloadData()
