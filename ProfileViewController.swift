@@ -22,11 +22,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
+        
+//        navigationItem.hidesBackButton = true
 
     }
 
     override func viewWillAppear(animated: Bool) {
+//        navigationItem.hidesBackButton = true
 
         getProfileFromBackground()
     }
