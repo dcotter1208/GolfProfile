@@ -10,8 +10,8 @@ import UIKit
 import Parse
 
 class GolfScoresViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    @IBOutlet weak var userScoreTableView: UITableView!
+
+    @IBOutlet weak var userScoreboardTableView: UITableView!
     
     var scorecardData = [PFObject]()
     
@@ -22,7 +22,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewWillAppear(animated: Bool) {
         loadData()
-        userScoreTableView.reloadData()
+//        userScoreTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,13 +70,11 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
             
                 for object:PFObject in scoreCards! {
                     self.scorecardData.append(object)
+                    self.userScoreboardTableView.reloadData()
                 }
                 
-//                dispatch_async(dispatch_get_main_queue()) {
-                
-                self.userScoreTableView.reloadData()
-                    
-//                }
+             
+             
                 
             } else {
                 print(error)
@@ -86,7 +84,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     @IBAction func unwindToGameScoreVC(segue: UIStoryboardSegue) {
-        userScoreTableView.reloadData()
+        
     }
 
 

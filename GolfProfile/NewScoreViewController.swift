@@ -43,9 +43,7 @@ class NewScoreViewController: UIViewController {
                 
                 
             } else {
-                
-                
-                
+
                 
             }
         }

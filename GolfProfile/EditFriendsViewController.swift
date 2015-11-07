@@ -22,7 +22,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         loadData()
         addFriendsTableView.reloadData()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -40,14 +40,15 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         
         let cell:EditFriendCell = tableView.dequeueReusableCellWithIdentifier("editFriendCell", forIndexPath: indexPath) as! EditFriendCell
         
-        let userInfo:PFObject = self.allUsers [indexPath.row] as! PFUser
+        let userInfo:PFObject = self.allUsers[indexPath.row] as! PFUser
         cell.userNameCellLabel.text = userInfo.objectForKey("username") as? String
         
-        
+        //if the user is a friend then their name will have a checkmark
         if isFriend(userInfo as! PFUser) {
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         } else {
             cell.accessoryType = UITableViewCellAccessoryType.None
+            
         }
 
         return cell
@@ -55,50 +56,39 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         let cell = tableView.cellForRowAtIndexPath(indexPath)
+        let friendsRelation:PFRelation = (PFUser.currentUser()?.relationForKey("friendsRelation"))!
+        let userInfo:PFObject = self.allUsers[indexPath.row] as! PFUser
         
-        if (cell?.accessoryType == UITableViewCellAccessoryType.Checkmark) {
+        if isFriend(userInfo as! PFUser) {
             cell?.accessoryType = UITableViewCellAccessoryType.None
-        } else {
-        cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
-        }
-        
-        if cell?.accessoryType == UITableViewCellAccessoryType.Checkmark {
             
-            //The following is creating a relation for the current user. tIf the relation for the current key - "friendsRelation" then it will be created for us. Otherwise the existing one will be returned.
-            friendsRelation = (currentUser?.relationForKey("friendsRelation"))!
-            
-            
-            //This method takes the object at the indexPath selected and adds it to the friends relation we just created for our current user in the line above. This saves it locally but not to the backend.
-            let userInfo:PFObject = self.allUsers [indexPath.row] as! PFUser
-            friendsRelation.addObject(userInfo)
-            
-            //This saves line saves the PFRelation to the backend. Parse.com maintains a unique identifier for each object on the backend. So a "friend" can never be added twice. 
-            currentUser?.saveInBackgroundWithBlock {
-                (success: Bool, error: NSError?) -> Void in
-                if (success) {
-                    print("WE GOT FRIENDS!!!!")
-                    
-                } else {
-                    
-                    print(error)
-                    
-                    
+            for friend in showFriends{
+                if friend.objectId == userInfo.objectId {
+                    friendsRelation.removeObject(friend)
                 }
             }
             
-            
         } else {
-            
-        
+            cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+            showFriends.append(userInfo)
+            friendsRelation.addObject(userInfo)
         }
+                    currentUser?.saveInBackgroundWithBlock {
+                        (success: Bool, error: NSError?) -> Void in
+                        if (success) {
+                            print("WE GOT FRIENDS!!!!")
         
+                        } else {
+                            print(error)
+                    }
+            }
     }
-
-
-
+    
+    
     func loadData() {
-        //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
+    //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
         allUsers.removeAll()
         
         let userQuery = PFUser.query()
@@ -113,8 +103,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
                       self.addFriendsTableView.reloadData()
                     }
                 }
-                
-                
+
         }
         
         
