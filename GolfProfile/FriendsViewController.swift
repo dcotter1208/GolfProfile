@@ -20,13 +20,15 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadFriendsData()
-        
         navigationItem.hidesBackButton = true
 
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        loadFriendsData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -47,7 +49,21 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showEditFriends" {
+            let editFriendsVC = segue.destinationViewController as! EditFriendsViewController
+            
+//            let selectedIndex = friendsTableView.indexPathForCell(sender as! UITableViewCell)
+            
+            //This is taking the "showFriends" array on the editFriends VC and assigning it the value of our "friends" array that we have on this VC.
+            editFriendsVC.showFriends = self.friends
+        }
+    }
+    
     func loadFriendsData() {
+        friends.removeAll()
+        
         //This is assigning the variable friendsRelation (which is a PFRelation Type) to the current user and grabbing the current user's key of "friendsRelation"
         friendsRelation = (PFUser.currentUser()?.objectForKey("friendsRelation"))! as! PFRelation
 
@@ -71,6 +87,9 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         
     }
+    
+    
+    
     
 
 

@@ -16,6 +16,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     var allUsers = [PFObject]()
     var friendsRelation = PFRelation()
     let currentUser = PFUser.currentUser()
+    var showFriends = [PFObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,13 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         
         let userInfo:PFObject = self.allUsers [indexPath.row] as! PFUser
         cell.userNameCellLabel.text = userInfo.objectForKey("username") as? String
+        
+        
+        if isFriend(userInfo as! PFUser) {
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryType.None
+        }
 
         return cell
     }
@@ -112,10 +120,17 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
 
-    
-    @IBAction func reload(sender: AnyObject) {
+//Function to check of a user is a or isn't a current friend. If they are then we are using this method to display a checkmark by their name in our editFriendsVC
+    func isFriend(user: PFUser) -> Bool {
+        for friend in showFriends {
+            if friend.objectId == user.objectId {
+                return true
+            } 
         
-        addFriendsTableView.reloadData()
+        }
+        
+        return false
+    
     }
     
     
