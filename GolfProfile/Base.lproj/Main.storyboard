@@ -343,7 +343,7 @@
                     <tabBarItem key="tabBarItem" title="Scores" id="io0-2w-QS6"/>
                     <navigationItem key="navigationItem" title="Scores" id="k9V-UA-5Ab"/>
                     <connections>
-                        <outlet property="userScoreTableView" destination="UDs-Pl-ggr" id="M6S-5G-P6n"/>
+                        <outlet property="userScoreboardTableView" destination="UDs-Pl-ggr" id="AII-fw-VI2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PME-yX-LCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -385,7 +385,6 @@
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveScoreButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="6hV-KP-L16"/>
-                                    <segue destination="veA-j0-VBm" kind="unwind" unwindAction="unwindToGameScoreVC:" id="KhR-DS-R4L"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -400,7 +399,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tsh-K6-Kol" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="veA-j0-VBm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3130" y="-2076"/>
         </scene>
@@ -614,7 +612,7 @@
                                 <rect key="frame" x="0.0" y="79" width="320" height="489"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="editFriendCell" rowHeight="82" id="8v2-v2-Zm1" customClass="EditFriendCell" customModule="GolfProfile" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="editFriendCell" rowHeight="82" id="8v2-v2-Zm1" customClass="EditFriendCell" customModule="GolfProfile" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="320" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8v2-v2-Zm1" id="u5y-ri-7lA">
