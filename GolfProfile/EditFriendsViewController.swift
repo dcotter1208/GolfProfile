@@ -14,9 +14,9 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var addFriendsTableView: UITableView!
     
     var allUsers = [PFObject]()
+    var showFriends = [PFObject]()
     var friendsRelation = PFRelation()
     let currentUser = PFUser.currentUser()
-    var showFriends = [PFObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +58,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        let friendsRelation:PFRelation = (PFUser.currentUser()?.relationForKey("friendsRelation"))!
+        friendsRelation = (PFUser.currentUser()?.relationForKey("friendsRelation"))!
         let userInfo:PFObject = self.allUsers[indexPath.row] as! PFUser
         
         if isFriend(userInfo as! PFUser) {
@@ -86,9 +86,8 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
             }
     }
     
-    
+    //Function that loads all of my PFUsers
     func loadData() {
-    //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
         allUsers.removeAll()
         
         let userQuery = PFUser.query()
@@ -98,16 +97,11 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         
                     for object:PFObject in users! {
                     self.allUsers.append(object)
-                    print(self.allUsers.count)
-                        
-                      self.addFriendsTableView.reloadData()
+                    self.addFriendsTableView.reloadData()
                     }
                 }
-
+            }
         }
-        
-        
-    }
 
 //Function to check of a user is a or isn't a current friend. If they are then we are using this method to display a checkmark by their name in our editFriendsVC
     func isFriend(user: PFUser) -> Bool {
