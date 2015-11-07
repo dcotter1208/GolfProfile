@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class AddFriendCell: UITableViewCell {
+class EditFriendCell: UITableViewCell {
     @IBOutlet weak var userNameCellLabel: UILabel!
 
     override func awakeFromNib() {

@@ -59,6 +59,7 @@ class SignUpViewController: UIViewController {
                                 (success: Bool, error: NSError?) -> Void in
                                 if (success) {
                                     
+//                                    performSegueWithIdentifier("signUpToProfile", sender: self)
                                     
                                 } else {
                                     print(error)
