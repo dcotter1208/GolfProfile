@@ -42,7 +42,6 @@ class ProfileViewController: UIViewController {
     @IBAction func logOut(sender: AnyObject) {
         PFUser.logOut()
         
-        print(PFUser.currentUser())
         
     }
     
