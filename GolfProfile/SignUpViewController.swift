@@ -59,7 +59,6 @@ class SignUpViewController: UIViewController {
                                 (success: Bool, error: NSError?) -> Void in
                                 if (success) {
                                     
-                                    print("YES IT IS SAVED!!!")
                                     
                                 } else {
                                     print(error)

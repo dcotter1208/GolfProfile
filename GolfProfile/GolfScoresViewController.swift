@@ -70,7 +70,6 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
             
                 for object:PFObject in scoreCards! {
                     self.scorecardData.append(object)
-                    print(self.scorecardData.count)
                 }
                 
 //                dispatch_async(dispatch_get_main_queue()) {

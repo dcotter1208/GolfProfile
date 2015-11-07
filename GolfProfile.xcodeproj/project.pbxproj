@@ -15,7 +15,6 @@
 		C038BF361BE80AA4004AE33E /* GolfProfileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF351BE80AA4004AE33E /* GolfProfileUITests.swift */; };
 		C038BF441BE80BAA004AE33E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF431BE80BAA004AE33E /* ProfileViewController.swift */; };
 		C038BF461BE80C8C004AE33E /* GolfScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF451BE80C8C004AE33E /* GolfScoresViewController.swift */; };
-		C038BF481BE81C16004AE33E /* Golfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF471BE81C16004AE33E /* Golfer.swift */; };
 		C038BF4E1BE83EFC004AE33E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF4D1BE83EFC004AE33E /* AudioToolbox.framework */; };
 		C038BF501BE83F04004AE33E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF4F1BE83F04004AE33E /* CFNetwork.framework */; };
 		C038BF521BE83F14004AE33E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF511BE83F14004AE33E /* CoreGraphics.framework */; };
@@ -41,6 +40,8 @@
 		C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00931BE9027E00A514FE /* SignUpViewController.swift */; };
 		C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */; };
 		C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */; };
+		C0A288481BED2D0C0003AF11 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288471BED2D0C0003AF11 /* AddFriendsViewController.swift */; };
+		C0A2884A1BED37810003AF11 /* AddFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288491BED37810003AF11 /* AddFriendCell.swift */; };
 		C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,7 +77,6 @@
 		C038BF371BE80AA4004AE33E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C038BF431BE80BAA004AE33E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
 		C038BF451BE80C8C004AE33E /* GolfScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfScoresViewController.swift; sourceTree = "<group>"; };
-		C038BF471BE81C16004AE33E /* Golfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Golfer.swift; sourceTree = "<group>"; };
 		C038BF4D1BE83EFC004AE33E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C038BF4F1BE83F04004AE33E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		C038BF511BE83F14004AE33E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -102,6 +102,8 @@
 		C06D00931BE9027E00A514FE /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScoreViewController.swift; sourceTree = "<group>"; };
 		C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLeaderboardCell.swift; sourceTree = "<group>"; };
+		C0A288471BED2D0C0003AF11 /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
+		C0A288491BED37810003AF11 /* AddFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendCell.swift; sourceTree = "<group>"; };
 		C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +183,8 @@
 				C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */,
 				C038BF751BE84287004AE33E /* LoginViewController.swift */,
 				C038BF771BE842F4004AE33E /* FriendsViewController.swift */,
+				C0A288471BED2D0C0003AF11 /* AddFriendsViewController.swift */,
+				C0A288491BED37810003AF11 /* AddFriendCell.swift */,
 				C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */,
 				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
@@ -213,7 +217,6 @@
 		C038BF491BE81C20004AE33E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C038BF471BE81C16004AE33E /* Golfer.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -378,12 +381,13 @@
 			files = (
 				C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */,
 				C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */,
+				C0A2884A1BED37810003AF11 /* AddFriendCell.swift in Sources */,
 				C038BF461BE80C8C004AE33E /* GolfScoresViewController.swift in Sources */,
 				C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */,
 				C038BF441BE80BAA004AE33E /* ProfileViewController.swift in Sources */,
 				C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */,
-				C038BF481BE81C16004AE33E /* Golfer.swift in Sources */,
 				C038BF761BE84287004AE33E /* LoginViewController.swift in Sources */,
+				C0A288481BED2D0C0003AF11 /* AddFriendsViewController.swift in Sources */,
 				C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */,
 				C038BF781BE842F4004AE33E /* FriendsViewController.swift in Sources */,
 				C038BF161BE80AA4004AE33E /* AppDelegate.swift in Sources */,
