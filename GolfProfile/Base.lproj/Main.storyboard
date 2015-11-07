@@ -582,7 +582,7 @@
                                 <rect key="frame" x="123" y="76" width="75" height="30"/>
                                 <state key="normal" title="Add Friend"/>
                                 <connections>
-                                    <segue destination="2nK-tA-FpD" kind="push" id="gH3-WJ-WSk"/>
+                                    <segue destination="2nK-tA-FpD" kind="push" identifier="showEditFriends" id="gH3-WJ-WSk"/>
                                 </connections>
                             </button>
                         </subviews>
