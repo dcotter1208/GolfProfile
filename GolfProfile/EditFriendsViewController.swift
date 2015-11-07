@@ -80,8 +80,6 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
             
-//                (currentUser?.objectForKey("friendsRelation"))! as! PFRelation
-            
         } else {
             
         
@@ -96,7 +94,6 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         allUsers.removeAll()
         
         let userQuery = PFUser.query()
-//            userQuery!.whereKeyExists("username")
             userQuery?.orderByAscending("username")
             userQuery!.findObjectsInBackgroundWithBlock { (users: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
