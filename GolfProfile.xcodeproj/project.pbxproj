@@ -183,15 +183,11 @@
 				C038BF431BE80BAA004AE33E /* ProfileViewController.swift */,
 				C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */,
 				C038BF451BE80C8C004AE33E /* GolfScoresViewController.swift */,
-				C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */,
 				C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */,
 				C038BF751BE84287004AE33E /* LoginViewController.swift */,
 				C038BF771BE842F4004AE33E /* FriendsViewController.swift */,
-				C0017C5B1BEDB47C00691F7D /* FriendsCell.swift */,
 				C0A288471BED2D0C0003AF11 /* EditFriendsViewController.swift */,
-				C0A288491BED37810003AF11 /* EditFriendCell.swift */,
 				C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */,
-				C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */,
 				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
 				C038BF1C1BE80AA4004AE33E /* Assets.xcassets */,
@@ -223,6 +219,10 @@
 		C038BF491BE81C20004AE33E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */,
+				C0017C5B1BEDB47C00691F7D /* FriendsCell.swift */,
+				C0A288491BED37810003AF11 /* EditFriendCell.swift */,
+				C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";

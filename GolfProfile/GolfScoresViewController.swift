@@ -17,12 +17,12 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        userScoreTableView.reloadData()
+
     }
     
     override func viewWillAppear(animated: Bool) {
         loadData()
-//        userScoreTableView.reloadData()
+
     }
 
     override func didReceiveMemoryWarning() {

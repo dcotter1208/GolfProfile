@@ -9,11 +9,11 @@
 import UIKit
 
 class FriendScorecardCell: UITableViewCell {
-    @IBOutlet weak var friendScorecardImageView: UIImageView!
     @IBOutlet weak var friendScorecardCellGCLabel: UILabel!
     @IBOutlet weak var friendScorecardCellDateLabel: UILabel!
     @IBOutlet weak var friendScorecardCellScoreLabel: UILabel!
     
+    @IBOutlet weak var friendScorecardImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

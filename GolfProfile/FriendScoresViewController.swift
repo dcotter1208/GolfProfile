@@ -11,10 +11,14 @@ import Parse
 
 class FriendScoresViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var friendScorecardTableView: UITableView!
+    
     var friendScorecardData = [PFObject]()
+    var selectedfriend = PFObject?()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
 
         // Do any additional setup after loading the view.
     }
@@ -31,26 +35,52 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell:FriendScorecardCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! FriendScorecardCell
+        let cell:FriendScorecardCell = tableView.dequeueReusableCellWithIdentifier("friendScorecardCell", forIndexPath: indexPath) as! FriendScorecardCell
         
-        let scorecard:PFObject = self.friendScorecardData.reverse()[indexPath.row] as PFObject
+        let friendScorecard:PFObject = self.friendScorecardData.reverse()[indexPath.row] as PFObject
         
-        cell.friendScorecardCellGCLabel.text = scorecard.objectForKey("GolfCourse") as? String
-        cell.friendScorecardCellDateLabel.text = scorecard.objectForKey("date") as? String
-        cell.friendScorecardCellScoreLabel.text = scorecard.objectForKey("score") as? String
+        cell.friendScorecardCellGCLabel.text = friendScorecard.objectForKey("GolfCourse") as? String
+        cell.friendScorecardCellDateLabel.text = friendScorecard.objectForKey("date") as? String
+        cell.friendScorecardCellScoreLabel.text = friendScorecard.objectForKey("score") as? String
         
         //downcast it to a PFFIle - which is what the Parse images are stored as. I then grab the data/image in the background and it is stored as an NSData which is the (result) inside of the getDataInBackgroundWithBlock and pass it to the UIImage and set the cell's image..... UIImage(date: ____) accepts a type of NSData.
-        let pfImage = scorecard.objectForKey("scorecardImage") as? PFFile
+        let pfImage = friendScorecard.objectForKey("scorecardImage") as? PFFile
         
         pfImage!.getDataInBackgroundWithBlock({
             (result, error) in
+            
             cell.friendScorecardImageView.image = UIImage(data: result!)
+
         })
         
         
         return cell
     }
     
+    
+    func loadData() {
+        //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
+        friendScorecardData.removeAll()
+        
+        let query = PFQuery(className: "GolfScorecard")
+        query.whereKey("playerName", equalTo: selectedfriend!)
+        query.orderByAscending("createdAt")
+        query.findObjectsInBackgroundWithBlock { (friendScorecards: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                
+                for object:PFObject in friendScorecards! {
+                    self.friendScorecardData.append(object)
+                    self.friendScorecardTableView.reloadData()
+                }
+                
+                
+            } else {
+                print(error)
+            }
+        }
+        
+    }
 
-
+    
+    
 }
