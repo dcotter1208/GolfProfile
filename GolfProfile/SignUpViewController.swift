@@ -59,7 +59,13 @@ class SignUpViewController: UIViewController {
                                 (success: Bool, error: NSError?) -> Void in
                                 if (success) {
                                     
-//                                    performSegueWithIdentifier("signUpToProfile", sender: self)
+                                    if PFUser.currentUser() != nil {
+                                        dispatch_async(dispatch_get_main_queue()) {
+                                            self.dismissViewControllerAnimated(true, completion: nil)
+                                            
+                                        }
+                                        
+                                    }
                                     
                                 } else {
                                     print(error)

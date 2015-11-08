@@ -15,6 +15,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     
     var friendScorecardData = [PFObject]()
     var selectedfriend = PFObject?()
+    var selectedScorecard = PFObject?()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
         let cell:FriendScorecardCell = tableView.dequeueReusableCellWithIdentifier("friendScorecardCell", forIndexPath: indexPath) as! FriendScorecardCell
         
-        let friendScorecard:PFObject = self.friendScorecardData.reverse()[indexPath.row] as PFObject
+        let friendScorecard:PFObject = self.friendScorecardData[indexPath.row] as PFObject
         
         cell.friendScorecardCellGCLabel.text = friendScorecard.objectForKey("GolfCourse") as? String
         cell.friendScorecardCellDateLabel.text = friendScorecard.objectForKey("date") as? String
@@ -57,6 +58,29 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedScorecard = friendScorecardData[indexPath.row]
+        print("***************************")
+        print(selectedScorecard)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showScorecardPhoto" {
+
+            
+            let scorecardPhotoVC = segue.destinationViewController as? ScorecardPhotoViewController
+            
+            scorecardPhotoVC?.scorecardData = self.friendScorecardData
+            
+//            scorecardPhotoVC?.scorecard = selectedScorecard!
+            
+//            let selectedIndex = friendScorecardTableView.indexPathForCell(sender as! UITableViewCell)
+//            scorecardPhotoVC?.scorecardPhoto = friendScorecardData[(selectedIndex?.row)!] as PFFile
+            
+        }
+    }
+    
+    
     
     func loadData() {
         //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
@@ -71,6 +95,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
                 for object:PFObject in friendScorecards! {
                     self.friendScorecardData.append(object)
                     self.friendScorecardTableView.reloadData()
+                    
                 }
                 
                 
@@ -81,6 +106,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
     }
 
+    
     
     
 }

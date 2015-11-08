@@ -13,18 +13,17 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var friendsTableView: UITableView!
 
     var friends = [PFObject]()
-    var friendsRelation = PFRelation()
+    var profiles = [PFObject]()
+    var friendsRelation = PFRelation?()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
-    
     
     }
 
     override func viewWillAppear(animated: Bool) {
-        loadFriendsData()
+            loadFriendsData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,7 +42,11 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let friendInfo:PFObject = self.friends[indexPath.row] as! PFUser
         cell.friendUserNameCellLabel.text = friendInfo.objectForKey("username") as? String
-    
+        
+//        let profileInfo = self.f
+        
+        
+        
         return cell
     }
     
@@ -55,8 +58,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             editFriendsVC.showFriends = self.friends
 
         } else if segue.identifier == "showFriendScores"  {
-            //*****IF THIS DOESN'T WORK TRY PUTTING IN A SEPERATE PREPAREFORSEGUE******
-            
             
                 let friendScoresVC = segue.destinationViewController as! FriendScoresViewController
                 
@@ -69,33 +70,46 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func loadFriendsData() {
         friends.removeAll()
+//        profiles.removeAll()
         
         //This is assigning the variable friendsRelation (which is a PFRelation Type) to the current user and grabbing the current user's key of "friendsRelation"
-        friendsRelation = (PFUser.currentUser()?.objectForKey("friendsRelation"))! as! PFRelation
 
+        friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
+        
         //queries the friendsRelation of the current user.
-        let query = friendsRelation.query()
-        query?.orderByAscending("username")
-        query?.findObjectsInBackgroundWithBlock { (friends: [PFObject]?, error: NSError?) -> Void in
+        let userQuery = friendsRelation?.query()
+        userQuery?.orderByAscending("username")
+        
+        //Grabbing profile data only associated with the friends I get aback from the userQuery
+//        let profileQuery = PFQuery(className:"GolfProfile")
+//        profileQuery.whereKey("user", matchesQuery: userQuery!)
+        userQuery?.findObjectsInBackgroundWithBlock { (friends: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 
                 for object:PFObject in friends! {
-                    self.friends.append(object)
-                    
+                self.friends.append(object)
                 self.friendsTableView.reloadData()
 
+                print("printing friends \(self.friends.count)")
+                    
+//                    profileQuery.findObjectsInBackgroundWithBlock { ( profileInfo: [PFObject]?, error: NSError?) -> Void in
+//                        if error == nil {
+//                            for object:PFObject in profileInfo! {
+//                                self.profiles.append(object)
+//                                print("printing profiles \(self.profiles.count)")
+//
+//
+//                            }
+//                        }
+//                    }
+
                 }
+                
             }
-            
-            
+
         }
-        
         
     }
     
     
-    
-    
-
-
 }

@@ -23,8 +23,21 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        navigationItem.hidesBackButton = true
+        if PFUser.currentUser() == nil {
+            
+            self.performSegueWithIdentifier("showLogin", sender: self)
+            
+        }
 
+        
+    }
+
+        
+        override func viewDidAppear(animated: Bool) {
+            if (PFUser.currentUser() == nil) {
+                performSegueWithIdentifier("showLogin", sender: self)
+            }
+            
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -41,7 +54,8 @@ class ProfileViewController: UIViewController {
     
     @IBAction func logOut(sender: AnyObject) {
         PFUser.logOut()
-        
+        self.performSegueWithIdentifier("showLogin", sender: self)
+        print (PFUser.currentUser())
         
     }
     
@@ -86,6 +100,13 @@ class ProfileViewController: UIViewController {
                 print(error)
             }
         }
+        
+    }
+    
+    
+    @IBAction func unwindToProfilePage(segue: UIStoryboardSegue) {
+
+
         
     }
     

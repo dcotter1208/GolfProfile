@@ -73,8 +73,6 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
                     self.userScoreboardTableView.reloadData()
                 }
                 
-             
-             
                 
             } else {
                 print(error)
