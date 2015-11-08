@@ -15,7 +15,6 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     
     var friendScorecardData = [PFObject]()
     var selectedfriend = PFObject?()
-//    var selected
     
     override func viewDidLoad() {
         super.viewDidLoad()

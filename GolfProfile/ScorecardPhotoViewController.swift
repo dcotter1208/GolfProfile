@@ -13,15 +13,10 @@ class ScorecardPhotoViewController: UIViewController {
 
     @IBOutlet weak var scorecardImageView: UIImageView!
     
-    var scorecardData = [PFObject]()
     var scorecard = PFObject?()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(scorecardData.count)
-        print("*******")
-        print(scorecard)
 
         let pfImage = scorecard!.objectForKey("scorecardImage") as? PFFile
         
