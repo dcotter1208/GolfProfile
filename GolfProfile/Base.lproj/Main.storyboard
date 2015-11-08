@@ -127,7 +127,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="zov-X0-zFC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2313" y="-2743"/>
+            <point key="canvasLocation" x="2267" y="-3127"/>
         </scene>
         <!--Edit Profile-->
         <scene sceneID="7Da-az-DK5">
@@ -251,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="weG-8D-Fb0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2738" y="-2743"/>
+            <point key="canvasLocation" x="2692" y="-3127"/>
         </scene>
         <!--Scores-->
         <scene sceneID="rq9-jm-NPY">
@@ -271,38 +271,38 @@
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="117" id="DCu-qt-QTw" customClass="UserLeaderboardCell" customModule="GolfProfile" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="117" id="DCu-qt-QTw" customClass="UserLeaderboardCell" customModule="GolfProfile" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="320" height="117"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DCu-qt-QTw" id="nWt-Kr-qHl">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aZ-lP-LLM">
-                                                    <rect key="frame" x="110" y="70" width="166" height="31"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="31" id="JIM-f7-Ihf"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Golf Course:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIv-Xo-pf7">
+                                                    <rect key="frame" x="94" y="0.0" width="166" height="33"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Golf Course:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIv-Xo-pf7">
-                                                    <rect key="frame" x="110" y="0.0" width="166" height="33"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PPL-3N-WMY">
-                                                    <rect key="frame" x="14" y="16" width="88" height="71"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PPL-3N-WMY">
+                                                    <rect key="frame" x="8" y="8" width="78" height="57"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="88" id="whM-EH-OgV"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJ0-1d-V44">
-                                                    <rect key="frame" x="110" y="41" width="166" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJ0-1d-V44">
+                                                    <rect key="frame" x="94" y="41" width="166" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="k5O-DH-2Z9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aZ-lP-LLM">
+                                                    <rect key="frame" x="94" y="70" width="166" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="JIM-f7-Ihf"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -331,6 +331,7 @@
                                             <outlet property="golfCourseCellLabel" destination="CIv-Xo-pf7" id="zWA-4R-4bT"/>
                                             <outlet property="scoreCellLabel" destination="4aZ-lP-LLM" id="6Ub-Lu-t4g"/>
                                             <outlet property="scorecardCellImage" destination="PPL-3N-WMY" id="WAP-r3-L6u"/>
+                                            <segue destination="i50-sr-6sf" kind="push" identifier="editScorecard" id="Hmz-1f-nbM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -357,7 +358,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PME-yX-LCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2731" y="-2076"/>
+            <point key="canvasLocation" x="2916" y="-2340"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Hw8-ou-Kjc">
+            <objects>
+                <viewController id="i50-sr-6sf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="M4w-BA-ZlZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wha-Lo-LFD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KnP-23-1Dq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2tw-0V-3mB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EKH-bi-VyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3389" y="-2097"/>
         </scene>
         <!--New Score View Controller-->
         <scene sceneID="qg1-2L-K2A">
@@ -386,16 +406,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="scorecard" translatesAutoresizingMaskIntoConstraints="NO" id="HBa-nX-iA8">
-                                <rect key="frame" x="20" y="214" width="241" height="152"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6f-5U-FSI">
-                                <rect key="frame" x="123" y="379" width="34" height="30"/>
+                                <rect key="frame" x="20" y="379" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveScoreButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="6hV-KP-L16"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-a2-x4e">
+                                <rect key="frame" x="90" y="379" width="48" height="30"/>
+                                <state key="normal" title="Photos"/>
+                                <connections>
+                                    <action selector="photoLibraryButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="gQQ-az-Gei"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4n-ds-wHB">
+                                <rect key="frame" x="62" y="474" width="54" height="30"/>
+                                <state key="normal" title="Camera"/>
+                                <connections>
+                                    <action selector="camButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="PNI-R0-bUm"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNY-Ip-MRz">
+                                <rect key="frame" x="21" y="209" width="240" height="157"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -404,12 +438,12 @@
                         <outlet property="gameDate" destination="G4R-bb-4lE" id="2Ui-kN-Mc3"/>
                         <outlet property="gameScore" destination="YGd-5y-M0d" id="rBr-iq-euV"/>
                         <outlet property="golfCourseName" destination="rDR-2Z-mX1" id="hxQ-L8-Ddc"/>
-                        <outlet property="scorecardImage" destination="HBa-nX-iA8" id="xbU-yC-4Lg"/>
+                        <outlet property="scorecardImage" destination="oNY-Ip-MRz" id="Hm5-CD-Exi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tsh-K6-Kol" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3130" y="-2076"/>
+            <point key="canvasLocation" x="3389" y="-2730"/>
         </scene>
         <!--Friend Scores View Controller-->
         <scene sceneID="xjV-GW-OlJ">
@@ -423,9 +457,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ns0-kk-RDM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ns0-kk-RDM">
                                 <rect key="frame" x="0.0" y="-30" width="320" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="99" id="4ub-lJ-x8t" customClass="FriendScorecardCell" customModule="GolfProfile" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="99"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4ub-lJ-x8t" id="wOi-Pk-FlA">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Golf Course" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jf8-FB-vJe">
+                                                    <rect key="frame" x="114" y="8" width="198" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZU-Yf-F2H">
+                                                    <rect key="frame" x="114" y="37" width="198" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRh-Cp-OPd">
+                                                    <rect key="frame" x="111" y="66" width="201" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hzg-D1-Sm0">
+                                                    <rect key="frame" x="3" y="14" width="100" height="68"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="friendScorecardCellDateLabel" destination="FZU-Yf-F2H" id="GgZ-sL-BVU"/>
+                                            <outlet property="friendScorecardCellGCLabel" destination="jf8-FB-vJe" id="bGh-7c-mjc"/>
+                                            <outlet property="friendScorecardCellScoreLabel" destination="YRh-Cp-OPd" id="dWs-Uw-Lm8"/>
+                                            <outlet property="friendScorecardImageView" destination="Hzg-D1-Sm0" id="QcY-nq-3mG"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -434,7 +507,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Wt-RV-JK3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2325" y="-1416"/>
+            <point key="canvasLocation" x="2271" y="-1560"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="j3s-8D-rXy">
@@ -603,7 +676,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="doQ-wK-NgE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1863" y="-1142"/>
+            <point key="canvasLocation" x="1809" y="-1286"/>
         </scene>
         <!--Edit Friends View Controller-->
         <scene sceneID="Z6a-zD-OQk">
@@ -658,7 +731,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GxH-Rr-K7t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2325" y="-754"/>
+            <point key="canvasLocation" x="2271" y="-898"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mud-z2-2vx">
@@ -699,9 +772,6 @@
             <point key="canvasLocation" x="1809" y="-2339"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="scorecard" width="546" height="392"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="X54-xX-pZW"/>
     </inferredMetricsTieBreakers>

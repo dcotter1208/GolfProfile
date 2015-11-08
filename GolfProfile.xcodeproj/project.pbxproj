@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C0017C5C1BEDB47C00691F7D /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0017C5B1BEDB47C00691F7D /* FriendsCell.swift */; };
+		C0017C5E1BEEC5D300691F7D /* FriendScorecardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */; };
 		C038BF161BE80AA4004AE33E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF151BE80AA4004AE33E /* AppDelegate.swift */; };
 		C038BF1B1BE80AA4004AE33E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C038BF191BE80AA4004AE33E /* Main.storyboard */; };
 		C038BF1D1BE80AA4004AE33E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C038BF1C1BE80AA4004AE33E /* Assets.xcassets */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		C0017C5B1BEDB47C00691F7D /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
+		C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendScorecardCell.swift; sourceTree = "<group>"; };
 		C038BF121BE80AA4004AE33E /* GolfProfile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfProfile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C038BF151BE80AA4004AE33E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C038BF1A1BE80AA4004AE33E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				C0A288471BED2D0C0003AF11 /* EditFriendsViewController.swift */,
 				C0A288491BED37810003AF11 /* EditFriendCell.swift */,
 				C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */,
+				C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */,
 				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
 				C038BF1C1BE80AA4004AE33E /* Assets.xcassets */,
@@ -386,6 +389,7 @@
 				C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */,
 				C0A2884A1BED37810003AF11 /* EditFriendCell.swift in Sources */,
 				C038BF461BE80C8C004AE33E /* GolfScoresViewController.swift in Sources */,
+				C0017C5E1BEEC5D300691F7D /* FriendScorecardCell.swift in Sources */,
 				C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */,
 				C038BF441BE80BAA004AE33E /* ProfileViewController.swift in Sources */,
 				C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */,

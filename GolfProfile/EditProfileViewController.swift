@@ -130,23 +130,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        
-//        golferProfileImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-//        
-//        let pickedImage = golferProfileImage.image
-//        let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(100, 100))
-//        
-//        let golferProfile = PFObject(className:"GolfProfile")
-//        let imageData = UIImagePNGRepresentation(scaledImage)
-//        let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
-//        golferProfile["profileImage"] = golferImageFile
-//        
-//        golferProfile.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-//            if (success) {
-//                print("saved image")
-//            }
-//        }
-        
     }
     
     
