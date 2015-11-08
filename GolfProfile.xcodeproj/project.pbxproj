@@ -45,6 +45,8 @@
 		C0A288481BED2D0C0003AF11 /* EditFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288471BED2D0C0003AF11 /* EditFriendsViewController.swift */; };
 		C0A2884A1BED37810003AF11 /* EditFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288491BED37810003AF11 /* EditFriendCell.swift */; };
 		C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */; };
+		C0AFA2E61BEFE6EF00C9F058 /* ScorecardPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AFA2E51BEFE6EF00C9F058 /* ScorecardPhotoViewController.swift */; };
+		C0AFA2E81BF0106800C9F058 /* UserGolfScorecardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AFA2E71BF0106800C9F058 /* UserGolfScorecardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,8 @@
 		C0A288471BED2D0C0003AF11 /* EditFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFriendsViewController.swift; sourceTree = "<group>"; };
 		C0A288491BED37810003AF11 /* EditFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFriendCell.swift; sourceTree = "<group>"; };
 		C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		C0AFA2E51BEFE6EF00C9F058 /* ScorecardPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorecardPhotoViewController.swift; sourceTree = "<group>"; };
+		C0AFA2E71BF0106800C9F058 /* UserGolfScorecardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGolfScorecardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,15 +184,17 @@
 			isa = PBXGroup;
 			children = (
 				C038BF151BE80AA4004AE33E /* AppDelegate.swift */,
+				C038BF751BE84287004AE33E /* LoginViewController.swift */,
+				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
 				C038BF431BE80BAA004AE33E /* ProfileViewController.swift */,
 				C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */,
 				C038BF451BE80C8C004AE33E /* GolfScoresViewController.swift */,
+				C0AFA2E71BF0106800C9F058 /* UserGolfScorecardViewController.swift */,
 				C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */,
-				C038BF751BE84287004AE33E /* LoginViewController.swift */,
 				C038BF771BE842F4004AE33E /* FriendsViewController.swift */,
 				C0A288471BED2D0C0003AF11 /* EditFriendsViewController.swift */,
 				C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */,
-				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
+				C0AFA2E51BEFE6EF00C9F058 /* ScorecardPhotoViewController.swift */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
 				C038BF1C1BE80AA4004AE33E /* Assets.xcassets */,
 				C038BF1E1BE80AA4004AE33E /* LaunchScreen.storyboard */,
@@ -322,6 +328,7 @@
 				TargetAttributes = {
 					C038BF111BE80AA4004AE33E = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = GNE8UF82DF;
 					};
 					C038BF251BE80AA4004AE33E = {
 						CreatedOnToolsVersion = 7.1;
@@ -394,8 +401,10 @@
 				C038BF441BE80BAA004AE33E /* ProfileViewController.swift in Sources */,
 				C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */,
 				C038BF761BE84287004AE33E /* LoginViewController.swift in Sources */,
+				C0AFA2E61BEFE6EF00C9F058 /* ScorecardPhotoViewController.swift in Sources */,
 				C0017C5C1BEDB47C00691F7D /* FriendsCell.swift in Sources */,
 				C0A288481BED2D0C0003AF11 /* EditFriendsViewController.swift in Sources */,
+				C0AFA2E81BF0106800C9F058 /* UserGolfScorecardViewController.swift in Sources */,
 				C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */,
 				C038BF781BE842F4004AE33E /* FriendsViewController.swift in Sources */,
 				C038BF161BE80AA4004AE33E /* AppDelegate.swift in Sources */,
@@ -540,6 +549,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GolfProfile",
@@ -548,6 +559,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -555,6 +567,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GolfProfile",
@@ -563,6 +577,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

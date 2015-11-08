@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.performSegueWithIdentifier("showUserProfile", sender: self)
+                    self.dismissViewControllerAnimated(true, completion: nil)
                     
                 }
                 
@@ -61,14 +61,7 @@ class LoginViewController: UIViewController {
         
     }
     
-    
-    @IBAction func unwindSignupLogin(segue: UIStoryboardSegue) {
-        
-        usernameTextField.text = ""
-        passwordTextField.text = ""
-        
-    }
-    
+
 
 }
 

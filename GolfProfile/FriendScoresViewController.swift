@@ -19,10 +19,10 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -37,7 +37,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
         let cell:FriendScorecardCell = tableView.dequeueReusableCellWithIdentifier("friendScorecardCell", forIndexPath: indexPath) as! FriendScorecardCell
         
-        let friendScorecard:PFObject = self.friendScorecardData.reverse()[indexPath.row] as PFObject
+        let friendScorecard:PFObject = self.friendScorecardData[indexPath.row] as PFObject
         
         cell.friendScorecardCellGCLabel.text = friendScorecard.objectForKey("GolfCourse") as? String
         cell.friendScorecardCellDateLabel.text = friendScorecard.objectForKey("date") as? String
@@ -50,12 +50,23 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
             (result, error) in
             
             cell.friendScorecardImageView.image = UIImage(data: result!)
-
+            
         })
         
         
         return cell
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let scorecardPhotoVC = segue.destinationViewController as? ScorecardPhotoViewController
+        
+        let selectedIndex = friendScorecardTableView.indexPathForCell(sender as! UITableViewCell)
+        
+        scorecardPhotoVC?.scorecard = (friendScorecardData[(selectedIndex?.row)!] as PFObject)
+        
+    }
+    
     
     
     func loadData() {
@@ -80,7 +91,6 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         }
         
     }
-
     
     
 }

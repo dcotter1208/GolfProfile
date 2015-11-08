@@ -40,7 +40,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let cell:UserLeaderboardCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UserLeaderboardCell
         
-        let scorecard:PFObject = self.scorecardData.reverse()[indexPath.row] as PFObject
+        let scorecard:PFObject = self.scorecardData[indexPath.row] as PFObject
         
         cell.golfCourseCellLabel.text = scorecard.objectForKey("GolfCourse") as? String
         cell.dateCellLabel.text = scorecard.objectForKey("date") as? String
@@ -58,6 +58,20 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "showScorecardDetail" {
+        
+        let userScorecardPhotoVC = segue.destinationViewController as? UserGolfScorecardViewController
+        
+        let selectedIndex = userScoreboardTableView.indexPathForCell(sender as! UITableViewCell)
+        
+        userScorecardPhotoVC?.userScorecard = (scorecardData[(selectedIndex?.row)!] as PFObject)
+        
+        }
+        
+    }
+    
     func loadData() {
         //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
         scorecardData.removeAll()
@@ -73,8 +87,6 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
                     self.userScoreboardTableView.reloadData()
                 }
                 
-             
-             
                 
             } else {
                 print(error)
