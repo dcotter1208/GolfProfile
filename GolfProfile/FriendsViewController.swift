@@ -11,18 +11,16 @@ import Parse
 
 class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var friendsTableView: UITableView!
-    
 
     var friends = [PFObject]()
     var friendsRelation = PFRelation()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.hidesBackButton = true
 
-        // Do any additional setup after loading the view.
+    
+    
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -54,10 +52,18 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         if segue.identifier == "showEditFriends" {
             let editFriendsVC = segue.destinationViewController as! EditFriendsViewController
             
-//            let selectedIndex = friendsTableView.indexPathForCell(sender as! UITableViewCell)
-            
-            //This is taking the "showFriends" array on the editFriends VC and assigning it the value of our "friends" array that we have on this VC.
             editFriendsVC.showFriends = self.friends
+
+        } else if segue.identifier == "showFriendScores"  {
+            //*****IF THIS DOESN'T WORK TRY PUTTING IN A SEPERATE PREPAREFORSEGUE******
+            
+            
+                let friendScoresVC = segue.destinationViewController as! FriendScoresViewController
+                
+                let selectedIndex = friendsTableView.indexPathForCell(sender as! UITableViewCell)
+                
+                friendScoresVC.selectedfriend = (friends[(selectedIndex?.row)!] as PFObject)
+        
         }
     }
     
@@ -75,7 +81,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 for object:PFObject in friends! {
                     self.friends.append(object)
-                    print(self.friends.count)
                     
                 self.friendsTableView.reloadData()
 

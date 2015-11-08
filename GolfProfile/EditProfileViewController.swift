@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var golferProfileImage: UIImageView!
     @IBOutlet weak var golferNameTextField: UITextField!
     @IBOutlet weak var golferAgeTextField: UITextField!
@@ -18,13 +18,15 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var ironsTextField: UITextField!
     @IBOutlet weak var favoriteCourseTextField: UITextField!
     
-
+    
     var editProfileData = [PFObject]()
     var profileQuery = PFQuery(className: "GolfProfile")
     var object: PFObject!
+    var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker.delegate = self
         loadUserProfileInfo()
         
     }
@@ -52,8 +54,14 @@ class EditProfileViewController: UIViewController {
                     object["driver"] = self.driverTextField.text!
                     object["irons"] = self.ironsTextField.text!
                     object["favoriteCourse"] = self.favoriteCourseTextField.text!
+                    
+                    let pickedImage = self.golferProfileImage.image
+                    let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(100, 100))
+                    let imageData = UIImagePNGRepresentation(scaledImage)
+                    let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
+                    object["profileImage"] = golferImageFile
+                    
                     object.saveInBackground()
-
                 }
 
             } else {
@@ -100,9 +108,40 @@ class EditProfileViewController: UIViewController {
                     print(error)
                 }
             }
-        
+
+    }
+    
+    @IBAction func camButton(sender: UIBarButtonItem) {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+        presentViewController(imagePicker, animated: true, completion: nil)
         
     }
+    
+    @IBAction func photoLibraryButton(sender: UIButton) {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        presentViewController(imagePicker, animated: true, completion: nil)
+        
+    }
+    
+//    When we click on a photo - either from the photo library or taken from the camera - it will store it as our golferProfileImage
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        golferProfileImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    
+    func scaleImageWith(image: UIImage, newSize: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
 
 
 }
