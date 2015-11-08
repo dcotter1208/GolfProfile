@@ -16,6 +16,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var profiles = [PFObject]()
     var friendsRelation = PFRelation?()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -19,24 +19,22 @@ class ScorecardPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let pfImage = scorecard.objectForKey("scorecardImage") as? PFFile
-//        
-//        pfImage!.getDataInBackgroundWithBlock({
-//            (result, error) in
-//            
-//            if result != nil {
-//            
-//            self.scorecardImageView.image = UIImage(data: result!)
-//                
-//            }
-//        })
-        
-//        let imageFile:PFFile = scorecard.objectForKey("scorecardImage") as! PFFile
-//        
-//        
         print(scorecardData.count)
+        print("*******")
         print(scorecard)
 
+        let pfImage = scorecard!.objectForKey("scorecardImage") as? PFFile
+        
+        pfImage!.getDataInBackgroundWithBlock({
+            (result, error) in
+            
+            if result != nil {
+            
+            self.scorecardImageView.image = UIImage(data: result!)
+                
+            }
+        })
+        
         // Do any additional setup after loading the view.
     }
 

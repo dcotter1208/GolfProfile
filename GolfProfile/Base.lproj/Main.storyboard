@@ -370,6 +370,11 @@
                     <view key="view" contentMode="scaleToFill" id="KnP-23-1Dq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NrC-v7-JCx">
+                                <rect key="frame" x="0.0" y="232" width="320" height="238"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="2tw-0V-3mB"/>
@@ -378,7 +383,7 @@
             </objects>
             <point key="canvasLocation" x="5525" y="-2073"/>
         </scene>
-        <!--New Score View Controller-->
+        <!--New Scorecard-->
         <scene sceneID="qg1-2L-K2A">
             <objects>
                 <viewController id="bcC-Qa-jI3" customClass="NewScoreViewController" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
@@ -408,9 +413,6 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6f-5U-FSI">
                                 <rect key="frame" x="20" y="379" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveScoreButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="6hV-KP-L16"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-a2-x4e">
                                 <rect key="frame" x="90" y="379" width="48" height="30"/>
@@ -432,7 +434,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="r38-RB-7yq"/>
+                    <navigationItem key="navigationItem" title="New Scorecard" id="r38-RB-7yq">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="KTa-lL-FIh">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JNa-hI-Mjc">
+                                <rect key="frame" x="233" y="7" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveScoreButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="BA6-dm-Yp3"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="saveScoreButton:" destination="bcC-Qa-jI3" id="mH5-Bk-PJf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="gameDate" destination="G4R-bb-4lE" id="2Ui-kN-Mc3"/>
                         <outlet property="gameScore" destination="YGd-5y-M0d" id="rBr-iq-euV"/>
@@ -530,7 +546,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kvY-jc-pT4">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="165" width="320" height="238"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -15,15 +15,15 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     
     var friendScorecardData = [PFObject]()
     var selectedfriend = PFObject?()
-    var selectedScorecard = PFObject?()
+//    var selected
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -51,33 +51,21 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
             (result, error) in
             
             cell.friendScorecardImageView.image = UIImage(data: result!)
-
+            
         })
         
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedScorecard = friendScorecardData[indexPath.row]
-        print("***************************")
-        print(selectedScorecard)
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showScorecardPhoto" {
-
-            
-            let scorecardPhotoVC = segue.destinationViewController as? ScorecardPhotoViewController
-            
-            scorecardPhotoVC?.scorecardData = self.friendScorecardData
-            
-//            scorecardPhotoVC?.scorecard = selectedScorecard!
-            
-//            let selectedIndex = friendScorecardTableView.indexPathForCell(sender as! UITableViewCell)
-//            scorecardPhotoVC?.scorecardPhoto = friendScorecardData[(selectedIndex?.row)!] as PFFile
-            
-        }
+        
+        let scorecardPhotoVC = segue.destinationViewController as? ScorecardPhotoViewController
+        
+        let selectedIndex = friendScorecardTableView.indexPathForCell(sender as! UITableViewCell)
+        
+        scorecardPhotoVC?.scorecard = (friendScorecardData[(selectedIndex?.row)!] as PFObject)
+        
     }
     
     
@@ -95,7 +83,6 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
                 for object:PFObject in friendScorecards! {
                     self.friendScorecardData.append(object)
                     self.friendScorecardTableView.reloadData()
-                    
                 }
                 
                 
@@ -105,8 +92,6 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         }
         
     }
-
-    
     
     
 }
