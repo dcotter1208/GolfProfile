@@ -14,9 +14,14 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var userScoreboardTableView: UITableView!
     
     var scorecardData = [PFObject]()
+    var dateFormatter = NSDateFormatter()
+    var date = NSDate?()
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
 
     }
     
@@ -42,16 +47,35 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let scorecard:PFObject = self.scorecardData[indexPath.row] as PFObject
         
-        cell.golfCourseCellLabel.text = scorecard.objectForKey("GolfCourse") as? String
-        cell.dateCellLabel.text = scorecard.objectForKey("date") as? String
-        cell.scoreCellLabel.text = scorecard.objectForKey("score") as? String
+
+        //Getting the date from Parse and turning it into a String to display in label
+       if let golfDate = scorecard.objectForKey("date") as? NSDate {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MM-dd-yyyy"
+            let stringDate = dateFormatter.stringFromDate(golfDate)
+            cell.dateCellLabel.text = stringDate
+        }
+        //Grabbing the score from Parse and turning it into a String to display in label
+        if let score = scorecard.objectForKey("score") as? Int {
+        let scoreToString = "\(score)"
+        cell.scoreCellLabel.text = scoreToString
+        }
+        
+        cell.golfCourseCellLabel.text = scorecard.objectForKey("golfCourse") as? String
+        
         
         //downcast it to a PFFIle - which is what the Parse images are stored as. I then grab the data/image in the background and it is stored as an NSData which is the (result) inside of the getDataInBackgroundWithBlock and pass it to the UIImage and set the cell's image..... UIImage(date: ____) accepts a type of NSData.
         let pfImage = scorecard.objectForKey("scorecardImage") as? PFFile
         
-        pfImage!.getDataInBackgroundWithBlock({
+        pfImage?.getDataInBackgroundWithBlock({
             (result, error) in
-            cell.scorecardCellImage.image = UIImage(data: result!)
+            
+            if result == nil {
+            cell.scorecardCellImage.image = UIImage(named: "noScorecard")
+                
+            } else {
+                cell.scorecardCellImage.image = UIImage(data: result!)
+            }
         })
         
 
@@ -90,7 +114,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         scorecardData.removeAll()
         
         let query = PFQuery(className: "GolfScorecard")
-        query.whereKey("playerName", equalTo: PFUser.currentUser()!)
+        query.whereKey("golfer", equalTo: PFUser.currentUser()!)
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
