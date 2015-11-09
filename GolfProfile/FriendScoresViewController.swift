@@ -75,7 +75,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
         let query = PFQuery(className: "GolfScorecard")
         query.whereKey("playerName", equalTo: selectedfriend!)
-        query.orderByAscending("createdAt")
+        query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (friendScorecards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 
