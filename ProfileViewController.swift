@@ -87,13 +87,14 @@ class ProfileViewController: UIViewController {
                                 self.golferIron.text = data.objectForKey("irons") as? String
                                 self.favoriteCourse.text = data.objectForKey("favoriteCourse") as? String
                                 
+                                
                                 let pfImage = data.objectForKey("profileImage") as? PFFile
                                 pfImage?.getDataInBackgroundWithBlock({
                                     (result, error) in
                                     
                                     self.golferProfileImage.image = UIImage(data: result!)
                                 })
-                            }
+                        }
 
                     }
                 } else {

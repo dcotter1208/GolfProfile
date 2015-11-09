@@ -58,6 +58,19 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            let selectedScorecard:PFObject = scorecardData[indexPath.row] as PFObject
+            selectedScorecard.deleteInBackground()
+            scorecardData.removeAtIndex(indexPath.row)
+            
+            userScoreboardTableView.reloadData()
+            
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "showScorecardDetail" {
@@ -78,7 +91,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let query = PFQuery(className: "GolfScorecard")
         query.whereKey("playerName", equalTo: PFUser.currentUser()!)
-        query.orderByAscending("createdAt")
+        query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
             
