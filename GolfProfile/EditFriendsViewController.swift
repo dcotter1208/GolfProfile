@@ -13,6 +13,8 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var addFriendsTableView: UITableView!
     
+    @IBOutlet weak var editFriendProfileImage: UIImageView!
+    
     var allUsers = [PFObject]()
     var showFriends = [PFObject]()
     var friendsRelation = PFRelation()
@@ -42,6 +44,10 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         
         let userInfo:PFObject = self.allUsers[indexPath.row] as! PFUser
         cell.userNameCellLabel.text = userInfo.objectForKey("username") as? String
+        
+        
+        //THIS NEEDS TO BE CHANGED ONCE I GET THE PROFILE IMAGE FROM PARSE WORKING
+        cell.editFriendProfileCellImage.image = UIImage(named: "defaultUser")
         
         //if the user is a friend then their name will have a checkmark
         if isFriend(userInfo as! PFUser) {
