@@ -44,6 +44,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let friendInfo:PFObject = self.friends[indexPath.row] as! PFUser
         cell.friendUserNameCellLabel.text = friendInfo.objectForKey("username") as? String
         
+        //THIS NEEDS TO BE CHANGED ONCE I GET THE PROFILE IMAGE FROM PARSE WORKING
+
         cell.friendProfileCell.image = UIImage(named: "defaultUser")
         
 //        let profileInfo:PFObject = self.profiles[indexPath.row] as PFObject
