@@ -14,17 +14,23 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var profiles = [PFObject]()
     var friends = [PFObject]()
     var friendsRelation = PFRelation?()
+    var joinedQueries = [PFQuery]()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadFriendsData()
-        loadProfileData()
-    
+        
+        if PFUser.currentUser() == nil {
+            friendsTableView.reloadData()
+            print("THIS IS THE PRINT FOR THE FRIENDSVC:\(PFUser.currentUser())")
+
+        }
+        
     }
 
     override func viewWillAppear(animated: Bool) {
-
+        loadFriendsData()
+        friendsTableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,7 +47,9 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let cell:FriendsCell = tableView.dequeueReusableCellWithIdentifier("friendsCell", forIndexPath: indexPath) as! FriendsCell
         
-        let friendInfo:PFObject = self.friends[indexPath.row] as! PFUser
+        
+        
+        if let friendInfo:PFObject = self.friends[indexPath.row] as! PFUser {
         cell.friendUserNameCellLabel.text = friendInfo.objectForKey("username") as? String
         
         //THIS NEEDS TO BE CHANGED ONCE I GET THE PROFILE IMAGE FROM PARSE WORKING
@@ -61,8 +69,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 //                print(error)
 //            }
 //        })
-//   
-        
+//   }
+        }
         
         return cell
     }
@@ -98,7 +106,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let userQuery = friendsRelation?.query()
         userQuery?.orderByAscending("username")
         userQuery?.findObjectsInBackgroundWithBlock { (friends: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
+            if friends != nil {
                 
                 for object:PFObject in friends! {
                 self.friends.append(object)
@@ -106,7 +114,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                 print("friends: \(self.friends.count)")
                     
-
                 }
                 
             }
@@ -116,29 +123,29 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     
-        func loadProfileData() {
-            //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
-            profiles.removeAll()
-            
-            let userQuery = friendsRelation?.query()
-            let profileQuery = PFQuery(className:"GolfProfile")
-            profileQuery.whereKey("user", matchesQuery: userQuery!)
-            profileQuery.findObjectsInBackgroundWithBlock { (profiles: [PFObject]?, error: NSError?) -> Void in
-                if error == nil {
-                    
-                    for object:PFObject in profiles! {
-                        self.profiles.append(object)
-                        print("profiles: \(self.profiles.count)")
-                        self.friendsTableView.reloadData()
-                    }
-                    
-                    
-                } else {
-                    print(error)
-                }
-            }
-            
-    }
+//        func loadProfileData() {
+//            //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
+//            profiles.removeAll()
+//            
+//            let userQuery = friendsRelation?.query()
+//            let profileQuery = PFQuery(className:"GolfProfile")
+//            profileQuery.whereKey("user", matchesQuery: userQuery!)
+//            profileQuery.findObjectsInBackgroundWithBlock { (profiles: [PFObject]?, error: NSError?) -> Void in
+//                if error == nil {
+//                    
+//                    for object:PFObject in profiles! {
+//                        self.profiles.append(object)
+//                        print("profiles: \(self.profiles.count)")
+//                        self.friendsTableView.reloadData()
+//                    }
+//                    
+//                    
+//                } else {
+//                    print(error)
+//                }
+//            }
+//            
+//    }
     
 }
 

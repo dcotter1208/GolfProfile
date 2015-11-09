@@ -19,19 +19,32 @@ class UserGolfScorecardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Getting the date from Parse and turning it into a String to display in label
+        if let golfDate = userScorecard?.objectForKey("date") as? NSDate {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MM-dd-yyyy"
+            let stringDate = dateFormatter.stringFromDate(golfDate)
+            scorecardDateLabel.text = stringDate
+        }
+        //Grabbing the score from Parse and turning it into a String to display in label
+        if let score = userScorecard?.objectForKey("score") as? Int {
+            let scoreToString = "\(score)"
+            scorecardScoreLabel.text = scoreToString
+        }
 
-        golfCourseNameLabel.text = userScorecard?.objectForKey("GolfCourse") as? String
-        scorecardScoreLabel.text = userScorecard?.objectForKey("score") as? String
-        scorecardDateLabel.text = userScorecard?.objectForKey("date") as? String
+        golfCourseNameLabel.text = userScorecard?.objectForKey("golfCourse") as? String
         let pfImage = userScorecard!.objectForKey("scorecardImage") as? PFFile
         
-        pfImage!.getDataInBackgroundWithBlock({
+        pfImage?.getDataInBackgroundWithBlock({
             (result, error) in
             
-            if result != nil {
+            if result == nil {
                 
+                self.userScorecardImageView.image = UIImage(named: "noScorecard")
+                
+            } else {
                 self.userScorecardImageView.image = UIImage(data: result!)
-                
             }
         })
         

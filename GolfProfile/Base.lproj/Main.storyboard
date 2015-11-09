@@ -78,13 +78,6 @@
                                     <segue destination="zov-X0-zFC" kind="unwind" unwindAction="unwindSignupLogin:" id="8qa-lp-uFP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLy-Ga-UoX">
-                                <rect key="frame" x="20" y="397" width="30" height="30"/>
-                                <state key="normal" title="Edit"/>
-                                <connections>
-                                    <segue destination="iRX-cc-Y1a" kind="push" identifier="showEditProfile" id="gNO-Uu-1vY"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" label=""/>
@@ -111,7 +104,13 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Profile" id="wxj-MT-dRe"/>
+                    <navigationItem key="navigationItem" title="Profile" id="wxj-MT-dRe">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="iUb-d5-8zQ">
+                            <connections>
+                                <segue destination="iRX-cc-Y1a" kind="push" identifier="showEditProfile" id="zCc-aA-bvV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="favoriteCourse" destination="Txh-Re-nyI" id="5Zr-n5-OF8"/>
@@ -435,32 +434,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Golf Course Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rDR-2Z-mX1">
-                                <rect key="frame" x="20" y="89" width="241" height="30"/>
+                                <rect key="frame" x="40" y="81" width="241" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Score" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YGd-5y-M0d">
-                                <rect key="frame" x="20" y="127" width="241" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G4R-bb-4lE">
-                                <rect key="frame" x="20" y="165" width="241" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noScorecard" translatesAutoresizingMaskIntoConstraints="NO" id="oNY-Ip-MRz">
+                                <rect key="frame" x="40" y="283" width="240" height="157"/>
+                            </imageView>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="mlw-w4-qsv">
+                                <rect key="frame" x="0.0" y="223" width="320" height="52"/>
+                                <date key="date" timeIntervalSinceReferenceDate="468757290.91640198">
+                                    <!--2015-11-09 10:21:30 +0000-->
+                                </date>
+                            </datePicker>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lZb-L4-eAo">
+                                <rect key="frame" x="110" y="119" width="101" height="90"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="bcC-Qa-jI3" id="71o-yR-pVW"/>
+                                    <outlet property="delegate" destination="bcC-Qa-jI3" id="9CC-Fk-1rH"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZb-am-ef5">
+                                <rect key="frame" x="32" y="153" width="50" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4n-ds-wHB">
-                                <rect key="frame" x="67" y="374" width="54" height="30"/>
+                                <rect key="frame" x="40" y="448" width="54" height="30"/>
                                 <state key="normal" title="Camera"/>
                                 <connections>
                                     <action selector="camButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="PNI-R0-bUm"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNY-Ip-MRz">
-                                <rect key="frame" x="21" y="209" width="240" height="157"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-a2-x4e">
-                                <rect key="frame" x="179" y="374" width="48" height="30"/>
+                                <rect key="frame" x="232" y="448" width="48" height="30"/>
                                 <state key="normal" title="Photos"/>
                                 <connections>
                                     <action selector="photoLibraryButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="gQQ-az-Gei"/>
@@ -469,25 +477,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New Scorecard" id="r38-RB-7yq">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="KTa-lL-FIh">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JNa-hI-Mjc">
-                                <rect key="frame" x="233" y="7" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveScoreButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="BA6-dm-Yp3"/>
-                                </connections>
-                            </button>
-                            <connections>
-                                <action selector="saveScoreButton:" destination="bcC-Qa-jI3" id="mH5-Bk-PJf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="New Scorecard" id="r38-RB-7yq"/>
                     <connections>
-                        <outlet property="gameDate" destination="G4R-bb-4lE" id="2Ui-kN-Mc3"/>
-                        <outlet property="gameScore" destination="YGd-5y-M0d" id="rBr-iq-euV"/>
+                        <outlet property="datePicker" destination="mlw-w4-qsv" id="xju-zE-nfS"/>
                         <outlet property="golfCourseName" destination="rDR-2Z-mX1" id="hxQ-L8-Ddc"/>
+                        <outlet property="scorePicker" destination="lZb-L4-eAo" id="UHQ-rV-rBv"/>
                         <outlet property="scorecardImage" destination="oNY-Ip-MRz" id="Hm5-CD-Exi"/>
                     </connections>
                 </viewController>
@@ -922,6 +916,9 @@
             <point key="canvasLocation" x="3016" y="-4024"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="noScorecard" width="485" height="302"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="KCS-6P-O21"/>
     </inferredMetricsTieBreakers>

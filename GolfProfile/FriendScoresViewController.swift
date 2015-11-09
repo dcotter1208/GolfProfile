@@ -39,7 +39,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
         let friendScorecard:PFObject = self.friendScorecardData[indexPath.row] as PFObject
         
-        cell.friendScorecardCellGCLabel.text = friendScorecard.objectForKey("GolfCourse") as? String
+        cell.friendScorecardCellGCLabel.text = friendScorecard.objectForKey("golfCourse") as? String
         cell.friendScorecardCellDateLabel.text = friendScorecard.objectForKey("date") as? String
         cell.friendScorecardCellScoreLabel.text = friendScorecard.objectForKey("score") as? String
         
@@ -74,7 +74,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         friendScorecardData.removeAll()
         
         let query = PFQuery(className: "GolfScorecard")
-        query.whereKey("playerName", equalTo: selectedfriend!)
+        query.whereKey("golfer", equalTo: selectedfriend!)
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (friendScorecards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
