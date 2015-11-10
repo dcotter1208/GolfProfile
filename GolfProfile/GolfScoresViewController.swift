@@ -21,12 +21,20 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if PFUser.currentUser() == nil {
+            
+            self.userScoreboardTableView.reloadData()
 
+            print("THIS IS THE PRINT FOR THE FRIENDSVC:\(PFUser.currentUser())")
+            
+        }
 
     }
     
     override func viewWillAppear(animated: Bool) {
         loadData()
+        self.userScoreboardTableView.reloadData()
 
     }
 
@@ -45,7 +53,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let cell:UserLeaderboardCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UserLeaderboardCell
         
-        let scorecard:PFObject = self.scorecardData[indexPath.row] as PFObject
+        if let scorecard:PFObject = self.scorecardData[indexPath.row] as PFObject {
         
 
         //Getting the date from Parse and turning it into a String to display in label
@@ -53,31 +61,29 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM-dd-yyyy"
             let stringDate = dateFormatter.stringFromDate(golfDate)
-            cell.dateCellLabel.text = stringDate
+            cell.dateCellLabel?.text = stringDate
         }
         //Grabbing the score from Parse and turning it into a String to display in label
         if let score = scorecard.objectForKey("score") as? Int {
         let scoreToString = "\(score)"
-        cell.scoreCellLabel.text = scoreToString
-        }
+        cell.scoreCellLabel?.text = scoreToString
+            }
         
-        cell.golfCourseCellLabel.text = scorecard.objectForKey("golfCourse") as? String
+        cell.golfCourseCellLabel?.text = scorecard.objectForKey("golfCourse") as? String
         
-        
-        //downcast it to a PFFIle - which is what the Parse images are stored as. I then grab the data/image in the background and it is stored as an NSData which is the (result) inside of the getDataInBackgroundWithBlock and pass it to the UIImage and set the cell's image..... UIImage(date: ____) accepts a type of NSData.
         let pfImage = scorecard.objectForKey("scorecardImage") as? PFFile
         
         pfImage?.getDataInBackgroundWithBlock({
             (result, error) in
             
             if result == nil {
-            cell.scorecardCellImage.image = UIImage(named: "noScorecard")
+            cell.scorecardCellImage?.image = UIImage(named: "noScorecard")
                 
             } else {
-                cell.scorecardCellImage.image = UIImage(data: result!)
+                cell.scorecardCellImage?.image = UIImage(data: result!)
             }
         })
-        
+        }
 
         return cell
     }
@@ -103,7 +109,11 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let selectedIndex = userScoreboardTableView.indexPathForCell(sender as! UITableViewCell)
         
-        userScorecardPhotoVC?.userScorecard = (scorecardData[(selectedIndex?.row)!] as PFObject)
+            
+            //*********USE IF LET STATEMENT HERE*********
+            
+            userScorecardPhotoVC?.userScorecard = (scorecardData[(selectedIndex?.row)!] as PFObject)
+            
         
         }
         
@@ -116,6 +126,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         let query = PFQuery(className: "GolfScorecard")
         query.whereKey("golfer", equalTo: PFUser.currentUser()!)
         query.orderByDescending("createdAt")
+    
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
             

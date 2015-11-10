@@ -35,12 +35,13 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func saveScoreButton(sender: AnyObject) {
 
         
-        
         let golfScore = PFObject(className:"GolfScorecard")
         golfScore["score"] = (scorePicker.selectedRowInComponent(0))
         golfScore["golfer"] = PFUser.currentUser()
         golfScore["golfCourse"] = golfCourseName.text!
         golfScore["date"] = datePicker.date
+        
+        
         
         if scorecardImage?.image == nil {
             scorecardImage?.image = UIImage(named: "noScorecard")
@@ -107,9 +108,6 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         return 200
     }
     
-    
-//    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//            scorePicker.selectRow(0, inComponent: 0, animated: true)
-//        }
+
 
 }

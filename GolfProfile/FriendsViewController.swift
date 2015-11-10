@@ -30,7 +30,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewWillAppear(animated: Bool) {
         loadFriendsData()
-        friendsTableView.reloadData()
+        self.friendsTableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,23 +47,23 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let cell:FriendsCell = tableView.dequeueReusableCellWithIdentifier("friendsCell", forIndexPath: indexPath) as! FriendsCell
         
-            print(self.profiles.count)
-            if let profileInfo:PFObject = self.profiles[indexPath.row] as PFObject {
+        print(self.profiles.count)
+        if let profileInfo:PFObject = self.profiles[indexPath.row] as PFObject {
+            
+            let pfImage = profileInfo.objectForKey("profileImage") as? PFFile
+            
+            pfImage?.getDataInBackgroundWithBlock({
+                (result, error) in
                 
-                let pfImage = profileInfo.objectForKey("profileImage") as? PFFile
-                
-                pfImage?.getDataInBackgroundWithBlock({
-                    (result, error) in
+                if result != nil {
+                    cell.friendProfileCell.image = UIImage(data: result!)
                     
-                    if result != nil {
-                        cell.friendProfileCell.image = UIImage(data: result!)
-                        
-                    } else {
-                        print(error)
-                    }
-                })
-                
-                
+                } else {
+                    print(error)
+                }
+            })
+            
+            
         }
         
         if let friendInfo:PFObject = self.friends[indexPath.row] as! PFUser {
@@ -72,8 +72,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             
         }
-
-
+        
+        
         return cell
     }
     
@@ -84,15 +84,15 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             let editFriendsVC = segue.destinationViewController as! EditFriendsViewController
             
             editFriendsVC.showFriends = self.friends
-
+            
         } else if segue.identifier == "showFriendScores"  {
             
-                let friendScoresVC = segue.destinationViewController as! FriendScoresViewController
-                
-                let selectedIndex = friendsTableView.indexPathForCell(sender as! UITableViewCell)
-                
-                friendScoresVC.selectedfriend = (friends[(selectedIndex?.row)!] as PFObject)
-        
+            let friendScoresVC = segue.destinationViewController as! FriendScoresViewController
+            
+            let selectedIndex = friendsTableView.indexPathForCell(sender as! UITableViewCell)
+            
+            friendScoresVC.selectedfriend = (friends[(selectedIndex?.row)!] as PFObject)
+            
         }
     }
     
@@ -101,41 +101,39 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         profiles.removeAll()
         
         //This is assigning the variable friendsRelation (which is a PFRelation Type) to the current user and grabbing the current user's key of "friendsRelation"
-
+        
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
         
         //queries the friendsRelation of the current user.
-        let userQuery = friendsRelation?.query()
-        userQuery?.orderByAscending("username")
+        if let userQuery = friendsRelation?.query() {
+        userQuery.orderByAscending("username")
         let profileQuery = PFQuery(className:"GolfProfile")
-        profileQuery.whereKey("user", matchesQuery: userQuery!)
         
+        profileQuery.whereKey("user", matchesQuery: userQuery)
         profileQuery.findObjectsInBackgroundWithBlock { (profiles: [PFObject]?, error: NSError?) -> Void in
             if profiles != nil {
                 print("Profile query run")
                 for object:PFObject in profiles! {
-                self.profiles.append(object)
-                print("profiles: \(self.profiles.count)")
-                self.friendsTableView.reloadData()
-                }
-                userQuery?.findObjectsInBackgroundWithBlock { (friends: [PFObject]?, error: NSError?) -> Void in
-                    if friends != nil {
-                    dispatch_async(dispatch_get_main_queue()) {
-                    for object:PFObject in friends! {
-                    self.friends.append(object)
+                    self.profiles.append(object)
+                    print("profiles: \(self.profiles.count)")
                     self.friendsTableView.reloadData()
-                    print("friends: \(self.friends.count)")
-                                }
+                }
+                userQuery.findObjectsInBackgroundWithBlock { (friends: [PFObject]?, error: NSError?) -> Void in
+                    if friends != nil {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            for object:PFObject in friends! {
+                                self.friends.append(object)
+                                self.friendsTableView.reloadData()
+                                print("friends: \(self.friends.count)")
                             }
                         }
                     }
-              }
+                }
             }
-                
-            }
-
         }
         
+    }
+      
+    }
 
-
-
+}
