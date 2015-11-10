@@ -22,6 +22,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        print(PFUser.currentUser())
         
         if PFUser.currentUser() == nil {
             
@@ -32,7 +33,6 @@ class ProfileViewController: UIViewController {
         
     }
 
-        
         override func viewDidAppear(animated: Bool) {
             if (PFUser.currentUser() == nil) {
                 performSegueWithIdentifier("showLogin", sender: self)
@@ -41,9 +41,9 @@ class ProfileViewController: UIViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-//        navigationItem.hidesBackButton = true
-
         getProfileFromBackground()
+
+        
     }
     
     
@@ -65,45 +65,45 @@ class ProfileViewController: UIViewController {
     }
     
     func getProfileFromBackground() {
-        
-        let query = PFQuery(className:"GolfProfile")
-        if PFUser.currentUser() != nil {
-        query.whereKey("user", equalTo: PFUser.currentUser()!)
+    profileData.removeAll()
+     if let userQuery = PFUser.query() {
+     userQuery.findObjectsInBackgroundWithBlock({ (userProfiles:[PFObject]?, error: NSError?) -> Void in
             
-        }
-        query.findObjectsInBackgroundWithBlock { (profiles: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                
-                self.profileData.removeAll()
-                
-                for object:PFObject in profiles! {
+                    for object:PFObject in userProfiles! {
                     self.profileData.append(object)
-                    
-                            for data in self.profileData {
-                                self.golferNameLabel.text = data.objectForKey("name") as? String
-                                self.golferAge.text = data.objectForKey("age") as? String
-                                self.golferCountry.text = data.objectForKey("country")as? String
-                                self.golferDriver.text = data.objectForKey("driver")as? String
-                                self.golferIron.text = data.objectForKey("irons") as? String
-                                self.favoriteCourse.text = data.objectForKey("favoriteCourse") as? String
+                    print(self.profileData.count)
+                
+                    for data in self.profileData {
+                        
+                        self.profileData.removeAll()
+                        
+                        if data.objectId == PFUser.currentUser()?.objectId {
+                            self.golferNameLabel.text = data.objectForKey("name") as? String
+                            self.golferAge.text = data.objectForKey("age") as? String
+                            self.golferCountry.text = data.objectForKey("country")as? String
+                            self.golferDriver.text = data.objectForKey("driver")as? String
+                            self.golferIron.text = data.objectForKey("irons") as? String
+                            self.favoriteCourse.text = data.objectForKey("favoriteCourse") as? String
+                            print(data.objectForKey("username"))
+                            
+                            let pfImage = data.objectForKey("profileImage") as? PFFile
+                            pfImage?.getDataInBackgroundWithBlock({
+                                (result, error) in
                                 
+                                self.golferProfileImage.image = UIImage(data: result!)
                                 
-                                let pfImage = data.objectForKey("profileImage") as? PFFile
-                                pfImage?.getDataInBackgroundWithBlock({
-                                    (result, error) in
-                                    
-                                    self.golferProfileImage.image = UIImage(data: result!)
-                                })
-                        }
+                            })
 
+                        
+                        }
+                        
+              
                     }
-                } else {
-                print(error)
-            }
+                }
+            })
         }
-        
-    }
     
+    }
     
     @IBAction func unwindToProfilePage(segue: UIStoryboardSegue) {
 
@@ -112,8 +112,8 @@ class ProfileViewController: UIViewController {
     }
     
     
+
+
+
+
 }
-
-
-
-

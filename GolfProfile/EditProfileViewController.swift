@@ -20,14 +20,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     
     var editProfileData = [PFObject]()
-    var profileQuery = PFQuery(className: "GolfProfile")
+    var loadProfileData = [PFObject]()
     var object: PFObject!
     var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadUserProfile()
         imagePicker.delegate = self
-        loadUserProfileInfo()
         
     }
 
@@ -39,78 +39,84 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     //THIS UPDATES AND SAVES THE CHANGES TO THE USER'S PROFILE
     @IBAction func saveProfileButton(sender: AnyObject) {
         
-        let query = PFQuery(className: "GolfProfile")
-        query.whereKey("user", equalTo: PFUser.currentUser()!)
-        query.findObjectsInBackgroundWithBlock { (profiles: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                
-                for object:PFObject in profiles! {
-                    self.editProfileData.append(object)
-                    print(self.editProfileData.count)
+        if let editUserQuery = PFUser.query() {
+            editUserQuery.findObjectsInBackgroundWithBlock { (profilesToEdit: [PFObject]?, error: NSError?) -> Void in
+                if error == nil {
                     
-                    object["name"] = self.golferNameTextField.text!
-                    object["age"] = self.golferAgeTextField.text!
-                    object["country"] = self.golferCountryTextField.text
-                    object["driver"] = self.driverTextField.text!
-                    object["irons"] = self.ironsTextField.text!
-                    object["favoriteCourse"] = self.favoriteCourseTextField.text!
+                        for object:PFObject in profilesToEdit! {
+                        self.editProfileData.append(object)
+                        print(self.editProfileData.count)
+                        
+                        if object.objectId == PFUser.currentUser()?.objectId {
+                        object["name"] = self.golferNameTextField.text!
+                        object["age"] = self.golferAgeTextField.text!
+                        object["country"] = self.golferCountryTextField.text
+                        object["driver"] = self.driverTextField.text!
+                        object["irons"] = self.ironsTextField.text!
+                        object["favoriteCourse"] = self.favoriteCourseTextField.text!
+                        
+                        let pickedImage = self.golferProfileImage.image
+                        let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(100, 100))
+                        let imageData = UIImagePNGRepresentation(scaledImage)
+                        let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
+                        object["profileImage"] = golferImageFile
+                        
+                        object.saveInBackground()
+                    }
+                            
+                    }
                     
-                    let pickedImage = self.golferProfileImage.image
-                    let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(100, 100))
-                    let imageData = UIImagePNGRepresentation(scaledImage)
-                    let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
-                    object["profileImage"] = golferImageFile
-                    
-                    object.saveInBackground()
+                } else {
+                    print(error)
                 }
-
-            } else {
-                print(error)
             }
         }
         
     }
+
     
     //********THIS FUNCTION LOADS THE CURRENT USER'S PROFILE INTO THE EDIT SCREEN'S TEXTFIELD*******
-    func loadUserProfileInfo() {
 
-            let query = PFQuery(className:"GolfProfile")
-            if PFUser.currentUser() != nil {
-                query.whereKey("user", equalTo: PFUser.currentUser()!)
+    
+    func loadUserProfile() {
+        if let userQuery = PFUser.query() {
+        userQuery.findObjectsInBackgroundWithBlock({ (userProfiles:[PFObject]?, error: NSError?) -> Void in
                 
-            }
-            query.findObjectsInBackgroundWithBlock { (profiles: [PFObject]?, error: NSError?) -> Void in
-                if error == nil {
+                for object:PFObject in userProfiles! {
+                    self.loadProfileData.append(object)
+                    print(self.loadProfileData.count)
                     
-                    self.editProfileData.removeAll()
-                    
-                    for object:PFObject in profiles! {
-                        self.editProfileData.append(object)
+                    for data in self.loadProfileData {
                         
-                        for data in self.editProfileData {
+                        if data.objectId == PFUser.currentUser()?.objectId {
                             self.golferNameTextField.text = data.objectForKey("name") as? String
                             self.golferAgeTextField.text = data.objectForKey("age") as? String
                             self.golferCountryTextField.text = data.objectForKey("country")as? String
                             self.driverTextField.text = data.objectForKey("driver")as? String
                             self.ironsTextField.text = data.objectForKey("irons") as? String
                             self.favoriteCourseTextField.text = data.objectForKey("favoriteCourse") as? String
+                            print(data.objectForKey("username"))
                             
                             let pfImage = data.objectForKey("profileImage") as? PFFile
                             pfImage?.getDataInBackgroundWithBlock({
                                 (result, error) in
                                 
                                 self.golferProfileImage.image = UIImage(data: result!)
+                                
                             })
+                            
+                            
                         }
                         
+                        
                     }
-                } else {
-                    print(error)
                 }
-            }
-
+            })
+        }
+    
     }
     
+
     @IBAction func camButton(sender: UIBarButtonItem) {
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePicker, animated: true, completion: nil)
@@ -130,7 +136,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
-    }
+        }
     
     
     func scaleImageWith(image: UIImage, newSize: CGSize) -> UIImage {
@@ -140,8 +146,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         UIGraphicsEndImageContext()
         
         return newImage
+        
+            }
+
     }
-    
 
 
-}
+

@@ -35,37 +35,28 @@ class SignUpViewController: UIViewController {
         user.username = signUpUsernameTextField.text?.lowercaseString
         user.password = signUpPasswordTextField.text?.lowercaseString
         user.email = signUpEmailTextField.text?.lowercaseString
+        user["name"] = ""
+        user["age"] = ""
+        user["country"] = ""
+        user["driver"] = ""
+        user["irons"] = ""
+        user["favoriteCourse"] = ""
+        let imageData = UIImagePNGRepresentation(UIImage(named: "defaultUser")!)
+        let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
+        user["profileImage"] = golferImageFile
         
         // If creating the user was successful then we log them in and display the ProfielViewController....***I HOOKED THIS UP TO A UNWIND SEGUE***
         
         user.signUpInBackgroundWithBlock {(succeeded: Bool, error: NSError?) -> Void in
                         if error == nil {
-        //********IF THE NEW USER CREATION IS SUCCESSFUL IT THEN MAKES DEFAULT USER NAME FOR THAT USER*********
-                            let golferProfile = PFObject(className:"GolfProfile")
-                            
-                            golferProfile["user"] = PFUser.currentUser()
-                            golferProfile["name"] = ""
-                            golferProfile["age"] = ""
-                            golferProfile["country"] = ""
-                            golferProfile["driver"] = ""
-                            golferProfile["irons"] = ""
-                            golferProfile["favoriteCourse"] = ""
-                            
-                            let imageData = UIImagePNGRepresentation(UIImage(named: "defaultUser")!)
-                            let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
-                            golferProfile["profileImage"] = golferImageFile
-
-                            golferProfile.saveInBackgroundWithBlock {
-                                (success: Bool, error: NSError?) -> Void in
-                                if (success) {
+  
+                            if PFUser.currentUser() != nil {
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    self.dismissViewControllerAnimated(true, completion: nil)
                                     
-                                    if PFUser.currentUser() != nil {
-                                        dispatch_async(dispatch_get_main_queue()) {
-                                            self.dismissViewControllerAnimated(true, completion: nil)
-                                            
-                                        }
-                                        
-                                    }
+                                }
+                                
+                            }
                                     
                                 } else {
                                     print(error)
@@ -76,10 +67,7 @@ class SignUpViewController: UIViewController {
                         }
             
                     }
-            
-                }
-        
-            }
+
 
 
 
