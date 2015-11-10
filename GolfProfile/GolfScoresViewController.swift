@@ -56,7 +56,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         if let scorecard:PFObject = self.scorecardData[indexPath.row] as PFObject {
         
 
-        //Getting the date from Parse and turning it into a String to display in label
+        //Getting the data from Parse and turning it into a String to display in label
        if let golfDate = scorecard.objectForKey("date") as? NSDate {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM-dd-yyyy"

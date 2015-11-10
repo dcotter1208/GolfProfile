@@ -11,7 +11,6 @@ import Parse
 
 class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var friendsTableView: UITableView!
-    var profiles = [PFObject]()
     var friends = [PFObject]()
     var friendsRelation = PFRelation?()
     var joinedQueries = [PFQuery]()
@@ -47,10 +46,12 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let cell:FriendsCell = tableView.dequeueReusableCellWithIdentifier("friendsCell", forIndexPath: indexPath) as! FriendsCell
         
-        print(self.profiles.count)
-        if let profileInfo:PFObject = self.profiles[indexPath.row] as PFObject {
+        
+        if let friendInfo:PFObject = self.friends[indexPath.row] as! PFUser {
             
-            let pfImage = profileInfo.objectForKey("profileImage") as? PFFile
+            cell.friendUserNameCellLabel.text = friendInfo.objectForKey("username") as? String
+            
+            let pfImage = friendInfo.objectForKey("profileImage") as? PFFile
             
             pfImage?.getDataInBackgroundWithBlock({
                 (result, error) in
@@ -62,13 +63,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     print(error)
                 }
             })
-            
-            
-        }
-        
-        if let friendInfo:PFObject = self.friends[indexPath.row] as! PFUser {
-            
-            cell.friendUserNameCellLabel.text = friendInfo.objectForKey("username") as? String
             
             
         }
@@ -98,7 +92,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func loadFriendsData() {
         friends.removeAll()
-        profiles.removeAll()
         
         //This is assigning the variable friendsRelation (which is a PFRelation Type) to the current user and grabbing the current user's key of "friendsRelation"
         
@@ -107,17 +100,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         //queries the friendsRelation of the current user.
         if let userQuery = friendsRelation?.query() {
         userQuery.orderByAscending("username")
-        let profileQuery = PFQuery(className:"GolfProfile")
         
-        profileQuery.whereKey("user", matchesQuery: userQuery)
-        profileQuery.findObjectsInBackgroundWithBlock { (profiles: [PFObject]?, error: NSError?) -> Void in
-            if profiles != nil {
-                print("Profile query run")
-                for object:PFObject in profiles! {
-                    self.profiles.append(object)
-                    print("profiles: \(self.profiles.count)")
-                    self.friendsTableView.reloadData()
-                }
                 userQuery.findObjectsInBackgroundWithBlock { (friends: [PFObject]?, error: NSError?) -> Void in
                     if friends != nil {
                         dispatch_async(dispatch_get_main_queue()) {
@@ -131,9 +114,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
         }
-        
-    }
-      
-    }
+
 
 }
