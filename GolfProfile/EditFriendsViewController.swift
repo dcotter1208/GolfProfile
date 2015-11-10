@@ -16,6 +16,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var editFriendProfileImage: UIImageView!
     
     var allUsers = [PFObject]()
+    var userGolfProfiles = [PFObject]()
     var showFriends = [PFObject]()
     var friendsRelation = PFRelation()
     let currentUser = PFUser.currentUser()
@@ -26,6 +27,10 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         addFriendsTableView.reloadData()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        addFriendsTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,12 +47,27 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         
         let cell:EditFriendCell = tableView.dequeueReusableCellWithIdentifier("editFriendCell", forIndexPath: indexPath) as! EditFriendCell
         
+        if let profileInfo:PFObject = self.userGolfProfiles[indexPath.row] as PFObject {
+            
+            let pfImage = profileInfo.objectForKey("profileImage") as? PFFile
+            
+            pfImage?.getDataInBackgroundWithBlock({
+                (result, error) in
+                
+                if result != nil {
+                    cell.editFriendProfileCellImage.image = UIImage(data: result!)
+                    
+                } else {
+                    print(error)
+                }
+            })
+            
+            
+        }
+        
         let userInfo:PFObject = self.allUsers[indexPath.row] as! PFUser
         cell.userNameCellLabel.text = userInfo.objectForKey("username") as? String
         
-        
-        //THIS NEEDS TO BE CHANGED ONCE I GET THE PROFILE IMAGE FROM PARSE WORKING
-        cell.editFriendProfileCellImage.image = UIImage(named: "defaultUser")
         
         //if the user is a friend then their name will have a checkmark
         if isFriend(userInfo as! PFUser) {
@@ -56,7 +76,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
             cell.accessoryType = UITableViewCellAccessoryType.None
             
         }
-
+        
         return cell
     }
     
@@ -81,45 +101,62 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
             showFriends.append(userInfo)
             friendsRelation.addObject(userInfo)
         }
-                    currentUser?.saveInBackgroundWithBlock {
-                        (success: Bool, error: NSError?) -> Void in
-                        if (success) {
-                            print("WE GOT FRIENDS!!!!")
-        
-                        } else {
-                            print(error)
-                    }
+        currentUser?.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                print("WE GOT FRIENDS!!!!")
+                
+            } else {
+                print(error)
             }
+        }
     }
     
     //Function that loads all of my PFUsers
     func loadData() {
         allUsers.removeAll()
+        userGolfProfiles.removeAll()
         
-        let userQuery = PFUser.query()
-            userQuery?.orderByAscending("username")
-            userQuery!.findObjectsInBackgroundWithBlock { (users: [PFObject]?, error: NSError?) -> Void in
+        if let userQuery = PFUser.query() {
+        userQuery.orderByAscending("username")
+        let profileQuery = PFQuery(className:"GolfProfile")
+        profileQuery.whereKey("user", matchesQuery: userQuery)
+        profileQuery.findObjectsInBackgroundWithBlock { (profiles: [PFObject]?, error: NSError?) -> Void in
+            if profiles != nil {
+                print("Profile query run")
+                for object:PFObject in profiles! {
+                self.userGolfProfiles.append(object)
+                print("profiles: \(self.userGolfProfiles.count)")
+                self.addFriendsTableView.reloadData()
+                    }
+
+        userQuery.findObjectsInBackgroundWithBlock { (users: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-        
-                    for object:PFObject in users! {
-                    self.allUsers.append(object)
-                    self.addFriendsTableView.reloadData()
+                for object:PFObject in users! {
+                self.allUsers.append(object)
+                print(self.allUsers.count)
+                self.addFriendsTableView.reloadData()
+                            }
+                        }
                     }
                 }
+        
             }
-        }
 
-//Function to check of a user is a or isn't a current friend. If they are then we are using this method to display a checkmark by their name in our editFriendsVC
+        }
+        
+    }
+    //Function to check of a user is a or isn't a current friend. If they are then we are using this method to display a checkmark by their name in our editFriendsVC
     func isFriend(user: PFUser) -> Bool {
         for friend in showFriends {
             if friend.objectId == user.objectId {
                 return true
-            } 
-        
+            }
+            
         }
         
         return false
-    
+        
     }
     
     

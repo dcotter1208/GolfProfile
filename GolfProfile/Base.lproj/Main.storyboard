@@ -474,6 +474,13 @@
                                     <action selector="photoLibraryButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="gQQ-az-Gei"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqi-aC-dL4">
+                                <rect key="frame" x="143" y="457" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveScoreButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="jBO-vj-2iX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -724,12 +731,12 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuB-KW-APO">
                                                     <rect key="frame" x="101" y="37" width="165" height="23"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" red="0.94901960784313721" green="0.72549019607843135" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.094117647058823528" green="0.058823529411764705" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.7843137255" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="friendProfileCell" destination="NzN-uC-h0h" id="QZX-ys-NOP"/>
                                             <outlet property="friendUserNameCellLabel" destination="iuB-KW-APO" id="VOi-nF-ORK"/>
@@ -788,14 +795,14 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXw-ye-pxj">
                                                     <rect key="frame" x="101" y="38" width="193" height="21"/>
-                                                    <color key="backgroundColor" red="0.094117647058823528" green="0.058823529411764705" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.7843137255" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" red="0.94808799342105265" green="0.72476356907894501" blue="0.41046463815789475" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.094117647058823528" green="0.058823529411764705" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.7843137255" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="editFriendProfileCellImage" destination="C0s-Zc-W3J" id="qI0-7I-CQL"/>
                                             <outlet property="userNameCellLabel" destination="TXw-ye-pxj" id="5u5-Ns-Gos"/>
