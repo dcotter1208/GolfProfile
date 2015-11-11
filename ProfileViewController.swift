@@ -66,9 +66,10 @@ class ProfileViewController: UIViewController {
     
     func getProfileFromBackground() {
     profileData.removeAll()
-     if let userQuery = PFUser.query() {
+    if let userQuery = PFUser.query() {
      userQuery.findObjectsInBackgroundWithBlock({ (userProfiles:[PFObject]?, error: NSError?) -> Void in
-            
+        if error == nil {
+        dispatch_async(dispatch_get_main_queue()) {
                     for object:PFObject in userProfiles! {
                     self.profileData.append(object)
                     print(self.profileData.count)
@@ -97,11 +98,15 @@ class ProfileViewController: UIViewController {
                         
                         }
                         
-              
+                        
                     }
                 }
+        }
+            
+        }
             })
         }
+        
     
     }
     

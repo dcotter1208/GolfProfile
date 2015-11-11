@@ -32,6 +32,15 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func cancelButton(sender: UIButton) {
+        
+            self.dismissViewControllerAnimated(true, completion: nil)
+
+        
+    }
+    
+    
+    
     @IBAction func saveScoreButton(sender: AnyObject) {
 
         
@@ -57,6 +66,12 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         golfScore.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                self.dismissViewControllerAnimated(true, completion: nil)
+                    
+                }
                 
                 
             } else {
