@@ -19,6 +19,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     var showFriends = [PFObject]()
     var friendsRelation = PFRelation()
     let currentUser = PFUser.currentUser()
+    var checkMarkArray = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,25 +66,31 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         
         //if the user is a friend then their name will have a checkmark
         if isFriend(userInfo as! PFUser) {
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+           cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+           checkMarkArray.append(indexPath.row)
+     
         } else {
             cell.accessoryType = UITableViewCellAccessoryType.None
             
         }
         
+        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
+        
         friendsRelation = (PFUser.currentUser()?.relationForKey("friendsRelation"))!
         
         let userInfo:PFObject = self.allUsers[indexPath.row] as! PFUser
         
         if isFriend(userInfo as! PFUser) {
             cell?.accessoryType = UITableViewCellAccessoryType.None
+            
             
             for friend in showFriends{
                 if friend.objectId == userInfo.objectId {

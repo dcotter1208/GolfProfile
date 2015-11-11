@@ -17,10 +17,17 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     var dateFormatter = NSDateFormatter()
     var date = NSDate?()
     
-
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.userScoreboardTableView.addSubview(self.refreshControl)
         
         if PFUser.currentUser() == nil {
             
@@ -96,8 +103,6 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
             selectedScorecard.deleteInBackground()
             scorecardData.removeAtIndex(indexPath.row)
             
-            userScoreboardTableView.reloadData()
-            
         }
     }
     
@@ -109,8 +114,6 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let selectedIndex = userScoreboardTableView.indexPathForCell(sender as! UITableViewCell)
         
-            
-            //*********USE IF LET STATEMENT HERE*********
             
             userScorecardPhotoVC?.userScorecard = (scorecardData[(selectedIndex?.row)!] as PFObject)
             
@@ -130,11 +133,12 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
             
+                dispatch_async(dispatch_get_main_queue()) {
                 for object:PFObject in scoreCards! {
                     self.scorecardData.append(object)
                     self.userScoreboardTableView.reloadData()
+                    }
                 }
-                
                 
             } else {
                 print(error)
@@ -143,9 +147,12 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
-    @IBAction func unwindToGameScoreVC(segue: UIStoryboardSegue) {
-        
+    func handleRefresh(refreshControl: UIRefreshControl) {
+
+        self.userScoreboardTableView.reloadData()
+        refreshControl.endRefreshing()
     }
+
 
 
 }
