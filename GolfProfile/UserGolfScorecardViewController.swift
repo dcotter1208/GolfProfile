@@ -20,9 +20,23 @@ class UserGolfScorecardViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+//        setZoomScale()
+//        
+//        userScorecardScrollView = UIScrollView(frame: view.bounds)
+//        userScorecardScrollView.backgroundColor = UIColor.blackColor()
+//        userScorecardScrollView.contentSize = userScorecardImageView.bounds.size
+//        userScorecardScrollView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+//        userScorecardScrollView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
+//        userScorecardScrollView.contentOffset = CGPoint(x: 1000, y: 450)
+//        
+//        userScorecardScrollView.addSubview(userScorecardImageView)
+//        view.addSubview(userScorecardScrollView)
+        
         self.userScorecardScrollView.minimumZoomScale = 1.0
         self.userScorecardScrollView.maximumZoomScale = 6.0
+        self.userScorecardScrollView.zoomScale = 1.0
+
         
         //Getting the date from Parse and turning it into a String to display in label
         if let golfDate = userScorecard?.objectForKey("date") as? NSDate {
@@ -57,17 +71,6 @@ class UserGolfScorecardViewController: UIViewController, UIScrollViewDelegate {
     
 
     
-//    override func shouldAutorotate() -> Bool {
-//        return false
-//    }
-//    
-//
-//    
-//    
-//    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-//        return UIInterfaceOrientationMask.LandscapeLeft
-//    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -81,9 +84,25 @@ class UserGolfScorecardViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return self.userScorecardImageView
+        
+        return self.view
     }
     
+    //Get the width and height ratios and pick the smaller of the two and set it as the minimum zoom scale.
+//    func setZoomScale() {
+//        let imageViewSize = userScorecardImageView.bounds.size
+//        let scrollViewSize = userScorecardScrollView.bounds.size
+//        let widthScale = scrollViewSize.width / imageViewSize.width
+//        let heightScale = scrollViewSize.height / imageViewSize.height
+//        
+//        userScorecardScrollView.minimumZoomScale = min(widthScale, heightScale)
+//        userScorecardScrollView.zoomScale = 1.0
+//    }
+//    
+//    //This function makes the image scales right after the user tries to zoom in/out after a device orientation change.
+//    override func viewWillLayoutSubviews() {
+//        setZoomScale()
+//    }
 
 
 }

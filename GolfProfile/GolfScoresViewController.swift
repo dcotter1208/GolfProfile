@@ -61,7 +61,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let cell:UserLeaderboardCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UserLeaderboardCell
         
-        if let scorecard:PFObject = self.scorecardData[indexPath.row] as PFObject {
+        if let scorecard:PFObject = self.scorecardData[indexPath.row] {
         
 
         //Getting the data from Parse and turning it into a String to display in label

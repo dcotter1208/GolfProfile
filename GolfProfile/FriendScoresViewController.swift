@@ -39,9 +39,20 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
         let friendScorecard:PFObject = self.friendScorecardData[indexPath.row] as PFObject
         
+        if let golfDate = friendScorecard.objectForKey("date") as? NSDate {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MM-dd-yyyy"
+            let stringDate = dateFormatter.stringFromDate(golfDate)
+            cell.friendScorecardCellDateLabel?.text = stringDate
+        }
+        //Grabbing the score from Parse and turning it into a String to display in label
+        if let score = friendScorecard.objectForKey("score") as? Int {
+            let scoreToString = "\(score)"
+            cell.friendScorecardCellScoreLabel?.text = scoreToString
+        }
+
+        
         cell.friendScorecardCellGCLabel.text = friendScorecard.objectForKey("golfCourse") as? String
-        cell.friendScorecardCellDateLabel.text = friendScorecard.objectForKey("date") as? String
-        cell.friendScorecardCellScoreLabel.text = friendScorecard.objectForKey("score") as? String
         
         //downcast it to a PFFIle - which is what the Parse images are stored as. I then grab the data/image in the background and it is stored as an NSData which is the (result) inside of the getDataInBackgroundWithBlock and pass it to the UIImage and set the cell's image..... UIImage(date: ____) accepts a type of NSData.
         let pfImage = friendScorecard.objectForKey("scorecardImage") as? PFFile
