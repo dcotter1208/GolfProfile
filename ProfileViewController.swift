@@ -22,7 +22,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print(PFUser.currentUser())
+
+        UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
+        
         
         if PFUser.currentUser() == nil {
             
@@ -112,13 +114,16 @@ class ProfileViewController: UIViewController {
     
     @IBAction func unwindToProfilePage(segue: UIStoryboardSegue) {
 
-
-        
     }
     
     
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
 
-
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
 
 
 }

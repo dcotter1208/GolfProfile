@@ -112,6 +112,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="favoriteCourse" destination="Txh-Re-nyI" id="5Zr-n5-OF8"/>
                         <outlet property="golferAge" destination="6le-H3-wUj" id="h9X-fu-YvS"/>
@@ -265,7 +266,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="117" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UDs-Pl-ggr">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -328,7 +329,7 @@
                                             <outlet property="golfCourseCellLabel" destination="CIv-Xo-pf7" id="zWA-4R-4bT"/>
                                             <outlet property="scoreCellLabel" destination="4aZ-lP-LLM" id="6Ub-Lu-t4g"/>
                                             <outlet property="scorecardCellImage" destination="PPL-3N-WMY" id="WAP-r3-L6u"/>
-                                            <segue destination="i50-sr-6sf" kind="push" identifier="showScorecardDetail" id="Knm-G1-URg"/>
+                                            <segue destination="i50-sr-6sf" kind="modal" identifier="showScorecardDetail" id="Knm-G1-URg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -341,9 +342,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Scorecards" id="k9V-UA-5Ab">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="knj-AN-Kpy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7t9-eX-dP9">
                             <connections>
-                                <segue destination="bcC-Qa-jI3" kind="modal" id="5Id-wF-GRR"/>
+                                <segue destination="bcC-Qa-jI3" kind="modal" id="BL4-R4-QV0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -353,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PME-yX-LCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3548" y="-4024"/>
+            <point key="canvasLocation" x="3620" y="-4320"/>
         </scene>
         <!--User Golf Scorecard View Controller-->
         <scene sceneID="Hw8-ou-Kjc">
@@ -367,27 +368,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uSt-eS-HhY">
-                                <rect key="frame" x="0.0" y="-32" width="320" height="352"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lk4-dh-faY">
+                                <rect key="frame" x="274" y="20" width="30" height="30"/>
+                                <state key="normal" title="X"/>
+                                <connections>
+                                    <action selector="dismissButton:" destination="i50-sr-6sf" eventType="touchUpInside" id="eXc-BZ-Qra"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w55-Bo-E2L">
+                                <rect key="frame" x="0.0" y="204" width="320" height="240"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3rb-Wk-FRP">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                                    </imageView>
+                                </subviews>
+                                <connections>
+                                    <outlet property="delegate" destination="i50-sr-6sf" id="AJO-TU-8TG"/>
+                                </connections>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Golf Course Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwn-qC-mnT">
+                                <rect key="frame" x="20" y="58" width="284" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXl-Gf-Xa9">
+                                <rect key="frame" x="20" y="97" width="284" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofm-CQ-Uuk">
+                                <rect key="frame" x="20" y="138" width="284" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Wha-Lo-LFD" firstAttribute="top" secondItem="uSt-eS-HhY" secondAttribute="bottom" id="68N-w2-1fC"/>
-                            <constraint firstItem="uSt-eS-HhY" firstAttribute="leading" secondItem="KnP-23-1Dq" secondAttribute="leading" id="9De-Lc-eA6"/>
-                            <constraint firstAttribute="trailing" secondItem="uSt-eS-HhY" secondAttribute="trailing" id="Pi3-4W-xKw"/>
-                            <constraint firstItem="uSt-eS-HhY" firstAttribute="top" secondItem="KnP-23-1Dq" secondAttribute="top" constant="-32" id="dJf-Ak-Hyz"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2tw-0V-3mB"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
-                        <outlet property="userScorecardImageView" destination="uSt-eS-HhY" id="1av-Ul-Wdr"/>
+                        <outlet property="golfCourseNameLabel" destination="dwn-qC-mnT" id="i3D-rb-aQP"/>
+                        <outlet property="scorecardDateLabel" destination="rXl-Gf-Xa9" id="wNG-pc-8yF"/>
+                        <outlet property="scorecardScoreLabel" destination="Ofm-CQ-Uuk" id="xOl-RS-z9u"/>
+                        <outlet property="userScorecardImageView" destination="3rb-Wk-FRP" id="4r5-LW-0DK"/>
+                        <outlet property="userScorecardScrollView" destination="w55-Bo-E2L" id="KkV-3J-cFh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKH-bi-VyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4213" y="-3616"/>
+            <point key="canvasLocation" x="4261" y="-3933"/>
         </scene>
         <!--New Scorecard-->
         <scene sceneID="qg1-2L-K2A">
@@ -471,7 +503,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tsh-K6-Kol" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="GIK-Ye-pqa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4079" y="-4458"/>
+            <point key="canvasLocation" x="4151" y="-4754"/>
         </scene>
         <!--Friend Scores View Controller-->
         <scene sceneID="xjV-GW-OlJ">
@@ -816,7 +848,7 @@
                     <connections>
                         <segue destination="ffa-AL-Kut" kind="relationship" relationship="viewControllers" id="Fw4-gk-tlV"/>
                         <segue destination="alM-mW-YZH" kind="relationship" relationship="viewControllers" id="Ddg-Ai-vyg"/>
-                        <segue destination="dxE-L1-slm" kind="relationship" relationship="viewControllers" id="3C5-YG-kCY"/>
+                        <segue destination="3rl-tt-7xQ" kind="relationship" relationship="viewControllers" id="xtE-ie-THp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaI-yO-YH6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -880,30 +912,30 @@
             </objects>
             <point key="canvasLocation" x="980" y="-2742"/>
         </scene>
-        <!--Scores-->
-        <scene sceneID="mar-lh-Brl">
+        <!--Item-->
+        <scene sceneID="qw7-h6-705">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dxE-L1-slm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Scores" id="io0-2w-QS6"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3rl-tt-7xQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="lZQ-jJ-Orr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="en8-Ei-i2k">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aef-U5-q02">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="xur-sp-cle" kind="relationship" relationship="rootViewController" id="wC7-gJ-UKY"/>
+                        <segue destination="xur-sp-cle" kind="relationship" relationship="rootViewController" id="q1X-3p-8kZ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8DP-ph-ZQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Cx-o9-io0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3016" y="-4024"/>
+            <point key="canvasLocation" x="3088" y="-4320"/>
         </scene>
     </scenes>
     <resources>
         <image name="noScorecard" width="485" height="302"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KCS-6P-O21"/>
+        <segue reference="Fw4-gk-tlV"/>
     </inferredMetricsTieBreakers>
 </document>

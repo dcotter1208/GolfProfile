@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 
+
 class GolfScoresViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var userScoreboardTableView: UITableView!
@@ -90,7 +91,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
                 cell.scorecardCellImage?.image = UIImage(data: result!)
             }
         })
-        }
+    }
 
         return cell
     }
@@ -102,6 +103,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
             let selectedScorecard:PFObject = scorecardData[indexPath.row] as PFObject
             selectedScorecard.deleteInBackground()
             scorecardData.removeAtIndex(indexPath.row)
+            userScoreboardTableView.reloadData()
             
         }
     }
