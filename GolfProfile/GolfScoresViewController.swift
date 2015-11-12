@@ -78,6 +78,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
             }
         
         cell.golfCourseCellLabel?.text = scorecard.objectForKey("golfCourse") as? String
+            print(scorecard.objectForKey("golfCourse"))
         
         let pfImage = scorecard.objectForKey("scorecardImage") as? PFFile
         
