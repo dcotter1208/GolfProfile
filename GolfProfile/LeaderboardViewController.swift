@@ -12,6 +12,8 @@ import Parse
 class LeaderboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var leaderboardData = [PFObject]()
+    var friendsRelation = PFRelation?()
+    var golferInfo = [PFObject]()
 
     @IBOutlet weak var leaderboardTableView: UITableView!
     
@@ -52,7 +54,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
             cell.leaderboardGCLabel?.text = allScorecards.objectForKey("golfCourse") as? String
-            cell.leaderboardGolferLabel.text = allScorecards.objectForKey("golfer") as? String
+            cell.leaderboardGolferLabel.text = allScorecards.objectForKey("username") as? String
             
             let pfImage = allScorecards.objectForKey("scorecardImage") as? PFFile
             
@@ -68,14 +70,24 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             })
         }
         
+        if let golfer:PFObject = self.golferInfo[indexPath.row] {
+            cell.leaderboardGolferLabel.text = golfer.objectForKey("username") as? String
+        
+        }
+        
+        
         return cell
     }
     
 
     func loadLeaderboardData() {
         leaderboardData.removeAll()
+        
+        friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
+//        if let userQuery = friendsRelation?.query() {
         let query = PFQuery(className: "GolfScorecard")
         query.includeKey("golfer")
+            
         print(query)
         query.orderByAscending("score")
         
@@ -86,6 +98,13 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                     for object:PFObject in scoreCards! {
                         self.leaderboardData.append(object)
                         print(self.leaderboardData)
+//                        let golfer = object.objectForKey("golfer")
+                        let golfer:PFObject = object["golfer"] as! PFObject
+                        let golferName = golfer["username"]
+                        self.golferInfo.append(golfer)
+                        print(self.golferInfo)
+//                        print(golferName!)
+//                        print(golfer)
                         self.leaderboardTableView.reloadData()
                     }
                 }
@@ -93,9 +112,9 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             } else {
                 print(error)
             }
-        }
+//        }
         
     }
 
-
+    }
 }

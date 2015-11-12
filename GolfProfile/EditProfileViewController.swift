@@ -117,7 +117,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
 
-    @IBAction func camButton(sender: UIBarButtonItem) {
+    @IBAction func camButton(sender: UIButton) {
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePicker, animated: true, completion: nil)
         
