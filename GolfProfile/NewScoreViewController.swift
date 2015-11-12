@@ -123,6 +123,9 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         return 200
     }
     
-
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
 
 }

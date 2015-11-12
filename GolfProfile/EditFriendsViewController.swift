@@ -64,6 +64,8 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         })
         
         
+        cell.tintColor = UIColor.whiteColor()
+        
         //if the user is a friend then their name will have a checkmark
         if isFriend(userInfo as! PFUser) {
            cell.accessoryType = UITableViewCellAccessoryType.Checkmark

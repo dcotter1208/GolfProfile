@@ -117,7 +117,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
 
-    @IBAction func camButton(sender: UIBarButtonItem) {
+    @IBAction func camButton(sender: UIButton) {
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePicker, animated: true, completion: nil)
         
@@ -148,6 +148,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         return newImage
         
             }
+    
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
 
     }
 
