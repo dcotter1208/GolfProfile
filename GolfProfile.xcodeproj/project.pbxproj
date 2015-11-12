@@ -47,6 +47,7 @@
 		C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */; };
 		C0AFA2E61BEFE6EF00C9F058 /* ScorecardPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AFA2E51BEFE6EF00C9F058 /* ScorecardPhotoViewController.swift */; };
 		C0AFA2E81BF0106800C9F058 /* UserGolfScorecardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AFA2E71BF0106800C9F058 /* UserGolfScorecardViewController.swift */; };
+		C0C74F361BF3E0C900EB4E11 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C74F351BF3E0C900EB4E11 /* extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C0AFA2E51BEFE6EF00C9F058 /* ScorecardPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorecardPhotoViewController.swift; sourceTree = "<group>"; };
 		C0AFA2E71BF0106800C9F058 /* UserGolfScorecardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGolfScorecardViewController.swift; sourceTree = "<group>"; };
+		C0C74F351BF3E0C900EB4E11 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				C038BF1E1BE80AA4004AE33E /* LaunchScreen.storyboard */,
 				C038BF211BE80AA4004AE33E /* Info.plist */,
 				C038BF491BE81C20004AE33E /* Model */,
+				C0C74F351BF3E0C900EB4E11 /* extensions.swift */,
 			);
 			path = GolfProfile;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */,
+				C0C74F361BF3E0C900EB4E11 /* extensions.swift in Sources */,
 				C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */,
 				C0A2884A1BED37810003AF11 /* EditFriendCell.swift in Sources */,
 				C038BF461BE80C8C004AE33E /* GolfScoresViewController.swift in Sources */,

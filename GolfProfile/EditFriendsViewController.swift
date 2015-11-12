@@ -90,11 +90,14 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         
         if isFriend(userInfo as! PFUser) {
             cell?.accessoryType = UITableViewCellAccessoryType.None
-            
-            
+
             for friend in showFriends{
                 if friend.objectId == userInfo.objectId {
-                    friendsRelation.removeObject(friend)
+                friendsRelation.removeObject(friend)
+                    
+                //taking a function as an argument. I'm assigning a new value to my showFriends array. I filter through the original array and remove that selected "friend" from the array.
+                showFriends = showFriends.filter({ $0 != friend })
+
                 }
             }
             
@@ -102,6 +105,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
             cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
             showFriends.append(userInfo)
             friendsRelation.addObject(userInfo)
+            
         }
         currentUser?.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
@@ -125,7 +129,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 for object:PFObject in users! {
                 self.allUsers.append(object)
-                print(self.allUsers.count)
+//                print(self.allUsers.count)
                 self.addFriendsTableView.reloadData()
                             }
                         }
