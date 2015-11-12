@@ -148,6 +148,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         return newImage
         
             }
+    
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
 
     }
 

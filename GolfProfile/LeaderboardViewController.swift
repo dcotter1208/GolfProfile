@@ -56,22 +56,38 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             cell.leaderboardGCLabel?.text = allScorecards.objectForKey("golfCourse") as? String
             cell.leaderboardGolferLabel.text = allScorecards.objectForKey("username") as? String
             
-            let pfImage = allScorecards.objectForKey("scorecardImage") as? PFFile
+//            let pfImage = allScorecards.objectForKey("profileImage") as? PFFile
+//            
+//            pfImage?.getDataInBackgroundWithBlock({
+//                (result, error) in
+//                
+//                if result == nil {
+//                    cell.leaderboardScorecardImage.image = UIImage(named: "noScorecard")
+//                    
+//                } else {
+//                    cell.leaderboardScorecardImage.image = UIImage(data: result!)
+//                }
+//            })
+        }
+        
+        if let golfer:PFObject = self.golferInfo[indexPath.row] {
+            
+            cell.leaderboardGolferLabel.text = golfer.objectForKey("username") as? String
+            
+            let pfImage = golfer.objectForKey("profileImage") as? PFFile
             
             pfImage?.getDataInBackgroundWithBlock({
                 (result, error) in
                 
                 if result == nil {
-                    cell.leaderboardScorecardImage.image = UIImage(named: "noScorecard")
+                    cell.leaderboardScorecardImage.image = UIImage(named: "defaultUser")
                     
                 } else {
                     cell.leaderboardScorecardImage.image = UIImage(data: result!)
                 }
             })
-        }
-        
-        if let golfer:PFObject = self.golferInfo[indexPath.row] {
-            cell.leaderboardGolferLabel.text = golfer.objectForKey("username") as? String
+            
+            
         
         }
         
@@ -100,7 +116,6 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                         print(self.leaderboardData)
 //                        let golfer = object.objectForKey("golfer")
                         let golfer:PFObject = object["golfer"] as! PFObject
-                        let golferName = golfer["username"]
                         self.golferInfo.append(golfer)
                         print(self.golferInfo)
 //                        print(golferName!)
@@ -111,7 +126,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                 
             } else {
                 print(error)
-            }
+        }
 //        }
         
     }
