@@ -57,6 +57,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
             
             if result != nil {
                 cell.editFriendProfileCellImage.image = UIImage(data: result!)
+                cell.editFriendProfileCellImage.layer.cornerRadius = cell.editFriendProfileCellImage.frame.size.width / 2
                 
             } else {
                 print(error)

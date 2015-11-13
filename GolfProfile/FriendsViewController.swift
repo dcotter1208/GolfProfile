@@ -58,7 +58,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 if result != nil {
                     cell.friendProfileCell.image = UIImage(data: result!)
-                    
+                    cell.friendProfileCell.layer.cornerRadius = cell.friendProfileCell.frame.size.width / 2
                 } else {
                     print(error)
                 }

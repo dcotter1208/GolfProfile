@@ -22,10 +22,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.golferProfileImage.layer.cornerRadius = self.golferProfileImage.frame.size.width / 2
+        self.golferProfileImage.layer.borderWidth = 3.0
+        self.golferProfileImage.layer.borderColor = UIColor.whiteColor().CGColor
+        self.golferProfileImage.clipsToBounds = true
+        
 
-        UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
-        
-        
         if PFUser.currentUser() == nil {
             
             self.performSegueWithIdentifier("showLogin", sender: self)
@@ -92,7 +95,6 @@ class ProfileViewController: UIViewController {
                             let pfImage = data.objectForKey("profileImage") as? PFFile
                             pfImage?.getDataInBackgroundWithBlock({
                                 (result, error) in
-                                
                                 self.golferProfileImage.image = UIImage(data: result!)
                                 
                             })
