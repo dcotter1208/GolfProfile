@@ -13,7 +13,7 @@ class LeaderboardCell: UITableViewCell {
     @IBOutlet weak var leaderboardGCLabel: UILabel!
     @IBOutlet weak var leaderboardDateLabel: UILabel!
     @IBOutlet weak var leaderboardScoreLabel: UILabel!
-    @IBOutlet weak var leaderboardScorecardImage: UIImageView!
+    @IBOutlet weak var leaderboardProfileImage: UIImageView!
     @IBOutlet weak var leaderboardGolferLabel: UILabel!
     
     override func awakeFromNib() {

@@ -60,7 +60,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell:UserLeaderboardCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UserLeaderboardCell
-        
+                
         if let scorecard:PFObject = self.scorecardData[indexPath.row] {
         
 

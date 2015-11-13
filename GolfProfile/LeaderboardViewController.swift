@@ -11,21 +11,36 @@ import Parse
 
 class LeaderboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+
+    @IBOutlet weak var leaderboardTableView: UITableView!
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
+    
     var leaderboardData = [PFObject]()
     var friendsRelation = PFRelation?()
     var golferInfo = [PFObject]()
-
-    @IBOutlet weak var leaderboardTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadLeaderboardData()
+        
+        self.leaderboardTableView.addSubview(self.refreshControl)
+        
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        leaderboardTableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,7 +58,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             //Getting the data from Parse and turning it into a String to display in label
             if let golfDate = allScorecards.objectForKey("date") as? NSDate {
                 let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "MM-dd-yyyy"
+                dateFormatter.dateFormat = "MM/dd/yyyy"
                 let stringDate = dateFormatter.stringFromDate(golfDate)
                 cell.leaderboardDateLabel?.text = stringDate
             }
@@ -56,18 +71,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             cell.leaderboardGCLabel?.text = allScorecards.objectForKey("golfCourse") as? String
             cell.leaderboardGolferLabel.text = allScorecards.objectForKey("username") as? String
             
-//            let pfImage = allScorecards.objectForKey("profileImage") as? PFFile
-//            
-//            pfImage?.getDataInBackgroundWithBlock({
-//                (result, error) in
-//                
-//                if result == nil {
-//                    cell.leaderboardScorecardImage.image = UIImage(named: "noScorecard")
-//                    
-//                } else {
-//                    cell.leaderboardScorecardImage.image = UIImage(data: result!)
-//                }
-//            })
+
         }
         
         if let golfer:PFObject = self.golferInfo[indexPath.row] {
@@ -79,11 +83,11 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             pfImage?.getDataInBackgroundWithBlock({
                 (result, error) in
                 
-                if result == nil {
-                    cell.leaderboardScorecardImage.image = UIImage(named: "defaultUser")
-                    
+                if result != nil {
+                    cell.leaderboardProfileImage.image = UIImage(data: result!)
+                    cell.leaderboardProfileImage.layer.cornerRadius = cell.leaderboardProfileImage.frame.size.width / 2
                 } else {
-                    cell.leaderboardScorecardImage.image = UIImage(data: result!)
+                    print(error)
                 }
             })
             
@@ -132,4 +136,11 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        
+        self.leaderboardTableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
 }
