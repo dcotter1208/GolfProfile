@@ -11,17 +11,17 @@ import Parse
 
 class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var friendsTableView: UITableView!
+    
     var friends = [PFObject]()
     var friendsRelation = PFRelation?()
     var joinedQueries = [PFQuery]()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if PFUser.currentUser() == nil {
+            
             friendsTableView.reloadData()
-            print("THIS IS THE PRINT FOR THE FRIENDSVC:\(PFUser.currentUser())")
 
         }
         
@@ -63,11 +63,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     print(error)
                 }
             })
-            
-            
         }
-        
-        
         return cell
     }
     

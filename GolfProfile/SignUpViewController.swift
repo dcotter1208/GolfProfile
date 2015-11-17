@@ -48,32 +48,27 @@ class SignUpViewController: UIViewController {
         // If creating the user was successful then we log them in and display the ProfielViewController....***I HOOKED THIS UP TO A UNWIND SEGUE***
         
         user.signUpInBackgroundWithBlock {(succeeded: Bool, error: NSError?) -> Void in
-                        if error == nil {
+         if error == nil {
   
-                            if PFUser.currentUser() != nil {
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    self.dismissViewControllerAnimated(true, completion: nil)
-                                    
-                                }
+            if PFUser.currentUser() != nil {
+             dispatch_async(dispatch_get_main_queue()) {
+             self.dismissViewControllerAnimated(true, completion: nil)
+                }
                                 
-                            }
+            }
                                     
-                                } else {
-                                    print(error)
-                                    
-                                }
-                            }
-                            
-                        }
-    
+         } else {
+            print(error)
+        }
+    }
+}
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
     
-            
-                    }
+}
 
 
 

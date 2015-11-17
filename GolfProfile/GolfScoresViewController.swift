@@ -28,17 +28,8 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.userScoreboardTableView.addSubview(self.refreshControl)
         
-        if PFUser.currentUser() == nil {
-            
-            self.userScoreboardTableView.reloadData()
-
-            print("THIS IS THE PRINT FOR THE FRIENDSVC:\(PFUser.currentUser())")
-            
-        }
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -64,22 +55,20 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
                 
         if let scorecard:PFObject = self.scorecardData[indexPath.row] {
         
-
-        //Getting the data from Parse and turning it into a String to display in label
+        //Get the date from Parse and turning it into a String to display in label
        if let golfDate = scorecard.objectForKey("date") as? NSDate {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM-dd-yyyy"
             let stringDate = dateFormatter.stringFromDate(golfDate)
             cell.dateCellLabel?.text = stringDate
         }
-        //Grabbing the score from Parse and turning it into a String to display in label
+        //Get the score from Parse and turning it into a String to display in label
         if let score = scorecard.objectForKey("score") as? Int {
         let scoreToString = "\(score)"
         cell.scoreCellLabel?.text = scoreToString
             }
         
         cell.golfCourseCellLabel?.text = scorecard.objectForKey("golfCourse") as? String
-            print(scorecard.objectForKey("golfCourse"))
         
         let pfImage = scorecard.objectForKey("scorecardImage") as? PFFile
         
@@ -90,13 +79,13 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
             cell.scorecardCellImage?.image = UIImage(named: "noScorecard")
                 
             } else {
-                cell.scorecardCellImage?.image = UIImage(data: result!)
+            cell.scorecardCellImage?.image = UIImage(data: result!)
             }
         })
     }
 
         return cell
-    }
+}
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -118,8 +107,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let selectedIndex = userScoreboardTableView.indexPathForCell(sender as! UITableViewCell)
         
-            
-            userScorecardPhotoVC?.userScorecard = (scorecardData[(selectedIndex?.row)!] as PFObject)
+        userScorecardPhotoVC?.userScorecard = (scorecardData[(selectedIndex?.row)!] as PFObject)
             
         
         }
@@ -127,7 +115,6 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func loadData() {
-        //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
         scorecardData.removeAll()
         
         let query = PFQuery(className: "GolfScorecard")
@@ -155,6 +142,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
 
         self.userScoreboardTableView.reloadData()
         refreshControl.endRefreshing()
+        
     }
 
 

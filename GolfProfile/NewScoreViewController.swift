@@ -23,7 +23,6 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         
         imagePicker.delegate = self
-
         
     }
 
@@ -36,30 +35,29 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         
             self.dismissViewControllerAnimated(true, completion: nil)
 
-        
     }
     
     
     
     @IBAction func saveScoreButton(sender: AnyObject) {
 
-        
         let golfScore = PFObject(className:"GolfScorecard")
         golfScore["score"] = (scorePicker.selectedRowInComponent(0))
         golfScore["golfer"] = PFUser.currentUser()
         golfScore["golfCourse"] = golfCourseName.text!
         golfScore["date"] = datePicker.date
         
-        
-        
         if scorecardImage?.image == nil {
+            
             scorecardImage?.image = UIImage(named: "noScorecard")
+            
         } else {
-        let pickedImage = self.scorecardImage?.image
-        let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(400, 400))
-        let imageData = UIImagePNGRepresentation(scaledImage)
-        let parseImageFile = PFFile(name: "scorecard.png", data: imageData!)
-        golfScore["scorecardImage"] = parseImageFile
+            
+            let pickedImage = self.scorecardImage?.image
+            let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(400, 400))
+            let imageData = UIImagePNGRepresentation(scaledImage)
+            let parseImageFile = PFFile(name: "scorecard.png", data: imageData!)
+            golfScore["scorecardImage"] = parseImageFile
        
         }
         
@@ -75,6 +73,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
                 
                 
             } else {
+                
                 print("NOT SAVED")
                 
             }
@@ -82,25 +81,30 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
-
     @IBAction func photoLibraryButton(sender: UIButton) {
+        
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
         
     }
 
     @IBAction func camButton(sender: UIButton) {
+        
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePicker, animated: true, completion: nil)
+        
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
         scorecardImage?.image = image
         self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
 
     func scaleImageWith(image: UIImage, newSize: CGSize) -> UIImage {
+        
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -110,20 +114,21 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     }
 
     
-    //Mark: Picker Methods
-    
+    // MARK: Picker Methods
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
+    
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return "\(row+1)"
     }
+    
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 200
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
