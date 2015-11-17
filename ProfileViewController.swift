@@ -28,12 +28,15 @@ class ProfileViewController: UIViewController {
         self.golferProfileImage.layer.borderColor = UIColor.whiteColor().CGColor
         self.golferProfileImage.clipsToBounds = true
         
+    
 
         if PFUser.currentUser() == nil {
             
             self.performSegueWithIdentifier("showLogin", sender: self)
             
         }
+        
+    
 
         
     }

@@ -38,6 +38,7 @@
 		C038BF721BE84072004AE33E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF6B1BE84072004AE33E /* ParseUI.framework */; };
 		C038BF761BE84287004AE33E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF751BE84287004AE33E /* LoginViewController.swift */; };
 		C038BF781BE842F4004AE33E /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF771BE842F4004AE33E /* FriendsViewController.swift */; };
+		C04597481BFB7C8A001A004D /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04597471BFB7C8A001A004D /* Keys.plist */; };
 		C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */; };
 		C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00931BE9027E00A514FE /* SignUpViewController.swift */; };
 		C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */; };
@@ -107,6 +108,7 @@
 		C038BF6B1BE84072004AE33E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		C038BF751BE84287004AE33E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C038BF771BE842F4004AE33E /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		C04597471BFB7C8A001A004D /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = ../Keys.plist; sourceTree = "<group>"; };
 		C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendScoresViewController.swift; sourceTree = "<group>"; };
 		C06D00931BE9027E00A514FE /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScoreViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
 				C038BF1C1BE80AA4004AE33E /* Assets.xcassets */,
 				C038BF1E1BE80AA4004AE33E /* LaunchScreen.storyboard */,
+				C04597471BFB7C8A001A004D /* Keys.plist */,
 				C038BF211BE80AA4004AE33E /* Info.plist */,
 				C038BF491BE81C20004AE33E /* Model */,
 				C0C74F351BF3E0C900EB4E11 /* extensions.swift */,
@@ -374,6 +377,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C04597481BFB7C8A001A004D /* Keys.plist in Resources */,
 				C038BF201BE80AA4004AE33E /* LaunchScreen.storyboard in Resources */,
 				C038BF1D1BE80AA4004AE33E /* Assets.xcassets in Resources */,
 				C038BF1B1BE80AA4004AE33E /* Main.storyboard in Resources */,
