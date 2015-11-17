@@ -28,6 +28,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         self.userScoreboardTableView.addSubview(self.refreshControl)
         
         if PFUser.currentUser() == nil {
