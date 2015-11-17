@@ -114,7 +114,6 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                         self.leaderboardData.append(object)
                         let golfer:PFObject = object["golfer"] as! PFObject
                         self.golferInfo.append(golfer)
-                        print(self.golferInfo)
 
                         self.leaderboardTableView.reloadData()
                     }

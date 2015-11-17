@@ -46,7 +46,6 @@ class ProfileViewController: UIViewController {
     @IBAction func logOut(sender: AnyObject) {
         PFUser.logOut()
         self.performSegueWithIdentifier("showLogin", sender: self)
-        print (PFUser.currentUser())
         
     }
     
@@ -70,7 +69,6 @@ class ProfileViewController: UIViewController {
                     dispatch_async(dispatch_get_main_queue()) {
                         for object:PFObject in userProfiles! {
                             self.profileData.append(object)
-                            print(self.profileData.count)
                             
                             for data in self.profileData {
                                 
@@ -83,7 +81,6 @@ class ProfileViewController: UIViewController {
                                     self.golferDriver.text = data.objectForKey("driver")as? String
                                     self.golferIron.text = data.objectForKey("irons") as? String
                                     self.favoriteCourse.text = data.objectForKey("favoriteCourse") as? String
-                                    print(data.objectForKey("username"))
                                     
                                     let pfImage = data.objectForKey("profileImage") as? PFFile
                                     pfImage?.getDataInBackgroundWithBlock({

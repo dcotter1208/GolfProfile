@@ -126,7 +126,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             self.driverTextField.text = data.objectForKey("driver")as? String
                             self.ironsTextField.text = data.objectForKey("irons") as? String
                             self.favoriteCourseTextField.text = data.objectForKey("favoriteCourse") as? String
-                            print(data.objectForKey("username"))
                             
                             let pfImage = data.objectForKey("profileImage") as? PFFile
                             pfImage?.getDataInBackgroundWithBlock({

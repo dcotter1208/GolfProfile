@@ -15,9 +15,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var userScoreboardTableView: UITableView!
     
     var scorecardData = [PFObject]()
-    var dateFormatter = NSDateFormatter()
-    var date = NSDate?()
-    
+
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -33,7 +31,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func viewWillAppear(animated: Bool) {
-        loadData()
+        loadUserScorecardData()
         self.userScoreboardTableView.reloadData()
 
     }
@@ -46,7 +44,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return scorecardData.count
-        }
+    }
     
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -57,16 +55,21 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         //Get the date from Parse and turning it into a String to display in label
        if let golfDate = scorecard.objectForKey("date") as? NSDate {
+        
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM-dd-yyyy"
             let stringDate = dateFormatter.stringFromDate(golfDate)
             cell.dateCellLabel?.text = stringDate
+        
         }
+            
         //Get the score from Parse and turning it into a String to display in label
         if let score = scorecard.objectForKey("score") as? Int {
+            
         let scoreToString = "\(score)"
         cell.scoreCellLabel?.text = scoreToString
-            }
+            
+        }
         
         cell.golfCourseCellLabel?.text = scorecard.objectForKey("golfCourse") as? String
         
@@ -76,14 +79,16 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
             (result, error) in
             
             if result == nil {
+                
             cell.scorecardCellImage?.image = UIImage(named: "noScorecard")
                 
             } else {
+                
             cell.scorecardCellImage?.image = UIImage(data: result!)
+                
             }
         })
     }
-
         return cell
 }
     
@@ -103,18 +108,17 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         if segue.identifier == "showScorecardDetail" {
         
-        let userScorecardPhotoVC = segue.destinationViewController as? UserGolfScorecardViewController
+        let userScorecardDetailVC = segue.destinationViewController as? UserScorecardDetailVC
         
         let selectedIndex = userScoreboardTableView.indexPathForCell(sender as! UITableViewCell)
-        
-        userScorecardPhotoVC?.userScorecard = (scorecardData[(selectedIndex?.row)!] as PFObject)
             
-        
+        userScorecardDetailVC?.userScorecard = scorecardData[selectedIndex!.row] as PFObject
+
         }
         
     }
     
-    func loadData() {
+    func loadUserScorecardData() {
         scorecardData.removeAll()
         
         let query = PFQuery(className: "GolfScorecard")
@@ -131,11 +135,12 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
                     }
                 }
                 
-            } else {
+                } else {
+                
                 print(error)
+                
             }
         }
-        
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {

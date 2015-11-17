@@ -113,7 +113,6 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         currentUser?.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
-                print("WE GOT FRIENDS!!!!")
                 
             } else {
                 print(error)
@@ -126,13 +125,11 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         allUsers.removeAll()
         
         if let userQuery = PFUser.query() {
-//        userQuery.orderByAscending("username")
         userQuery.findObjectsInBackgroundWithBlock { (users: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 
                 for object:PFObject in users! {
                 self.allUsers.append(object)
-//                print(self.allUsers.count)
                 self.addFriendsTableView.reloadData()
                             }
                         }

@@ -74,7 +74,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
                 
             } else {
                 
-                print("NOT SAVED")
+                print(error)
                 
             }
         }

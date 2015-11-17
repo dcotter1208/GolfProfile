@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class UserGolfScorecardViewController: UIViewController, UIScrollViewDelegate {
+class UserScorecardDetailVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var golfCourseNameLabel: UILabel!
     @IBOutlet weak var scorecardScoreLabel: UILabel!
     @IBOutlet weak var scorecardDateLabel: UILabel!
@@ -21,7 +21,7 @@ class UserGolfScorecardViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
     super.viewDidLoad()
         
-    displayDetailedScorecardInfo()
+    displayUserDetailedScorecardInfo()
     
     self.userScorecardScrollView.minimumZoomScale = 1.0
     self.userScorecardScrollView.maximumZoomScale = 6.0
@@ -47,7 +47,7 @@ class UserGolfScorecardViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    func displayDetailedScorecardInfo() {
+    func displayUserDetailedScorecardInfo() {
         //Getting the date from Parse and turning it into a String to display in label
         if let golfDate = userScorecard?.objectForKey("date") as? NSDate {
             
