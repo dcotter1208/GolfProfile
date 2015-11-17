@@ -148,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-292" y="-3519"/>
+            <point key="canvasLocation" x="-392" y="-3519"/>
         </scene>
         <!--Edit Profile-->
         <scene sceneID="7Da-az-DK5">
@@ -371,10 +371,10 @@
             </objects>
             <point key="canvasLocation" x="3620" y="-4320"/>
         </scene>
-        <!--User Golf Scorecard View Controller-->
+        <!--User Scorecard DetailVC-->
         <scene sceneID="Hw8-ou-Kjc">
             <objects>
-                <viewController id="i50-sr-6sf" customClass="UserGolfScorecardViewController" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="i50-sr-6sf" customClass="UserScorecardDetailVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M4w-BA-ZlZ"/>
                         <viewControllerLayoutGuide type="bottom" id="Wha-Lo-LFD"/>
@@ -681,10 +681,10 @@
             </objects>
             <point key="canvasLocation" x="1970" y="-3050"/>
         </scene>
-        <!--Scorecard Photo View Controller-->
+        <!--Friend Scorecard DetailVC-->
         <scene sceneID="Xd8-DO-Fq9">
             <objects>
-                <viewController id="mRk-aH-JLY" customClass="ScorecardPhotoViewController" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mRk-aH-JLY" customClass="FriendScorecardDetailVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="krg-3Y-aa6"/>
                         <viewControllerLayoutGuide type="bottom" id="XKJ-Mt-eOe"/>

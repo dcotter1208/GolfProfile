@@ -11,19 +11,13 @@ import Parse
 
 class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var friendsTableView: UITableView!
+    
     var friends = [PFObject]()
     var friendsRelation = PFRelation?()
     var joinedQueries = [PFQuery]()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if PFUser.currentUser() == nil {
-            friendsTableView.reloadData()
-            print("THIS IS THE PRINT FOR THE FRIENDSVC:\(PFUser.currentUser())")
-
-        }
         
     }
 
@@ -63,11 +57,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     print(error)
                 }
             })
-            
-            
         }
-        
-        
         return cell
     }
     
@@ -85,16 +75,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             let selectedIndex = friendsTableView.indexPathForCell(sender as! UITableViewCell)
             
-            friendScoresVC.selectedfriend = (friends[(selectedIndex?.row)!] as PFObject)
+            friendScoresVC.selectedfriend = friends[selectedIndex!.row] as PFObject
             
         }
     }
     
     func loadFriendsData() {
         friends.removeAll()
-        
-        //This is assigning the variable friendsRelation (which is a PFRelation Type) to the current user and grabbing the current user's key of "friendsRelation"
-        
+
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
         
         //queries the friendsRelation of the current user.
@@ -107,7 +95,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                             for object:PFObject in friends! {
                                 self.friends.append(object)
                                 self.friendsTableView.reloadData()
-                                print("friends: \(self.friends.count)")
                             }
                         }
                     }

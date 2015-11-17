@@ -70,7 +70,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        let scorecardPhotoVC = segue.destinationViewController as? ScorecardPhotoViewController
+        let scorecardPhotoVC = segue.destinationViewController as? FriendScorecardDetailVC
         
         let selectedIndex = friendScorecardTableView.indexPathForCell(sender as! UITableViewCell)
         

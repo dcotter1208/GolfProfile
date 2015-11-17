@@ -31,12 +31,10 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         
         self.leaderboardTableView.addSubview(self.refreshControl)
         
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -70,7 +68,6 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             
             cell.leaderboardGCLabel?.text = allScorecards.objectForKey("golfCourse") as? String
             cell.leaderboardGolferLabel.text = allScorecards.objectForKey("username") as? String
-            
 
         }
         
@@ -84,27 +81,24 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                 (result, error) in
                 
                 if result != nil {
+                    
                     cell.leaderboardProfileImage.image = UIImage(data: result!)
                     cell.leaderboardProfileImage.layer.cornerRadius = cell.leaderboardProfileImage.frame.size.width / 2
+                    
                 } else {
+                    
                     print(error)
+                    
                 }
             })
-            
-            
-        
         }
-        
-        
         return cell
     }
     
-
     func loadLeaderboardData() {
         leaderboardData.removeAll()
         
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
-//        if let userQuery = friendsRelation?.query() {
         let query = PFQuery(className: "GolfScorecard")
         query.includeKey("golfer")
             
@@ -115,15 +109,12 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             if error == nil {
                 
                 dispatch_async(dispatch_get_main_queue()) {
+                    
                     for object:PFObject in scoreCards! {
                         self.leaderboardData.append(object)
-                        print(self.leaderboardData)
-//                        let golfer = object.objectForKey("golfer")
                         let golfer:PFObject = object["golfer"] as! PFObject
                         self.golferInfo.append(golfer)
-                        print(self.golferInfo)
-//                        print(golferName!)
-//                        print(golfer)
+
                         self.leaderboardTableView.reloadData()
                     }
                 }
@@ -131,16 +122,14 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             } else {
                 print(error)
         }
-//        }
-        
     }
-
-    }
+}
     
     func handleRefresh(refreshControl: UIRefreshControl) {
         
         self.leaderboardTableView.reloadData()
         refreshControl.endRefreshing()
+        
     }
     
 }

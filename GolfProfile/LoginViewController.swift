@@ -13,26 +13,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var loginButton: UIButton!
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
-
         
         if PFUser.currentUser() != nil {
             
             self.performSegueWithIdentifier("showUserProfile", sender: self)
         }
         
-    
-        func viewWillAppear() {
-            navigationItem.hidesBackButton = true
-
-        }
-        
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,12 +41,8 @@ class LoginViewController: UIViewController {
                     self.dismissViewControllerAnimated(true, completion: nil)
                     
                 }
-                
             }
-            
         }
-    
-        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
