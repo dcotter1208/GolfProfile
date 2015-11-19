@@ -1157,7 +1157,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Leaderboard" image="winners_podium" id="oXu-yF-dGp"/>
                     <connections>
-                        <outlet property="leaderboardTableView" destination="Fka-Qb-gt6" id="RL8-gr-x2K"/>
+                        <outlet property="leaderboardTableView" destination="Fka-Qb-gt6" id="mmD-30-n8g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwC-yd-6bG" userLabel="First Responder" sceneMemberID="firstResponder"/>

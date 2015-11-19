@@ -19,6 +19,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -82,9 +83,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func loadFriendsData() {
         friends.removeAll()
-
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
-        
         //queries the friendsRelation of the current user.
         if let userQuery = friendsRelation?.query() {
         userQuery.orderByAscending("username")

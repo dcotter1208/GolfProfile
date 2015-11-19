@@ -18,7 +18,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+        loadFriendScorecardData()
         
         // Do any additional setup after loading the view.
     }
@@ -80,7 +80,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
-    func loadData() {
+    func loadFriendScorecardData() {
         //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
         friendScorecardData.removeAll()
         
