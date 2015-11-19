@@ -137,7 +137,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
                 }
         
             }
-    //Function to check of a user is a or isn't a current friend. If they are then we are using this method to display a checkmark by their name in our editFriendsVC
+    //Function to check if a user is a or isn't a current friend. If they are then we are using this method to display a checkmark by their name in our editFriendsVC
     func isFriend(user: PFUser) -> Bool {
         for friend in showFriends {
             if friend.objectId == user.objectId {
