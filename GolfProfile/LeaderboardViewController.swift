@@ -21,7 +21,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         return refreshControl
     }()
     
-    var leaderboardData = [PFObject]()
+    var leaderboardData = [(PFObject, PFObject)]()
     var friendsRelation = PFRelation?()
     var golferInfo = [PFObject]()
     
@@ -51,31 +51,25 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         
         let cell:LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("leaderboardCell", forIndexPath: indexPath) as! LeaderboardCell
         
-        if let allScorecards:PFObject = self.leaderboardData[indexPath.row] as PFObject {
+        if let allScorecards:(PFObject, PFObject) = self.leaderboardData[indexPath.row] {
             
             //Getting the data from Parse and turning it into a String to display in label
-            if let golfDate = allScorecards.objectForKey("date") as? NSDate {
+            if let golfDate = allScorecards.0.objectForKey("date") as? NSDate {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "MM/dd/yyyy"
                 let stringDate = dateFormatter.stringFromDate(golfDate)
                 cell.leaderboardDateLabel?.text = stringDate
             }
             //Grabbing the score from Parse and turning it into a String to display in label
-            if let score = allScorecards.objectForKey("score") as? Int {
+            if let score = allScorecards.0.objectForKey("score") as? Int {
                 let scoreToString = "\(score)"
                 cell.leaderboardScoreLabel?.text = scoreToString
             }
             
-            cell.leaderboardGCLabel?.text = allScorecards.objectForKey("golfCourse") as? String
-//            cell.leaderboardGolferLabel.text = allScorecards.objectForKey("username") as? String
-
-        }
-        
-        if let golfer:PFObject = self.golferInfo[indexPath.row] {
+            cell.leaderboardGCLabel?.text = allScorecards.0.objectForKey("golfCourse") as? String
+            cell.leaderboardGolferLabel.text = allScorecards.1.objectForKey("username") as? String
             
-            cell.leaderboardGolferLabel.text = golfer.objectForKey("username") as? String
-            
-            let pfImage = golfer.objectForKey("profileImage") as? PFFile
+            let pfImage = allScorecards.1.objectForKey("profileImage") as? PFFile
             
             pfImage?.getDataInBackgroundWithBlock({
                 (result, error) in
@@ -91,12 +85,21 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                     
                 }
             })
+
         }
+        
+//        if let golfer:PFObject = self.golferInfo[indexPath.row] {
+//            
+//            cell.leaderboardGolferLabel.text = golfer.objectForKey("username") as? String
+        
+
+//        }
         return cell
     }
     
     func loadLeaderboardData() {
         leaderboardData.removeAll()
+        golferInfo.removeAll()
         
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
         let friendQuery = friendsRelation?.query()
@@ -109,17 +112,18 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 
-                dispatch_async(dispatch_get_main_queue()) {
-                    
                     for object:PFObject in scoreCards! {
-                        self.leaderboardData.append(object)
                         let golfer:PFObject = object["golfer"] as! PFObject
-                        self.golferInfo.append(golfer)
-                        print(self.golferInfo)
+                        self.leaderboardData.append(object,golfer)
+                        print(self.leaderboardData)
+//                        self.golferInfo.append(golfer)
+//                        print(self.golferInfo)
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
 
                         self.leaderboardTableView.reloadData()
+                        }
                     }
-                }
                 
             } else {
                 print(error)
