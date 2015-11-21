@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)
         }
-        if let dict = keys {
+        if let _ = keys {
             let applicationId = keys?["parseApplicationId"] as? String
             let clientKey = keys?["parseClientKey"] as? String
             

@@ -298,7 +298,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UDs-Pl-ggr">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="42" width="320" height="526"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -347,13 +347,26 @@
                                     <outlet property="delegate" destination="xur-sp-cle" id="fIs-1d-EdT"/>
                                 </connections>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Si4-U7-vjC">
+                                <rect key="frame" x="96" y="64" width="129" height="29"/>
+                                <segments>
+                                    <segment title="Date"/>
+                                    <segment title="Score"/>
+                                </segments>
+                                <connections>
+                                    <action selector="scoreViewSegmentedControlPushed:" destination="xur-sp-cle" eventType="valueChanged" id="GHu-1D-E1Q"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="UDs-Pl-ggr" firstAttribute="top" secondItem="rf7-1U-LU3" secondAttribute="top" id="YbV-b4-5nz"/>
+                            <constraint firstItem="Si4-U7-vjC" firstAttribute="top" secondItem="QcQ-JZ-zYl" secondAttribute="bottom" id="SBp-4v-VBb"/>
+                            <constraint firstItem="UDs-Pl-ggr" firstAttribute="top" secondItem="rf7-1U-LU3" secondAttribute="top" constant="42" id="YbV-b4-5nz"/>
                             <constraint firstAttribute="trailing" secondItem="UDs-Pl-ggr" secondAttribute="trailing" id="g4A-Ij-HuU"/>
+                            <constraint firstItem="Si4-U7-vjC" firstAttribute="centerX" secondItem="rf7-1U-LU3" secondAttribute="centerX" id="gwn-n4-KGx"/>
                             <constraint firstItem="UDs-Pl-ggr" firstAttribute="leading" secondItem="rf7-1U-LU3" secondAttribute="leading" id="h5E-Az-7Q8"/>
                             <constraint firstAttribute="bottom" secondItem="UDs-Pl-ggr" secondAttribute="bottom" id="sSI-eA-EcR"/>
+                            <constraint firstItem="UDs-Pl-ggr" firstAttribute="top" secondItem="Si4-U7-vjC" secondAttribute="bottom" constant="-50" id="xFn-Et-9n9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Scorecards" id="k9V-UA-5Ab">
@@ -364,6 +377,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="scoreViewSegmentedControl" destination="Si4-U7-vjC" id="xTg-0N-4bc"/>
                         <outlet property="userScoreboardTableView" destination="UDs-Pl-ggr" id="AII-fw-VI2"/>
                     </connections>
                 </viewController>
@@ -482,8 +496,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noScorecard" translatesAutoresizingMaskIntoConstraints="NO" id="oNY-Ip-MRz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oNY-Ip-MRz">
                                 <rect key="frame" x="40" y="283" width="240" height="157"/>
+                                <color key="backgroundColor" red="0.0" green="0.59946072385526317" blue="0.22552204269473689" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="157" id="BkM-ZN-nnV"/>
                                 </constraints>
@@ -513,7 +528,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqi-aC-dL4">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqi-aC-dL4">
                                 <rect key="frame" x="143" y="530" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
@@ -529,40 +544,20 @@
                                     <action selector="cancelButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="gXm-PC-Rvm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqx-V5-7mQ">
-                                <rect key="frame" x="110" y="441" width="47" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="ATb-Z8-lPF"/>
-                                    <constraint firstAttribute="width" constant="47" id="QRk-AJ-yoO"/>
-                                </constraints>
-                                <state key="normal" title="cam" image="camera"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWV-Eu-NAM">
+                                <rect key="frame" x="109" y="448" width="102" height="30"/>
+                                <state key="normal" title="Add Scorecard"/>
                                 <connections>
-                                    <action selector="camButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="r3T-KS-Uov"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-a2-x4e">
-                                <rect key="frame" x="171" y="448" width="40" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="B1c-Kj-mIh"/>
-                                    <constraint firstAttribute="width" constant="40" id="vUG-1A-IKR"/>
-                                </constraints>
-                                <state key="normal" title="PhotoLibrary" image="library"/>
-                                <connections>
-                                    <action selector="photoLibraryButton:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="gQQ-az-Gei"/>
+                                    <action selector="addScorecardActionSheet:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="AzV-w2-ezE"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uZb-am-ef5" firstAttribute="leading" secondItem="SFX-sI-rAI" secondAttribute="leadingMargin" constant="12" id="0MJ-ER-x7P"/>
-                            <constraint firstItem="mqi-aC-dL4" firstAttribute="top" secondItem="uqx-V5-7mQ" secondAttribute="bottom" constant="44" id="2qm-1O-isc"/>
-                            <constraint firstItem="WW4-a2-x4e" firstAttribute="top" secondItem="oNY-Ip-MRz" secondAttribute="bottom" constant="8" symbolic="YES" id="4WF-9W-rkS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rDR-2Z-mX1" secondAttribute="trailing" constant="19" id="4Ye-XR-HF0"/>
-                            <constraint firstItem="WW4-a2-x4e" firstAttribute="trailing" secondItem="lZb-L4-eAo" secondAttribute="trailing" id="4pM-Bz-6nv"/>
                             <constraint firstItem="hlI-5B-uN6" firstAttribute="top" secondItem="zaP-U0-baF" secondAttribute="bottom" id="7Id-Tz-n3N"/>
-                            <constraint firstItem="uqx-V5-7mQ" firstAttribute="leading" secondItem="lZb-L4-eAo" secondAttribute="leading" id="AwN-Xt-U7w"/>
                             <constraint firstItem="mlw-w4-qsv" firstAttribute="top" secondItem="lZb-L4-eAo" secondAttribute="bottom" constant="14" id="FP2-rN-bhg"/>
-                            <constraint firstItem="uqx-V5-7mQ" firstAttribute="top" secondItem="oNY-Ip-MRz" secondAttribute="bottom" constant="1" id="FRF-Ov-lUG"/>
                             <constraint firstItem="lZb-L4-eAo" firstAttribute="top" secondItem="rDR-2Z-mX1" secondAttribute="bottom" constant="8" symbolic="YES" id="Fg2-0C-PU6"/>
                             <constraint firstItem="lZb-L4-eAo" firstAttribute="leading" secondItem="uZb-am-ef5" secondAttribute="trailing" constant="28" id="GlV-XA-4wq"/>
                             <constraint firstItem="rDR-2Z-mX1" firstAttribute="leading" secondItem="SFX-sI-rAI" secondAttribute="leadingMargin" constant="20" id="HIZ-Wz-XcM"/>
@@ -570,16 +565,16 @@
                             <constraint firstAttribute="trailingMargin" secondItem="hlI-5B-uN6" secondAttribute="trailing" constant="-12" id="K9F-uh-SMT"/>
                             <constraint firstItem="lZb-L4-eAo" firstAttribute="centerX" secondItem="rDR-2Z-mX1" secondAttribute="centerX" id="MOr-4s-naP"/>
                             <constraint firstItem="oNY-Ip-MRz" firstAttribute="leading" secondItem="SFX-sI-rAI" secondAttribute="leadingMargin" constant="24" id="Rdb-MK-Rq7"/>
+                            <constraint firstItem="RWV-Eu-NAM" firstAttribute="centerX" secondItem="SFX-sI-rAI" secondAttribute="centerX" id="SnU-MN-JKc"/>
                             <constraint firstItem="lZb-L4-eAo" firstAttribute="centerX" secondItem="mqi-aC-dL4" secondAttribute="centerX" id="T42-zi-Zvd"/>
                             <constraint firstItem="mlw-w4-qsv" firstAttribute="centerX" secondItem="lZb-L4-eAo" secondAttribute="centerX" id="WAq-xj-O6M"/>
-                            <constraint firstItem="mqi-aC-dL4" firstAttribute="top" secondItem="WW4-a2-x4e" secondAttribute="bottom" constant="40" id="WMR-WN-eZL"/>
+                            <constraint firstItem="RWV-Eu-NAM" firstAttribute="top" secondItem="oNY-Ip-MRz" secondAttribute="bottom" constant="8" id="WSY-54-ETQ"/>
                             <constraint firstItem="oNY-Ip-MRz" firstAttribute="centerX" secondItem="mlw-w4-qsv" secondAttribute="centerX" id="XMH-Pf-8eq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lZb-L4-eAo" secondAttribute="trailing" constant="93" id="dt5-m5-cye"/>
                             <constraint firstItem="uZb-am-ef5" firstAttribute="top" secondItem="rDR-2Z-mX1" secondAttribute="bottom" constant="42" id="eWL-58-wVJ"/>
                             <constraint firstItem="rDR-2Z-mX1" firstAttribute="top" secondItem="zaP-U0-baF" secondAttribute="bottom" constant="61" id="jfu-y1-Vu7"/>
                             <constraint firstItem="hlI-5B-uN6" firstAttribute="leading" secondItem="SFX-sI-rAI" secondAttribute="leadingMargin" constant="245" id="l7h-PC-u3J"/>
                             <constraint firstItem="rDR-2Z-mX1" firstAttribute="top" secondItem="hlI-5B-uN6" secondAttribute="bottom" constant="18" id="oAW-ez-xLq"/>
-                            <constraint firstItem="WW4-a2-x4e" firstAttribute="leading" secondItem="uqx-V5-7mQ" secondAttribute="trailing" constant="14" id="qLo-le-X3o"/>
                             <constraint firstItem="mqi-aC-dL4" firstAttribute="centerX" secondItem="SFX-sI-rAI" secondAttribute="centerX" id="tSt-Om-lEU"/>
                         </constraints>
                     </view>
@@ -1244,8 +1239,6 @@
     <resources>
         <image name="camera" width="87" height="87"/>
         <image name="grass1" width="334" height="508"/>
-        <image name="library" width="64" height="64"/>
-        <image name="noScorecard" width="485" height="302"/>
         <image name="trophy_star" width="32" height="32"/>
         <image name="user_2" width="32" height="32"/>
         <image name="users_three_2" width="32" height="32"/>

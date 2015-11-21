@@ -22,6 +22,9 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scorecardImage?.layer.borderWidth = 5.0
+        scorecardImage?.layer.borderColor = UIColor.blackColor().CGColor
+        
         imagePicker.delegate = self
         
     }
@@ -83,8 +86,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func photoLibraryButton(sender: UIButton) {
         
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
+
         
     }
 
@@ -113,6 +115,34 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         return newImage
     }
 
+    @IBAction func addScorecardActionSheet(sender: AnyObject) {
+        
+        let actionSheet = UIAlertController(title: "New Scorecard", message: "Take a photo or choose from your library", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let cameraButton = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (ACTION) -> Void in
+            
+            self.imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default, handler: { (ACTION) -> Void in
+            
+            self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+            
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (ACTION) -> Void in
+            
+        }
+        
+        actionSheet.addAction(cameraButton)
+        actionSheet.addAction(photoLibrary)
+        actionSheet.addAction(cancel)
+        
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+        
+    }
     
     // MARK: Picker Methods
     

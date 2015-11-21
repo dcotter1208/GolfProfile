@@ -13,6 +13,7 @@ import Parse
 class GolfScoresViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var userScoreboardTableView: UITableView!
+    @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
     
     var scorecardData = [PFObject]()
 
@@ -89,6 +90,8 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
             }
         })
     }
+        
+        
         return cell
 }
     
@@ -123,7 +126,6 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let query = PFQuery(className: "GolfScorecard")
         query.whereKey("golfer", equalTo: PFUser.currentUser()!)
-        query.orderByDescending("createdAt")
     
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
@@ -150,6 +152,17 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
     }
 
-
+    @IBAction func scoreViewSegmentedControlPushed(sender: AnyObject) {
+        
+        switch (scoreViewSegmentedControl) {
+        case 0:
+            print("date selected")
+        case 1:
+            print("score selected")
+        default:
+            print("WHHAAAATTTT")
+        }
+        
+    }
 
 }
