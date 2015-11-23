@@ -16,7 +16,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
     
     var scorecardData = [PFObject]()
-
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -27,6 +27,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         self.userScoreboardTableView.addSubview(self.refreshControl)
         
     }
@@ -51,7 +52,15 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell:UserLeaderboardCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UserLeaderboardCell
-                
+        
+//        switch scoreViewSegmentedControl.selectedSegmentIndex {
+//        
+//        case 0:
+//            
+//        
+//            
+//        }
+        
         if let scorecard:PFObject = self.scorecardData[indexPath.row] {
         
         //Get the date from Parse and turning it into a String to display in label
@@ -66,7 +75,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
             
         //Get the score from Parse and turning it into a String to display in label
         if let score = scorecard.objectForKey("score") as? Int {
-            
+        
         let scoreToString = "\(score)"
         cell.scoreCellLabel?.text = scoreToString
             
@@ -126,7 +135,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let query = PFQuery(className: "GolfScorecard")
         query.whereKey("golfer", equalTo: PFUser.currentUser()!)
-    
+        
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
             
@@ -154,13 +163,20 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
 
     @IBAction func scoreViewSegmentedControlPushed(sender: AnyObject) {
         
-        switch (scoreViewSegmentedControl) {
+        switch (scoreViewSegmentedControl.selectedSegmentIndex) {
         case 0:
-            print("date selected")
+            print("date")
+            userScoreboardTableView.reloadData()
+            
         case 1:
-            print("score selected")
+            print("score")
+            
+            scorecardData.sortInPlace({($0["score"] as! Int) < ($1["score"] as! Int)})
+            userScoreboardTableView.reloadData()
+
+
         default:
-            print("WHHAAAATTTT")
+            print("ERROR")
         }
         
     }
