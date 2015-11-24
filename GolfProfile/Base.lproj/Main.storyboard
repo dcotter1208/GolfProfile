@@ -285,7 +285,7 @@
             </objects>
             <point key="canvasLocation" x="52" y="-3519"/>
         </scene>
-        <!--Scorecards-->
+        <!--Golf Scores View Controller-->
         <scene sceneID="rq9-jm-NPY">
             <objects>
                 <viewController id="xur-sp-cle" customClass="GolfScoresViewController" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
@@ -298,7 +298,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UDs-Pl-ggr">
-                                <rect key="frame" x="0.0" y="42" width="320" height="526"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -327,7 +327,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PPL-3N-WMY">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PPL-3N-WMY" customClass="PFImageView">
                                                     <rect key="frame" x="8" y="23" width="52" height="50"/>
                                                 </imageView>
                                             </subviews>
@@ -347,29 +347,29 @@
                                     <outlet property="delegate" destination="xur-sp-cle" id="fIs-1d-EdT"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Si4-U7-vjC">
-                                <rect key="frame" x="96" y="64" width="129" height="29"/>
-                                <segments>
-                                    <segment title="Date"/>
-                                    <segment title="Score"/>
-                                </segments>
-                                <connections>
-                                    <action selector="scoreViewSegmentedControlPushed:" destination="xur-sp-cle" eventType="valueChanged" id="GHu-1D-E1Q"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Si4-U7-vjC" firstAttribute="top" secondItem="QcQ-JZ-zYl" secondAttribute="bottom" id="SBp-4v-VBb"/>
-                            <constraint firstItem="UDs-Pl-ggr" firstAttribute="top" secondItem="rf7-1U-LU3" secondAttribute="top" constant="42" id="YbV-b4-5nz"/>
+                            <constraint firstItem="UDs-Pl-ggr" firstAttribute="top" secondItem="rf7-1U-LU3" secondAttribute="top" id="YbV-b4-5nz"/>
                             <constraint firstAttribute="trailing" secondItem="UDs-Pl-ggr" secondAttribute="trailing" id="g4A-Ij-HuU"/>
-                            <constraint firstItem="Si4-U7-vjC" firstAttribute="centerX" secondItem="rf7-1U-LU3" secondAttribute="centerX" id="gwn-n4-KGx"/>
                             <constraint firstItem="UDs-Pl-ggr" firstAttribute="leading" secondItem="rf7-1U-LU3" secondAttribute="leading" id="h5E-Az-7Q8"/>
                             <constraint firstAttribute="bottom" secondItem="UDs-Pl-ggr" secondAttribute="bottom" id="sSI-eA-EcR"/>
-                            <constraint firstItem="UDs-Pl-ggr" firstAttribute="top" secondItem="Si4-U7-vjC" secondAttribute="bottom" constant="-50" id="xFn-Et-9n9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Scorecards" id="k9V-UA-5Ab">
+                    <navigationItem key="navigationItem" id="k9V-UA-5Ab">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Si4-U7-vjC">
+                            <rect key="frame" x="25" y="7" width="245" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Date"/>
+                                <segment title="Low Score"/>
+                                <segment title="High Score"/>
+                            </segments>
+                            <connections>
+                                <action selector="scoreViewSegmentedControlPushed:" destination="xur-sp-cle" eventType="valueChanged" id="GHu-1D-E1Q"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7t9-eX-dP9">
                             <connections>
                                 <segue destination="bcC-Qa-jI3" kind="modal" id="BL4-R4-QV0"/>
