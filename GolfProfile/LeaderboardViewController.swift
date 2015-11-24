@@ -87,13 +87,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             })
 
         }
-        
-//        if let golfer:PFObject = self.golferInfo[indexPath.row] {
-//            
-//            cell.leaderboardGolferLabel.text = golfer.objectForKey("username") as? String
-        
 
-//        }
         return cell
     }
     

@@ -17,7 +17,7 @@ class UserScorecardDetailVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var userScorecardScrollView: UIScrollView!
     
     var userScorecard = PFObject?()
-    
+        
     override func viewDidLoad() {
     super.viewDidLoad()
         
@@ -25,7 +25,7 @@ class UserScorecardDetailVC: UIViewController, UIScrollViewDelegate {
     
     self.userScorecardScrollView.minimumZoomScale = 1.0
     self.userScorecardScrollView.maximumZoomScale = 6.0
-    
+        
     }
 
     

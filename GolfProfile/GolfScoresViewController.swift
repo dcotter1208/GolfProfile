@@ -13,9 +13,10 @@ import Parse
 class GolfScoresViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var userScoreboardTableView: UITableView!
+    @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
     
-    var scorecardData = [PFObject]()
-
+    var scorecardData = [GolfScorecard]()
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -25,7 +26,6 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.userScoreboardTableView.addSubview(self.refreshControl)
         
     }
@@ -50,45 +50,36 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell:UserLeaderboardCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UserLeaderboardCell
+
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+
+        cell.dateCellLabel?.text = dateFormatter.stringFromDate(scorecardData[indexPath.row].date)
+
+        cell.scoreCellLabel?.text = "\(scorecardData[indexPath.row].score)"
+        
+        cell.golfCourseCellLabel?.text = scorecardData[indexPath.row].golfCourse
+        
+        for i in scorecardData {
+        
+        let pfImage = i.scorecardImage
+            
+            pfImage.getDataInBackgroundWithBlock({
+                (result, error) in
                 
-        if let scorecard:PFObject = self.scorecardData[indexPath.row] {
-        
-        //Get the date from Parse and turning it into a String to display in label
-       if let golfDate = scorecard.objectForKey("date") as? NSDate {
-        
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MM-dd-yyyy"
-            let stringDate = dateFormatter.stringFromDate(golfDate)
-            cell.dateCellLabel?.text = stringDate
+                if result == nil {
+                    
+                    cell.scorecardCellImage?.image = UIImage(named: "noScorecard")
+                    
+                } else {
+                    
+                    cell.scorecardCellImage?.image = UIImage(data: result!)
+                    
+                }
+            })
         
         }
-            
-        //Get the score from Parse and turning it into a String to display in label
-        if let score = scorecard.objectForKey("score") as? Int {
-            
-        let scoreToString = "\(score)"
-        cell.scoreCellLabel?.text = scoreToString
-            
-        }
         
-        cell.golfCourseCellLabel?.text = scorecard.objectForKey("golfCourse") as? String
-        
-        let pfImage = scorecard.objectForKey("scorecardImage") as? PFFile
-        
-        pfImage?.getDataInBackgroundWithBlock({
-            (result, error) in
-            
-            if result == nil {
-                
-            cell.scorecardCellImage?.image = UIImage(named: "noScorecard")
-                
-            } else {
-                
-            cell.scorecardCellImage?.image = UIImage(data: result!)
-                
-            }
-        })
-    }
         return cell
 }
     
@@ -121,19 +112,25 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     func loadUserScorecardData() {
         scorecardData.removeAll()
         
-        let query = PFQuery(className: "GolfScorecard")
-        query.whereKey("golfer", equalTo: PFUser.currentUser()!)
-        query.orderByDescending("createdAt")
-    
-        query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
+        let query = GolfScorecard.query()
+        query!.whereKey("golfer", equalTo: PFUser.currentUser()!)
+        
+        query!.findObjectsInBackgroundWithBlock { (scorecards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
+                for object:PFObject in scorecards! {
+                    if let object = object as? GolfScorecard {
+                        self.scorecardData.append(object)
+                        print(self.scorecardData)
+                        print(self.scorecardData.count)
+
+                    }
+
+                }
             
                 dispatch_async(dispatch_get_main_queue()) {
-                for object:PFObject in scoreCards! {
-                    self.scorecardData.append(object)
+
                     self.userScoreboardTableView.reloadData()
                     }
-                }
                 
                 } else {
                 
@@ -150,6 +147,24 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
     }
 
+    @IBAction func scoreViewSegmentedControlPushed(sender: AnyObject) {
+        
+        switch (scoreViewSegmentedControl.selectedSegmentIndex) {
+        case 0:
+            print("date")
+            scorecardData.sortInPlace({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
+            userScoreboardTableView.reloadData()
+            
+        case 1:
+            print("score")
+            
+            scorecardData.sortInPlace({$0.score < $1.score})
+            userScoreboardTableView.reloadData()
 
+        default:
+            print("ERROR")
+        }
+        
+    }
 
 }
