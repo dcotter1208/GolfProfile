@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import ParseUI
 
-class UserLeaderboardCell: UITableViewCell {
-    @IBOutlet weak var scorecardCellImage: UIImageView!
+class UserLeaderboardCell: PFTableViewCell {
+    @IBOutlet weak var scorecardCellImage: PFImageView!
     @IBOutlet weak var golfCourseCellLabel: UILabel!
     @IBOutlet weak var dateCellLabel: UILabel!
     @IBOutlet weak var scoreCellLabel: UILabel!

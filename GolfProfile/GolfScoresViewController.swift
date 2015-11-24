@@ -27,6 +27,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.userScoreboardTableView.addSubview(self.refreshControl)
+        scoreViewSegmentedControl.selectedSegmentIndex = 0
         
     }
     
@@ -60,25 +61,9 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         cell.golfCourseCellLabel?.text = scorecardData[indexPath.row].golfCourse
         
-        for i in scorecardData {
-        
-        let pfImage = i.scorecardImage
-            
-            pfImage.getDataInBackgroundWithBlock({
-                (result, error) in
-                
-                if result == nil {
-                    
-                    cell.scorecardCellImage?.image = UIImage(named: "noScorecard")
-                    
-                } else {
-                    
-                    cell.scorecardCellImage?.image = UIImage(data: result!)
-                    
-                }
-            })
-        
-        }
+        cell.scorecardCellImage.image = UIImage(named: "noScorecard")
+        cell.scorecardCellImage.file = scorecardData[indexPath.row].scorecardImage
+        cell.scorecardCellImage.loadInBackground()
         
         return cell
 }
@@ -156,9 +141,14 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
             userScoreboardTableView.reloadData()
             
         case 1:
-            print("score")
+            print("low score")
             
             scorecardData.sortInPlace({$0.score < $1.score})
+            userScoreboardTableView.reloadData()
+            
+        case 2:
+            print("high score")
+            scorecardData.sortInPlace({$0.score > $1.score})
             userScoreboardTableView.reloadData()
 
         default:
