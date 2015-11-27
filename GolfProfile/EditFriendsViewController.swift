@@ -125,6 +125,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         allUsers.removeAll()
         
         if let userQuery = PFUser.query() {
+        userQuery.whereKey("username", notEqualTo: (PFUser.currentUser()?.username)!)
         userQuery.findObjectsInBackgroundWithBlock { (users: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 

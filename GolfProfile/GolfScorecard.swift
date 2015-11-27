@@ -29,16 +29,5 @@ class GolfScorecard : PFObject, PFSubclassing {
     @NSManaged var scorecardImage: PFFile
     @NSManaged var golfer: PFUser
     
-//    func convertPFFileToUIImage(cardImage: PFFile) -> UIImageView {
-//        let pfImage = scorecardImage
-//        let imageFile = UIImage(
-//        
-//        
-//        
-//        
-//        
-//        return image
-//    }
-//    
 }
 

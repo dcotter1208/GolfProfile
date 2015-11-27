@@ -27,7 +27,6 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.userScoreboardTableView.addSubview(self.refreshControl)
-        scoreViewSegmentedControl.selectedSegmentIndex = 0
         
     }
     
@@ -99,14 +98,12 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         
         let query = GolfScorecard.query()
         query!.whereKey("golfer", equalTo: PFUser.currentUser()!)
-        
+        query?.orderByDescending("date")
         query!.findObjectsInBackgroundWithBlock { (scorecards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 for object:PFObject in scorecards! {
                     if let object = object as? GolfScorecard {
                         self.scorecardData.append(object)
-                        print(self.scorecardData)
-                        print(self.scorecardData.count)
 
                     }
 
@@ -137,7 +134,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         switch (scoreViewSegmentedControl.selectedSegmentIndex) {
         case 0:
             print("date")
-            scorecardData.sortInPlace({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
+            scorecardData.sortInPlace({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
             userScoreboardTableView.reloadData()
             
         case 1:

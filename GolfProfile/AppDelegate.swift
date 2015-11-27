@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let clientKey = keys?["parseClientKey"] as? String
             
             // Initialize Parse.
+            Parse.enableLocalDatastore()
             Parse.setApplicationId(applicationId!, clientKey: clientKey!)
         }
         

@@ -53,14 +53,19 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
 
         
         cell.friendScorecardCellGCLabel.text = friendScorecard.objectForKey("golfCourse") as? String
-        
-        //downcast it to a PFFIle - which is what the Parse images are stored as. I then grab the data/image in the background and it is stored as an NSData which is the (result) inside of the getDataInBackgroundWithBlock and pass it to the UIImage and set the cell's image..... UIImage(date: ____) accepts a type of NSData.
+
+        cell.friendScorecardImageView.image = UIImage(named: "noScorecard")
         let pfImage = friendScorecard.objectForKey("scorecardImage") as? PFFile
         
         pfImage!.getDataInBackgroundWithBlock({
             (result, error) in
             
+            if result != nil {
+            
+                
             cell.friendScorecardImageView.image = UIImage(data: result!)
+                
+            }
             
         })
         
@@ -81,7 +86,6 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     
     
     func loadFriendScorecardData() {
-        //Removes all of the PFObjects from the array so when the table is reloaded that it doesn't add onto the existing objects and the same score won't be listed again.
         friendScorecardData.removeAll()
         
         let query = PFQuery(className: "GolfScorecard")
