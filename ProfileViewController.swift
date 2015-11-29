@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var golferNameLabel: UILabel!
@@ -16,25 +17,26 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var golferDriver: UILabel!
     @IBOutlet weak var golferIron: UILabel!
     @IBOutlet weak var favoriteCourse: UILabel!
-    @IBOutlet weak var golferProfileImage: UIImageView!
+    @IBOutlet weak var golferProfileImage: PFImageView!
     
-    var profileData = [PFObject]()
+    var profileData = [GolferProfile]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         if PFUser.currentUser() == nil {
             
             self.performSegueWithIdentifier("showLogin", sender: self)
             
-        }
+        } 
 
     }
 
 
     override func viewWillAppear(animated: Bool) {
         getProfileFromBackground()
-        
+
     }
     
     
@@ -51,6 +53,9 @@ class ProfileViewController: UIViewController {
     
     @IBAction func unwindToProfilePage(segue: UIStoryboardSegue) {
 
+        getProfileFromBackground()
+
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -66,32 +71,30 @@ class ProfileViewController: UIViewController {
         if let userQuery = PFUser.query() {
             userQuery.findObjectsInBackgroundWithBlock({ (userProfiles:[PFObject]?, error: NSError?) -> Void in
                 if error == nil {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        for object:PFObject in userProfiles! {
-                            self.profileData.append(object)
-                            
-                            for data in self.profileData {
-                                
-                                self.profileData.removeAll()
-                                
-                                if data.objectId == PFUser.currentUser()?.objectId {
-                                    self.golferNameLabel.text = data.objectForKey("name") as? String
-                                    self.golferAge.text = data.objectForKey("age") as? String
-                                    self.golferCountry.text = data.objectForKey("country")as? String
-                                    self.golferDriver.text = data.objectForKey("driver")as? String
-                                    self.golferIron.text = data.objectForKey("irons") as? String
-                                    self.favoriteCourse.text = data.objectForKey("favoriteCourse") as? String
+                    for object:PFObject in userProfiles! {
+                        if let profile = object as? GolferProfile {
+                            if profile.objectId == PFUser.currentUser()?.objectId {
+                            self.profileData.append(profile)
+                                for data in self.profileData {
+                                    self.golferNameLabel.text = data.name
+                                    self.golferAge.text = "\(data.age)"
+                                    self.golferCountry.text = data.country
+                                    self.golferDriver.text = data.driver
+                                    self.golferIron.text = data.irons
+                                    self.favoriteCourse.text = data.favoriteCourse
+                                    self.golferProfileImage.file = data.profileImage
+                                    self.golferProfileImage.loadInBackground()
                                     
-                                    let pfImage = data.objectForKey("profileImage") as? PFFile
-                                    pfImage?.getDataInBackgroundWithBlock({
-                                        (result, error) in
-                                        self.golferProfileImage.image = UIImage(data: result!)
-                                        
-                                    })
                                 }
                             }
+
                         }
+                        
                     }
+                    
+                } else {
+                    print(error)
+                
                 }
             })
         }

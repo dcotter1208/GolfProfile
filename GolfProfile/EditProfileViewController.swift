@@ -47,8 +47,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         
                         if object.objectId == PFUser.currentUser()?.objectId {
                             object["name"] = self.golferNameTextField.text!
-                            object["age"] = self.golferAgeTextField.text!
-                            object["country"] = self.golferCountryTextField.text
+                            object["age"] = Int(self.golferAgeTextField.text!)
+                            object["country"] = self.golferCountryTextField.text!
                             object["driver"] = self.driverTextField.text!
                             object["irons"] = self.ironsTextField.text!
                             object["favoriteCourse"] = self.favoriteCourseTextField.text!
@@ -72,16 +72,34 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
 
     
-    @IBAction func camButton(sender: UIButton) {
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(imagePicker, animated: true, completion: nil)
-        
-    }
     
-    @IBAction func photoLibraryButton(sender: UIButton) {
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
+    @IBAction func editProfilePhoto(sender: UIButton) {
         
+        let actionSheet = UIAlertController(title: "Edit Profile Photo", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let cameraButton = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (ACTION) -> Void in
+            
+            self.imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default, handler: { (ACTION) -> Void in
+            
+            self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+            
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (ACTION) -> Void in
+            
+        }
+        
+        actionSheet.addAction(cameraButton)
+        actionSheet.addAction(photoLibrary)
+        actionSheet.addAction(cancel)
+        
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+
     }
     
 //  When we click on a photo - either from the photo library or taken from the camera - it will store it as our golferProfileImage

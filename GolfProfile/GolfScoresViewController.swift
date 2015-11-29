@@ -20,18 +20,18 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-        
         return refreshControl
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadUserScorecardData()
         self.userScoreboardTableView.addSubview(self.refreshControl)
         
     }
     
     override func viewWillAppear(animated: Bool) {
-        loadUserScorecardData()
+        
         self.userScoreboardTableView.reloadData()
 
     }
@@ -72,6 +72,7 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
             let selectedScorecard:PFObject = scorecardData[indexPath.row] as PFObject
+            
             selectedScorecard.deleteInBackground()
             scorecardData.removeAtIndex(indexPath.row)
             userScoreboardTableView.reloadData()
@@ -99,12 +100,13 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
         let query = GolfScorecard.query()
         query!.whereKey("golfer", equalTo: PFUser.currentUser()!)
         query?.orderByDescending("date")
+        
         query!.findObjectsInBackgroundWithBlock { (scorecards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 for object:PFObject in scorecards! {
                     if let object = object as? GolfScorecard {
                         self.scorecardData.append(object)
-
+                        
                     }
 
                 }
@@ -112,18 +114,20 @@ class GolfScoresViewController: UIViewController, UITableViewDataSource, UITable
                 dispatch_async(dispatch_get_main_queue()) {
 
                     self.userScoreboardTableView.reloadData()
+                    
                     }
                 
                 } else {
-                
                 print(error)
                 
             }
         }
     }
     
+    
     func handleRefresh(refreshControl: UIRefreshControl) {
 
+        loadUserScorecardData()
         self.userScoreboardTableView.reloadData()
         refreshControl.endRefreshing()
         
