@@ -60,9 +60,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             profile.profileImage = golferImageFile!
                                 
                             object.saveInBackground()
-                        }
+                            }
                             
                         }
+                        
                         
                     }
                     

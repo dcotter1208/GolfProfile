@@ -14,7 +14,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var friends = [PFObject]()
     var friendsRelation = PFRelation?()
-    var joinedQueries = [PFQuery]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +24,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(animated: Bool) {
         loadFriendsData()
         self.friendsTableView.reloadData()
+        
     }
     
     override func didReceiveMemoryWarning() {

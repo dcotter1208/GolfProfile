@@ -10,33 +10,42 @@ import UIKit
 import Parse
 import ParseUI
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var golferNameLabel: UILabel!
-    @IBOutlet weak var golferAge: UILabel!
     @IBOutlet weak var golferCountry: UILabel!
-    @IBOutlet weak var golferDriver: UILabel!
-    @IBOutlet weak var golferIron: UILabel!
-    @IBOutlet weak var favoriteCourse: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var golferProfileImage: PFImageView!
+    @IBOutlet weak var userScoreTableView: UITableView!
+    @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
     
     var profileData = [GolferProfile]()
+    var userScorecardData = [GolfScorecard]()
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         if PFUser.currentUser() == nil {
             
             self.performSegueWithIdentifier("showLogin", sender: self)
             
-        } 
+        } else {
+            loadUserScorecardData()
+        }
+        
+        self.userScoreTableView.addSubview(self.refreshControl)
 
     }
 
 
     override func viewWillAppear(animated: Bool) {
         getProfileFromBackground()
-
+        
     }
     
     
@@ -45,6 +54,61 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+            return userScorecardData.count
+
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell:UserLeaderboardCell = tableView.dequeueReusableCellWithIdentifier("userScorecardCell", forIndexPath: indexPath) as! UserLeaderboardCell
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        
+        cell.dateCellLabel?.text = dateFormatter.stringFromDate(userScorecardData[indexPath.row].date)
+        
+        cell.scoreCellLabel?.text = "\(userScorecardData[indexPath.row].score)"
+        
+        cell.golfCourseCellLabel?.text = userScorecardData[indexPath.row].golfCourse
+        
+        cell.scorecardCellImage.image = UIImage(named: "noScorecard")
+        cell.scorecardCellImage.file = userScorecardData[indexPath.row].scorecardImage
+        cell.scorecardCellImage.loadInBackground()
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            let selectedScorecard:PFObject = userScorecardData[indexPath.row] as PFObject
+            
+            selectedScorecard.deleteInBackground()
+            userScorecardData.removeAtIndex(indexPath.row)
+            userScoreTableView.reloadData()
+            
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "showScorecardDetail" {
+            
+            let userScorecardDetailVC = segue.destinationViewController as? UserScorecardDetailVC
+            
+            let selectedIndex = userScoreTableView.indexPathForCell(sender as! UITableViewCell)
+            
+            userScorecardDetailVC?.userScorecard = userScorecardData[selectedIndex!.row] as PFObject
+            
+        }
+        
+    }
+    
+
     @IBAction func logOut(sender: AnyObject) {
         PFUser.logOut()
         self.performSegueWithIdentifier("showLogin", sender: self)
@@ -52,8 +116,6 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func unwindToProfilePage(segue: UIStoryboardSegue) {
-
-        getProfileFromBackground()
 
         
     }
@@ -77,11 +139,8 @@ class ProfileViewController: UIViewController {
                             self.profileData.append(profile)
                                 for data in self.profileData {
                                     self.golferNameLabel.text = data.name
-                                    self.golferAge.text = "\(data.age)"
+                                    self.usernameLabel.text = "Username: \(data.username!)"
                                     self.golferCountry.text = data.country
-                                    self.golferDriver.text = data.driver
-                                    self.golferIron.text = data.irons
-                                    self.favoriteCourse.text = data.favoriteCourse
                                     self.golferProfileImage.file = data.profileImage
                                     self.golferProfileImage.loadInBackground()
                                     
@@ -98,6 +157,66 @@ class ProfileViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    func loadUserScorecardData() {
+        userScorecardData.removeAll()
+        
+        if let query = GolfScorecard.query() {
+        query.whereKey("golfer", equalTo: PFUser.currentUser()!)
+        query.orderByDescending("date")
+        
+            query.findObjectsInBackgroundWithBlock { (scorecards: [PFObject]?, error: NSError?) -> Void in
+                if error == nil {
+                    for object:PFObject in scorecards! {
+                        if let object = object as? GolfScorecard {
+                        self.userScorecardData.append(object)
+                        print(self.userScorecardData)
+                    }
+                }
+                
+                    dispatch_async(dispatch_get_main_queue()) {
+                    
+                    self.userScoreTableView.reloadData()
+                        
+                    }
+                
+                } else {
+                    print(error)
+                }
+            }
+        }
+    
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        
+        loadUserScorecardData()
+        self.userScoreTableView.reloadData()
+        scoreViewSegmentedControl.selectedSegmentIndex = 0
+        refreshControl.endRefreshing()
+        
+    }
+    
+    @IBAction func scoreViewSegmentedControlPushed(sender: AnyObject) {
+        
+        switch (scoreViewSegmentedControl.selectedSegmentIndex) {
+        case 0:
+            userScorecardData.sortInPlace({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
+            userScoreTableView.reloadData()
+            
+        case 1:
+            userScorecardData.sortInPlace({$0.score < $1.score})
+            userScoreTableView.reloadData()
+            
+        case 2:
+            userScorecardData.sortInPlace({$0.score > $1.score})
+            userScoreTableView.reloadData()
+            
+        default:
+            print("ERROR")
+        }
+        
     }
     
     

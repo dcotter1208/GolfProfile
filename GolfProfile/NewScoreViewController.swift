@@ -65,17 +65,16 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
             
         }
         
-   
-        
         golfScore.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
                 
                 dispatch_async(dispatch_get_main_queue()) {
-                    
-                self.dismissViewControllerAnimated(true, completion: nil)
+                    self.dismissViewControllerAnimated(true, completion: nil)
                     
                 }
+                
+                
                 
                 
             } else {
@@ -92,6 +91,9 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
                 
             }
         }
+        
+        
+        
         
     }
 
@@ -161,5 +163,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
+
+    
 
 }
