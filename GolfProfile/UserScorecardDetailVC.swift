@@ -57,9 +57,8 @@ class UserScorecardDetailVC: UIViewController, UIScrollViewDelegate {
             scorecardDateLabel.text = stringDate
             
         }
-        //Grabbing the score from Parse and turning it into a String to display in label
+        
         if let score = userScorecard?.objectForKey("score") as? Int {
-            
             let scoreToString = "\(score)"
             scorecardScoreLabel.text = scoreToString
             
@@ -83,5 +82,4 @@ class UserScorecardDetailVC: UIViewController, UIScrollViewDelegate {
         })
     }
     
-
 }

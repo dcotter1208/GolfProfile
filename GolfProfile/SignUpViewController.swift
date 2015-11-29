@@ -35,18 +35,17 @@ class SignUpViewController: UIViewController {
         user.username = signUpUsernameTextField.text?.lowercaseString
         user.password = signUpPasswordTextField.text?.lowercaseString
         user.email = signUpEmailTextField.text?.lowercaseString
-        user["name"] = ""
-        user["age"] = ""
-        user["country"] = ""
-        user["driver"] = ""
-        user["irons"] = ""
-        user["favoriteCourse"] = ""
+        user["name"] = "Name"
+        user["age"] = 0
+        user["country"] = "Country"
+        user["driver"] = "Driver"
+        user["irons"] = "Irons"
+        user["favoriteCourse"] = "Favorite Course"
         let imageData = UIImagePNGRepresentation(UIImage(named: "defaultUser")!)
         let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
         user["profileImage"] = golferImageFile
         
-        // If creating the user was successful then we log them in and display the ProfielViewController....***I HOOKED THIS UP TO A UNWIND SEGUE***
-        
+        // If creating the user was successful then we log them in and display the ProfielViewController
         user.signUpInBackgroundWithBlock {(succeeded: Bool, error: NSError?) -> Void in
          if error == nil {
   

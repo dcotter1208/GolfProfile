@@ -100,19 +100,16 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         let query = PFQuery(className: "GolfScorecard")
         query.whereKey("golfer", matchesQuery: friendQuery!)
         query.includeKey("golfer")
-        
         query.orderByAscending("score")
-        
+//        query.fromLocalDatastore()
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 
                     for object:PFObject in scoreCards! {
+                        
                         let golfer:PFObject = object["golfer"] as! PFObject
                         self.leaderboardData.append(object,golfer)
-                        print(self.leaderboardData)
-//                        self.golferInfo.append(golfer)
-//                        print(self.golferInfo)
-                        
+
                         dispatch_async(dispatch_get_main_queue()) {
 
                         self.leaderboardTableView.reloadData()

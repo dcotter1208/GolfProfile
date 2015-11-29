@@ -62,7 +62,10 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
             let parseImageFile = PFFile(name: "scorecard.png", data: imageData!)
             golfScore["scorecardImage"] = parseImageFile
        
+            
         }
+        
+   
         
         golfScore.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
@@ -76,26 +79,22 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
                 
                 
             } else {
+                let alertController = UIAlertController(title: "No Network Connection", message: "Can't save score without a connection. Please try again later.", preferredStyle: .Alert)
                 
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                    // ...
+                }
+                alertController.addAction(cancelAction)
+                self.presentViewController(alertController, animated: true) {
+                    // ...
+                }
                 print(error)
                 
             }
         }
         
     }
-    
-    @IBAction func photoLibraryButton(sender: UIButton) {
-        
 
-        
-    }
-
-    @IBAction func camButton(sender: UIButton) {
-        
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(imagePicker, animated: true, completion: nil)
-        
-    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
