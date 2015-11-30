@@ -8,15 +8,16 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class UserScorecardDetailVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var golfCourseNameLabel: UILabel!
     @IBOutlet weak var scorecardScoreLabel: UILabel!
     @IBOutlet weak var scorecardDateLabel: UILabel!
-    @IBOutlet weak var userScorecardImageView: UIImageView!
+    @IBOutlet weak var userScorecardImageView: PFImageView!
     @IBOutlet weak var userScorecardScrollView: UIScrollView!
     
-    var userScorecard = PFObject?()
+    var userScorecard = GolfScorecard?()
         
     override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,38 +49,27 @@ class UserScorecardDetailVC: UIViewController, UIScrollViewDelegate {
     }
     
     func displayUserDetailedScorecardInfo() {
-        //Getting the date from Parse and turning it into a String to display in label
-        if let golfDate = userScorecard?.objectForKey("date") as? NSDate {
-            
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MM-dd-yyyy"
-            let stringDate = dateFormatter.stringFromDate(golfDate)
-            scorecardDateLabel.text = stringDate
-            
-        }
         
-        if let score = userScorecard?.objectForKey("score") as? Int {
-            let scoreToString = "\(score)"
-            scorecardScoreLabel.text = scoreToString
-            
-        }
         
-        golfCourseNameLabel.text = userScorecard?.objectForKey("golfCourse") as? String
-        let pfImage = userScorecard!.objectForKey("scorecardImage") as? PFFile
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
         
-        pfImage?.getDataInBackgroundWithBlock({
-            (result, error) in
-            
-            if result == nil {
-                
-                self.userScorecardImageView.image = UIImage(named: "noScorecard")
-                
-            } else {
-                
-                self.userScorecardImageView.image = UIImage(data: result!)
-                
-            }
-        })
+        scorecardDateLabel.text = dateFormatter.stringFromDate(userScorecard!.date)
+        
+        scorecardScoreLabel.text = "\(userScorecard!.score)"
+        golfCourseNameLabel.text = userScorecard?.golfCourse
+        userScorecardImageView.file = userScorecard?.scorecardImage
+        userScorecardImageView.loadInBackground()
+
+
+    }
+    
+    override func shouldAutomaticallyForwardAppearanceMethods() -> Bool {
+        return true
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return true
     }
     
 }

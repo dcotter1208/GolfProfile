@@ -105,7 +105,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
             let selectedIndex = userScoreTableView.indexPathForCell(sender as! UITableViewCell)
             
-            userScorecardDetailVC?.userScorecard = userScorecardData[selectedIndex!.row] as PFObject
+            userScorecardDetailVC?.userScorecard = userScorecardData[selectedIndex!.row]
             
         }
         
@@ -220,6 +220,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
     }
+    
+
+    
+
     
     
 }

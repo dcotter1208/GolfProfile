@@ -93,15 +93,15 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     
     func loadLeaderboardData() {
         leaderboardData.removeAll()
-        golferInfo.removeAll()
         
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
         let friendQuery = friendsRelation?.query()
         let query = PFQuery(className: "GolfScorecard")
         query.whereKey("golfer", matchesQuery: friendQuery!)
+
+//        query.whereKey("golfer", equalTo: PFUser.currentUser()!)
         query.includeKey("golfer")
         query.orderByAscending("score")
-//        query.fromLocalDatastore()
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 

@@ -19,6 +19,9 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var friendProfilePhoto: PFImageView!
     @IBOutlet weak var friendScorecardTableView: UITableView!
     
+    @IBOutlet weak var friendScorecardSegmentedControl: UISegmentedControl!
+    
+    
     var friendScorecardData = [GolfScorecard]()
     var selectedfriend = GolferProfile()
     
@@ -72,7 +75,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
         let selectedIndex = friendScorecardTableView.indexPathForCell(sender as! UITableViewCell)
         
-        scorecardPhotoVC?.scorecard = (friendScorecardData[(selectedIndex?.row)!] as PFObject)
+        scorecardPhotoVC?.friendScorecard = friendScorecardData[selectedIndex!.row]
         
     }
     
@@ -97,8 +100,6 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
                 for object:PFObject in friendScorecards! {
                     if let scorecard = object as? GolfScorecard {
                         self.friendScorecardData.append(scorecard)
-                        print(self.friendScorecardData.count)
-                        print(self.friendScorecardData)
                         self.friendScorecardTableView.reloadData()
                     }
                 
@@ -116,6 +117,32 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         friendProfileCountryLabel.text = selectedfriend.country
         friendProfilePhoto.file = selectedfriend.profileImage
     }
+    
+    @IBAction func segmentedControl(sender: UISegmentedControl) {
+        
+        switch friendScorecardSegmentedControl.selectedSegmentIndex {
+        
+            case 0:
+            friendScorecardData.sortInPlace({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
+                friendScorecardTableView.reloadData()
+            
+        case 1:
+            friendScorecardData.sortInPlace({$0.score < $1.score})
+            friendScorecardTableView.reloadData()
+            
+        case 2:
+            friendScorecardData.sortInPlace({$0.score > $1.score})
+            friendScorecardTableView.reloadData()
+        
+        default:
+            print("ERROR")
+            
+        }
+        
+        
+    }
+    
+    
     
     
 }
