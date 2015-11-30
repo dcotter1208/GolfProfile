@@ -8,16 +8,17 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class FriendScorecardDetailVC: UIViewController {
 
     @IBOutlet weak var friendScorecardScrollView: UIScrollView!
-    @IBOutlet weak var scorecardImageView: UIImageView!
+    @IBOutlet weak var scorecardImageView: PFImageView!
     @IBOutlet weak var friendScorecardGCLabel: UILabel!
     @IBOutlet weak var friendScorecardDateLabel: UILabel!
     @IBOutlet weak var friendScorecardScoreLabel: UILabel!
     
-    var scorecard = PFObject?()
+    var friendScorecard = GolfScorecard()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,32 +48,18 @@ class FriendScorecardDetailVC: UIViewController {
     }
     
     func loadFriendDetailedScorecardInfo() {
-        if let golfDate = scorecard?.objectForKey("date") as? NSDate {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MM-dd-yyyy"
-            let stringDate = dateFormatter.stringFromDate(golfDate)
-            friendScorecardDateLabel.text = stringDate
-        }
         
-        if let score = scorecard?.objectForKey("score") as? Int {
-            let scoreToString = "\(score)"
-            friendScorecardScoreLabel.text = scoreToString
-        }
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
         
-        friendScorecardGCLabel.text = scorecard?.objectForKey("golfCourse") as? String
+        friendScorecardDateLabel.text = dateFormatter.stringFromDate(friendScorecard.date)
+        print(friendScorecard.date)
         
-        let pfImage = scorecard!.objectForKey("scorecardImage") as? PFFile
-        
-        pfImage!.getDataInBackgroundWithBlock({
-            (result, error) in
-            
-            if result != nil {
-                
-                self.scorecardImageView.image = UIImage(data: result!)
-                
-            }
-        })
+        friendScorecardScoreLabel.text = "\(friendScorecard.score)"
+        friendScorecardGCLabel.text = friendScorecard.golfCourse
+        scorecardImageView.file = friendScorecard.scorecardImage
+        scorecardImageView.loadInBackground()
     
     }
-    
+
 }

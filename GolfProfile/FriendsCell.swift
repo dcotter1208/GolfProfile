@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import ParseUI
 
-class FriendsCell: UITableViewCell {
+class FriendsCell: PFTableViewCell {
     @IBOutlet weak var friendUserNameCellLabel: UILabel!
-    @IBOutlet weak var friendProfileCell: UIImageView!
+    @IBOutlet weak var friendProfileCell: PFImageView!
     
     
     override func awakeFromNib() {

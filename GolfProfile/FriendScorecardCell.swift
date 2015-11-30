@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import ParseUI
 
-class FriendScorecardCell: UITableViewCell {
+class FriendScorecardCell: PFTableViewCell {
     @IBOutlet weak var friendScorecardCellGCLabel: UILabel!
     @IBOutlet weak var friendScorecardCellDateLabel: UILabel!
     @IBOutlet weak var friendScorecardCellScoreLabel: UILabel!
-    
-    @IBOutlet weak var friendScorecardImageView: UIImageView!
+    @IBOutlet weak var friendScorecardImageView: PFImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

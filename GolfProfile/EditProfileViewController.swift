@@ -18,8 +18,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var ironsTextField: UITextField!
     @IBOutlet weak var favoriteCourseTextField: UITextField!
     
-    var editProfileData = [PFObject]()
-    var loadProfileData = [PFObject]()
+    var editProfileData = [GolferProfile]()
+    var loadProfileData = [GolferProfile]()
     var object: PFObject!
     var imagePicker = UIImagePickerController()
     
@@ -43,24 +43,28 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 if error == nil {
         
                     for object:PFObject in profilesToEdit! {
-                    self.editProfileData.append(object)
-                        
-                        if object.objectId == PFUser.currentUser()?.objectId {
-                            object["name"] = self.golferNameTextField.text!
-                            object["age"] = Int(self.golferAgeTextField.text!)
-                            object["country"] = self.golferCountryTextField.text!
-                            object["driver"] = self.driverTextField.text!
-                            object["irons"] = self.ironsTextField.text!
-                            object["favoriteCourse"] = self.favoriteCourseTextField.text!
-                        
+                        if let profile = object as? GolferProfile {
+                            if profile.objectId == PFUser.currentUser()?.objectId {
+                            self.editProfileData.append(profile)
+                            profile.name = self.golferNameTextField.text!
+                            profile.age = Int(self.golferAgeTextField.text!)!
+                            profile.country = self.golferCountryTextField.text!
+                            profile.driver = self.driverTextField.text!
+                            profile.irons = self.ironsTextField.text!
+                            profile.favoriteCourse = self.favoriteCourseTextField.text!
+                            
                             let pickedImage = self.golferProfileImage.image
                             let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(100, 100))
                             let imageData = UIImagePNGRepresentation(scaledImage)
                             let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
-                            object["profileImage"] = golferImageFile
-                        
+                            profile.profileImage = golferImageFile!
+                                
                             object.saveInBackground()
+                            }
+                            
                         }
+                        
+                        
                     }
                     
                 } else {
@@ -71,7 +75,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
     }
 
-    
     
     @IBAction func editProfilePhoto(sender: UIButton) {
         
@@ -133,32 +136,36 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             userQuery.findObjectsInBackgroundWithBlock({ (userProfiles:[PFObject]?, error: NSError?) -> Void in
                 
                 for object:PFObject in userProfiles! {
-                    self.loadProfileData.append(object)
+                    if let profile = object as? GolferProfile {
+                        if profile.objectId == PFUser.currentUser()?.objectId {
+                            self.loadProfileData.append(profile)
                     
-                    for data in self.loadProfileData {
-                        
-                        if data.objectId == PFUser.currentUser()?.objectId {
-                            self.golferNameTextField.text = data.objectForKey("name") as? String
-                            self.golferAgeTextField.text = data.objectForKey("age") as? String
-                            self.golferCountryTextField.text = data.objectForKey("country")as? String
-                            self.driverTextField.text = data.objectForKey("driver")as? String
-                            self.ironsTextField.text = data.objectForKey("irons") as? String
-                            self.favoriteCourseTextField.text = data.objectForKey("favoriteCourse") as? String
+                        self.golferNameTextField.text = profile.name
+                        self.golferAgeTextField.text = "\(profile.age)"
+                        self.golferCountryTextField.text = profile.country
+                        self.driverTextField.text = profile.driver
+                        self.ironsTextField.text = profile.irons
+                        self.favoriteCourseTextField.text = profile.favoriteCourse
                             
-                            let pfImage = data.objectForKey("profileImage") as? PFFile
-                            pfImage?.getDataInBackgroundWithBlock({
+                        let pfImage = profile.profileImage
+                        pfImage.getDataInBackgroundWithBlock({
                                 (result, error) in
                                 
-                                self.golferProfileImage.image = UIImage(data: result!)
-                                
+                        self.golferProfileImage.image = UIImage(data: result!)
+
                             })
+                            
                         }
+                        
                     }
+                    
                 }
+                
             })
+            
         }
+        
     }
-    
     
 
 }
