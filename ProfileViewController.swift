@@ -34,8 +34,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
             self.performSegueWithIdentifier("showLogin", sender: self)
             
-        } else {
-            loadUserScorecardData()
         }
         
         self.userScoreTableView.addSubview(self.refreshControl)
@@ -45,6 +43,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewWillAppear(animated: Bool) {
         getProfileFromBackground()
+        
+        if PFUser.currentUser() != nil {
+        loadUserScorecardData()
+        }
+            
         
     }
     
@@ -171,7 +174,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     for object:PFObject in scorecards! {
                         if let object = object as? GolfScorecard {
                         self.userScorecardData.append(object)
-                        print(self.userScorecardData)
                     }
                 }
                 

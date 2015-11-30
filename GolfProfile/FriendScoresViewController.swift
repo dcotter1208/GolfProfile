@@ -8,19 +8,30 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class FriendScoresViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    
+    @IBOutlet weak var friendProfileNameLabel: UILabel!
+    @IBOutlet weak var friendProfileUsernameLabel: UILabel!
+    @IBOutlet weak var friendProfileCountryLabel: UILabel!
+    @IBOutlet weak var friendProfilePhoto: PFImageView!
     @IBOutlet weak var friendScorecardTableView: UITableView!
     
-    var friendScorecardData = [PFObject]()
-    var selectedfriend = PFObject?()
+    var friendScorecardData = [GolfScorecard]()
+    var selectedfriend = GolferProfile()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadFriendScorecardData()
         
-        // Do any additional setup after loading the view.
+        loadFriendProfile()
+
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        loadFriendScorecardData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,7 +40,9 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
         return friendScorecardData.count
+        
     }
     
     
@@ -37,39 +50,19 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
         let cell:FriendScorecardCell = tableView.dequeueReusableCellWithIdentifier("friendScorecardCell", forIndexPath: indexPath) as! FriendScorecardCell
         
-        let friendScorecard:PFObject = self.friendScorecardData[indexPath.row] as PFObject
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
         
-        if let golfDate = friendScorecard.objectForKey("date") as? NSDate {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MM-dd-yyyy"
-            let stringDate = dateFormatter.stringFromDate(golfDate)
-            cell.friendScorecardCellDateLabel?.text = stringDate
-        }
-        //Grabbing the score from Parse and turning it into a String to display in label
-        if let score = friendScorecard.objectForKey("score") as? Int {
-            let scoreToString = "\(score)"
-            cell.friendScorecardCellScoreLabel?.text = scoreToString
-        }
-
+        cell.friendScorecardCellDateLabel.text = dateFormatter.stringFromDate(friendScorecardData[indexPath.row].date)
         
-        cell.friendScorecardCellGCLabel.text = friendScorecard.objectForKey("golfCourse") as? String
-
+        cell.friendScorecardCellScoreLabel.text = "\(friendScorecardData[indexPath.row].score)"
+        
+        cell.friendScorecardCellGCLabel.text = friendScorecardData[indexPath.row].golfCourse
+        
         cell.friendScorecardImageView.image = UIImage(named: "noScorecard")
-        let pfImage = friendScorecard.objectForKey("scorecardImage") as? PFFile
-        
-        pfImage!.getDataInBackgroundWithBlock({
-            (result, error) in
-            
-            if result != nil {
-            
-                
-            cell.friendScorecardImageView.image = UIImage(data: result!)
-                
-            }
-            
-        })
-        
-        
+        cell.friendScorecardImageView.file = friendScorecardData[indexPath.row].scorecardImage
+        cell.friendScorecardImageView.loadInBackground()
+
         return cell
     }
     
@@ -83,28 +76,45 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
+    override func viewWillLayoutSubviews() {
+        self.friendProfilePhoto.layer.cornerRadius = self.friendProfilePhoto.frame.size.width / 2
+        self.friendProfilePhoto.layer.borderWidth = 3.0
+        self.friendProfilePhoto.layer.borderColor = UIColor.whiteColor().CGColor
+        self.friendProfilePhoto.clipsToBounds = true
+        
+    }
     
     
     func loadFriendScorecardData() {
         friendScorecardData.removeAll()
         
-        let query = PFQuery(className: "GolfScorecard")
-        query.whereKey("golfer", equalTo: selectedfriend!)
+        if let query = GolfScorecard.query() {
+        query.whereKey("golfer", equalTo: selectedfriend)
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (friendScorecards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 
                 for object:PFObject in friendScorecards! {
-                    self.friendScorecardData.append(object)
-                    self.friendScorecardTableView.reloadData()
+                    if let scorecard = object as? GolfScorecard {
+                        self.friendScorecardData.append(scorecard)
+                        print(self.friendScorecardData.count)
+                        print(self.friendScorecardData)
+                        self.friendScorecardTableView.reloadData()
+                    }
+                
                 }
-                
-                
             } else {
                 print(error)
             }
         }
-        
+        }
+    }
+    
+    func loadFriendProfile() {
+        friendProfileNameLabel.text = selectedfriend.name
+        friendProfileUsernameLabel.text = selectedfriend.username
+        friendProfileCountryLabel.text = selectedfriend.country
+        friendProfilePhoto.file = selectedfriend.profileImage
     }
     
     

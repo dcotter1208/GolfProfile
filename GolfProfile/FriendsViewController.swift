@@ -12,7 +12,7 @@ import Parse
 class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var friendsTableView: UITableView!
     
-    var friends = [PFObject]()
+    var friendsData = [GolferProfile]()
     var friendsRelation = PFRelation?()
     
     override func viewDidLoad() {
@@ -33,32 +33,21 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+        return friendsData.count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell:FriendsCell = tableView.dequeueReusableCellWithIdentifier("friendsCell", forIndexPath: indexPath) as! FriendsCell
-        
-        
-        if let friendInfo:PFObject = self.friends[indexPath.row] as! PFUser {
+
+            cell.friendUserNameCellLabel.text = friendsData[indexPath.row].username
             
-            cell.friendUserNameCellLabel.text = friendInfo.objectForKey("username") as? String
-            
-            let pfImage = friendInfo.objectForKey("profileImage") as? PFFile
-            
-            pfImage?.getDataInBackgroundWithBlock({
-                (result, error) in
-                
-                if result != nil {
-                    cell.friendProfileCell.image = UIImage(data: result!)
-                    cell.friendProfileCell.layer.cornerRadius = cell.friendProfileCell.frame.size.width / 2
-                } else {
-                    print(error)
-                }
-            })
-        }
+            cell.friendProfileCell.layer.cornerRadius = cell.friendProfileCell.frame.size.width / 2
+            cell.friendProfileCell.image = UIImage(named: "defaultUser")
+            cell.friendProfileCell.file = friendsData[indexPath.row].profileImage
+            cell.friendProfileCell.loadInBackground()
+
         return cell
     }
     
@@ -68,7 +57,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         if segue.identifier == "showEditFriends" {
             let editFriendsVC = segue.destinationViewController as! EditFriendsViewController
             
-            editFriendsVC.showFriends = self.friends
+            editFriendsVC.showFriends = self.friendsData
             
         } else if segue.identifier == "showFriendScores"  {
             
@@ -76,30 +65,36 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             let selectedIndex = friendsTableView.indexPathForCell(sender as! UITableViewCell)
             
-            friendScoresVC.selectedfriend = friends[selectedIndex!.row] as PFObject
+            friendScoresVC.selectedfriend = friendsData[selectedIndex!.row]
             
         }
     }
     
     func loadFriendsData() {
-        friends.removeAll()
+        friendsData.removeAll()
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
-        //queries the friendsRelation of the current user.
         if let userQuery = friendsRelation?.query() {
         userQuery.orderByAscending("username")
         
-                userQuery.findObjectsInBackgroundWithBlock { (friends: [PFObject]?, error: NSError?) -> Void in
-                    if friends != nil {
+            userQuery.findObjectsInBackgroundWithBlock { (friends: [PFObject]?, error: NSError?) -> Void in
+                if friends != nil {
+                        
+                    for object:PFObject in friends! {
+                        if let object = object as? GolferProfile {
+                            self.friendsData.append(object)
+                            }
+                        }
+                        
                         dispatch_async(dispatch_get_main_queue()) {
-                            for object:PFObject in friends! {
-                                self.friends.append(object)
                                 self.friendsTableView.reloadData()
                             }
                         }
                     }
                 }
             }
-        }
-
-
+    
+    
 }
+
+
+
