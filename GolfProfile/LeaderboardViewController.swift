@@ -97,16 +97,15 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
         let friendQuery = friendsRelation?.query()
         let query = PFQuery(className: "GolfScorecard")
+        let currentUserQuery = PFUser.query()
         query.whereKey("golfer", matchesQuery: friendQuery!)
-
-//        query.whereKey("golfer", equalTo: PFUser.currentUser()!)
+        query.whereKey("golfer", matchesQuery: currentUserQuery!)
         query.includeKey("golfer")
         query.orderByAscending("score")
         query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 
                     for object:PFObject in scoreCards! {
-                        
                         let golfer:PFObject = object["golfer"] as! PFObject
                         self.leaderboardData.append(object,golfer)
 

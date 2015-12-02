@@ -64,12 +64,12 @@ class UserScorecardDetailVC: UIViewController, UIScrollViewDelegate {
 
     }
     
-    override func shouldAutomaticallyForwardAppearanceMethods() -> Bool {
+    override func shouldAutorotate() -> Bool {
         return true
     }
     
-    override func shouldAutorotate() -> Bool {
-        return true
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.AllButUpsideDown
     }
     
 }
