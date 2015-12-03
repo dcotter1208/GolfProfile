@@ -8,9 +8,10 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @IBOutlet weak var golferProfileImage: UIImageView!
+    @IBOutlet weak var golferProfileImage: PFImageView!
     @IBOutlet weak var golferNameTextField: UITextField!
     @IBOutlet weak var golferAgeTextField: UITextField!
     @IBOutlet weak var golferCountryTextField: UITextField!
@@ -47,11 +48,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             if profile.objectId == PFUser.currentUser()?.objectId {
                             self.editProfileData.append(profile)
                             profile.name = self.golferNameTextField.text!
-                            profile.age = Int(self.golferAgeTextField.text!)!
+//                            profile.age = Int(self.golferAgeTextField.text!)!
                             profile.country = self.golferCountryTextField.text!
-                            profile.driver = self.driverTextField.text!
-                            profile.irons = self.ironsTextField.text!
-                            profile.favoriteCourse = self.favoriteCourseTextField.text!
+//                            profile.driver = self.driverTextField.text!
+//                            profile.irons = self.ironsTextField.text!
+//                            profile.favoriteCourse = self.favoriteCourseTextField.text!
                             
                             let pickedImage = self.golferProfileImage.image
                             let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(100, 100))
@@ -141,19 +142,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             self.loadProfileData.append(profile)
                     
                         self.golferNameTextField.text = profile.name
-                        self.golferAgeTextField.text = "\(profile.age)"
+//                        self.golferAgeTextField.text = "\(profile.age)"
                         self.golferCountryTextField.text = profile.country
-                        self.driverTextField.text = profile.driver
-                        self.ironsTextField.text = profile.irons
-                        self.favoriteCourseTextField.text = profile.favoriteCourse
-                            
-                        let pfImage = profile.profileImage
-                        pfImage.getDataInBackgroundWithBlock({
-                                (result, error) in
-                                
-                        self.golferProfileImage.image = UIImage(data: result!)
+//                        self.driverTextField.text = profile.driver
+//                        self.ironsTextField.text = profile.irons
+//                        self.favoriteCourseTextField.text = profile.favoriteCourse
 
-                            })
+                            self.golferProfileImage.file = profile.profileImage
+                            self.golferProfileImage.loadInBackground()
+           
+                            
+//                        let pfImage = profile.profileImage
+//                        pfImage.getDataInBackgroundWithBlock({
+//                                (result, error) in
+//                                
+//                        self.golferProfileImage.image = UIImage(data: result!)
+
+//                            })
                             
                         }
                         
@@ -164,6 +169,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             })
             
         }
+        
+    }
+    
+    override func viewWillLayoutSubviews() {
+        self.golferProfileImage.layer.cornerRadius = 10
+        self.golferProfileImage.layer.borderWidth = 3.0
+        self.golferProfileImage.layer.borderColor = UIColor.blackColor().CGColor
+        self.golferProfileImage.clipsToBounds = true
         
     }
     

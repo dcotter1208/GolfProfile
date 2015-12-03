@@ -67,7 +67,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             friendScoresVC.selectedfriend = friendsData[selectedIndex!.row]
             
-        }
+        } 
     }
     
     func loadFriendsData() {

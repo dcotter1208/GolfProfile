@@ -51,13 +51,13 @@ class UserScorecardDetailVC: UIViewController, UIScrollViewDelegate {
     func displayUserDetailedScorecardInfo() {
         
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy"
-        
-        scorecardDateLabel.text = dateFormatter.stringFromDate(userScorecard!.date)
-        
-        scorecardScoreLabel.text = "\(userScorecard!.score)"
-        golfCourseNameLabel.text = userScorecard?.golfCourse
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "MM-dd-yyyy"
+//        
+//        scorecardDateLabel.text = dateFormatter.stringFromDate(userScorecard!.date)
+//        
+//        scorecardScoreLabel.text = "\(userScorecard!.score)"
+//        golfCourseNameLabel.text = userScorecard?.golfCourse
         userScorecardImageView.file = userScorecard?.scorecardImage
         userScorecardImageView.loadInBackground()
 

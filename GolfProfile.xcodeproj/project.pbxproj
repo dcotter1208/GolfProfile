@@ -44,6 +44,7 @@
 		C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */; };
 		C07E7C401C0376B500A86EB7 /* GolfScorecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */; };
 		C0A0AEC81C0A7E7000671B18 /* GolferProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */; };
+		C0A0AF481C0FC6D500671B18 /* ProfilePhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */; };
 		C0A288481BED2D0C0003AF11 /* EditFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288471BED2D0C0003AF11 /* EditFriendsViewController.swift */; };
 		C0A2884A1BED37810003AF11 /* EditFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288491BED37810003AF11 /* EditFriendCell.swift */; };
 		C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */; };
@@ -114,6 +115,7 @@
 		C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLeaderboardCell.swift; sourceTree = "<group>"; };
 		C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfScorecard.swift; sourceTree = "<group>"; };
 		C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolferProfile.swift; sourceTree = "<group>"; };
+		C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhotoVC.swift; sourceTree = "<group>"; };
 		C0A288471BED2D0C0003AF11 /* EditFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFriendsViewController.swift; sourceTree = "<group>"; };
 		C0A288491BED37810003AF11 /* EditFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFriendCell.swift; sourceTree = "<group>"; };
 		C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				C038BF751BE84287004AE33E /* LoginViewController.swift */,
 				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
 				C038BF431BE80BAA004AE33E /* ProfileViewController.swift */,
+				C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */,
 				C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */,
 				C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */,
 				C0AFA2E71BF0106800C9F058 /* UserScorecardDetailVC.swift */,
@@ -432,6 +435,7 @@
 				C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */,
 				C038BF781BE842F4004AE33E /* FriendsViewController.swift in Sources */,
 				C038BF161BE80AA4004AE33E /* AppDelegate.swift in Sources */,
+				C0A0AF481C0FC6D500671B18 /* ProfilePhotoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
