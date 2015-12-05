@@ -79,6 +79,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.golfCourseCellLabel?.text = userScorecardData[indexPath.row].golfCourse
         
         cell.scorecardCellImage.image = UIImage(named: "noScorecard")
+        
+        
         cell.scorecardCellImage.file = userScorecardData[indexPath.row].scorecardImage
         cell.scorecardCellImage.loadInBackground()
         
@@ -214,7 +216,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         switch (scoreViewSegmentedControl.selectedSegmentIndex) {
         case 0:
-            userScorecardData.sortInPlace({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
+            userScorecardData.sortInPlace({$0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
             userScoreTableView.reloadData()
             
         case 1:
@@ -230,10 +232,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
     }
-    
 
-    
-
-    
     
 }

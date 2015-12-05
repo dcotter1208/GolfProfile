@@ -131,7 +131,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
         switch friendScorecardSegmentedControl.selectedSegmentIndex {
         
-            case 0:
+        case 0:
             friendScorecardData.sortInPlace({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
                 friendScorecardTableView.reloadData()
             

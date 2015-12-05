@@ -8,25 +8,28 @@
 
 import UIKit
 import Parse
+import ParseUI
 
-class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
 
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var addFriendsTableView: UITableView!
-    
-    @IBOutlet weak var editFriendProfileImage: UIImageView!
-    
-    var allUsers = [PFObject]()
+        
+    var allUsers = [GolferProfile]()
+    var filteredUsers = [GolferProfile]()
     var showFriends = [PFObject]()
     var friendsRelation = PFRelation()
     let currentUser = PFUser.currentUser()
     var checkMarkArray = [Int]()
+    var shouldShowSearchResults = false
+    var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+        configureSearchController()
+        loadUserData()
         addFriendsTableView.reloadData()
         
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -39,7 +42,16 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if shouldShowSearchResults {
+            
+        return filteredUsers.count
+            
+        } else {
+        
         return allUsers.count
+            
+        }
     }
     
     
@@ -47,24 +59,28 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         
         let cell:EditFriendCell = tableView.dequeueReusableCellWithIdentifier("editFriendCell", forIndexPath: indexPath) as! EditFriendCell
         
-        let userInfo:PFObject = self.allUsers[indexPath.row] as! PFUser
-        cell.userNameCellLabel.text = userInfo.objectForKey("username") as? String
+        let userInfo:PFObject = self.allUsers[indexPath.row]
         
-        let pfImage = userInfo.objectForKey("profileImage") as? PFFile
-        
-        pfImage?.getDataInBackgroundWithBlock({
-            (result, error) in
+        if shouldShowSearchResults {
             
-            if result != nil {
-                cell.editFriendProfileCellImage.image = UIImage(data: result!)
-                cell.editFriendProfileCellImage.layer.cornerRadius = cell.editFriendProfileCellImage.frame.size.width / 2
-                
-            } else {
-                print(error)
-            }
-        })
+        cell.userNameCellLabel.text = filteredUsers[indexPath.row].username
+            
+        cell.editFriendProfileCellImage.file = filteredUsers[indexPath.row].profileImage
+        cell.editFriendProfileCellImage.loadInBackground()
+        cell.editFriendProfileCellImage.layer.cornerRadius = cell.editFriendProfileCellImage.frame.size.width / 2
+            
+        cell.tintColor = UIColor.whiteColor()
+            
+        } else {
+            
+        cell.userNameCellLabel.text = allUsers[indexPath.row].username
         
+        cell.editFriendProfileCellImage.file = allUsers[indexPath.row].profileImage
+        cell.editFriendProfileCellImage.loadInBackground()
+        cell.editFriendProfileCellImage.layer.cornerRadius = cell.editFriendProfileCellImage.frame.size.width / 2
         
+        }
+            
         cell.tintColor = UIColor.whiteColor()
         
         //if the user is a friend then their name will have a checkmark
@@ -77,19 +93,21 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
             
         }
         
-        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        
+        //*****THIS IS WHERE I NEED TO FIX MY ISSUE FOR SEARCH SELECTION****///
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
-        friendsRelation = (PFUser.currentUser()?.relationForKey("friendsRelation"))!
+        let userInfo:PFObject = self.allUsers[indexPath.row]
         
-        let userInfo:PFObject = self.allUsers[indexPath.row] as! PFUser
+        friendsRelation = (PFUser.currentUser()?.relationForKey("friendsRelation"))!
         
         if isFriend(userInfo as! PFUser) {
             cell?.accessoryType = UITableViewCellAccessoryType.None
@@ -98,18 +116,17 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
                 if friend.objectId == userInfo.objectId {
                 friendsRelation.removeObject(friend)
                     
-                //taking a function as an argument. I'm assigning a new value to my showFriends array. I filter through the original array and remove that selected "friend" from the array.
-                showFriends = showFriends.filter({ $0 != friend })
+         //filter through the original showFriends array and remove that selected "friend" from the array.
+            showFriends = showFriends.filter({ $0 != friend })
 
                 }
             }
-            
         } else {
             cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
             showFriends.append(userInfo)
             friendsRelation.addObject(userInfo)
-            
         }
+        
         currentUser?.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
@@ -121,7 +138,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     //Function that loads all of my PFUsers
-    func loadData() {
+    func loadUserData() {
         allUsers.removeAll()
         
         if let userQuery = PFUser.query() {
@@ -130,15 +147,19 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
             if error == nil {
                 
                 for object:PFObject in users! {
-                self.allUsers.append(object)
-                self.addFriendsTableView.reloadData()
-                            }
+                    if let user = object as? GolferProfile {
+                            self.allUsers.append(user)
+                            self.addFriendsTableView.reloadData()
                         }
                     }
                 }
         
             }
-    //Function to check if a user is a or isn't a current friend. If they are then we are using this method to display a checkmark by their name in our editFriendsVC
+
+        }
+        
+    }
+        //Function to check if a user is a or isn't a current friend. If they are then we are using this method to display a checkmark by their name in our editFriendsVC
     func isFriend(user: PFUser) -> Bool {
         for friend in showFriends {
             if friend.objectId == user.objectId {
@@ -150,6 +171,53 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         return false
         
     }
+    
+    func configureSearchController() {
+        // Initialize and perform a minimum configuration to the search controller.
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search here..."
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        
+        addFriendsTableView.tableHeaderView = searchController.searchBar
+    }
+
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchString = searchController.searchBar.text
+        
+        // Filter the allUsers array and get only those users' username that match the search text.
+        filteredUsers = allUsers.filter({(user) -> Bool in
+            let nameText: NSString = user.username!
+            
+            return (nameText.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+        })
+        
+        // Reload the tableview.
+        addFriendsTableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        shouldShowSearchResults = true
+        addFriendsTableView.reloadData()
+    }
+    
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        shouldShowSearchResults = false
+        addFriendsTableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if !shouldShowSearchResults {
+            shouldShowSearchResults = true
+            addFriendsTableView.reloadData()
+        }
+        
+        searchController.searchBar.resignFirstResponder()
+    }
+    
     
     
 }

@@ -35,6 +35,54 @@
                                     <outletCollection property="gestureRecognizers" destination="rwy-iO-i3x" appends="YES" id="ZDc-ft-awH"/>
                                 </connections>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n10-Lm-BCe">
+                                <rect key="frame" x="135" y="106" width="142" height="21"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.7843137255" blue="0.28627450980000002" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="stO-H0-nw7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rFU-Bp-Y1T">
+                                <rect key="frame" x="20" y="254" width="280" height="29"/>
+                                <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <segments>
+                                    <segment title="Date"/>
+                                    <segment title="Low Score"/>
+                                    <segment title="High Score"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="scoreViewSegmentedControlPushed:" destination="BYZ-38-t0r" eventType="valueChanged" id="sI9-9F-luh"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xc-tp-dWY">
+                                <rect key="frame" x="20" y="218" width="280" height="28"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.7843137255" blue="0.28627450980000002" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="mcp-lM-zEA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Add Scorecard">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bcC-Qa-jI3" kind="modal" identifier="addScorecardView" id="MzT-rw-eUZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhY-Rn-qta">
+                                <rect key="frame" x="135" y="135" width="68" height="21"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.7843137255" blue="0.28627450980000002" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="b4p-gV-kfP"/>
+                                    <constraint firstAttribute="width" constant="68" id="uWc-HT-nY2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cPD-Yx-flP">
                                 <rect key="frame" x="0.0" y="290" width="320" height="278"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -109,54 +157,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="aac-k2-dN9"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n10-Lm-BCe">
-                                <rect key="frame" x="135" y="106" width="142" height="21"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.7843137255" blue="0.28627450980000002" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="stO-H0-nw7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rFU-Bp-Y1T">
-                                <rect key="frame" x="20" y="254" width="280" height="29"/>
-                                <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <segments>
-                                    <segment title="Date"/>
-                                    <segment title="Low Score"/>
-                                    <segment title="High Score"/>
-                                </segments>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="scoreViewSegmentedControlPushed:" destination="BYZ-38-t0r" eventType="valueChanged" id="sI9-9F-luh"/>
-                                </connections>
-                            </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xc-tp-dWY">
-                                <rect key="frame" x="20" y="218" width="280" height="28"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.7843137255" blue="0.28627450980000002" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="mcp-lM-zEA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Add Scorecard">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="bcC-Qa-jI3" kind="modal" identifier="addScorecardView" id="MzT-rw-eUZ"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhY-Rn-qta">
-                                <rect key="frame" x="135" y="135" width="68" height="21"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.7843137255" blue="0.28627450980000002" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="b4p-gV-kfP"/>
-                                    <constraint firstAttribute="width" constant="68" id="uWc-HT-nY2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                         <accessibility key="accessibilityConfiguration" label=""/>
@@ -759,7 +759,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5aU-sn-htc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2680" y="-3058"/>
+            <point key="canvasLocation" x="2370" y="-3050"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="j3s-8D-rXy">
@@ -996,7 +996,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C0s-Zc-W3J">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C0s-Zc-W3J" customClass="PFImageView">
                                                     <rect key="frame" x="8" y="6" width="85" height="85"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXw-ye-pxj">
@@ -1010,7 +1010,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="editFriendProfileCellImage" destination="C0s-Zc-W3J" id="qI0-7I-CQL"/>
+                                            <outlet property="editFriendProfileCellImage" destination="C0s-Zc-W3J" id="wBp-Py-cRL"/>
                                             <outlet property="userNameCellLabel" destination="TXw-ye-pxj" id="5u5-Ns-Gos"/>
                                         </connections>
                                     </tableViewCell>
@@ -1032,9 +1032,26 @@
                     <navigationItem key="navigationItem" id="xol-J2-GOI"/>
                     <connections>
                         <outlet property="addFriendsTableView" destination="5Uq-Ns-glz" id="Px1-qQ-i7Z"/>
+                        <outlet property="searchDisplayController" destination="0pk-1w-EA0" id="KBE-QN-1Io"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GxH-Rr-K7t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="h1v-yI-RaC">
+                    <connections>
+                        <outlet property="delegate" destination="2nK-tA-FpD" id="81I-LY-vdm"/>
+                        <outlet property="searchContentsController" destination="2nK-tA-FpD" id="cmT-4A-lZN"/>
+                        <outlet property="searchResultsDataSource" destination="2nK-tA-FpD" id="f16-b6-Nmq"/>
+                        <outlet property="searchResultsDelegate" destination="2nK-tA-FpD" id="UdG-jn-gmc"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="0pk-1w-EA0">
+                    <connections>
+                        <outlet property="delegate" destination="2nK-tA-FpD" id="c79-cx-zzf"/>
+                        <outlet property="searchContentsController" destination="2nK-tA-FpD" id="v70-fY-tnt"/>
+                        <outlet property="searchResultsDataSource" destination="2nK-tA-FpD" id="KWY-1N-CZP"/>
+                        <outlet property="searchResultsDelegate" destination="2nK-tA-FpD" id="rbf-si-KSo"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1970" y="-2324"/>
         </scene>
@@ -1256,6 +1273,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Fw4-gk-tlV"/>
-        <segue reference="xGv-eZ-XpP"/>
+        <segue reference="PIC-cF-3e2"/>
     </inferredMetricsTieBreakers>
 </document>

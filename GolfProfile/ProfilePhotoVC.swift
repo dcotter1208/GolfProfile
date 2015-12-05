@@ -28,9 +28,6 @@ class ProfilePhotoVC: UIViewController {
         
         profilePhotoImageView.file = selectedFriendProfile.profileImage
 
-        
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

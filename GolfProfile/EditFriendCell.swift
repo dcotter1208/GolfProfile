@@ -8,11 +8,12 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class EditFriendCell: UITableViewCell {
     @IBOutlet weak var userNameCellLabel: UILabel!
 
-    @IBOutlet weak var editFriendProfileCellImage: UIImageView!
+    @IBOutlet weak var editFriendProfileCellImage: PFImageView!
 
     
     override func awakeFromNib() {

@@ -151,15 +151,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             self.golferProfileImage.file = profile.profileImage
                             self.golferProfileImage.loadInBackground()
            
-                            
-//                        let pfImage = profile.profileImage
-//                        pfImage.getDataInBackgroundWithBlock({
-//                                (result, error) in
-//                                
-//                        self.golferProfileImage.image = UIImage(data: result!)
 
-//                            })
-                            
                         }
                         
                     }
@@ -180,7 +172,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
     }
     
-
 }
 
 
