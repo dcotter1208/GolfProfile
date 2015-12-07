@@ -56,7 +56,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         if segue.identifier == "showEditFriends" {
             let editFriendsVC = segue.destinationViewController as! EditFriendsViewController
             
-            editFriendsVC.showFriends = self.friendsData
+//            editFriendsVC.showFriends = self.friendsData
             
         } else if segue.identifier == "showFriendScores"  {
             

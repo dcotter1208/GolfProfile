@@ -17,7 +17,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         
     var allUsers = [GolferProfile]()
     var filteredUsers = [GolferProfile]()
-    var showFriends = [PFObject]()
+    var friendsData = [GolferProfile]()
     var friendsRelation = PFRelation()
     let currentUser = PFUser.currentUser()
     var checkMarkArray = [Int]()
@@ -26,6 +26,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadFriendsData()
         configureSearchController()
         loadUserData()
         addFriendsTableView.reloadData()
@@ -49,7 +50,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
             
         } else {
         
-        return allUsers.count
+        return friendsData.count
             
         }
     }
@@ -58,8 +59,7 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell:EditFriendCell = tableView.dequeueReusableCellWithIdentifier("editFriendCell", forIndexPath: indexPath) as! EditFriendCell
-        
-        let userInfo:PFObject = self.allUsers[indexPath.row]
+        cell.tintColor = UIColor.whiteColor()
         
         if shouldShowSearchResults {
             
@@ -68,63 +68,75 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         cell.editFriendProfileCellImage.file = filteredUsers[indexPath.row].profileImage
         cell.editFriendProfileCellImage.loadInBackground()
         cell.editFriendProfileCellImage.layer.cornerRadius = cell.editFriendProfileCellImage.frame.size.width / 2
+        
+        for friend in filteredUsers {
             
-        cell.tintColor = UIColor.whiteColor()
+        if isFriend(friend) {
+        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        checkMarkArray.append(indexPath.row)
             
         } else {
             
-        cell.userNameCellLabel.text = allUsers[indexPath.row].username
+        cell.accessoryType = UITableViewCellAccessoryType.None
+                        
+         }
+    
+        }
+            
+        } else {
         
-        cell.editFriendProfileCellImage.file = allUsers[indexPath.row].profileImage
+        cell.userNameCellLabel.text = friendsData[indexPath.row].username
+        cell.editFriendProfileCellImage.file = friendsData[indexPath.row].profileImage
         cell.editFriendProfileCellImage.loadInBackground()
         cell.editFriendProfileCellImage.layer.cornerRadius = cell.editFriendProfileCellImage.frame.size.width / 2
         
         }
             
-        cell.tintColor = UIColor.whiteColor()
         
-        //if the user is a friend then their name will have a checkmark
-        if isFriend(userInfo as! PFUser) {
-           cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-           checkMarkArray.append(indexPath.row)
-     
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryType.None
-            
-        }
+//        //if the user is a friend then their name will have a checkmark
+//        if isFriend(userInfo as! PFUser) {
+//           cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+//           checkMarkArray.append(indexPath.row)
+//     
+//        } else {
+//            cell.accessoryType = UITableViewCellAccessoryType.None
+//            
+//        }
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        
-        //*****THIS IS WHERE I NEED TO FIX MY ISSUE FOR SEARCH SELECTION****///
+        if shouldShowSearchResults {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
-        let userInfo:PFObject = self.allUsers[indexPath.row]
+        let userInfo = self.filteredUsers[indexPath.row]
         
         friendsRelation = (PFUser.currentUser()?.relationForKey("friendsRelation"))!
         
-        if isFriend(userInfo as! PFUser) {
+        if isFriend(userInfo) {
             cell?.accessoryType = UITableViewCellAccessoryType.None
 
-            for friend in showFriends{
+            for friend in friendsData{
                 if friend.objectId == userInfo.objectId {
                 friendsRelation.removeObject(friend)
+                print("\(friend.username) REMOVED")
                     
          //filter through the original showFriends array and remove that selected "friend" from the array.
-            showFriends = showFriends.filter({ $0 != friend })
+            friendsData = friendsData.filter({ $0 != friend })
 
                 }
             }
         } else {
             cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
-            showFriends.append(userInfo)
+            friendsData.append(userInfo)
             friendsRelation.addObject(userInfo)
+            print("\(userInfo.username) ADDED")
+
         }
         
         currentUser?.saveInBackgroundWithBlock {
@@ -135,7 +147,12 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
                 print(error)
             }
         }
+    
     }
+        
+}
+        
+        
     
     //Function that loads all of my PFUsers
     func loadUserData() {
@@ -159,9 +176,33 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
     }
+    
+    func loadFriendsData() {
+        friendsData.removeAll()
+        friendsRelation = (PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation)!
+        if let userQuery = friendsRelation.query() {
+            userQuery.orderByAscending("username")
+            userQuery.findObjectsInBackgroundWithBlock { (friends: [PFObject]?, error: NSError?) -> Void in
+                if friends != nil {
+                    
+                    for object:PFObject in friends! {
+                        if let object = object as? GolferProfile {
+                            self.friendsData.append(object)
+                            print(self.friendsData.count)
+                        }
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.addFriendsTableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+    
         //Function to check if a user is a or isn't a current friend. If they are then we are using this method to display a checkmark by their name in our editFriendsVC
     func isFriend(user: PFUser) -> Bool {
-        for friend in showFriends {
+        for friend in friendsData {
             if friend.objectId == user.objectId {
                 return true
             }
