@@ -12,8 +12,8 @@ import ParseUI
 
 class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var addFriendsTableView: UITableView!
+//    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var friendsTableView: UITableView!
         
     var allUsers = [GolferProfile]()
     var filteredUsers = [GolferProfile]()
@@ -29,12 +29,12 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         loadFriendsData()
         loadUserData()
         configureSearchController()
-        addFriendsTableView.reloadData()
+        friendsTableView.reloadData()
         
     }
     
     override func viewWillAppear(animated: Bool) {
-        addFriendsTableView.reloadData()
+        friendsTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,13 +74,13 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         for friend in filteredUsers {
             
         if isFriend(friend) {
-        findFriendCell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        findFriendCell.checkmarkImage.image = UIImage(named: "checkmark")
         checkMarkArray.append(indexPath.row)
             
         } else {
             
-        findFriendCell.accessoryType = UITableViewCellAccessoryType.None
-                        
+        findFriendCell.checkmarkImage.image = UIImage(named: "add")
+            
          }
     
         }
@@ -91,6 +91,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         let friendCell:FriendsCell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as! FriendsCell
         friendCell.tintColor = UIColor.whiteColor()
+        
             
         friendCell.friendUserNameCellLabel.text = friendsData[indexPath.row].username
         friendCell.friendProfileCell.file = friendsData[indexPath.row].profileImage
@@ -108,12 +109,10 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             
             let friendScoresVC = segue.destinationViewController as! FriendScoresViewController
             
-            let selectedIndex = addFriendsTableView.indexPathForCell(sender as! UITableViewCell)
+            let selectedIndex = friendsTableView.indexPathForCell(sender as! UITableViewCell)
             
-            
-            
-            
-            
+            friendScoresVC.selectedfriend = friendsData[selectedIndex!.row]
+
         }
     }
     
@@ -123,7 +122,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! FindFriendCell
         
         let user = self.filteredUsers[indexPath.row]
         
@@ -132,12 +131,10 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         friendsRelation = PFUser.currentUser()!.relationForKey("friendsRelation")
         
         if isFriend(user) {
-            cell?.accessoryType = UITableViewCellAccessoryType.None
-
+            cell.checkmarkImage.image = UIImage(named: "add")
             for friend in friendsData{
                 if friend.objectId == user.objectId {
                 relation.removeObject(friend)
-                print("\(friend.username) REMOVED")
                     
          //filter through the original showFriends array and remove that selected "friend" from the array.
             friendsData = friendsData.filter({ $0 != friend })
@@ -145,10 +142,9 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 }
             }
         } else {
-            cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+            cell.checkmarkImage.image = UIImage(named: "checkmark")
             friendsData.append(user)
             relation.addObject(user)
-            print("\(user.username) ADDED")
 
         }
             PFUser.currentUser()!.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
@@ -177,7 +173,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 for object:PFObject in users! {
                     if let user = object as? GolferProfile {
                             self.allUsers.append(user)
-                            self.addFriendsTableView.reloadData()
+                            self.friendsTableView.reloadData()
                         }
                     }
                 }
@@ -204,7 +200,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                     }
                     
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.addFriendsTableView.reloadData()
+                        self.friendsTableView.reloadData()
                     }
                 }
             }
@@ -229,11 +225,11 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search here..."
+        searchController.searchBar.placeholder = "Find Friends"
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
         
-        addFriendsTableView.tableHeaderView = searchController.searchBar
+        friendsTableView.tableHeaderView = searchController.searchBar
     }
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -247,29 +243,28 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         })
         
         // Reload the tableview.
-        addFriendsTableView.reloadData()
+        friendsTableView.reloadData()
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         shouldShowSearchResults = true
-        addFriendsTableView.reloadData()
+        friendsTableView.reloadData()
     }
     
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         shouldShowSearchResults = false
-        addFriendsTableView.reloadData()
+        friendsTableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if !shouldShowSearchResults {
             shouldShowSearchResults = true
-            addFriendsTableView.reloadData()
+            friendsTableView.reloadData()
         }
         
         searchController.searchBar.resignFirstResponder()
     }
-    
     
     
 }

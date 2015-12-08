@@ -960,10 +960,14 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yvv-ce-BGU">
+                                                    <rect key="frame" x="282" y="22" width="30" height="30"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
+                                            <outlet property="checkmarkImage" destination="Yvv-ce-BGU" id="cMj-pz-eS1"/>
                                             <outlet property="findFriendProfileCellImage" destination="JK1-Ux-faR" id="J76-al-HpN"/>
                                             <outlet property="findUsernameCellLabel" destination="eeG-cA-9Gn" id="mHl-De-5Sc"/>
                                         </connections>
@@ -985,7 +989,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="xol-J2-GOI"/>
                     <connections>
-                        <outlet property="addFriendsTableView" destination="5Uq-Ns-glz" id="Px1-qQ-i7Z"/>
+                        <outlet property="friendsTableView" destination="5Uq-Ns-glz" id="Nud-nd-FOW"/>
                         <outlet property="searchDisplayController" destination="0pk-1w-EA0" id="KBE-QN-1Io"/>
                     </connections>
                 </viewController>
