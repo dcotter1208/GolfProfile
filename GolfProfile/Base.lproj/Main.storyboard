@@ -678,88 +678,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Golf Course" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qap-yn-Pn0">
-                                <rect key="frame" x="20" y="72" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jjp-nm-3wl">
-                                <rect key="frame" x="20" y="101" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RK-gc-hUO">
-                                <rect key="frame" x="20" y="130" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajw-gy-Gzu">
                                 <rect key="frame" x="270" y="20" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="aGe-R5-U7S"/>
+                                    <constraint firstAttribute="height" constant="30" id="Z9A-zP-NKl"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="X"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="dismissView:" destination="mRk-aH-JLY" eventType="touchUpInside" id="qid-IQ-Eby"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHL-Yc-Ea6">
-                                <rect key="frame" x="0.0" y="159" width="320" height="287"/>
+                                <rect key="frame" x="0.0" y="70" width="320" height="490"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kvY-jc-pT4" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="226"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kvY-jc-pT4" customClass="PFImageView">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="287"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="226" id="62g-23-MMc"/>
+                                            <constraint firstAttribute="height" constant="287" id="IWW-d4-9rE"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="kvY-jc-pT4" firstAttribute="leading" secondItem="UHL-Yc-Ea6" secondAttribute="leading" id="6xF-z6-yhs"/>
-                                    <constraint firstAttribute="trailing" secondItem="kvY-jc-pT4" secondAttribute="trailing" id="QO7-GI-4YJ"/>
-                                    <constraint firstItem="kvY-jc-pT4" firstAttribute="top" secondItem="UHL-Yc-Ea6" secondAttribute="top" constant="28" id="Y7j-hI-3aM"/>
-                                    <constraint firstAttribute="bottom" secondItem="kvY-jc-pT4" secondAttribute="bottom" constant="33" id="mlx-bN-Zri"/>
-                                    <constraint firstItem="kvY-jc-pT4" firstAttribute="centerX" secondItem="UHL-Yc-Ea6" secondAttribute="centerX" id="o0K-Qd-F1A"/>
+                                    <constraint firstItem="kvY-jc-pT4" firstAttribute="top" secondItem="UHL-Yc-Ea6" secondAttribute="top" constant="28" id="2Ig-gm-loV"/>
+                                    <constraint firstItem="kvY-jc-pT4" firstAttribute="centerX" secondItem="UHL-Yc-Ea6" secondAttribute="centerX" id="i5W-1p-3K8"/>
+                                    <constraint firstAttribute="bottom" secondItem="kvY-jc-pT4" secondAttribute="bottom" constant="175" id="jGO-Fd-Qyu"/>
+                                    <constraint firstItem="kvY-jc-pT4" firstAttribute="leading" secondItem="UHL-Yc-Ea6" secondAttribute="leading" id="wrq-7w-2tH"/>
+                                    <constraint firstAttribute="trailing" secondItem="kvY-jc-pT4" secondAttribute="trailing" id="xg8-4a-6zV"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="mRk-aH-JLY" id="ZXc-fg-K9s"/>
                                 </connections>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="XKJ-Mt-eOe" firstAttribute="top" secondItem="UHL-Yc-Ea6" secondAttribute="bottom" constant="122" id="38a-A6-TgD"/>
-                            <constraint firstItem="Jjp-nm-3wl" firstAttribute="top" secondItem="Qap-yn-Pn0" secondAttribute="bottom" constant="8" symbolic="YES" id="5ck-ec-N6W"/>
-                            <constraint firstItem="3RK-gc-hUO" firstAttribute="top" secondItem="Jjp-nm-3wl" secondAttribute="bottom" constant="8" symbolic="YES" id="FZd-Pf-pvw"/>
-                            <constraint firstItem="Qap-yn-Pn0" firstAttribute="leading" secondItem="oXA-Kc-lYB" secondAttribute="leadingMargin" constant="4" id="Pyb-vQ-0Ba"/>
-                            <constraint firstItem="ajw-gy-Gzu" firstAttribute="trailing" secondItem="Qap-yn-Pn0" secondAttribute="trailing" id="Rdb-Gn-YXH"/>
-                            <constraint firstItem="ajw-gy-Gzu" firstAttribute="top" secondItem="krg-3Y-aa6" secondAttribute="bottom" id="SYg-le-0OC"/>
-                            <constraint firstItem="UHL-Yc-Ea6" firstAttribute="centerX" secondItem="3RK-gc-hUO" secondAttribute="centerX" id="aZ0-LY-JEu"/>
-                            <constraint firstItem="UHL-Yc-Ea6" firstAttribute="top" secondItem="3RK-gc-hUO" secondAttribute="bottom" constant="8" symbolic="YES" id="hLE-iE-Ybs"/>
-                            <constraint firstItem="Qap-yn-Pn0" firstAttribute="leading" secondItem="Jjp-nm-3wl" secondAttribute="leading" id="nlA-C9-ibv"/>
-                            <constraint firstItem="Jjp-nm-3wl" firstAttribute="trailing" secondItem="Qap-yn-Pn0" secondAttribute="trailing" id="obx-E8-Idq"/>
-                            <constraint firstItem="UHL-Yc-Ea6" firstAttribute="leading" secondItem="oXA-Kc-lYB" secondAttribute="leading" id="pox-3b-21h"/>
-                            <constraint firstAttribute="trailing" secondItem="UHL-Yc-Ea6" secondAttribute="trailing" id="pr6-5R-fxP"/>
-                            <constraint firstItem="3RK-gc-hUO" firstAttribute="trailing" secondItem="Jjp-nm-3wl" secondAttribute="trailing" id="qrt-Ih-f15"/>
-                            <constraint firstItem="3RK-gc-hUO" firstAttribute="leading" secondItem="Jjp-nm-3wl" secondAttribute="leading" id="tbD-ds-f2Z"/>
-                            <constraint firstItem="Qap-yn-Pn0" firstAttribute="top" secondItem="ajw-gy-Gzu" secondAttribute="bottom" constant="22" id="uno-pM-J6h"/>
+                            <constraint firstAttribute="trailing" secondItem="UHL-Yc-Ea6" secondAttribute="trailing" id="90M-ml-YKw"/>
+                            <constraint firstItem="UHL-Yc-Ea6" firstAttribute="top" secondItem="ajw-gy-Gzu" secondAttribute="bottom" constant="20" id="91B-ui-Qav"/>
+                            <constraint firstItem="XKJ-Mt-eOe" firstAttribute="top" secondItem="UHL-Yc-Ea6" secondAttribute="bottom" constant="8" symbolic="YES" id="LFp-y3-xYK"/>
+                            <constraint firstItem="ajw-gy-Gzu" firstAttribute="top" secondItem="krg-3Y-aa6" secondAttribute="bottom" id="Ys8-0C-QWd"/>
+                            <constraint firstItem="UHL-Yc-Ea6" firstAttribute="leading" secondItem="oXA-Kc-lYB" secondAttribute="leading" id="nuv-Me-1U7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ajw-gy-Gzu" secondAttribute="trailing" constant="4" id="r0y-s0-bzg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="biL-8E-Z8H"/>
                     <connections>
-                        <outlet property="friendScorecardDateLabel" destination="Jjp-nm-3wl" id="VXE-de-SJS"/>
-                        <outlet property="friendScorecardGCLabel" destination="Qap-yn-Pn0" id="pNX-2G-Uiu"/>
-                        <outlet property="friendScorecardScoreLabel" destination="3RK-gc-hUO" id="dBd-ql-zd0"/>
                         <outlet property="friendScorecardScrollView" destination="UHL-Yc-Ea6" id="J1g-36-4DC"/>
                         <outlet property="scorecardImageView" destination="kvY-jc-pT4" id="Qe7-JF-BdQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5aU-sn-htc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2378" y="-3332"/>
+            <point key="canvasLocation" x="2483" y="-3403"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="j3s-8D-rXy">
@@ -960,10 +933,14 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yvv-ce-BGU">
+                                                    <rect key="frame" x="282" y="22" width="30" height="30"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
+                                            <outlet property="checkmarkImage" destination="Yvv-ce-BGU" id="cMj-pz-eS1"/>
                                             <outlet property="findFriendProfileCellImage" destination="JK1-Ux-faR" id="J76-al-HpN"/>
                                             <outlet property="findUsernameCellLabel" destination="eeG-cA-9Gn" id="mHl-De-5Sc"/>
                                         </connections>
@@ -985,7 +962,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="xol-J2-GOI"/>
                     <connections>
-                        <outlet property="addFriendsTableView" destination="5Uq-Ns-glz" id="Px1-qQ-i7Z"/>
+                        <outlet property="friendsTableView" destination="5Uq-Ns-glz" id="Nud-nd-FOW"/>
                         <outlet property="searchDisplayController" destination="0pk-1w-EA0" id="KBE-QN-1Io"/>
                     </connections>
                 </viewController>
