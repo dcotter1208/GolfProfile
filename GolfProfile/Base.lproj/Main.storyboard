@@ -902,76 +902,10 @@
             </objects>
             <point key="canvasLocation" x="832" y="-5011"/>
         </scene>
-        <!--Friends-->
-        <scene sceneID="4HX-WM-h0L">
-            <objects>
-                <viewController id="2nV-t7-fWp" customClass="FriendsViewController" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CaJ-PK-yhj"/>
-                        <viewControllerLayoutGuide type="bottom" id="GS1-qr-fF4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oGq-FP-CZ5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="atn-9X-M6b">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="friendsCell" rowHeight="99" id="02O-zt-Jla" customClass="FriendsCell" customModule="GolfProfile" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="99"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="02O-zt-Jla" id="NcJ-07-7tv">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="98"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NzN-uC-h0h" customClass="PFImageView">
-                                                    <rect key="frame" x="8" y="6" width="85" height="85"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuB-KW-APO">
-                                                    <rect key="frame" x="101" y="37" width="165" height="23"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="friendProfileCell" destination="NzN-uC-h0h" id="QZX-ys-NOP"/>
-                                            <outlet property="friendUserNameCellLabel" destination="iuB-KW-APO" id="VOi-nF-ORK"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="2nV-t7-fWp" id="g4y-PF-Kbd"/>
-                                    <outlet property="delegate" destination="2nV-t7-fWp" id="TBQ-B4-mlB"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="atn-9X-M6b" secondAttribute="trailing" id="7wl-4e-nM7"/>
-                            <constraint firstItem="atn-9X-M6b" firstAttribute="leading" secondItem="oGq-FP-CZ5" secondAttribute="leading" id="Anl-F9-zFj"/>
-                            <constraint firstAttribute="bottom" secondItem="atn-9X-M6b" secondAttribute="bottom" id="XTk-N1-Ova"/>
-                            <constraint firstItem="atn-9X-M6b" firstAttribute="top" secondItem="oGq-FP-CZ5" secondAttribute="top" id="atp-Y1-VW0"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Friends" id="PZb-B0-08a">
-                        <barButtonItem key="rightBarButtonItem" image="user_plus_2" id="WXq-kq-fe0"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="friendsTableView" destination="atn-9X-M6b" id="pc0-om-3xP"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="doQ-wK-NgE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="980" y="-2108"/>
-        </scene>
-        <!--Edit Friends View Controller-->
+        <!--FriendsVC-->
         <scene sceneID="Z6a-zD-OQk">
             <objects>
-                <viewController id="2nK-tA-FpD" customClass="EditFriendsViewController" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2nK-tA-FpD" customClass="FriendsVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3NS-xm-Q5i"/>
                         <viewControllerLayoutGuide type="bottom" id="d8P-tw-a6j"/>
@@ -1287,7 +1221,6 @@
     </scenes>
     <resources>
         <image name="user_2" width="32" height="32"/>
-        <image name="user_plus_2" width="32" height="32"/>
         <image name="users_three_2" width="32" height="32"/>
         <image name="winners_podium" width="32" height="32"/>
     </resources>
