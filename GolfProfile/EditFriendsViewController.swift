@@ -124,16 +124,18 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
-        let userInfo = self.filteredUsers[indexPath.row]
+        let user = self.filteredUsers[indexPath.row]
         
-        friendsRelation = (PFUser.currentUser()?.relationForKey("friendsRelation"))!
+        let relation: PFRelation = PFUser.currentUser()!.relationForKey("friendsRelation")
+            
+        friendsRelation = PFUser.currentUser()!.relationForKey("friendsRelation")
         
-        if isFriend(userInfo) {
+        if isFriend(user) {
             cell?.accessoryType = UITableViewCellAccessoryType.None
 
             for friend in friendsData{
-                if friend.objectId == userInfo.objectId {
-                friendsRelation.removeObject(friend)
+                if friend.objectId == user.objectId {
+                relation.removeObject(friend)
                 print("\(friend.username) REMOVED")
                     
          //filter through the original showFriends array and remove that selected "friend" from the array.
@@ -143,20 +145,16 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
             }
         } else {
             cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
-            friendsData.append(userInfo)
-            friendsRelation.addObject(userInfo)
-            print("\(userInfo.username) ADDED")
+            friendsData.append(user)
+            relation.addObject(user)
+            print("\(user.username) ADDED")
 
         }
-        
-        currentUser?.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                
-            } else {
-                print(error)
-            }
-        }
+            PFUser.currentUser()!.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                }
+            })
     
     }
         
