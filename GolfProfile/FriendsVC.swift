@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
+class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var addFriendsTableView: UITableView!
@@ -65,7 +65,8 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
         let findFriendCell: FindFriendCell = tableView.dequeueReusableCellWithIdentifier("findFriendsCell", forIndexPath: indexPath) as! FindFriendCell
         findFriendCell.tintColor = UIColor.whiteColor()
         findFriendCell.findUsernameCellLabel.text = filteredUsers[indexPath.row].username
-            
+        
+        findFriendCell.findFriendProfileCellImage.image = UIImage(named:"defaultUser")
         findFriendCell.findFriendProfileCellImage.file = filteredUsers[indexPath.row].profileImage
         findFriendCell.findFriendProfileCellImage.loadInBackground()
         findFriendCell.findFriendProfileCellImage.layer.cornerRadius = findFriendCell.findFriendProfileCellImage.frame.size.width / 2
@@ -159,6 +160,9 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     }
         
 }
+    
+
+    
         
     
     //Function that loads all of my PFUsers
