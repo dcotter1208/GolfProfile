@@ -27,8 +27,8 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         loadFriendsData()
-        configureSearchController()
         loadUserData()
+        configureSearchController()
         addFriendsTableView.reloadData()
         
     }
@@ -58,52 +58,62 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell:EditFriendCell = tableView.dequeueReusableCellWithIdentifier("editFriendCell", forIndexPath: indexPath) as! EditFriendCell
-        cell.tintColor = UIColor.whiteColor()
-        
         if shouldShowSearchResults {
             
-        cell.userNameCellLabel.text = filteredUsers[indexPath.row].username
+        print("FILTERED: \(filteredUsers.count)")
             
-        cell.editFriendProfileCellImage.file = filteredUsers[indexPath.row].profileImage
-        cell.editFriendProfileCellImage.loadInBackground()
-        cell.editFriendProfileCellImage.layer.cornerRadius = cell.editFriendProfileCellImage.frame.size.width / 2
+        let findFriendCell: FindFriendCell = tableView.dequeueReusableCellWithIdentifier("findFriendsCell", forIndexPath: indexPath) as! FindFriendCell
+        findFriendCell.tintColor = UIColor.whiteColor()
+        findFriendCell.findUsernameCellLabel.text = filteredUsers[indexPath.row].username
+            
+        findFriendCell.findFriendProfileCellImage.file = filteredUsers[indexPath.row].profileImage
+        findFriendCell.findFriendProfileCellImage.loadInBackground()
+        findFriendCell.findFriendProfileCellImage.layer.cornerRadius = findFriendCell.findFriendProfileCellImage.frame.size.width / 2
         
         for friend in filteredUsers {
             
         if isFriend(friend) {
-        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        findFriendCell.accessoryType = UITableViewCellAccessoryType.Checkmark
         checkMarkArray.append(indexPath.row)
             
         } else {
             
-        cell.accessoryType = UITableViewCellAccessoryType.None
+        findFriendCell.accessoryType = UITableViewCellAccessoryType.None
                         
          }
     
         }
+
+         return findFriendCell
             
         } else {
         
-        cell.userNameCellLabel.text = friendsData[indexPath.row].username
-        cell.editFriendProfileCellImage.file = friendsData[indexPath.row].profileImage
-        cell.editFriendProfileCellImage.loadInBackground()
-        cell.editFriendProfileCellImage.layer.cornerRadius = cell.editFriendProfileCellImage.frame.size.width / 2
-        
-        }
+        let friendCell:FriendsCell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as! FriendsCell
+        friendCell.tintColor = UIColor.whiteColor()
             
+        friendCell.friendUserNameCellLabel.text = friendsData[indexPath.row].username
+        friendCell.friendProfileCell.file = friendsData[indexPath.row].profileImage
+        friendCell.friendProfileCell.loadInBackground()
+        friendCell.friendProfileCell.layer.cornerRadius = friendCell.friendProfileCell.frame.size.width / 2
         
-//        //if the user is a friend then their name will have a checkmark
-//        if isFriend(userInfo as! PFUser) {
-//           cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-//           checkMarkArray.append(indexPath.row)
-//     
-//        } else {
-//            cell.accessoryType = UITableViewCellAccessoryType.None
-//            
-//        }
-        
-        return cell
+        return friendCell
+            
+        }
+
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showFriendScores"  {
+            
+            let friendScoresVC = segue.destinationViewController as! FriendScoresViewController
+            
+            let selectedIndex = addFriendsTableView.indexPathForCell(sender as! UITableViewCell)
+            
+            
+            
+            
+            
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -151,7 +161,6 @@ class EditFriendsViewController: UIViewController, UITableViewDelegate, UITableV
     }
         
 }
-        
         
     
     //Function that loads all of my PFUsers

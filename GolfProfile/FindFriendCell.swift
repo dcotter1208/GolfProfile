@@ -10,10 +10,9 @@ import UIKit
 import Parse
 import ParseUI
 
-class EditFriendCell: UITableViewCell {
-    @IBOutlet weak var userNameCellLabel: UILabel!
-
-    @IBOutlet weak var editFriendProfileCellImage: PFImageView!
+class FindFriendCell: UITableViewCell {
+    @IBOutlet weak var findUsernameCellLabel: UILabel!
+    @IBOutlet weak var findFriendProfileCellImage: PFImageView!
 
     
     override func awakeFromNib() {

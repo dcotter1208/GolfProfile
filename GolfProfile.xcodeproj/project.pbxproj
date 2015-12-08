@@ -46,7 +46,7 @@
 		C0A0AEC81C0A7E7000671B18 /* GolferProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */; };
 		C0A0AF481C0FC6D500671B18 /* ProfilePhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */; };
 		C0A288481BED2D0C0003AF11 /* EditFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288471BED2D0C0003AF11 /* EditFriendsViewController.swift */; };
-		C0A2884A1BED37810003AF11 /* EditFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288491BED37810003AF11 /* EditFriendCell.swift */; };
+		C0A2884A1BED37810003AF11 /* FindFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288491BED37810003AF11 /* FindFriendCell.swift */; };
 		C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */; };
 		C0AFA2E61BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AFA2E51BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift */; };
 		C0AFA2E81BF0106800C9F058 /* UserScorecardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AFA2E71BF0106800C9F058 /* UserScorecardDetailVC.swift */; };
@@ -117,7 +117,7 @@
 		C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolferProfile.swift; sourceTree = "<group>"; };
 		C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhotoVC.swift; sourceTree = "<group>"; };
 		C0A288471BED2D0C0003AF11 /* EditFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFriendsViewController.swift; sourceTree = "<group>"; };
-		C0A288491BED37810003AF11 /* EditFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFriendCell.swift; sourceTree = "<group>"; };
+		C0A288491BED37810003AF11 /* FindFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendCell.swift; sourceTree = "<group>"; };
 		C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C0AFA2E51BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendScorecardDetailVC.swift; sourceTree = "<group>"; };
 		C0AFA2E71BF0106800C9F058 /* UserScorecardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserScorecardDetailVC.swift; sourceTree = "<group>"; };
@@ -276,7 +276,7 @@
 			children = (
 				C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */,
 				C0017C5B1BEDB47C00691F7D /* FriendsCell.swift */,
-				C0A288491BED37810003AF11 /* EditFriendCell.swift */,
+				C0A288491BED37810003AF11 /* FindFriendCell.swift */,
 				C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */,
 				C0C74F391BF424E400EB4E11 /* LeaderboardCell.swift */,
 			);
@@ -418,7 +418,7 @@
 			files = (
 				C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */,
 				C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */,
-				C0A2884A1BED37810003AF11 /* EditFriendCell.swift in Sources */,
+				C0A2884A1BED37810003AF11 /* FindFriendCell.swift in Sources */,
 				C0C74F381BF4206700EB4E11 /* LeaderboardViewController.swift in Sources */,
 				C0017C5E1BEEC5D300691F7D /* FriendScorecardCell.swift in Sources */,
 				C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */,
