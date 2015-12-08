@@ -43,6 +43,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
 
     override func viewWillAppear(animated: Bool) {
+        
         getProfileFromBackground()
         
         if PFUser.currentUser() != nil {
@@ -153,11 +154,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                             if profile.objectId == PFUser.currentUser()?.objectId {
                             self.profileData.append(profile)
                                 for data in self.profileData {
+                                    dispatch_async(dispatch_get_main_queue()) {
+                                        
                                     self.golferNameLabel.text = data.name
                                     self.usernameLabel.text = "Username: \(data.username!)"
                                     self.golferCountry.text = data.country
                                     self.golferProfileImage.file = data.profileImage
                                     self.golferProfileImage.loadInBackground()
+                                    }
                                     
                                 }
                             }

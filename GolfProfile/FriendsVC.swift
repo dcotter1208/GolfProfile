@@ -158,9 +158,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 }
     
 
-    
-        
-    
     //Function that loads all of my PFUsers
     func loadUserData() {
         allUsers.removeAll()
