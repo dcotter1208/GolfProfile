@@ -71,11 +71,20 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        if segue.identifier == "showFriendProfilePhoto" {
+            let friendProfilePhotoVC = segue.destinationViewController as! ProfilePhotoVC
+            
+            friendProfilePhotoVC.selectedFriendProfile = selectedfriend
+            
+        } else {
+        
         let scorecardPhotoVC = segue.destinationViewController as? FriendScorecardDetailVC
         
         let selectedIndex = friendScorecardTableView.indexPathForCell(sender as! UITableViewCell)
         
         scorecardPhotoVC?.friendScorecard = friendScorecardData[selectedIndex!.row]
+            
+        }
         
     }
     
@@ -122,7 +131,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
         switch friendScorecardSegmentedControl.selectedSegmentIndex {
         
-            case 0:
+        case 0:
             friendScorecardData.sortInPlace({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
                 friendScorecardTableView.reloadData()
             

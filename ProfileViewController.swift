@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var golferProfileImage: PFImageView!
     @IBOutlet weak var userScoreTableView: UITableView!
     @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
+    @IBOutlet var photoTapGesture: UITapGestureRecognizer!
     
     var profileData = [GolferProfile]()
     var userScorecardData = [GolfScorecard]()
@@ -78,6 +79,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.golfCourseCellLabel?.text = userScorecardData[indexPath.row].golfCourse
         
         cell.scorecardCellImage.image = UIImage(named: "noScorecard")
+        
+        
         cell.scorecardCellImage.file = userScorecardData[indexPath.row].scorecardImage
         cell.scorecardCellImage.loadInBackground()
         
@@ -109,6 +112,15 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
         
+        if segue.identifier == "showProfilePhoto" {
+        
+            let profilePhotoVC = segue.destinationViewController as? ProfilePhotoVC
+            
+            profilePhotoVC?.userProfileData = profileData
+
+        }
+        
+        
     }
     
 
@@ -124,7 +136,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillLayoutSubviews() {
-        self.golferProfileImage.layer.cornerRadius = self.golferProfileImage.frame.size.width / 2
+        self.golferProfileImage.layer.cornerRadius = 10
         self.golferProfileImage.layer.borderWidth = 3.0
         self.golferProfileImage.layer.borderColor = UIColor.whiteColor().CGColor
         self.golferProfileImage.clipsToBounds = true
@@ -204,7 +216,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         switch (scoreViewSegmentedControl.selectedSegmentIndex) {
         case 0:
-            userScorecardData.sortInPlace({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
+            userScorecardData.sortInPlace({$0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
             userScoreTableView.reloadData()
             
         case 1:
@@ -220,10 +232,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
     }
-    
 
-    
-
-    
     
 }

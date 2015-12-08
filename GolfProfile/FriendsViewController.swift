@@ -18,7 +18,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -57,7 +56,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         if segue.identifier == "showEditFriends" {
             let editFriendsVC = segue.destinationViewController as! EditFriendsViewController
             
-            editFriendsVC.showFriends = self.friendsData
+//            editFriendsVC.showFriends = self.friendsData
             
         } else if segue.identifier == "showFriendScores"  {
             
@@ -67,7 +66,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             friendScoresVC.selectedfriend = friendsData[selectedIndex!.row]
             
-        }
+        } 
     }
     
     func loadFriendsData() {
