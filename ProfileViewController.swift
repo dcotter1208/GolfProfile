@@ -121,7 +121,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
         }
         
-        
     }
     
 

@@ -38,9 +38,6 @@ class SignUpViewController: UIViewController {
         user["name"] = "Name"
         user["age"] = 0
         user["country"] = "Country"
-        user["driver"] = "Driver"
-        user["irons"] = "Irons"
-        user["favoriteCourse"] = "Favorite Course"
         let imageData = UIImagePNGRepresentation(UIImage(named: "defaultUser")!)
         let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
         user["profileImage"] = golferImageFile
