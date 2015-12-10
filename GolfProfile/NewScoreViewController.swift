@@ -9,19 +9,19 @@
 import UIKit
 import Parse
 
-class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var golfCourseName: UITextField!
     @IBOutlet weak var scorecardImage: UIImageView?
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var scorePicker: UIPickerView!
-    
+    @IBOutlet weak var scoreTextField: UITextField!
     var imagePicker = UIImagePickerController()
     let date = NSDate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        datePicker.backgroundColor = UIColor.whiteColor()
+        datePicker.setValue(UIColor.blackColor(), forKeyPath: "textColor")
         scorecardImage?.layer.borderWidth = 5.0
         scorecardImage?.layer.borderColor = UIColor.blackColor().CGColor
         
@@ -40,12 +40,10 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
 
     }
     
-    
-    
     @IBAction func saveScoreButton(sender: AnyObject) {
 
         let golfScore = PFObject(className:"GolfScorecard")
-        golfScore["score"] = (scorePicker.selectedRowInComponent(0))
+        golfScore["score"] = Int(scoreTextField.text!)
         golfScore["golfer"] = PFUser.currentUser()
         golfScore["golfCourse"] = golfCourseName.text!
         golfScore["date"] = datePicker.date
@@ -73,9 +71,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
                     self.dismissViewControllerAnimated(true, completion: nil)
                     
                 }
-                
-                
-                
+
                 
             } else {
                 let alertController = UIAlertController(title: "No Network Connection", message: "Can't save score without a connection. Please try again later.", preferredStyle: .Alert)
@@ -147,17 +143,17 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     
     // MARK: Picker Methods
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
+//    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(row+1)"
-    }
+//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return "\(row+1)"
+//    }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 200
-    }
+//    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        return 200
+//    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
