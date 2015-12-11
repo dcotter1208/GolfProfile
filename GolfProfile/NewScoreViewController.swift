@@ -9,17 +9,55 @@
 import UIKit
 import Parse
 
-class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var golfCourseName: UITextField!
     @IBOutlet weak var scorecardImage: UIImageView?
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var scoreTextField: UITextField!
+    
+    var locationManager:CLLocationManager?
+    let distanceSpan:Double = 500
+    
     var imagePicker = UIImagePickerController()
     let date = NSDate()
-    
+    var golfCourseCollection:[GolfCourse]?
+    var courses = [GolfCourse]()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DataManager.getGolfCoursesFromFileWithSuccess { (data) -> Void in
+            let json = JSON(data: data)
+            
+            //            let golfCourses = json
+            //            print(golfCourses)
+            
+            if let courseArray = json.array {
+                
+                for course in courseArray {
+                    
+                    let courseName: String? = course["biz_name"].string
+                    let courseLat: Double? = course["loc_LAT_poly"].double
+                    
+                    if courseLat != nil {
+                        print(courseLat)
+                    
+                    }
+                    
+                    if courseName != nil {
+                        let golfCourse = GolfCourse(name: courseName!)
+                        self.courses.append(golfCourse)
+
+                    }
+                }
+                
+            }
+            
+        }
+        
+        
         datePicker.backgroundColor = UIColor.whiteColor()
         datePicker.setValue(UIColor.blackColor(), forKeyPath: "textColor")
         scorecardImage?.layer.borderWidth = 5.0
@@ -27,6 +65,22 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         
         imagePicker.delegate = self
         
+        
+//        print()
+//        print(GolfCourse().name)
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if locationManager == nil {
+            locationManager = CLLocationManager()
+            
+            locationManager!.delegate = self
+            locationManager!.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+            locationManager!.requestAlwaysAuthorization()
+            locationManager!.distanceFilter = 50 // Don't send location updates with a distance smaller than 50 meters between them
+            locationManager!.startUpdatingLocation()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,10 +141,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
                 
             }
         }
-        
-        
-        
-        
+
     }
 
     
@@ -140,20 +191,6 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         self.presentViewController(actionSheet, animated: true, completion: nil)
         
     }
-    
-    // MARK: Picker Methods
-    
-//    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-    
-//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return "\(row+1)"
-//    }
-    
-//    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return 200
-//    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)

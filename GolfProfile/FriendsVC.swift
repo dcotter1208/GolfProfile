@@ -65,11 +65,14 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         for friend in filteredUsers {
             
         if isFriend(friend) {
-        findFriendCell.checkmarkImage.image = UIImage(named: "checkmark")
+          findFriendCell.addFollowingLabel.text = "Following"
+          findFriendCell.addFollowingLabel.textColor = UIColor.redColor()
+//        findFriendCell.checkmarkImage.image = UIImage(named: "checkmark")
             
         } else {
-            
-        findFriendCell.checkmarkImage.image = UIImage(named: "add")
+            findFriendCell.addFollowingLabel.text = "Add"
+            findFriendCell.addFollowingLabel.textColor = UIColor.blackColor()
+//        findFriendCell.checkmarkImage.image = UIImage(named: "add")
             
          }
     
@@ -119,7 +122,9 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         let relation: PFRelation = PFUser.currentUser()!.relationForKey("friendsRelation")
             
         if isFriend(user) {
-            cell.checkmarkImage.image = UIImage(named: "add")
+            cell.addFollowingLabel.text = "Add"
+
+//            cell.checkmarkImage.image = UIImage(named: "add")
             for friend in friendsData{
                 if friend.objectId == user.objectId {
                 relation.removeObject(friend)
@@ -130,7 +135,8 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 }
             }
         } else {
-            cell.checkmarkImage.image = UIImage(named: "checkmark")
+            cell.addFollowingLabel.text = "Following"
+//            cell.checkmarkImage.image = UIImage(named: "checkmark")
             friendsData.append(user)
             relation.addObject(user)
 
