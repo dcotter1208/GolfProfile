@@ -23,40 +23,15 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     let date = NSDate()
     var golfCourseCollection:[GolfCourse]?
     var courses = [GolfCourse]()
+    var selectedCourse: GolfCourse?
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataManager.getGolfCoursesFromFileWithSuccess { (data) -> Void in
-            let json = JSON(data: data)
-            
-            //            let golfCourses = json
-            //            print(golfCourses)
-            
-            if let courseArray = json.array {
-                
-                for course in courseArray {
-                    
-                    let courseName: String? = course["biz_name"].string
-                    let courseLat: Double? = course["loc_LAT_poly"].double
-                    
-                    if courseLat != nil {
-                        print(courseLat)
-                    
-                    }
-                    
-                    if courseName != nil {
-                        let golfCourse = GolfCourse(name: courseName!)
-                        self.courses.append(golfCourse)
+        print(selectedCourse)
 
-                    }
-                }
-                
-            }
-            
-        }
-        
+        golfCourseName.text = selectedCourse?.name
         
         datePicker.backgroundColor = UIColor.whiteColor()
         datePicker.setValue(UIColor.blackColor(), forKeyPath: "textColor")
@@ -64,10 +39,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         scorecardImage?.layer.borderColor = UIColor.blackColor().CGColor
         
         imagePicker.delegate = self
-        
-        
-//        print()
-//        print(GolfCourse().name)
+
         
     }
     
@@ -131,11 +103,11 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
                 let alertController = UIAlertController(title: "No Network Connection", message: "Can't save score without a connection. Please try again later.", preferredStyle: .Alert)
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                    // ...
+                    
                 }
                 alertController.addAction(cancelAction)
                 self.presentViewController(alertController, animated: true) {
-                    // ...
+
                 }
                 print(error)
                 

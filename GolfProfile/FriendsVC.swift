@@ -98,6 +98,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if segue.identifier == "showFriendScores"  {
             
             let friendScoresVC = segue.destinationViewController as! FriendScoresViewController

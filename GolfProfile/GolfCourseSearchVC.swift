@@ -7,19 +7,22 @@
 //
 
 import UIKit
+import Parse
 
-class GolfCourseSearchVC: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
+class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
     
-    @IBOutlet weak var golfCourseListTableView: UITableView!
-    
-    var golfCourseCollection:[GolfCourse]?
+    var golfCourseCollection = [GolfCourse]()
     var searchedGolfCourse = [GolfCourse]()
-    var courses = [GolfCourse]()
+    var previousCourses = [GolfCourse]()
     var shouldShowSearchResults = false
     var searchController: UISearchController!
 
+    @IBOutlet weak var previousCourseListTableView: UITableView!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        loadCoursesFromJSONFile()
         
         configureSearchController()
 
@@ -34,19 +37,89 @@ class GolfCourseSearchVC: UIViewController,UITableViewDelegate, UITableViewDataS
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        if shouldShowSearchResults {
         
+        return searchedGolfCourse.count
+        
+        } else {
+            
+        return previousCourses.count
+            
+        }
+
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-    let cell = tableView.dequeueReusableCellWithIdentifier("golfCourseCell", forIndexPath: indexPath)
-     
-    return cell
-        
+        if shouldShowSearchResults {
+            let searchCourseCell:SearchCourseCell = tableView.dequeueReusableCellWithIdentifier("searchCourseCell", forIndexPath: indexPath) as! SearchCourseCell
+            
+            searchCourseCell.golfCourseName.text = searchedGolfCourse[indexPath.row].name
+            
+            return searchCourseCell
+            
+        } else {
+            
+            let previousCourseCell:PreviousCourseCell = tableView.dequeueReusableCellWithIdentifier("previousCourseCell", forIndexPath: indexPath) as! PreviousCourseCell
+            
+            previousCourseCell.previousGolfCourseName.text = previousCourses[indexPath.row].name
+
+            return previousCourseCell
+            
     }
     
+}
+
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    if segue.identifier == "showNewScoreVC"  {
+        
+        let newScoreVC = segue.destinationViewController as! NewScoreViewController
+        
+        let selectedIndex = previousCourseListTableView.indexPathForCell(sender as! UITableViewCell)
+        
+        newScoreVC.selectedCourse = previousCourses[selectedIndex!.row]
+        
+    }
+}
+
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if shouldShowSearchResults {
+            
+            let golfCourse = self.searchedGolfCourse[indexPath.row]
+            
+            
+            previousCourses.append(golfCourse)
+            let previousCourse = PFObject(className:"PreviousCourse")
+            previousCourse["courseName"] = golfCourse.name
+            previousCourse["golfer"] = PFUser.currentUser()
+            previousCourse.saveInBackgroundWithBlock {
+                (success: Bool, error: NSError?) -> Void in
+                if (success) {
+            
+                } else {
+                    let alertController = UIAlertController(title: "No Network Connection", message: "Can't save score without a connection. Please try again later.", preferredStyle: .Alert)
+            
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                }
+                    alertController.addAction(cancelAction)
+                    self.presentViewController(alertController, animated: true) {
+                }
+                    print(error)
+                
+                    }
+                }
+
+            }
+        
+    }
+        
     // MARK: Search Controller
     
     func configureSearchController() {
@@ -58,40 +131,65 @@ class GolfCourseSearchVC: UIViewController,UITableViewDelegate, UITableViewDataS
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
         
-        golfCourseListTableView.tableHeaderView = searchController.searchBar
+        previousCourseListTableView.tableHeaderView = searchController.searchBar
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchString = searchController.searchBar.text
         
         // Filter the allUsers array and get only those users' username that match the search text.
-        searchedGolfCourse = golfCourseCollection!.filter({(course) -> Bool in
+        searchedGolfCourse = golfCourseCollection.filter({(course) -> Bool in
             let nameText: NSString = course.name
             
             return (nameText.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
         })
         
-        golfCourseListTableView.reloadData()
+        previousCourseListTableView.reloadData()
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         shouldShowSearchResults = true
-        golfCourseListTableView.reloadData()
+        previousCourseListTableView.reloadData()
     }
     
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         shouldShowSearchResults = false
-        golfCourseListTableView.reloadData()
+        previousCourseListTableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if !shouldShowSearchResults {
             shouldShowSearchResults = true
-            golfCourseListTableView.reloadData()
+            previousCourseListTableView.reloadData()
         }
         
         searchController.searchBar.resignFirstResponder()
+    }
+    
+
+    func loadCoursesFromJSONFile() {
+        DataManager.getGolfCoursesFromFileWithSuccess { (data) -> Void in
+            let json = JSON(data: data)
+            
+            if let courseArray = json.array {
+                
+                for course in courseArray {
+                    
+                    let courseName: String? = course["biz_name"].string
+
+                    if courseName != nil {
+                        let golfCourse = GolfCourse(name: courseName!)
+                        self.golfCourseCollection.append(golfCourse)
+                        print(self.golfCourseCollection.count)
+                        
+                    }
+                }
+                
+            }
+            
+        }
+    
     }
     
 

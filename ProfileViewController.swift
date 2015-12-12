@@ -31,13 +31,15 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.userScoreTableView.addSubview(self.refreshControl)
+
+        
         if PFUser.currentUser() == nil {
             
             self.performSegueWithIdentifier("showLogin", sender: self)
             
         }
         
-        self.userScoreTableView.addSubview(self.refreshControl)
 
     }
 
@@ -48,8 +50,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if PFUser.currentUser() != nil {
         loadUserScorecardData()
-        }
             
+        }
         
     }
     
@@ -235,6 +237,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
     }
+
 
     
 }

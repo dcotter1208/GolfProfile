@@ -151,7 +151,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" image="newScorecard"/>
                                 <connections>
-                                    <segue destination="12x-Pk-duM" kind="push" id="lhs-oj-4Ua"/>
+                                    <segue destination="P9H-TB-abD" kind="push" identifier="courseSearch" id="dAj-l3-fAv"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scorecard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6On-bM-dXX">
@@ -382,49 +382,83 @@
             <point key="canvasLocation" x="-123" y="-3245"/>
         </scene>
         <!--Golf Course SearchVC-->
-        <scene sceneID="yva-7d-Jf3">
+        <scene sceneID="3S7-dB-Ezx">
             <objects>
-                <viewController id="12x-Pk-duM" customClass="GolfCourseSearchVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="P9H-TB-abD" customClass="GolfCourseSearchVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JzC-Qw-ree"/>
-                        <viewControllerLayoutGuide type="bottom" id="f5r-J7-U6Z"/>
+                        <viewControllerLayoutGuide type="top" id="LoD-Yd-rN9"/>
+                        <viewControllerLayoutGuide type="bottom" id="lFs-5r-Aih"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xQl-z2-IHv">
+                    <view key="view" contentMode="scaleToFill" id="yXO-E7-ppy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OGS-ud-Ltx">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PwB-hR-ycl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="golfCourseCell" id="xLB-v6-40G">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="previousCourseCell" id="Py5-hU-dCv" customClass="PreviousCourseCell" customModule="GolfProfile" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xLB-v6-40G" id="CPW-sk-4pl">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Py5-hU-dCv" id="Ie4-vh-BGT">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIy-Mn-CID">
+                                                    <rect key="frame" x="8" y="11" width="279" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="bcC-Qa-jI3" kind="push" id="v2s-pJ-qi4"/>
+                                            <outlet property="previousGolfCourseName" destination="XIy-Mn-CID" id="DMP-rm-x4F"/>
+                                            <segue destination="bcC-Qa-jI3" kind="push" identifier="showNewScoreVC" id="Wh3-NU-Vhz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCourseCell" id="Qn9-FE-PTh" customClass="SearchCourseCell" customModule="GolfProfile" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="136" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qn9-FE-PTh" id="KUL-FF-HJE">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I27-Vt-bz3">
+                                                    <rect key="frame" x="8" y="11" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="golfCourseName" destination="I27-Vt-bz3" id="Ixp-db-mPo"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="12x-Pk-duM" id="NtD-MW-Bqz"/>
-                                    <outlet property="delegate" destination="12x-Pk-duM" id="GRJ-XN-TJB"/>
+                                    <outlet property="dataSource" destination="P9H-TB-abD" id="uZ2-ty-47Y"/>
+                                    <outlet property="delegate" destination="P9H-TB-abD" id="rIf-6x-bVx"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="PwB-hR-ycl" secondAttribute="bottom" id="5zn-ra-LSX"/>
+                            <constraint firstItem="PwB-hR-ycl" firstAttribute="leading" secondItem="yXO-E7-ppy" secondAttribute="leading" id="i0r-wd-g4D"/>
+                            <constraint firstAttribute="trailing" secondItem="PwB-hR-ycl" secondAttribute="trailing" id="k3m-6h-33R"/>
+                            <constraint firstItem="PwB-hR-ycl" firstAttribute="top" secondItem="yXO-E7-ppy" secondAttribute="top" id="zDz-iA-Vtq"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="OMV-f8-pa2"/>
+                    <navigationItem key="navigationItem" id="7fF-WS-sV3"/>
                     <connections>
-                        <outlet property="golfCourseListTableView" destination="OGS-ud-Ltx" id="8bF-q9-hlb"/>
+                        <outlet property="previousCourseListTableView" destination="PwB-hR-ycl" id="EWF-eT-2de"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u9n-Wd-JYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HcU-Qj-cLu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="394" y="-3704"/>
+            <point key="canvasLocation" x="410" y="-3698"/>
         </scene>
         <!--New Scorecard-->
         <scene sceneID="qg1-2L-K2A">
@@ -552,7 +586,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="789" y="-3704"/>
+            <point key="canvasLocation" x="796" y="-3698"/>
         </scene>
         <!--Friend Scores View Controller-->
         <scene sceneID="xjV-GW-OlJ">

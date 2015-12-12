@@ -46,6 +46,8 @@
 		C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */; };
 		C07E7C401C0376B500A86EB7 /* GolfScorecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */; };
 		C082E9191C19ECB10001EBEE /* GolfCourseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082E9181C19ECB10001EBEE /* GolfCourseAPI.swift */; };
+		C08924281C1C65C4008A73B0 /* SearchCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08924271C1C65C4008A73B0 /* SearchCourseCell.swift */; };
+		C089242A1C1C6C44008A73B0 /* PreviousCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08924291C1C6C44008A73B0 /* PreviousCourseCell.swift */; };
 		C0A0AEC81C0A7E7000671B18 /* GolferProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */; };
 		C0A0AF481C0FC6D500671B18 /* ProfilePhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */; };
 		C0A288481BED2D0C0003AF11 /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288471BED2D0C0003AF11 /* FriendsVC.swift */; };
@@ -123,6 +125,8 @@
 		C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLeaderboardCell.swift; sourceTree = "<group>"; };
 		C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfScorecard.swift; sourceTree = "<group>"; };
 		C082E9181C19ECB10001EBEE /* GolfCourseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfCourseAPI.swift; sourceTree = "<group>"; };
+		C08924271C1C65C4008A73B0 /* SearchCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCourseCell.swift; sourceTree = "<group>"; };
+		C08924291C1C6C44008A73B0 /* PreviousCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviousCourseCell.swift; sourceTree = "<group>"; };
 		C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolferProfile.swift; sourceTree = "<group>"; };
 		C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhotoVC.swift; sourceTree = "<group>"; };
 		C0A288471BED2D0C0003AF11 /* FriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
@@ -297,6 +301,8 @@
 				C0A288491BED37810003AF11 /* FindFriendCell.swift */,
 				C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */,
 				C0C74F391BF424E400EB4E11 /* LeaderboardCell.swift */,
+				C08924271C1C65C4008A73B0 /* SearchCourseCell.swift */,
+				C08924291C1C6C44008A73B0 /* PreviousCourseCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -504,10 +510,12 @@
 				C01E85F51C1A1A67001CBA1B /* GolfCourse.swift in Sources */,
 				C01E85FF1C1A63AB001CBA1B /* GolfCourseInfoAPI.swift in Sources */,
 				C0AFA2E61BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift in Sources */,
+				C089242A1C1C6C44008A73B0 /* PreviousCourseCell.swift in Sources */,
 				C0017C5C1BEDB47C00691F7D /* FriendsCell.swift in Sources */,
 				C0C74F3A1BF424E400EB4E11 /* LeaderboardCell.swift in Sources */,
 				C0A288481BED2D0C0003AF11 /* FriendsVC.swift in Sources */,
 				C0AFA2E81BF0106800C9F058 /* UserScorecardDetailVC.swift in Sources */,
+				C08924281C1C65C4008A73B0 /* SearchCourseCell.swift in Sources */,
 				C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */,
 				C038BF161BE80AA4004AE33E /* AppDelegate.swift in Sources */,
 				C0A0AF481C0FC6D500671B18 /* ProfilePhotoVC.swift in Sources */,
