@@ -9,24 +9,50 @@
 import UIKit
 import Parse
 
-class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var golfCourseName: UITextField!
     @IBOutlet weak var scorecardImage: UIImageView?
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var scoreTextField: UITextField!
+    
+    var locationManager:CLLocationManager?
+    let distanceSpan:Double = 500
+    
     var imagePicker = UIImagePickerController()
     let date = NSDate()
-    
+    var golfCourseCollection:[GolfCourse]?
+    var courses = [GolfCourse]()
+    var selectedCourse: GolfCourse?
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(selectedCourse)
+
+        golfCourseName.text = selectedCourse?.name
+        
         datePicker.backgroundColor = UIColor.whiteColor()
         datePicker.setValue(UIColor.blackColor(), forKeyPath: "textColor")
         scorecardImage?.layer.borderWidth = 5.0
         scorecardImage?.layer.borderColor = UIColor.blackColor().CGColor
         
         imagePicker.delegate = self
+
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if locationManager == nil {
+            locationManager = CLLocationManager()
+            
+            locationManager!.delegate = self
+            locationManager!.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+            locationManager!.requestAlwaysAuthorization()
+            locationManager!.distanceFilter = 50 // Don't send location updates with a distance smaller than 50 meters between them
+            locationManager!.startUpdatingLocation()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,20 +103,17 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
                 let alertController = UIAlertController(title: "No Network Connection", message: "Can't save score without a connection. Please try again later.", preferredStyle: .Alert)
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                    // ...
+                    
                 }
                 alertController.addAction(cancelAction)
                 self.presentViewController(alertController, animated: true) {
-                    // ...
+
                 }
                 print(error)
                 
             }
         }
-        
-        
-        
-        
+
     }
 
     
@@ -140,20 +163,6 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         self.presentViewController(actionSheet, animated: true, completion: nil)
         
     }
-    
-    // MARK: Picker Methods
-    
-//    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-    
-//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return "\(row+1)"
-//    }
-    
-//    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return 200
-//    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
