@@ -31,7 +31,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         
         print(selectedCourse)
 
-        golfCourseName.text = selectedCourse?.name
+        golfCourseName.text = selectedCourse?.courseName
         
         datePicker.backgroundColor = UIColor.whiteColor()
         datePicker.setValue(UIColor.blackColor(), forKeyPath: "textColor")

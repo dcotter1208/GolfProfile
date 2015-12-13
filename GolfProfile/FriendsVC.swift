@@ -126,7 +126,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             cell.addFollowingLabel.text = "Add"
 
 //            cell.checkmarkImage.image = UIImage(named: "add")
-            for friend in friendsData{
+            for friend in friendsData {
                 if friend.objectId == user.objectId {
                 relation.removeObject(friend)
                     
@@ -147,10 +147,8 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                     print(error)
                 }
             })
-    
+        }
     }
-        
-}
     
 
     func loadUserData() {
@@ -168,16 +166,12 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                         dispatch_async(dispatch_get_main_queue()) {
                             self.friendsTableView.reloadData()
                         }
-                        
-                        }
                     }
                 }
-        
             }
-
         }
-        
     }
+}
     
     func loadFriendsData() {
         friendsData.removeAll()
@@ -238,7 +232,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             
             return (nameText.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
         })
-        
         // Reload the tableview.
         friendsTableView.reloadData()
     }
@@ -255,7 +248,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        if !shouldShowSearchResults {
+        if shouldShowSearchResults {
             shouldShowSearchResults = true
             friendsTableView.reloadData()
         }

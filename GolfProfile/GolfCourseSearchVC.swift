@@ -21,6 +21,7 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        loadUserPreviousCourses()
         
         loadCoursesFromJSONFile()
         
@@ -38,7 +39,7 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if shouldShowSearchResults {
-        
+            
         return searchedGolfCourse.count
         
         } else {
@@ -55,7 +56,7 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         if shouldShowSearchResults {
             let searchCourseCell:SearchCourseCell = tableView.dequeueReusableCellWithIdentifier("searchCourseCell", forIndexPath: indexPath) as! SearchCourseCell
             
-            searchCourseCell.golfCourseName.text = searchedGolfCourse[indexPath.row].name
+            searchCourseCell.golfCourseName.text = searchedGolfCourse[indexPath.row].courseName
             
             return searchCourseCell
             
@@ -63,7 +64,7 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
             
             let previousCourseCell:PreviousCourseCell = tableView.dequeueReusableCellWithIdentifier("previousCourseCell", forIndexPath: indexPath) as! PreviousCourseCell
             
-            previousCourseCell.previousGolfCourseName.text = previousCourses[indexPath.row].name
+            previousCourseCell.previousGolfCourseName.text = previousCourses[indexPath.row].courseName
 
             return previousCourseCell
             
@@ -88,38 +89,98 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        var courseInPreviousCourses = GolfCourse()
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         if shouldShowSearchResults {
             
             let golfCourse = self.searchedGolfCourse[indexPath.row]
-            
-            
-            previousCourses.append(golfCourse)
+
             let previousCourse = PFObject(className:"PreviousCourse")
-            previousCourse["courseName"] = golfCourse.name
-            previousCourse["golfer"] = PFUser.currentUser()
-            previousCourse.saveInBackgroundWithBlock {
-                (success: Bool, error: NSError?) -> Void in
-                if (success) {
             
-                } else {
-                    let alertController = UIAlertController(title: "No Network Connection", message: "Can't save score without a connection. Please try again later.", preferredStyle: .Alert)
+            for course in previousCourses {
+                courseInPreviousCourses = course
             
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                }
-                    alertController.addAction(cancelAction)
-                    self.presentViewController(alertController, animated: true) {
-                }
-                    print(error)
-                
+            }
+            
+            if courseInPreviousCourses.courseName == golfCourse.courseName {
+                print("ALREADY A PREVIOUS COURSE")
+            } else {
+                previousCourses.append(golfCourse)
+                print("\(golfCourse.courseName)")
+                previousCourse["courseName"] = golfCourse.courseName
+                previousCourse["golfer"] = PFUser.currentUser()
+                previousCourse.saveInBackgroundWithBlock {
+                    (success: Bool, error: NSError?) -> Void in
+                    if (success) {
+                        
+                    } else {
+                        print(error)
                     }
                 }
 
             }
+            
+
+        }
+    }
+    
+    
+    func loadCoursesFromJSONFile() {
+        DataManager.getGolfCoursesFromFileWithSuccess { (data) -> Void in
+            let json = JSON(data: data)
+            
+            if let courseArray = json.array {
+                
+                for course in courseArray {
+                    
+                    let golfCourseName: String? = course["biz_name"].string
+//                    print(golfCourseName)
+                
+                    if golfCourseName != nil {
+                        let golfCourse = GolfCourse(className: "PreviousCourse")
+                        golfCourse.courseName = golfCourseName!
+                        self.golfCourseCollection.append(golfCourse)
+//                        print(self.golfCourseCollection.count)
+                        
+                    }
+                }
+            }
+            
+        }
+    
+    }
+    
+    func loadUserPreviousCourses() {
+        previousCourses.removeAll()
+        
+        if let query = GolfCourse.query() {
+            query.whereKey("golfer", equalTo: PFUser.currentUser()!)
+            
+            query.findObjectsInBackgroundWithBlock { (previousCourses: [PFObject]?, error: NSError?) -> Void in
+                if error == nil {
+                    for object:PFObject in previousCourses! {
+                        if let object = object as? GolfCourse {
+                            self.previousCourses.append(object)
+//                            print(self.previousCourses.count)
+                        }
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        
+                        self.previousCourseListTableView.reloadData()
+                        
+                    }
+                    
+                } else {
+                    print(error)
+                }
+            }
+        }
         
     }
-        
+    
     // MARK: Search Controller
     
     func configureSearchController() {
@@ -139,25 +200,29 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         
         // Filter the allUsers array and get only those users' username that match the search text.
         searchedGolfCourse = golfCourseCollection.filter({(course) -> Bool in
-            let nameText: NSString = course.name
+            let nameText: NSString = course.courseName
             
             return (nameText.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
         })
         
-        previousCourseListTableView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+
+        self.previousCourseListTableView.reloadData()
+    
+        }
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         shouldShowSearchResults = true
         previousCourseListTableView.reloadData()
     }
-    
+
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         shouldShowSearchResults = false
         previousCourseListTableView.reloadData()
     }
-    
+//    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if !shouldShowSearchResults {
             shouldShowSearchResults = true
@@ -165,31 +230,6 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         searchController.searchBar.resignFirstResponder()
-    }
-    
-
-    func loadCoursesFromJSONFile() {
-        DataManager.getGolfCoursesFromFileWithSuccess { (data) -> Void in
-            let json = JSON(data: data)
-            
-            if let courseArray = json.array {
-                
-                for course in courseArray {
-                    
-                    let courseName: String? = course["biz_name"].string
-
-                    if courseName != nil {
-                        let golfCourse = GolfCourse(name: courseName!)
-                        self.golfCourseCollection.append(golfCourse)
-                        print(self.golfCourseCollection.count)
-                        
-                    }
-                }
-                
-            }
-            
-        }
-    
     }
     
 
