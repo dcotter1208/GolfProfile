@@ -232,7 +232,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             
             return (nameText.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
         })
-        
         // Reload the tableview.
         friendsTableView.reloadData()
     }
@@ -249,7 +248,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        if !shouldShowSearchResults {
+        if shouldShowSearchResults {
             shouldShowSearchResults = true
             friendsTableView.reloadData()
         }

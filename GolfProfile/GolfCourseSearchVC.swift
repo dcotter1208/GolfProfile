@@ -11,7 +11,6 @@ import Parse
 
 class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
     
-    
     var golfCourseCollection = [GolfCourse]()
     var searchedGolfCourse = [GolfCourse]()
     var previousCourses = [GolfCourse]()
@@ -23,6 +22,7 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         
         super.viewDidLoad()
         loadUserPreviousCourses()
+        
         loadCoursesFromJSONFile()
         
         configureSearchController()
@@ -89,43 +89,43 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        var courseInPreviousCourses = GolfCourse()
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         if shouldShowSearchResults {
             
             let golfCourse = self.searchedGolfCourse[indexPath.row]
-            
+
             let previousCourse = PFObject(className:"PreviousCourse")
             
+            for course in previousCourses {
+                courseInPreviousCourses = course
             
-            print(golfCourse.courseName)
-//            for course in previousCourses {
-//                
-//            
-//            if course.courseName != golfCourse.courseName
-                
-            previousCourses.append(golfCourse)
-            previousCourse["courseName"] = golfCourse.courseName
-            previousCourse["golfer"] = PFUser.currentUser()
-            previousCourse.saveInBackgroundWithBlock {
-                (success: Bool, error: NSError?) -> Void in
-                if (success) {
-            
-                } else {
-                    let alertController = UIAlertController(title: "No Network Connection", message: "Can't save score without a connection. Please try again later.", preferredStyle: .Alert)
-            
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                }
-                    alertController.addAction(cancelAction)
-                    self.presentViewController(alertController, animated: true) {
-                }
-                    print(error)
-
-//            }
             }
+            
+            if courseInPreviousCourses.courseName == golfCourse.courseName {
+                print("ALREADY A PREVIOUS COURSE")
+            } else {
+                previousCourses.append(golfCourse)
+                print("\(golfCourse.courseName)")
+                previousCourse["courseName"] = golfCourse.courseName
+                previousCourse["golfer"] = PFUser.currentUser()
+                previousCourse.saveInBackgroundWithBlock {
+                    (success: Bool, error: NSError?) -> Void in
+                    if (success) {
+                        
+                    } else {
+                        print(error)
+                    }
+                }
+
+            }
+            
+
         }
     }
-}
+    
     
     func loadCoursesFromJSONFile() {
         DataManager.getGolfCoursesFromFileWithSuccess { (data) -> Void in
@@ -136,11 +136,13 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
                 for course in courseArray {
                     
                     let golfCourseName: String? = course["biz_name"].string
+//                    print(golfCourseName)
                 
                     if golfCourseName != nil {
                         let golfCourse = GolfCourse(className: "PreviousCourse")
                         golfCourse.courseName = golfCourseName!
                         self.golfCourseCollection.append(golfCourse)
+//                        print(self.golfCourseCollection.count)
                         
                     }
                 }
@@ -161,7 +163,7 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
                     for object:PFObject in previousCourses! {
                         if let object = object as? GolfCourse {
                             self.previousCourses.append(object)
-                            print(self.previousCourses.count)
+//                            print(self.previousCourses.count)
                         }
                     }
                     

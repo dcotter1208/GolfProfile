@@ -58,6 +58,7 @@
 		C0AF95181C1B351F008DCB4A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF95171C1B351F008DCB4A /* DataManager.swift */; };
 		C0AFA2E61BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AFA2E51BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift */; };
 		C0AFA2E81BF0106800C9F058 /* UserScorecardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AFA2E71BF0106800C9F058 /* UserScorecardDetailVC.swift */; };
+		C0C368CB1C1DFF2600457244 /* courseData.json in Resources */ = {isa = PBXBuildFile; fileRef = C0C368CA1C1DFF2600457244 /* courseData.json */; };
 		C0C74F381BF4206700EB4E11 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C74F371BF4206700EB4E11 /* LeaderboardViewController.swift */; };
 		C0C74F3A1BF424E400EB4E11 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C74F391BF424E400EB4E11 /* LeaderboardCell.swift */; };
 /* End PBXBuildFile section */
@@ -137,6 +138,7 @@
 		C0AF95171C1B351F008DCB4A /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		C0AFA2E51BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendScorecardDetailVC.swift; sourceTree = "<group>"; };
 		C0AFA2E71BF0106800C9F058 /* UserScorecardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserScorecardDetailVC.swift; sourceTree = "<group>"; };
+		C0C368CA1C1DFF2600457244 /* courseData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = courseData.json; sourceTree = "<group>"; };
 		C0C74F371BF4206700EB4E11 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		C0C74F391BF424E400EB4E11 /* LeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,8 +227,9 @@
 				C082E9181C19ECB10001EBEE /* GolfCourseAPI.swift */,
 				C01E85FE1C1A63AB001CBA1B /* GolfCourseInfoAPI.swift */,
 				C0AF95171C1B351F008DCB4A /* DataManager.swift */,
-				C0AF95151C1B31F1008DCB4A /* golfCourseData.json */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
+				C0C368CA1C1DFF2600457244 /* courseData.json */,
+				C0AF95151C1B31F1008DCB4A /* golfCourseData.json */,
 				C038BF1C1BE80AA4004AE33E /* Assets.xcassets */,
 				C038BF1E1BE80AA4004AE33E /* LaunchScreen.storyboard */,
 				C04597471BFB7C8A001A004D /* Keys.plist */,
@@ -417,6 +420,7 @@
 			files = (
 				C04597481BFB7C8A001A004D /* Keys.plist in Resources */,
 				C0AF95161C1B31F1008DCB4A /* golfCourseData.json in Resources */,
+				C0C368CB1C1DFF2600457244 /* courseData.json in Resources */,
 				C038BF201BE80AA4004AE33E /* LaunchScreen.storyboard in Resources */,
 				C038BF1D1BE80AA4004AE33E /* Assets.xcassets in Resources */,
 				C038BF1B1BE80AA4004AE33E /* Main.storyboard in Resources */,

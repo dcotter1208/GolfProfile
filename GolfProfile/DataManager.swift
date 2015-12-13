@@ -15,7 +15,7 @@ class DataManager {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
         
-      let filePath = NSBundle.mainBundle().pathForResource("golfCourseData",ofType:"json")
+      let filePath = NSBundle.mainBundle().pathForResource("courseData",ofType:"json")
    
       var readError:NSError?
       do {
