@@ -126,7 +126,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             cell.addFollowingLabel.text = "Add"
 
 //            cell.checkmarkImage.image = UIImage(named: "add")
-            for friend in friendsData{
+            for friend in friendsData {
                 if friend.objectId == user.objectId {
                 relation.removeObject(friend)
                     
@@ -147,10 +147,8 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                     print(error)
                 }
             })
-    
+        }
     }
-        
-}
     
 
     func loadUserData() {
@@ -168,16 +166,12 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                         dispatch_async(dispatch_get_main_queue()) {
                             self.friendsTableView.reloadData()
                         }
-                        
-                        }
                     }
                 }
-        
             }
-
         }
-        
     }
+}
     
     func loadFriendsData() {
         friendsData.removeAll()

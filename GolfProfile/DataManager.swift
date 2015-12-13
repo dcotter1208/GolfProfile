@@ -12,9 +12,9 @@ import Foundation
 class DataManager {
   
   class func getGolfCoursesFromFileWithSuccess(success: ((data: NSData) -> Void)) {
-    //1
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-      //2
+        
       let filePath = NSBundle.mainBundle().pathForResource("golfCourseData",ofType:"json")
    
       var readError:NSError?
@@ -24,10 +24,11 @@ class DataManager {
         success(data: data)
       } catch let error as NSError {
         readError = error
+        print(readError)
       } catch {
         fatalError()
       }
     })
-  }
+}
 
 }
