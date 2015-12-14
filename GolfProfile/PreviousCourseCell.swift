@@ -2,14 +2,13 @@
 //  PreviousCourseCell.swift
 //  GolfProfile
 //
-//  Created by Donovan Cotter on 12/12/15.
+//  Created by Donovan Cotter on 12/14/15.
 //  Copyright © 2015 DonovanCotter. All rights reserved.
 //
 
 import UIKit
 
 class PreviousCourseCell: UITableViewCell {
-    @IBOutlet weak var previousGolfCourseName: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
