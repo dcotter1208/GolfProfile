@@ -18,16 +18,26 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
     var searchController: UISearchController!
 
     @IBOutlet weak var previousCourseListTableView: UITableView!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        loadUserPreviousCourses()
+        
         
         loadCoursesFromJSONFile()
         
         configureSearchController()
+        
+        print(previousCourses)
+        
 
-
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        loadUserPreviousCourses()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,7 +66,8 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         if shouldShowSearchResults {
             let searchCourseCell:SearchCourseCell = tableView.dequeueReusableCellWithIdentifier("searchCourseCell", forIndexPath: indexPath) as! SearchCourseCell
             
-            searchCourseCell.golfCourseName.text = searchedGolfCourse[indexPath.row].courseName
+            searchCourseCell.searchCourseLabel.text = searchedGolfCourse[indexPath.row].courseName
+            searchCourseCell.searchCourseLocationLabel.text = searchedGolfCourse[indexPath.row].city + "," + " " + searchedGolfCourse[indexPath.row].state
             
             return searchCourseCell
             
@@ -64,8 +75,9 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
             
             let previousCourseCell:PreviousCourseCell = tableView.dequeueReusableCellWithIdentifier("previousCourseCell", forIndexPath: indexPath) as! PreviousCourseCell
             
-            previousCourseCell.previousGolfCourseName.text = previousCourses[indexPath.row].courseName
-
+            previousCourseCell.previousCourseLabel.text = previousCourses[indexPath.row].courseName
+            previousCourseCell.previousCourseCityLabel.text = previousCourses[indexPath.row].city + "," + " " + previousCourses[indexPath.row].state
+            
             return previousCourseCell
             
     }
@@ -96,10 +108,11 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         if shouldShowSearchResults {
             
             let golfCourse = self.searchedGolfCourse[indexPath.row]
-
+            
             let previousCourse = PFObject(className:"PreviousCourse")
             
             for course in previousCourses {
+                
                 courseInPreviousCourses = course
             
             }
@@ -108,8 +121,9 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
                 print("ALREADY A PREVIOUS COURSE")
             } else {
                 previousCourses.append(golfCourse)
-                print("\(golfCourse.courseName)")
                 previousCourse["courseName"] = golfCourse.courseName
+                previousCourse["city"] = golfCourse.city
+                previousCourse["state"] = golfCourse.state
                 previousCourse["golfer"] = PFUser.currentUser()
                 previousCourse.saveInBackgroundWithBlock {
                     (success: Bool, error: NSError?) -> Void in
@@ -122,7 +136,6 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
 
             }
             
-
         }
     }
     
@@ -136,14 +149,15 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
                 for course in courseArray {
                     
                     let golfCourseName: String? = course["biz_name"].string
-//                    print(golfCourseName)
-                
+                    let city: String? = course["e_city"].string
+                    let state: String? = course["e_state"].string
+
                     if golfCourseName != nil {
                         let golfCourse = GolfCourse(className: "PreviousCourse")
                         golfCourse.courseName = golfCourseName!
+                        golfCourse.city = city!
+                        golfCourse.state = state!
                         self.golfCourseCollection.append(golfCourse)
-//                        print(self.golfCourseCollection.count)
-                        
                     }
                 }
             }
@@ -154,16 +168,16 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
     
     func loadUserPreviousCourses() {
         previousCourses.removeAll()
-        
         if let query = GolfCourse.query() {
             query.whereKey("golfer", equalTo: PFUser.currentUser()!)
             
             query.findObjectsInBackgroundWithBlock { (previousCourses: [PFObject]?, error: NSError?) -> Void in
                 if error == nil {
+
                     for object:PFObject in previousCourses! {
                         if let object = object as? GolfCourse {
                             self.previousCourses.append(object)
-//                            print(self.previousCourses.count)
+                            
                         }
                     }
                     
@@ -196,7 +210,11 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+//        if searchController.searchBar.text? >= 3 {
+        
         let searchString = searchController.searchBar.text
+//        }
         
         // Filter the allUsers array and get only those users' username that match the search text.
         searchedGolfCourse = golfCourseCollection.filter({(course) -> Bool in
