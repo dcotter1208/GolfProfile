@@ -8,25 +8,6 @@
 
 import Foundation
 import Parse
-//class GolfCourse {
-//    var name: String
-//    
-////    var latitude:Float = 0.00
-////    var longitude:Float = 0.00
-////    
-////    var address:String = ""
-////    
-////    var coordinate:CLLocation {
-////        return CLLocation(latitude: Double(latitude), longitude: Double(longitude));
-////    }
-//    
-//    init(name: String) {
-//    self.name = name
-//    
-//    }
-//    
-//
-//}
 
 class GolfCourse : PFObject, PFSubclassing {
     override class func initialize() {
@@ -43,5 +24,7 @@ class GolfCourse : PFObject, PFSubclassing {
     }
     
     @NSManaged var courseName: String
+    @NSManaged var city: String
+    @NSManaged var state: String
     
 }

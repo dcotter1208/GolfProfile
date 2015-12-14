@@ -9,7 +9,12 @@
 import UIKit
 
 class PreviousCourseCell: UITableViewCell {
+    @IBOutlet weak var previousCourseLabel: UILabel!
 
+    @IBOutlet weak var previousCourseCityLabel: UILabel!
+    
+    @IBOutlet weak var previousCourseStateLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
