@@ -36,6 +36,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     override func viewWillAppear(animated: Bool) {
+        
         self.leaderboardTableView.addSubview(self.refreshControl)
 
         loadLeaderboardData()
@@ -96,19 +97,20 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
         let friendQuery = friendsRelation?.query()
-        let query = PFQuery(className: "GolfScorecard")
-        let currentUserQuery = PFUser.query()
-        query.whereKey("golfer", matchesQuery: friendQuery!)
-        query.whereKey("golfer", matchesQuery: currentUserQuery!)
-        query.includeKey("golfer")
-        query.orderByAscending("score")
-        query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
+        let friendScorecardQuery = PFQuery(className: "GolfScorecard")
+        friendScorecardQuery.whereKey("golfer", matchesQuery: friendQuery!)
+        let currentUserScorecardQuery = PFQuery(className: "GolfScorecard")
+        currentUserScorecardQuery.whereKey("golfer", equalTo: PFUser.currentUser()!)
+    
+        let subQuery = PFQuery.orQueryWithSubqueries([friendScorecardQuery, currentUserScorecardQuery])
+        subQuery.orderByAscending("score")
+        subQuery.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 
                     for object:PFObject in scoreCards! {
                         let golfer:PFObject = object["golfer"] as! PFObject
                         self.leaderboardData.append(object,golfer)
-
+                        print(self.leaderboardData.count)
                         dispatch_async(dispatch_get_main_queue()) {
 
                         self.leaderboardTableView.reloadData()
