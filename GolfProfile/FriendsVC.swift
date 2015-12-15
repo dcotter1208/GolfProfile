@@ -24,10 +24,18 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(PFUser.currentUser())
+        
         loadFriendsData()
         loadUserData()
         configureSearchController()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+
+//        loadFriendsData()
+//        loadUserData()
     }
     
     override func didReceiveMemoryWarning() {

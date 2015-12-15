@@ -21,7 +21,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         return refreshControl
     }()
     
-    var leaderboardData = [(PFObject, PFObject)]()
+    var leaderboardData = [(GolfScorecard, GolferProfile)]()
     var friendsRelation = PFRelation?()
     var golferInfo = [PFObject]()
     
@@ -36,6 +36,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     override func viewWillAppear(animated: Bool) {
+        
         self.leaderboardTableView.addSubview(self.refreshControl)
 
         loadLeaderboardData()
@@ -51,41 +52,27 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         
         let cell:LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("leaderboardCell", forIndexPath: indexPath) as! LeaderboardCell
         
-        if let allScorecards:(PFObject, PFObject) = self.leaderboardData[indexPath.row] {
+        if let allScorecards:(GolfScorecard, GolferProfile) = self.leaderboardData[indexPath.row] {
             
-            //Getting the data from Parse and turning it into a String to display in label
-            if let golfDate = allScorecards.0.objectForKey("date") as? NSDate {
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "MM/dd/yyyy"
-                let stringDate = dateFormatter.stringFromDate(golfDate)
-                cell.leaderboardDateLabel?.text = stringDate
-            }
-            //Grabbing the score from Parse and turning it into a String to display in label
-            if let score = allScorecards.0.objectForKey("score") as? Int {
-                let scoreToString = "\(score)"
-                cell.leaderboardScoreLabel?.text = scoreToString
-            }
-            
-            cell.leaderboardGCLabel?.text = allScorecards.0.objectForKey("golfCourse") as? String
-            cell.leaderboardGolferLabel.text = allScorecards.1.objectForKey("username") as? String
-            
-            let pfImage = allScorecards.1.objectForKey("profileImage") as? PFFile
-            
-            pfImage?.getDataInBackgroundWithBlock({
-                (result, error) in
-                
-                if result != nil {
-                    
-                    cell.leaderboardProfileImage.image = UIImage(data: result!)
-                    cell.leaderboardProfileImage.layer.cornerRadius = cell.leaderboardProfileImage.frame.size.width / 2
-                    
-                } else {
-                    
-                    print(error)
-                    
-                }
-            })
+            let golfDate = allScorecards.0.date
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+            cell.leaderboardDateLabel?.text = dateFormatter.stringFromDate(golfDate)
+        
+            cell.leaderboardScoreLabel?.text = "\(allScorecards.0.score)"
 
+            allScorecards.1.fetchIfNeededInBackgroundWithBlock({ (info: PFObject?, error: NSError?) -> Void in
+            
+                cell.leaderboardGCLabel?.text = allScorecards.0.golfCourse
+                cell.leaderboardGolferLabel.text = allScorecards.1.username
+                
+                cell.leaderboardProfileImage.file = allScorecards.1.profileImage
+                cell.leaderboardProfileImage.loadInBackground()
+                cell.leaderboardProfileImage.layer.cornerRadius = cell.leaderboardProfileImage.frame.size.width / 2
+
+                
+            })
+        
         }
 
         return cell
@@ -96,24 +83,28 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
         let friendQuery = friendsRelation?.query()
-        let query = PFQuery(className: "GolfScorecard")
-        let currentUserQuery = PFUser.query()
-        query.whereKey("golfer", matchesQuery: friendQuery!)
-        query.whereKey("golfer", matchesQuery: currentUserQuery!)
-        query.includeKey("golfer")
-        query.orderByAscending("score")
-        query.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
+        let friendScorecardQuery = PFQuery(className: "GolfScorecard")
+        friendScorecardQuery.whereKey("golfer", matchesQuery: friendQuery!)
+        let currentUserScorecardQuery = PFQuery(className: "GolfScorecard")
+        currentUserScorecardQuery.whereKey("golfer", equalTo: PFUser.currentUser()!)
+        let subQuery = PFQuery.orQueryWithSubqueries([friendScorecardQuery, currentUserScorecardQuery])
+        subQuery.orderByAscending("score")
+        subQuery.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 
-                    for object:PFObject in scoreCards! {
-                        let golfer:PFObject = object["golfer"] as! PFObject
-                        self.leaderboardData.append(object,golfer)
-
-                        dispatch_async(dispatch_get_main_queue()) {
-
+            for object:PFObject in scoreCards! {
+                if let object = object as? GolfScorecard {
+                let golfer = object["golfer"] as! GolferProfile
+                self.leaderboardData.append(object,golfer)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                    
                         self.leaderboardTableView.reloadData()
-                        }
                     }
+                            
+                }
+
+                }
                 
             } else {
                 print(error)

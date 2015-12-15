@@ -127,9 +127,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
 
     @IBAction func logOut(sender: AnyObject) {
-        PFUser.logOut()
-        self.performSegueWithIdentifier("showLogin", sender: self)
         
+        PFUser.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
+            if let error = error {
+                print(error)
+            
+            } else {
+            self.performSegueWithIdentifier("showLogin", sender: self)
+            
+            }
+        }
+
     }
     
     @IBAction func unwindToProfilePage(segue: UIStoryboardSegue) {
