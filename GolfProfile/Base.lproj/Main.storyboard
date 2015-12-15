@@ -1169,7 +1169,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7JE-SL-7uY">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7JE-SL-7uY" customClass="PFImageView">
                                                     <rect key="frame" x="8" y="16" width="65" height="65"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="109" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZB-ZR-Nza">
@@ -1203,7 +1203,7 @@
                                             <outlet property="leaderboardDateLabel" destination="XNc-Sa-EGH" id="Bag-Tn-nHL"/>
                                             <outlet property="leaderboardGCLabel" destination="PAh-z0-LX4" id="Soo-pW-bmi"/>
                                             <outlet property="leaderboardGolferLabel" destination="u21-Ar-OyW" id="gik-Qd-OCc"/>
-                                            <outlet property="leaderboardProfileImage" destination="7JE-SL-7uY" id="MCz-3G-r0n"/>
+                                            <outlet property="leaderboardProfileImage" destination="7JE-SL-7uY" id="SMf-HU-gee"/>
                                             <outlet property="leaderboardScoreLabel" destination="UZB-ZR-Nza" id="0Vc-5W-eO0"/>
                                         </connections>
                                     </tableViewCell>
