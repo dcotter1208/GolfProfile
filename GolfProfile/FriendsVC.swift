@@ -74,6 +74,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         if isFriend(friend) {
           findFriendCell.addFollowingLabel.text = "Following"
           findFriendCell.addFollowingLabel.textColor = UIColor.redColor()
+          
 //        findFriendCell.checkmarkImage.image = UIImage(named: "checkmark")
             
         } else {

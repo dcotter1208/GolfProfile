@@ -104,14 +104,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 //  When we click on a photo - either from the photo library or taken from the camera - it will store it as our golferProfileImage
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
+        
+        
         golferProfileImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        }
+    }
     
-    func scaleImageWith(image: UIImage, newSize: CGSize) -> UIImage {
-        
+    func scaleImageWith(image: UIImage, newSize: CGSize) -> UIImage {      
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -119,7 +120,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         return newImage
         
-        }
+    }
     
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
@@ -144,15 +145,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             self.golferProfileImage.loadInBackground()
            
                         }
-                        
                     }
-                    
                 }
-                
             })
-            
         }
-        
     }
     
     override func viewWillLayoutSubviews() {

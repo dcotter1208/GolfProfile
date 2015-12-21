@@ -50,9 +50,12 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        
         let cell:LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("leaderboardCell", forIndexPath: indexPath) as! LeaderboardCell
         
         if let allScorecards:(GolfScorecard, GolferProfile) = self.leaderboardData[indexPath.row] {
+
+            cell.rankLabel.text = "\(indexPath.row + 1)"
             
             let golfDate = allScorecards.0.date
             let dateFormatter = NSDateFormatter()
@@ -63,12 +66,12 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
 
             allScorecards.1.fetchIfNeededInBackgroundWithBlock({ (info: PFObject?, error: NSError?) -> Void in
             
-                cell.leaderboardGCLabel?.text = allScorecards.0.golfCourse
-                cell.leaderboardGolferLabel.text = allScorecards.1.username
+            cell.leaderboardGCLabel?.text = allScorecards.0.golfCourse
+            cell.leaderboardGolferLabel.text = allScorecards.1.username
                 
-                cell.leaderboardProfileImage.file = allScorecards.1.profileImage
-                cell.leaderboardProfileImage.loadInBackground()
-                cell.leaderboardProfileImage.layer.cornerRadius = cell.leaderboardProfileImage.frame.size.width / 2
+            cell.leaderboardProfileImage.file = allScorecards.1.profileImage
+            cell.leaderboardProfileImage.loadInBackground()
+            cell.leaderboardProfileImage.layer.cornerRadius = cell.leaderboardProfileImage.frame.size.width / 2
 
                 
             })
