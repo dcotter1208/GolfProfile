@@ -903,16 +903,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCw-go-GES">
-                                <rect key="frame" x="131" y="162" width="59" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Login"/>
+                                <rect key="frame" x="129" y="162" width="64" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="login:" destination="fnr-Zv-jKV" eventType="touchUpInside" id="iKT-Ld-O4e"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOz-7y-k3f">
-                                <rect key="frame" x="101" y="230" width="123" height="30"/>
-                                <state key="normal" title="Forgot Password?"/>
+                                <rect key="frame" x="98" y="230" width="132" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Forgot Password?">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="NXt-8i-9ys" kind="modal" id="P2V-d6-Ilp"/>
                                 </connections>
@@ -928,17 +933,20 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wl-Cb-NDb">
-                                <rect key="frame" x="135" y="296" width="55" height="30"/>
-                                <state key="normal" title="Sign Up"/>
+                                <rect key="frame" x="136" y="296" width="57" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="T1r-Wp-PRl" kind="modal" id="Stx-02-x5g"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.1529411765" green="0.64313725489999995" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="9wl-Cb-NDb" firstAttribute="top" secondItem="HOz-7y-k3f" secondAttribute="bottom" constant="36" id="9U2-hN-uF4"/>
-                            <constraint firstItem="MCw-go-GES" firstAttribute="centerX" secondItem="eyi-e7-0Je" secondAttribute="centerX" id="KQu-cB-z5V"/>
+                            <constraint firstItem="MCw-go-GES" firstAttribute="centerX" secondItem="eyi-e7-0Je" secondAttribute="centerX" constant="1" id="KQu-cB-z5V"/>
                             <constraint firstItem="MCw-go-GES" firstAttribute="top" secondItem="9sG-8O-0No" secondAttribute="bottom" constant="8" symbolic="YES" id="Kow-SQ-BNP"/>
                             <constraint firstItem="HOz-7y-k3f" firstAttribute="top" secondItem="MCw-go-GES" secondAttribute="bottom" constant="27" id="P2j-Ft-2mC"/>
                             <constraint firstItem="9sG-8O-0No" firstAttribute="top" secondItem="u4R-DB-TE8" secondAttribute="bottom" constant="13" id="PLb-nJ-fRW"/>
@@ -983,7 +991,10 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="63" id="Fyu-qy-0rI"/>
                                 </constraints>
-                                <state key="normal" title="Sign Up"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="signUpButton:" destination="T1r-Wp-PRl" eventType="touchUpInside" id="Env-TX-zv6"/>
                                     <segue destination="CNe-AC-cpW" kind="unwind" unwindAction="unwindSignupLogin:" id="kCi-HX-tiE"/>
@@ -1001,7 +1012,9 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGI-6E-K8h">
                                 <rect key="frame" x="262" y="28" width="30" height="30"/>
-                                <state key="normal" title="X"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="dismissView:" destination="T1r-Wp-PRl" eventType="touchUpInside" id="XGV-ai-Z9j"/>
                                 </connections>
@@ -1017,7 +1030,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.15294117647058825" green="0.64313725490196083" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="nGI-6E-K8h" firstAttribute="top" secondItem="3xb-jf-0pB" secondAttribute="bottom" constant="8" symbolic="YES" id="1rI-Wp-45y"/>
                             <constraint firstItem="KZB-Fk-IDi" firstAttribute="leading" secondItem="AQD-Ci-kBm" secondAttribute="leading" id="INS-pY-5lr"/>
