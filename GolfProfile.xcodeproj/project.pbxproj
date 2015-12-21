@@ -44,6 +44,7 @@
 		C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00931BE9027E00A514FE /* SignUpViewController.swift */; };
 		C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */; };
 		C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */; };
+		C07DDFA31C245AE000F69E4B /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */; };
 		C07E7C401C0376B500A86EB7 /* GolfScorecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */; };
 		C082E9191C19ECB10001EBEE /* GolfCourseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082E9181C19ECB10001EBEE /* GolfCourseAPI.swift */; };
 		C0A0AEC81C0A7E7000671B18 /* GolferProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */; };
@@ -123,6 +124,7 @@
 		C06D00931BE9027E00A514FE /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScoreViewController.swift; sourceTree = "<group>"; };
 		C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLeaderboardCell.swift; sourceTree = "<group>"; };
+		C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfScorecard.swift; sourceTree = "<group>"; };
 		C082E9181C19ECB10001EBEE /* GolfCourseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfCourseAPI.swift; sourceTree = "<group>"; };
 		C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolferProfile.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				C038BF151BE80AA4004AE33E /* AppDelegate.swift */,
+				C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */,
 				C038BF751BE84287004AE33E /* LoginViewController.swift */,
 				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
 				C038BF431BE80BAA004AE33E /* ProfileViewController.swift */,
@@ -514,6 +517,7 @@
 				C0AFA2E61BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift in Sources */,
 				C0017C5C1BEDB47C00691F7D /* FriendsCell.swift in Sources */,
 				C0C74F3A1BF424E400EB4E11 /* LeaderboardCell.swift in Sources */,
+				C07DDFA31C245AE000F69E4B /* ForgotPasswordVC.swift in Sources */,
 				C0A288481BED2D0C0003AF11 /* FriendsVC.swift in Sources */,
 				C0AFA2E81BF0106800C9F058 /* UserScorecardDetailVC.swift in Sources */,
 				C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */,

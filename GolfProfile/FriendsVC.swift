@@ -34,8 +34,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     override func viewWillAppear(animated: Bool) {
 
-//        loadFriendsData()
-//        loadUserData()
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -183,8 +182,9 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     func loadFriendsData() {
         friendsData.removeAll()
-
-        friendsRelation = (PFUser.currentUser()?.objectForKey("friendsRelation"))! as! PFRelation
+        
+        if let friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation {
+        
         if let userQuery = friendsRelation.query() {
             userQuery.orderByAscending("username")
             userQuery.findObjectsInBackgroundWithBlock { (friends: [PFObject]?, error: NSError?) -> Void in
@@ -203,6 +203,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 }
             }
         }
+    }
     }
     
         //Function to check if a user is a or isn't a current friend. If they are then we are using this method to display a checkmark by their name in our editFriendsVC
