@@ -14,9 +14,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var golferProfileImage: PFImageView!
     @IBOutlet weak var golferNameTextField: UITextField!
 
-    @IBOutlet weak var passwordTextField: UITextField!
-    
-    @IBOutlet weak var repeatPasswordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!
+
     
     var editProfileData = [GolferProfile]()
     var loadProfileData = [GolferProfile]()
@@ -47,6 +46,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             if profile.objectId == PFUser.currentUser()?.objectId {
                             self.editProfileData.append(profile)
                             profile.name = self.golferNameTextField.text!
+                            profile.username = self.usernameTextField.text!
                                 
                             let pickedImage = self.golferProfileImage.image
                             let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(100, 100))
@@ -57,18 +57,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             object.saveInBackground()
                                 
                             }
-                            
                         }
-                        
-                        
                     }
-                    
                 } else {
                     print(error)
                 }
             }
         }
-        
     }
 
     
@@ -103,9 +98,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
 //  When we click on a photo - either from the photo library or taken from the camera - it will store it as our golferProfileImage
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        
-        
+
         golferProfileImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -128,7 +121,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         super.touchesBegan(touches, withEvent: event)
     }
     
-    
     //Loads the current user's profile information into the edit view's textfields
     func loadUserProfile() {
         if let userQuery = PFUser.query() {
@@ -140,6 +132,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             self.loadProfileData.append(profile)
                     
                         self.golferNameTextField.text = profile.name
+                        self.usernameTextField.text = profile.username
 
                             self.golferProfileImage.file = profile.profileImage
                             self.golferProfileImage.loadInBackground()

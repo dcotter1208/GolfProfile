@@ -13,6 +13,7 @@ class FriendsCell: PFTableViewCell {
     @IBOutlet weak var friendUserNameCellLabel: UILabel!
     @IBOutlet weak var friendProfileCell: PFImageView!
     
+    @IBOutlet weak var friendName: UILabel!
     
     override func awakeFromNib() {
 
