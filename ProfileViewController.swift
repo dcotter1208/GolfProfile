@@ -19,7 +19,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
     @IBOutlet var photoTapGesture: UITapGestureRecognizer!
     
-    var profileData = [GolferProfile]()
+    var profileData = [PFObject]()
     var userScorecardData = [GolfScorecard]()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -31,28 +31,34 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.userScoreTableView.addSubview(self.refreshControl)
+        print("VIEW LOADED")
 
-        
-        if PFUser.currentUser() == nil {
-            
-            self.performSegueWithIdentifier("showLogin", sender: self)
-            
-        }
-        
+
+        self.userScoreTableView.addSubview(self.refreshControl)
 
     }
 
 
     override func viewWillAppear(animated: Bool) {
         
-        getProfileFromBackground()
-        
         if PFUser.currentUser() != nil {
-        loadUserScorecardData()
-            
+            getProfileFromBackground()
+            loadUserScorecardData()
+        
+        } else {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+                self.presentViewController(viewController, animated: true, completion: nil)
+            })
+        
         }
         
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+  
     }
     
     
@@ -133,7 +139,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 print(error)
             
             } else {
-            self.performSegueWithIdentifier("showLogin", sender: self)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+                    self.presentViewController(viewController, animated: true, completion: nil)
+                })
             
             }
         }
@@ -156,27 +165,22 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     func getProfileFromBackground() {
         profileData.removeAll()
         if let userQuery = PFUser.query() {
-            userQuery.findObjectsInBackgroundWithBlock({ (userProfiles:[PFObject]?, error: NSError?) -> Void in
+            userQuery.whereKey("username", equalTo: (PFUser.currentUser()?.username)!)
+            userQuery.findObjectsInBackgroundWithBlock({ (currentUserProfile:[PFObject]?, error: NSError?) -> Void in
                 if error == nil {
-                    for object:PFObject in userProfiles! {
-                        if let profile = object as? GolferProfile {
-                            if profile.objectId == PFUser.currentUser()?.objectId {
-                            self.profileData.append(profile)
+                    for object:PFObject in currentUserProfile! {
+                            self.profileData.append(object)
+                            print("DATA APPENDED")
                                 for data in self.profileData {
                                     dispatch_async(dispatch_get_main_queue()) {
-                                        
-                                    self.golferNameLabel.text = data.name
-                                    self.usernameLabel.text = "Username: \(data.username!)"
-                                    self.golferCountry.text = data.country
-                                    self.golferProfileImage.file = data.profileImage
-                                    self.golferProfileImage.loadInBackground()
-                                    }
-                                    
-                                }
+                                        print("DISPATCHED")
+                                        self.golferNameLabel.text = data.objectForKey("name") as? String
+                                        self.usernameLabel.text = "Username: \(data.objectForKey("username")!)" as String
+                                        self.golferProfileImage.file = data.objectForKey("profileImage") as? PFFile
+                                        self.golferProfileImage.loadInBackground()
                             }
 
                         }
-                        
                     }
                     
                 } else {
@@ -191,6 +195,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         userScorecardData.removeAll()
         
         if let query = GolfScorecard.query() {
+        if PFUser.currentUser() != nil {
         query.whereKey("golfer", equalTo: PFUser.currentUser()!)
         query.orderByDescending("date")
         
@@ -213,7 +218,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         }
-    
+        }
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {

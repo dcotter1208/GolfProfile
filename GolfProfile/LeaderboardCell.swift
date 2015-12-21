@@ -17,6 +17,9 @@ class LeaderboardCell: UITableViewCell {
     @IBOutlet weak var leaderboardProfileImage: PFImageView!
     @IBOutlet weak var leaderboardGolferLabel: UILabel!
     
+    @IBOutlet weak var rankLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

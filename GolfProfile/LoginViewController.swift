@@ -15,12 +15,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if PFUser.currentUser() != nil {
-            
-            self.performSegueWithIdentifier("showUserProfile", sender: self)
-        }
-        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,25 +25,44 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func login(sender: AnyObject) {
-        let user = PFUser()
-        user.username = self.usernameTextField.text?.lowercaseString
-        user.password = self.passwordTextField.text?.lowercaseString
         
-        PFUser.logInWithUsernameInBackground(self.usernameTextField.text!, password: self.passwordTextField.text!) {
+            // Run a spinner to show a task in progress
+    let spinner: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0, 0, 150, 150)) as UIActivityIndicatorView
+            spinner.startAnimating()
+
+        PFUser.logInWithUsernameInBackground((self.usernameTextField.text?.lowercaseString)!, password: (self.passwordTextField.text?.lowercaseString)!) {
             (user: PFUser?, error: NSError?) -> Void in
+            
+            spinner.stopAnimating()
+
+            
+            if error?.code == 101 {
+            
+            let alertController = UIAlertController(title: "Whoops!", message: "Username or password invalid. Please try again", preferredStyle: .Alert)
+                
+            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alertController.addAction(defaultAction)
+                
+            self.presentViewController(alertController, animated: true, completion: nil)
+
+            
+            }
+            
             if user != nil {
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Home")
+                self.presentViewController(viewController, animated: true, completion: nil)
                     
-                }
             }
         }
     }
+        
+}
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
-        view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
-    }
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+//        view.endEditing(true)
+//        super.touchesBegan(touches, withEvent: event)
+//    }
 
 }
 

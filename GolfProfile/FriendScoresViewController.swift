@@ -123,7 +123,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     func loadFriendProfile() {
         friendProfileNameLabel.text = selectedfriend.name
         friendProfileUsernameLabel.text = selectedfriend.username
-        friendProfileCountryLabel.text = selectedfriend.country
+//        friendProfileCountryLabel.text = selectedfriend.country
         friendProfilePhoto.file = selectedfriend.profileImage
     }
     

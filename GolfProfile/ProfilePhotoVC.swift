@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 import ParseUI
 
 class ProfilePhotoVC: UIViewController {
@@ -14,14 +15,14 @@ class ProfilePhotoVC: UIViewController {
     @IBOutlet weak var profilePhotoImageView: PFImageView!
     
     
-    var userProfileData = [GolferProfile]()
+    var userProfileData = [PFObject]()
     var selectedFriendProfile = GolferProfile()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         for data in userProfileData {
-            profilePhotoImageView.file = data.profileImage
+            profilePhotoImageView.file = data.objectForKey("profileImage") as? PFFile
             profilePhotoImageView.loadInBackground()
         
         }

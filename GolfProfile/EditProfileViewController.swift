@@ -13,11 +13,10 @@ import ParseUI
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var golferProfileImage: PFImageView!
     @IBOutlet weak var golferNameTextField: UITextField!
-    @IBOutlet weak var golferAgeTextField: UITextField!
-    @IBOutlet weak var golferCountryTextField: UITextField!
-    @IBOutlet weak var driverTextField: UITextField!
-    @IBOutlet weak var ironsTextField: UITextField!
-    @IBOutlet weak var favoriteCourseTextField: UITextField!
+
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var repeatPasswordTextField: UITextField!
     
     var editProfileData = [GolferProfile]()
     var loadProfileData = [GolferProfile]()
@@ -48,12 +47,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             if profile.objectId == PFUser.currentUser()?.objectId {
                             self.editProfileData.append(profile)
                             profile.name = self.golferNameTextField.text!
-//                            profile.age = Int(self.golferAgeTextField.text!)!
-                            profile.country = self.golferCountryTextField.text!
-//                            profile.driver = self.driverTextField.text!
-//                            profile.irons = self.ironsTextField.text!
-//                            profile.favoriteCourse = self.favoriteCourseTextField.text!
-                            
+                                
                             let pickedImage = self.golferProfileImage.image
                             let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(100, 100))
                             let imageData = UIImagePNGRepresentation(scaledImage)
@@ -61,6 +55,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             profile.profileImage = golferImageFile!
                                 
                             object.saveInBackground()
+                                
                             }
                             
                         }
@@ -109,20 +104,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 //  When we click on a photo - either from the photo library or taken from the camera - it will store it as our golferProfileImage
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
+        
+        
         golferProfileImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        }
+    }
     
-    func scaleImageWith(image: UIImage, newSize: CGSize) -> UIImage {
+    func scaleImageWith(image: UIImage, newSize: CGSize) -> UIImage {      
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return newImage
-        }
+        
+    }
     
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
@@ -142,26 +140,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             self.loadProfileData.append(profile)
                     
                         self.golferNameTextField.text = profile.name
-//                        self.golferAgeTextField.text = "\(profile.age)"
-                        self.golferCountryTextField.text = profile.country
-//                        self.driverTextField.text = profile.driver
-//                        self.ironsTextField.text = profile.irons
-//                        self.favoriteCourseTextField.text = profile.favoriteCourse
 
                             self.golferProfileImage.file = profile.profileImage
                             self.golferProfileImage.loadInBackground()
            
-
                         }
-                        
                     }
-                    
                 }
-                
             })
-            
         }
-        
     }
     
     override func viewWillLayoutSubviews() {
