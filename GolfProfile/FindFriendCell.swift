@@ -16,7 +16,7 @@ class FindFriendCell: UITableViewCell {
     
     @IBOutlet weak var addFollowingLabel: UILabel!
 
-    @IBOutlet weak var checkmarkImage: UIImageView!
+    @IBOutlet weak var findFriendName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -155,9 +155,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillLayoutSubviews() {
-        self.golferProfileImage.layer.cornerRadius = 10
+        self.golferProfileImage.layer.cornerRadius = self.golferProfileImage.frame.size.width / 2
         self.golferProfileImage.layer.borderWidth = 3.0
-        self.golferProfileImage.layer.borderColor = UIColor.whiteColor().CGColor
+        self.golferProfileImage.layer.borderColor = UIColor.orangeColor().CGColor
+//            whiteColor().CGColor
         self.golferProfileImage.clipsToBounds = true
         
     }
@@ -170,10 +171,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 if error == nil {
                     for object:PFObject in currentUserProfile! {
                             self.profileData.append(object)
-                            print("DATA APPENDED")
                                 for data in self.profileData {
                                     dispatch_async(dispatch_get_main_queue()) {
-                                        print("DISPATCHED")
                                         self.golferNameLabel.text = data.objectForKey("name") as? String
                                         self.usernameLabel.text = "Username: \(data.objectForKey("username")!)" as String
                                         self.golferProfileImage.file = data.objectForKey("profileImage") as? PFFile

@@ -88,15 +88,6 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    override func viewWillLayoutSubviews() {
-        self.friendProfilePhoto.layer.cornerRadius = self.friendProfilePhoto.frame.size.width / 2
-        self.friendProfilePhoto.layer.borderWidth = 3.0
-        self.friendProfilePhoto.layer.borderColor = UIColor.whiteColor().CGColor
-        self.friendProfilePhoto.clipsToBounds = true
-        
-    }
-    
-    
     func loadFriendScorecardData() {
         friendScorecardData.removeAll()
         
@@ -122,8 +113,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     
     func loadFriendProfile() {
         friendProfileNameLabel.text = selectedfriend.name
-        friendProfileUsernameLabel.text = selectedfriend.username
-//        friendProfileCountryLabel.text = selectedfriend.country
+        friendProfileUsernameLabel.text = "Username: \(selectedfriend.username!)"
         friendProfilePhoto.file = selectedfriend.profileImage
     }
     
@@ -148,6 +138,14 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
             
         }
         
+        
+    }
+    
+    override func viewWillLayoutSubviews() {
+        self.friendProfilePhoto.layer.cornerRadius = self.friendProfilePhoto.frame.size.width / 2
+        self.friendProfilePhoto.layer.borderWidth = 3.0
+        self.friendProfilePhoto.layer.borderColor = UIColor.whiteColor().CGColor
+        self.friendProfilePhoto.clipsToBounds = true
         
     }
     
