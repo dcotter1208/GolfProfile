@@ -54,13 +54,13 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         let cell:LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("leaderboardCell", forIndexPath: indexPath) as! LeaderboardCell
         
         if let allScorecards:(GolfScorecard, GolferProfile) = self.leaderboardData[indexPath.row] {
+        
 
             cell.rankLabel.text = "\(indexPath.row + 1)"
             
-            let golfDate = allScorecards.0.date
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM/dd/yyyy"
-            cell.leaderboardDateLabel?.text = dateFormatter.stringFromDate(golfDate)
+            cell.leaderboardDateLabel?.text = dateFormatter.stringFromDate(allScorecards.0.date)
         
             cell.leaderboardScoreLabel?.text = "\(allScorecards.0.score)"
 
@@ -72,10 +72,19 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             cell.leaderboardProfileImage.file = allScorecards.1.profileImage
             cell.leaderboardProfileImage.loadInBackground()
             cell.leaderboardProfileImage.layer.cornerRadius = cell.leaderboardProfileImage.frame.size.width / 2
+            cell.leaderboardProfileImage.clipsToBounds = true
+            cell.leaderboardProfileImage.layer.borderWidth = 3
+            cell.leaderboardProfileImage.layer.borderColor = UIColor.orangeColor().CGColor
 
-                
             })
         
+        }
+        
+        if cell.leaderboardGolferLabel.text == PFUser.currentUser()?.username {
+            
+            cell.starImage.image = UIImage(named: "star")
+
+            
         }
 
         return cell

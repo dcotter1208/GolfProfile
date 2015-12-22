@@ -19,6 +19,7 @@ class LeaderboardCell: UITableViewCell {
     
     @IBOutlet weak var rankLabel: UILabel!
     
+    @IBOutlet weak var starImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

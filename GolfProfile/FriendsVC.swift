@@ -68,6 +68,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         findFriendCell.findFriendProfileCellImage.file = filteredUsers[indexPath.row].profileImage
         findFriendCell.findFriendProfileCellImage.loadInBackground()
         findFriendCell.findFriendProfileCellImage.layer.cornerRadius = findFriendCell.findFriendProfileCellImage.frame.size.width / 2
+        findFriendCell.findFriendProfileCellImage.clipsToBounds = true
         
         for friend in filteredUsers {
             
@@ -98,6 +99,9 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         friendCell.friendProfileCell.file = friendsData[indexPath.row].profileImage
         friendCell.friendProfileCell.loadInBackground()
         friendCell.friendProfileCell.layer.cornerRadius = friendCell.friendProfileCell.frame.size.width / 2
+        friendCell.friendProfileCell.layer.borderColor = UIColor.orangeColor().CGColor
+        friendCell.friendProfileCell.layer.borderWidth = 3
+        friendCell.friendProfileCell.clipsToBounds = true
         
         return friendCell
             
@@ -263,6 +267,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         searchController.searchBar.resignFirstResponder()
     }
-    
-    
+
+        
 }
