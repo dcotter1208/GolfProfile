@@ -19,7 +19,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
     @IBOutlet var photoTapGesture: UITapGestureRecognizer!
     
-    var profileData = [PFObject]()
+    var profileData = [GolferProfile]()
     var userScorecardData = [GolfScorecard]()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         
         if PFUser.currentUser() != nil {
-            getProfileFromBackground()
+//            getProfileFromBackground()
             loadUserScorecardData()
             
         }
@@ -53,6 +53,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             })
             
         } else {
+            
             getProfileFromBackground()
         
         }
@@ -60,7 +61,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidAppear(animated: Bool) {
   
-//        getProfileFromBackground()
+        getProfileFromBackground()
 
         
     }
@@ -155,6 +156,19 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func unwindToProfilePage(segue: UIStoryboardSegue) {
         
+        if segue.identifier == "unwindSegueToProfile" {
+            
+            let editProfileVC = segue.sourceViewController as! EditProfileViewController
+            
+            self.golferProfileImage.file = editProfileVC.golferProfileImage.file
+            self.golferProfileImage.loadInBackground()
+            self.golferNameLabel.text = editProfileVC.golferNameTextField.text
+            self.usernameLabel.text = editProfileVC.usernameTextField.text
+        
+        }
+        
+        getProfileFromBackground()
+
         
     }
     
@@ -173,14 +187,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             userQuery.findObjectsInBackgroundWithBlock({ (currentUserProfile:[PFObject]?, error: NSError?) -> Void in
                 if error == nil {
                     for object:PFObject in currentUserProfile! {
-                            self.profileData.append(object)
-                                for data in self.profileData {
-                                    dispatch_async(dispatch_get_main_queue()) {
-                                        self.golferNameLabel.text = data.objectForKey("name") as? String
-                                        self.usernameLabel.text = "Username: \(data.objectForKey("username")!)" as String
-                                        self.golferProfileImage.file = data.objectForKey("profileImage") as? PFFile
-                                        self.golferProfileImage.loadInBackground()
+                        if let object = object as? GolferProfile {
+                        self.profileData.append(object)
+                            print("DATA APPENDED")
+                        for data in self.profileData {
+                         dispatch_async(dispatch_get_main_queue()) {
+                            self.golferNameLabel.text = data.name
+                            self.usernameLabel.text = data.username
+                            self.golferProfileImage.file = data.profileImage
+                            self.golferProfileImage.loadInBackground()
                             }
+                        }
 
                         }
                     }

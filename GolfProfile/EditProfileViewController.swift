@@ -25,19 +25,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadUserProfile()
         imagePicker.delegate = self
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        
-        loadUserProfile()
-
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "unwindSegueToProfile" {
+            let profileVC = segue.destinationViewController as! ProfileViewController
+            
+            profileVC.golferProfileImage.file = self.golferProfileImage.file
+        
+        }
     }
     
     //THIS UPDATES AND SAVES THE CHANGES TO THE USER'S PROFILE
@@ -62,7 +66,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                                 
                             object.saveInBackground()
                             
-                            self.dismissViewControllerAnimated(true, completion: nil)
+                                dispatch_async(dispatch_get_main_queue()) {
+
+                            self.performSegueWithIdentifier("unwindSegueToProfile", sender: self)
+                                    
+                                }
                             }
                         }
                     }
@@ -122,6 +130,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
     }
     
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
@@ -135,13 +144,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 for object:PFObject in userProfiles! {
                     if let profile = object as? GolferProfile {
                         if profile.objectId == PFUser.currentUser()?.objectId {
-                        self.loadProfileData.append(profile)
+                            self.loadProfileData.append(profile)
                     
                         self.golferNameTextField.text = profile.name
                         self.usernameTextField.text = profile.username
 
-                        self.golferProfileImage.file = profile.profileImage
-                        self.golferProfileImage.loadInBackground()
+                            self.golferProfileImage.file = profile.profileImage
+                            self.golferProfileImage.loadInBackground()
            
                         }
                     }
