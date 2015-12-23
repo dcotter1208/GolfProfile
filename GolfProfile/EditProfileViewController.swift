@@ -50,27 +50,25 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         if let editUserQuery = PFUser.query() {
             editUserQuery.findObjectsInBackgroundWithBlock { (profilesToEdit: [PFObject]?, error: NSError?) -> Void in
                 if error == nil {
-        
                     for object:PFObject in profilesToEdit! {
                         if let profile = object as? GolferProfile {
                             if profile.objectId == PFUser.currentUser()?.objectId {
                             self.editProfileData.append(profile)
                             profile.name = self.golferNameTextField.text!
                             profile.username = self.usernameTextField.text!
-                                
                             let pickedImage = self.golferProfileImage.image
                             let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(100, 100))
                             let imageData = UIImagePNGRepresentation(scaledImage)
                             let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
                             profile.profileImage = golferImageFile!
                                 
-                            object.saveInBackground()
-                            
-                                dispatch_async(dispatch_get_main_queue()) {
-
-                            self.performSegueWithIdentifier("unwindSegueToProfile", sender: self)
-                                    
-                                }
+                            object.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                             if success {
+                                self.performSegueWithIdentifier("unwindSegueToProfile", sender: self)
+                                } else {
+                                self.displayAlert("Save Failed", message: "Please try again", actionTitle: "OK")
+                                    }
+                                })
                             }
                         }
                     }
@@ -169,6 +167,17 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         self.golferProfileImage.layer.borderWidth = 3.0
         self.golferProfileImage.layer.borderColor = UIColor.blackColor().CGColor
         self.golferProfileImage.clipsToBounds = true
+        
+    }
+    
+    func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
+        
+        let alertController = UIAlertController(title: alterTitle, message: message, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
         
     }
     
