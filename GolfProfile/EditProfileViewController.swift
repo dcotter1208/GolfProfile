@@ -11,12 +11,12 @@ import Parse
 import ParseUI
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     @IBOutlet weak var golferProfileImage: PFImageView!
     @IBOutlet weak var golferNameTextField: UITextField!
 
     @IBOutlet weak var usernameTextField: UITextField!
 
-    
     var editProfileData = [GolferProfile]()
     var loadProfileData = [GolferProfile]()
     var object: PFObject!
@@ -24,9 +24,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadUserProfile()
+        
         imagePicker.delegate = self
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        loadUserProfile()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,7 +61,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             profile.profileImage = golferImageFile!
                                 
                             object.saveInBackground()
-                                
+                            
+                            self.dismissViewControllerAnimated(true, completion: nil)
                             }
                         }
                     }
@@ -81,7 +88,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             self.presentViewController(self.imagePicker, animated: true, completion: nil)
-            
+            1
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (ACTION) -> Void in
@@ -115,7 +122,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
     }
     
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
@@ -129,13 +135,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 for object:PFObject in userProfiles! {
                     if let profile = object as? GolferProfile {
                         if profile.objectId == PFUser.currentUser()?.objectId {
-                            self.loadProfileData.append(profile)
+                        self.loadProfileData.append(profile)
                     
                         self.golferNameTextField.text = profile.name
                         self.usernameTextField.text = profile.username
 
-                            self.golferProfileImage.file = profile.profileImage
-                            self.golferProfileImage.loadInBackground()
+                        self.golferProfileImage.file = profile.profileImage
+                        self.golferProfileImage.loadInBackground()
            
                         }
                     }
@@ -144,6 +150,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
+    @IBAction func cancelButton(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
     override func viewWillLayoutSubviews() {
         self.golferProfileImage.layer.cornerRadius = 10
         self.golferProfileImage.layer.borderWidth = 3.0

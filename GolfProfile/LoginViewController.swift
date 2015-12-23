@@ -25,15 +25,10 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func login(sender: AnyObject) {
-        
-            // Run a spinner to show a task in progress
-    let spinner: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0, 0, 150, 150)) as UIActivityIndicatorView
-            spinner.startAnimating()
 
         PFUser.logInWithUsernameInBackground((self.usernameTextField.text?.lowercaseString)!, password: (self.passwordTextField.text?.lowercaseString)!) {
             (user: PFUser?, error: NSError?) -> Void in
             
-            spinner.stopAnimating()
 
             
             if error?.code == 101 {

@@ -31,8 +31,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("VIEW LOADED")
-
+        if PFUser.currentUser() != nil {
+            getProfileFromBackground()
+            loadUserScorecardData()
+            
+        }
 
         self.userScoreTableView.addSubview(self.refreshControl)
 
@@ -41,24 +44,25 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewWillAppear(animated: Bool) {
         
-        if PFUser.currentUser() != nil {
-            getProfileFromBackground()
-            loadUserScorecardData()
+        if PFUser.currentUser() == nil {
         
-        } else {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
                 let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
                 self.presentViewController(viewController, animated: true, completion: nil)
             })
+            
+        } else {
+            getProfileFromBackground()
         
         }
-        
-        
     }
     
     override func viewDidAppear(animated: Bool) {
   
+//        getProfileFromBackground()
+
+        
     }
     
     
@@ -150,7 +154,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func unwindToProfilePage(segue: UIStoryboardSegue) {
-
+        
         
     }
     
@@ -158,7 +162,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         self.golferProfileImage.layer.cornerRadius = self.golferProfileImage.frame.size.width / 2
         self.golferProfileImage.layer.borderWidth = 3.0
         self.golferProfileImage.layer.borderColor = UIColor.orangeColor().CGColor
-//            whiteColor().CGColor
         self.golferProfileImage.clipsToBounds = true
         
     }

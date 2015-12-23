@@ -24,8 +24,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(PFUser.currentUser())
-        
         loadFriendsData()
         loadUserData()
         configureSearchController()
@@ -196,7 +194,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                     for object:PFObject in friends! {
                         if let object = object as? GolferProfile {
                             self.friendsData.append(object)
-                            print(self.friendsData.count)
                         }
                     }
                     

@@ -23,21 +23,16 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         
         super.viewDidLoad()
         
+        loadUserPreviousCourses()
         
         loadCoursesFromJSONFile()
         
         configureSearchController()
         
-        print(previousCourses)
-        
-
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        loadUserPreviousCourses()
-        
-        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,7 +113,9 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             if courseInPreviousCourses.courseName == golfCourse.courseName {
+                
                 print("ALREADY A PREVIOUS COURSE")
+                print(golfCourse.courseName)
             } else {
                 previousCourses.append(golfCourse)
                 previousCourse["courseName"] = golfCourse.courseName
@@ -171,13 +168,15 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         if let query = GolfCourse.query() {
             query.whereKey("golfer", equalTo: PFUser.currentUser()!)
             
-            query.findObjectsInBackgroundWithBlock { (previousCourses: [PFObject]?, error: NSError?) -> Void in
+            query.findObjectsInBackgroundWithBlock { (courses: [PFObject]?, error: NSError?) -> Void in
                 if error == nil {
 
-                    for object:PFObject in previousCourses! {
+                    for object:PFObject in courses! {
                         if let object = object as? GolfCourse {
-                            self.previousCourses.append(object)
-                            
+
+                          self.previousCourses.append(object)
+                        print(object.courseName)
+                    
                         }
                     }
                     
