@@ -49,14 +49,6 @@ class FriendScorecardDetailVC: UIViewController {
     
     func loadFriendDetailedScorecardInfo() {
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy"
-        
-        friendScorecardDateLabel.text = dateFormatter.stringFromDate(friendScorecard.date)
-        print(friendScorecard.date)
-        
-        friendScorecardScoreLabel.text = "\(friendScorecard.score)"
-        friendScorecardGCLabel.text = friendScorecard.golfCourse
         scorecardImageView.file = friendScorecard.scorecardImage
         scorecardImageView.loadInBackground()
     
