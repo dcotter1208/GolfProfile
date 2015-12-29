@@ -20,8 +20,6 @@ class GolferProfile : PFUser {
         }
     }
     
-    
-//    @NSManaged var username: String
 //    @NSManaged var age: Int
 //    @NSManaged var country: String
 //    @NSManaged var driver: String

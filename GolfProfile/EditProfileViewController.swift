@@ -11,12 +11,12 @@ import Parse
 import ParseUI
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     @IBOutlet weak var golferProfileImage: PFImageView!
     @IBOutlet weak var golferNameTextField: UITextField!
 
     @IBOutlet weak var usernameTextField: UITextField!
 
-    
     var editProfileData = [GolferProfile]()
     var loadProfileData = [GolferProfile]()
     var object: PFObject!
@@ -24,14 +24,24 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadUserProfile()
         imagePicker.delegate = self
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "unwindSegueToProfile" {
+            let profileVC = segue.destinationViewController as! ProfileViewController
+            
+            profileVC.golferProfileImage.file = self.golferProfileImage.file
+        
+        }
     }
     
     //THIS UPDATES AND SAVES THE CHANGES TO THE USER'S PROFILE
@@ -40,22 +50,25 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         if let editUserQuery = PFUser.query() {
             editUserQuery.findObjectsInBackgroundWithBlock { (profilesToEdit: [PFObject]?, error: NSError?) -> Void in
                 if error == nil {
-        
                     for object:PFObject in profilesToEdit! {
                         if let profile = object as? GolferProfile {
                             if profile.objectId == PFUser.currentUser()?.objectId {
                             self.editProfileData.append(profile)
                             profile.name = self.golferNameTextField.text!
                             profile.username = self.usernameTextField.text!
-                                
                             let pickedImage = self.golferProfileImage.image
                             let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(100, 100))
                             let imageData = UIImagePNGRepresentation(scaledImage)
                             let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
                             profile.profileImage = golferImageFile!
                                 
-                            object.saveInBackground()
-                                
+                            object.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                             if success {
+                                self.performSegueWithIdentifier("unwindSegueToProfile", sender: self)
+                                } else {
+                                self.displayAlert("Save Failed", message: "Please try again", actionTitle: "OK")
+                                    }
+                                })
                             }
                         }
                     }
@@ -81,7 +94,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             self.presentViewController(self.imagePicker, animated: true, completion: nil)
-            
+            1
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (ACTION) -> Void in
@@ -144,11 +157,27 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
+    @IBAction func cancelButton(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
     override func viewWillLayoutSubviews() {
         self.golferProfileImage.layer.cornerRadius = 10
         self.golferProfileImage.layer.borderWidth = 3.0
         self.golferProfileImage.layer.borderColor = UIColor.blackColor().CGColor
         self.golferProfileImage.clipsToBounds = true
+        
+    }
+    
+    func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
+        
+        let alertController = UIAlertController(title: alterTitle, message: message, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
         
     }
     

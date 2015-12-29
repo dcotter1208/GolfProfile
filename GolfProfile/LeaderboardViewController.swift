@@ -106,14 +106,14 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                 
             for object:PFObject in scoreCards! {
                 if let object = object as? GolfScorecard {
-                let golfer = object["golfer"] as! GolferProfile
+                if let golfer = object["golfer"] as? GolferProfile {
                 self.leaderboardData.append(object,golfer)
                     
                     dispatch_async(dispatch_get_main_queue()) {
                     
                         self.leaderboardTableView.reloadData()
                     }
-                            
+                    }
                 }
 
                 }

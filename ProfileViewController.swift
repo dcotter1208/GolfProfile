@@ -19,7 +19,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
     @IBOutlet var photoTapGesture: UITapGestureRecognizer!
     
-    var profileData = [PFObject]()
+    var profileData = [GolferProfile]()
     var userScorecardData = [GolfScorecard]()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -31,8 +31,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("VIEW LOADED")
-
+        if PFUser.currentUser() != nil {
+            getProfileFromBackground()
+            loadUserScorecardData()
+            
+        }
 
         self.userScoreTableView.addSubview(self.refreshControl)
 
@@ -41,26 +44,15 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewWillAppear(animated: Bool) {
         
-        if PFUser.currentUser() != nil {
-            getProfileFromBackground()
-            loadUserScorecardData()
+        if PFUser.currentUser() == nil {
         
-        } else {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
                 let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
                 self.presentViewController(viewController, animated: true, completion: nil)
             })
-        
         }
-        
-        
     }
-    
-    override func viewDidAppear(animated: Bool) {
-  
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -143,14 +135,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
                     self.presentViewController(viewController, animated: true, completion: nil)
                 })
-            
             }
         }
-
     }
     
     @IBAction func unwindToProfilePage(segue: UIStoryboardSegue) {
-
+        
+        getProfileFromBackground()
         
     }
     
@@ -158,7 +149,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         self.golferProfileImage.layer.cornerRadius = self.golferProfileImage.frame.size.width / 2
         self.golferProfileImage.layer.borderWidth = 3.0
         self.golferProfileImage.layer.borderColor = UIColor.orangeColor().CGColor
-//            whiteColor().CGColor
         self.golferProfileImage.clipsToBounds = true
         
     }
@@ -170,22 +160,23 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             userQuery.findObjectsInBackgroundWithBlock({ (currentUserProfile:[PFObject]?, error: NSError?) -> Void in
                 if error == nil {
                     for object:PFObject in currentUserProfile! {
-                            self.profileData.append(object)
-                                for data in self.profileData {
-                                    dispatch_async(dispatch_get_main_queue()) {
-                                        self.golferNameLabel.text = data.objectForKey("name") as? String
-                                        self.usernameLabel.text = "Username: \(data.objectForKey("username")!)" as String
-                                        self.golferProfileImage.file = data.objectForKey("profileImage") as? PFFile
-                                        self.golferProfileImage.loadInBackground()
+                    if let object = object as? GolferProfile {
+                    self.profileData.append(object)
+                    for data in self.profileData {
+                    dispatch_async(dispatch_get_main_queue()) {
+                    self.golferNameLabel.text = data.name
+                    self.usernameLabel.text = data.username
+                    self.golferProfileImage.file = data.profileImage
+                    self.golferProfileImage.loadInBackground()
                             }
-
                         }
                     }
-                    
-                } else {
-                    print(error)
-                
                 }
+                    
+            } else {
+            print(error)
+                
+            }
             })
         }
     }
@@ -198,17 +189,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         query.whereKey("golfer", equalTo: PFUser.currentUser()!)
         query.orderByDescending("date")
         
-            query.findObjectsInBackgroundWithBlock { (scorecards: [PFObject]?, error: NSError?) -> Void in
-                if error == nil {
-                    for object:PFObject in scorecards! {
-                        if let object = object as? GolfScorecard {
-                        self.userScorecardData.append(object)
+        query.findObjectsInBackgroundWithBlock { (scorecards: [PFObject]?, error: NSError?) -> Void in
+        if error == nil {
+            for object:PFObject in scorecards! {
+            if let object = object as? GolfScorecard {
+            self.userScorecardData.append(object)
                     }
                 }
-                
-                    dispatch_async(dispatch_get_main_queue()) {
+            dispatch_async(dispatch_get_main_queue()) {
                     
-                    self.userScoreTableView.reloadData()
+                self.userScoreTableView.reloadData()
                         
                     }
                 

@@ -16,13 +16,8 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var scoreTextField: UITextField!
     
-    var locationManager:CLLocationManager?
-    let distanceSpan:Double = 500
-    
     var imagePicker = UIImagePickerController()
     let date = NSDate()
-    var golfCourseCollection:[GolfCourse]?
-    var courses = [GolfCourse]()
     var selectedCourse: GolfCourse?
 
 
@@ -40,19 +35,10 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         
         imagePicker.delegate = self
 
-        
     }
     
     override func viewDidAppear(animated: Bool) {
-        if locationManager == nil {
-            locationManager = CLLocationManager()
-            
-            locationManager!.delegate = self
-            locationManager!.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-            locationManager!.requestAlwaysAuthorization()
-            locationManager!.distanceFilter = 50 // Don't send location updates with a distance smaller than 50 meters between them
-            locationManager!.startUpdatingLocation()
-        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,7 +48,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func cancelButton(sender: UIButton) {
         
-            self.dismissViewControllerAnimated(true, completion: nil)
+    self.dismissViewControllerAnimated(true, completion: nil)
 
     }
     
@@ -86,7 +72,6 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
             let parseImageFile = PFFile(name: "scorecard.png", data: imageData!)
             golfScore["scorecardImage"] = parseImageFile
        
-            
         }
         
         golfScore.saveInBackgroundWithBlock {
@@ -94,9 +79,9 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
             if (success) {
                 
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
                     
-                }
+            }
 
                 
             } else {
@@ -115,7 +100,6 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         }
 
     }
-
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
