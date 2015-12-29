@@ -10,8 +10,12 @@
 		C0017C5C1BEDB47C00691F7D /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0017C5B1BEDB47C00691F7D /* FriendsCell.swift */; };
 		C0017C5E1BEEC5D300691F7D /* FriendScorecardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */; };
 		C01E85F51C1A1A67001CBA1B /* GolfCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01E85F41C1A1A67001CBA1B /* GolfCourse.swift */; };
-		C01E85FF1C1A63AB001CBA1B /* GolfCourseInfoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01E85FE1C1A63AB001CBA1B /* GolfCourseInfoAPI.swift */; };
+		C01F71BA1C33354400887522 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B81C33354400887522 /* Realm.framework */; };
+		C01F71BB1C33354400887522 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B81C33354400887522 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C01F71BC1C33354400887522 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B91C33354400887522 /* RealmSwift.framework */; };
+		C01F71BD1C33354400887522 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B91C33354400887522 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C01F94431C1B6FE100680565 /* GolfCourseSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F94421C1B6FE100680565 /* GolfCourseSearchVC.swift */; };
+		C0255B7F1C330A4500B8BCE6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0255B7E1C330A4500B8BCE6 /* Course.swift */; };
 		C038BF161BE80AA4004AE33E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF151BE80AA4004AE33E /* AppDelegate.swift */; };
 		C038BF1B1BE80AA4004AE33E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C038BF191BE80AA4004AE33E /* Main.storyboard */; };
 		C038BF1D1BE80AA4004AE33E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C038BF1C1BE80AA4004AE33E /* Assets.xcassets */; };
@@ -48,7 +52,6 @@
 		C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */; };
 		C07DDFA31C245AE000F69E4B /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */; };
 		C07E7C401C0376B500A86EB7 /* GolfScorecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */; };
-		C082E9191C19ECB10001EBEE /* GolfCourseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082E9181C19ECB10001EBEE /* GolfCourseAPI.swift */; };
 		C0A0AEC81C0A7E7000671B18 /* GolferProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */; };
 		C0A0AF481C0FC6D500671B18 /* ProfilePhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */; };
 		C0A288481BED2D0C0003AF11 /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288471BED2D0C0003AF11 /* FriendsVC.swift */; };
@@ -82,12 +85,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C01F71B41C332A2B00887522 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C01F71BD1C33354400887522 /* RealmSwift.framework in Embed Frameworks */,
+				C01F71BB1C33354400887522 /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C0017C5B1BEDB47C00691F7D /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendScorecardCell.swift; sourceTree = "<group>"; };
 		C01E85F41C1A1A67001CBA1B /* GolfCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfCourse.swift; sourceTree = "<group>"; };
-		C01E85FE1C1A63AB001CBA1B /* GolfCourseInfoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfCourseInfoAPI.swift; sourceTree = "<group>"; };
+		C01F71B81C33354400887522 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Realm.framework; sourceTree = "<group>"; };
+		C01F71B91C33354400887522 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../RealmSwift.framework; sourceTree = "<group>"; };
 		C01F94421C1B6FE100680565 /* GolfCourseSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfCourseSearchVC.swift; sourceTree = "<group>"; };
+		C0255B7E1C330A4500B8BCE6 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		C038BF121BE80AA4004AE33E /* GolfProfile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfProfile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C038BF151BE80AA4004AE33E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C038BF1A1BE80AA4004AE33E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,7 +150,6 @@
 		C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLeaderboardCell.swift; sourceTree = "<group>"; };
 		C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfScorecard.swift; sourceTree = "<group>"; };
-		C082E9181C19ECB10001EBEE /* GolfCourseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfCourseAPI.swift; sourceTree = "<group>"; };
 		C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolferProfile.swift; sourceTree = "<group>"; };
 		C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhotoVC.swift; sourceTree = "<group>"; };
 		C0A288471BED2D0C0003AF11 /* FriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
@@ -155,6 +174,7 @@
 				C038BF641BE83F6E004AE33E /* Social.framework in Frameworks */,
 				C038BF6E1BE84072004AE33E /* ParseCrashReporting.framework in Frameworks */,
 				C038BF621BE83F67004AE33E /* Accounts.framework in Frameworks */,
+				C01F71BC1C33354400887522 /* RealmSwift.framework in Frameworks */,
 				C038BF601BE83F4A004AE33E /* libsqlite3.tbd in Frameworks */,
 				C038BF711BE84072004AE33E /* ParseTwitterUtils.framework in Frameworks */,
 				C038BF5E1BE83F40004AE33E /* libz.tbd in Frameworks */,
@@ -162,6 +182,7 @@
 				C038BF5A1BE83F2C004AE33E /* StoreKit.framework in Frameworks */,
 				C038BF581BE83F25004AE33E /* Security.framework in Frameworks */,
 				C038BF6C1BE84072004AE33E /* Bolts.framework in Frameworks */,
+				C01F71BA1C33354400887522 /* Realm.framework in Frameworks */,
 				C03D92301C29E6000084B255 /* Fabric.framework in Frameworks */,
 				C038BF561BE83F20004AE33E /* QuartzCore.framework in Frameworks */,
 				C03D92311C29E6000084B255 /* Crashlytics.framework in Frameworks */,
@@ -231,8 +252,6 @@
 				C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */,
 				C0AFA2E51BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift */,
 				C0C74F371BF4206700EB4E11 /* LeaderboardViewController.swift */,
-				C082E9181C19ECB10001EBEE /* GolfCourseAPI.swift */,
-				C01E85FE1C1A63AB001CBA1B /* GolfCourseInfoAPI.swift */,
 				C0AF95171C1B351F008DCB4A /* DataManager.swift */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
 				C0C368CA1C1DFF2600457244 /* courseData.json */,
@@ -271,6 +290,7 @@
 				C01E85F41C1A1A67001CBA1B /* GolfCourse.swift */,
 				C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */,
 				C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */,
+				C0255B7E1C330A4500B8BCE6 /* Course.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -278,6 +298,8 @@
 		C038BF4A1BE83E62004AE33E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C01F71B81C33354400887522 /* Realm.framework */,
+				C01F71B91C33354400887522 /* RealmSwift.framework */,
 				C03D922E1C29E6000084B255 /* Fabric.framework */,
 				C03D922F1C29E6000084B255 /* Crashlytics.framework */,
 				C03D92321C29ED610084B255 /* ParseUI.framework */,
@@ -332,6 +354,7 @@
 				B8F1EE822CC67360266418A6 /* Embed Pods Frameworks */,
 				83E0EA3F92645E9DBA0E004B /* Copy Pods Resources */,
 				C03D92251C29E5390084B255 /* ShellScript */,
+				C01F71B41C332A2B00887522 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -493,7 +516,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 087ec597b94f91cf25cf719f28b5414d1252fe6b 933ea710c52965cf0189b9bc84c90755718cdb38d16440b2098c3517318e14fe";
+			shellScript = "./Fabric.framework/run 087ec597b94f91cf25cf719f28b5414d1252fe6b 933ea710c52965cf0189b9bc84c90755718cdb38d16440b2098c3517318e14fe\n\nbash ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\n";
 		};
 		D6E98A95BACB3526AD6698B9 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -517,6 +540,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0255B7F1C330A4500B8BCE6 /* Course.swift in Sources */,
 				C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */,
 				C0AF95181C1B351F008DCB4A /* DataManager.swift in Sources */,
 				C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */,
@@ -524,7 +548,6 @@
 				C0A2884A1BED37810003AF11 /* FindFriendCell.swift in Sources */,
 				C0C74F381BF4206700EB4E11 /* LeaderboardViewController.swift in Sources */,
 				C0017C5E1BEEC5D300691F7D /* FriendScorecardCell.swift in Sources */,
-				C082E9191C19ECB10001EBEE /* GolfCourseAPI.swift in Sources */,
 				C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */,
 				C07E7C401C0376B500A86EB7 /* GolfScorecard.swift in Sources */,
 				C0AF95141C1B18EB008DCB4A /* SwiftyJSON.swift in Sources */,
@@ -535,7 +558,6 @@
 				C0DD4D8C1C1F089800AE3799 /* PreviousCourseCell.swift in Sources */,
 				C038BF761BE84287004AE33E /* LoginViewController.swift in Sources */,
 				C01E85F51C1A1A67001CBA1B /* GolfCourse.swift in Sources */,
-				C01E85FF1C1A63AB001CBA1B /* GolfCourseInfoAPI.swift in Sources */,
 				C0AFA2E61BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift in Sources */,
 				C0017C5C1BEDB47C00691F7D /* FriendsCell.swift in Sources */,
 				C0C74F3A1BF424E400EB4E11 /* LeaderboardCell.swift in Sources */,
@@ -726,6 +748,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = GolfProfileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfileTests;
@@ -738,6 +761,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = GolfProfileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfileTests;
@@ -749,6 +773,7 @@
 		C038BF411BE80AA4004AE33E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = GolfProfileUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfileUITests;
@@ -761,6 +786,7 @@
 		C038BF421BE80AA4004AE33E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = GolfProfileUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfileUITests;
