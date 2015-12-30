@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Parse
 import RealmSwift
 
 class CourseSearchTVC: UITableViewController {
     
     @IBOutlet var coursesTableView: UITableView!
 
+    var previousCourses = [GolfCourse]()
     var courses = try! Realm().objects(Course).sorted("name", ascending: true)
     var searchResults = try! Realm().objects(Course)
     var searchController: UISearchController!
@@ -20,10 +22,9 @@ class CourseSearchTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadUserPreviousCourses()
         configureSearchBar()
         
-        print(try! Realm().objects(Course))
-
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -35,6 +36,33 @@ class CourseSearchTVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func loadUserPreviousCourses() {
+        previousCourses.removeAll()
+        if let query = GolfCourse.query() {
+            query.whereKey("golfer", equalTo: PFUser.currentUser()!)
+            
+            query.findObjectsInBackgroundWithBlock { (courses: [PFObject]?, error: NSError?) -> Void in
+                if error == nil {
+                    for object:PFObject in courses! {
+                        if let object = object as? GolfCourse {
+                            self.previousCourses.append(object)
+                            print(self.previousCourses)
+                        }
+                    }
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.coursesTableView.reloadData()
+                    }
+                    
+                } else {
+                    print(error)
+                }
+            }
+        }
+        
+    }
+
+    
+    
     func configureSearchBar() {
     let searchResultsController = UITableViewController(style: .Plain)
     searchResultsController.tableView.delegate = self
@@ -47,24 +75,11 @@ class CourseSearchTVC: UITableViewController {
     searchController.searchBar.sizeToFit()
     searchController.searchBar.tintColor = UIColor.blackColor()
     searchController.searchBar.delegate = self
-    searchController.searchBar.barTintColor = UIColor(red: 0, green: 104.0/255.0, blue: 55.0/255.0, alpha: 1.0)
+    searchController.searchBar.barTintColor = UIColor(red: 255, green: 116.0/255.0, blue: 0, alpha: 1.0)
         coursesTableView.tableHeaderView = searchController.searchBar
         
     definesPresentationContext = true
 
-    }
-    
-    func configureSearchController() {
-        // Initialize and perform a minimum configuration to the search controller.
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search here..."
-        searchController.searchBar.delegate = self
-        searchController.searchBar.sizeToFit()
-        
-        // Place the search bar view to the tableview headerview.
-        coursesTableView.tableHeaderView = searchController.searchBar
     }
     
     func filterResultsWithSearchString(searchString: String) {
@@ -72,11 +87,11 @@ class CourseSearchTVC: UITableViewController {
         let realm = try! Realm()
         
         searchResults = realm.objects(Course).filter(predicate).sorted("name", ascending: true)
-        
 
     }
     
 }
+
 
 // MARK: - UISearchResultsUpdating
 extension CourseSearchTVC: UISearchResultsUpdating {
@@ -100,18 +115,33 @@ extension CourseSearchTVC:  UISearchBarDelegate {
 extension CourseSearchTVC {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.active ? searchResults.count : courses.count
+        return searchController.active ? searchResults.count : previousCourses.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("courseSearchCell") as! SearchCourseCell
+
+        if searchController.active {
         
-        let course = searchController.active ? searchResults[indexPath.row] : courses[indexPath.row]
+        let course = searchResults[indexPath.row]
         
         cell.searchCourseLabel.text = course.name
         cell.searchCourseLocationLabel.text = "(\(course.city)"
-        
+            
         return cell
+            
+        } else {
+            
+        let course = previousCourses[indexPath.row]
+            
+        cell.searchCourseLabel.text = course.courseName
+        cell.searchCourseLocationLabel.text = "\(course.city)" + "," + " " + "\(course.state)"
+            
+        return cell
+            
+        }
+        
+        
     }
     
     
