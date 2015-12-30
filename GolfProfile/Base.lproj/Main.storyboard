@@ -136,7 +136,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" image="newScorecard"/>
                                 <connections>
-                                    <segue destination="P9H-TB-abD" kind="push" identifier="courseSearch" id="dAj-l3-fAv"/>
+                                    <segue destination="SJx-cv-IA0" kind="push" id="2pA-ig-cOq"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scorecard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6On-bM-dXX">
@@ -387,7 +387,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="previousCourseCell" rowHeight="83" id="Ufu-sR-tw8" customClass="PreviousCourseCell" customModule="GolfProfile" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="83"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ufu-sR-tw8" id="Pkn-SW-x7p">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="82"/>
@@ -406,7 +406,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="KWC-DZ-Aw3"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -423,45 +423,6 @@
                                         <connections>
                                             <outlet property="previousCourseCityLabel" destination="dcL-Kz-dam" id="v30-fP-0re"/>
                                             <outlet property="previousCourseLabel" destination="sHr-SK-ZNt" id="d5J-JE-Lph"/>
-                                            <segue destination="bcC-Qa-jI3" kind="push" identifier="showNewScoreVC" id="zXG-bA-5dZ"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCourseCell" rowHeight="83" id="ONv-sX-UGl" customClass="SearchCourseCell" customModule="GolfProfile" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="175" width="320" height="83"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ONv-sX-UGl" id="bKj-80-Kyn">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="seJ-aJ-RTG">
-                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="QPW-vW-2QL"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VE5-3U-hQJ">
-                                                    <rect key="frame" x="8" y="48" width="304" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" red="0.1764705882" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="seJ-aJ-RTG" firstAttribute="leading" secondItem="VE5-3U-hQJ" secondAttribute="leading" id="5FK-TR-Ije"/>
-                                                <constraint firstItem="VE5-3U-hQJ" firstAttribute="top" secondItem="seJ-aJ-RTG" secondAttribute="bottom" constant="19" id="8C5-OE-Ios"/>
-                                                <constraint firstItem="seJ-aJ-RTG" firstAttribute="top" secondItem="bKj-80-Kyn" secondAttribute="topMargin" id="GzT-oS-UnS"/>
-                                                <constraint firstItem="VE5-3U-hQJ" firstAttribute="trailing" secondItem="seJ-aJ-RTG" secondAttribute="trailing" id="NlD-Ow-iTc"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="VE5-3U-hQJ" secondAttribute="bottom" constant="5" id="OVQ-S3-jPc"/>
-                                                <constraint firstItem="seJ-aJ-RTG" firstAttribute="leading" secondItem="bKj-80-Kyn" secondAttribute="leadingMargin" id="Rkh-eZ-1VF"/>
-                                                <constraint firstItem="seJ-aJ-RTG" firstAttribute="trailing" secondItem="bKj-80-Kyn" secondAttribute="trailingMargin" id="gES-Vb-GSy"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="searchCourseLabel" destination="seJ-aJ-RTG" id="kTY-2Q-wjf"/>
-                                            <outlet property="searchCourseLocationLabel" destination="VE5-3U-hQJ" id="hLw-Jr-SWf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -486,7 +447,57 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HcU-Qj-cLu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="410" y="-3698"/>
+            <point key="canvasLocation" x="796" y="-4326"/>
+        </scene>
+        <!--Course SearchTVC-->
+        <scene sceneID="EB0-Fo-rJz">
+            <objects>
+                <tableViewController id="SJx-cv-IA0" customClass="CourseSearchTVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="kn4-aJ-rla">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseSearchCell" rowHeight="88" id="wJh-mw-fl9" customClass="SearchCourseCell" customModule="GolfProfile" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="88"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wJh-mw-fl9" id="aEg-wG-yyC">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVP-7j-aFt">
+                                            <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAf-jV-8WS">
+                                            <rect key="frame" x="8" y="45" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="searchCourseLabel" destination="mVP-7j-aFt" id="lJ3-bU-cYg"/>
+                                    <outlet property="searchCourseLocationLabel" destination="cAf-jV-8WS" id="YHn-qE-HDY"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SJx-cv-IA0" id="Nkr-b1-0XR"/>
+                            <outlet property="delegate" destination="SJx-cv-IA0" id="hRy-2j-AHi"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ffo-mg-MRg"/>
+                    <connections>
+                        <outlet property="coursesTableView" destination="kn4-aJ-rla" id="DE7-2S-ruA"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mvi-co-Puf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="406" y="-3678"/>
         </scene>
         <!--New Score View Controller-->
         <scene sceneID="qg1-2L-K2A">

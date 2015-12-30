@@ -8,31 +8,28 @@
 
 import UIKit
 import Parse
+import RealmSwift
 
-class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
+class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var golfCourseCollection = [GolfCourse]()
     var searchedGolfCourse = [GolfCourse]()
     var previousCourses = [GolfCourse]()
     var shouldShowSearchResults = false
     var searchController: UISearchController!
+    var searchResults = try! Realm().objects(Course)
 
     @IBOutlet weak var previousCourseListTableView: UITableView!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
+        print(try! Realm().objects(Course))
         
         loadUserPreviousCourses()
         
-        loadCoursesFromJSONFile()
-        
         configureSearchController()
         
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,12 +37,11 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if shouldShowSearchResults {
             
-        return searchedGolfCourse.count
+        return searchResults.count
         
         } else {
             
@@ -61,8 +57,8 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         if shouldShowSearchResults {
             let searchCourseCell:SearchCourseCell = tableView.dequeueReusableCellWithIdentifier("searchCourseCell", forIndexPath: indexPath) as! SearchCourseCell
             
-            searchCourseCell.searchCourseLabel.text = searchedGolfCourse[indexPath.row].courseName
-            searchCourseCell.searchCourseLocationLabel.text = searchedGolfCourse[indexPath.row].city + "," + " " + searchedGolfCourse[indexPath.row].state
+            searchCourseCell.searchCourseLabel.text = searchResults[indexPath.row].name
+            searchCourseCell.searchCourseLocationLabel.text = searchResults[indexPath.row].city + "," + " " + searchResults[indexPath.row].state
             
             return searchCourseCell
             
@@ -136,7 +132,6 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    
     func loadCoursesFromJSONFile() {
         DataManager.getGolfCoursesFromFileWithSuccess { (data) -> Void in
             let json = JSON(data: data)
@@ -170,21 +165,14 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
             
             query.findObjectsInBackgroundWithBlock { (courses: [PFObject]?, error: NSError?) -> Void in
                 if error == nil {
-
                     for object:PFObject in courses! {
-                        if let object = object as? GolfCourse {
-
-                          self.previousCourses.append(object)
-                        print(object.courseName)
-                    
-                        }
+                    if let object = object as? GolfCourse {
+                    self.previousCourses.append(object)
                     }
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        
-                        self.previousCourseListTableView.reloadData()
-                        
-                    }
+                }
+                dispatch_async(dispatch_get_main_queue()) {
+                self.previousCourseListTableView.reloadData()
+                }
                     
                 } else {
                     print(error)
@@ -208,46 +196,35 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         previousCourseListTableView.tableHeaderView = searchController.searchBar
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        
-//        if searchController.searchBar.text? >= 3 {
-        
-        let searchString = searchController.searchBar.text
-//        }
-        
-        // Filter the allUsers array and get only those users' username that match the search text.
-        searchedGolfCourse = golfCourseCollection.filter({(course) -> Bool in
-            let nameText: NSString = course.courseName
-            
-            return (nameText.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
-        })
-        
-        dispatch_async(dispatch_get_main_queue()) {
-
-        self.previousCourseListTableView.reloadData()
-    
-        }
+    func filterResultsWithSearchString(searchString: String) {
+        let predicate = NSPredicate(format: "name BEGINSWITH [c]%@", searchString) // 1
+        let realm = try! Realm()
+        searchResults = realm.objects(Course).filter(predicate).sorted("name", ascending: true)
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        shouldShowSearchResults = true
-        previousCourseListTableView.reloadData()
-    }
-
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        shouldShowSearchResults = false
-        previousCourseListTableView.reloadData()
-    }
-//    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        if !shouldShowSearchResults {
-            shouldShowSearchResults = true
-            previousCourseListTableView.reloadData()
-        }
-        
-        searchController.searchBar.resignFirstResponder()
-    }
-    
-
 }
+
+// MARK: - UISearchResultsUpdating
+extension GolfCourseSearchVC: UISearchResultsUpdating {
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchString = searchController.searchBar.text!
+        filterResultsWithSearchString(searchString)
+        
+        let searchResultsController = searchController.searchResultsController as? GolfCourseSearchVC
+        if let search = searchResultsController {
+            search.previousCourseListTableView.reloadData()
+        }
+    }
+    
+}
+
+// MARK: - UISearchBarDelegate
+extension GolfCourseSearchVC:  UISearchBarDelegate {
+    
+}
+
+
+
+
+

@@ -14,6 +14,7 @@
 		C01F71BB1C33354400887522 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B81C33354400887522 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C01F71BC1C33354400887522 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B91C33354400887522 /* RealmSwift.framework */; };
 		C01F71BD1C33354400887522 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B91C33354400887522 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C01F71C11C338B5000887522 /* CourseSearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F71C01C338B5000887522 /* CourseSearchTVC.swift */; };
 		C01F94431C1B6FE100680565 /* GolfCourseSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F94421C1B6FE100680565 /* GolfCourseSearchVC.swift */; };
 		C0255B7F1C330A4500B8BCE6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0255B7E1C330A4500B8BCE6 /* Course.swift */; };
 		C038BF161BE80AA4004AE33E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF151BE80AA4004AE33E /* AppDelegate.swift */; };
@@ -106,6 +107,7 @@
 		C01E85F41C1A1A67001CBA1B /* GolfCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfCourse.swift; sourceTree = "<group>"; };
 		C01F71B81C33354400887522 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Realm.framework; sourceTree = "<group>"; };
 		C01F71B91C33354400887522 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../RealmSwift.framework; sourceTree = "<group>"; };
+		C01F71C01C338B5000887522 /* CourseSearchTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSearchTVC.swift; sourceTree = "<group>"; };
 		C01F94421C1B6FE100680565 /* GolfCourseSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfCourseSearchVC.swift; sourceTree = "<group>"; };
 		C0255B7E1C330A4500B8BCE6 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		C038BF121BE80AA4004AE33E /* GolfProfile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfProfile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,7 @@
 				C038BF641BE83F6E004AE33E /* Social.framework in Frameworks */,
 				C038BF6E1BE84072004AE33E /* ParseCrashReporting.framework in Frameworks */,
 				C038BF621BE83F67004AE33E /* Accounts.framework in Frameworks */,
+				C01F71BA1C33354400887522 /* Realm.framework in Frameworks */,
 				C01F71BC1C33354400887522 /* RealmSwift.framework in Frameworks */,
 				C038BF601BE83F4A004AE33E /* libsqlite3.tbd in Frameworks */,
 				C038BF711BE84072004AE33E /* ParseTwitterUtils.framework in Frameworks */,
@@ -182,14 +185,13 @@
 				C038BF5A1BE83F2C004AE33E /* StoreKit.framework in Frameworks */,
 				C038BF581BE83F25004AE33E /* Security.framework in Frameworks */,
 				C038BF6C1BE84072004AE33E /* Bolts.framework in Frameworks */,
-				C01F71BA1C33354400887522 /* Realm.framework in Frameworks */,
 				C03D92301C29E6000084B255 /* Fabric.framework in Frameworks */,
 				C038BF561BE83F20004AE33E /* QuartzCore.framework in Frameworks */,
 				C03D92311C29E6000084B255 /* Crashlytics.framework in Frameworks */,
 				C038BF541BE83F1A004AE33E /* CoreLocation.framework in Frameworks */,
-				C038BF6D1BE84072004AE33E /* Parse.framework in Frameworks */,
 				C038BF521BE83F14004AE33E /* CoreGraphics.framework in Frameworks */,
 				C038BF501BE83F04004AE33E /* CFNetwork.framework in Frameworks */,
+				C038BF6D1BE84072004AE33E /* Parse.framework in Frameworks */,
 				C038BF701BE84072004AE33E /* ParseFacebookUtilsV4.framework in Frameworks */,
 				C038BF6F1BE84072004AE33E /* ParseFacebookUtils.framework in Frameworks */,
 				C03D92341C29EDA60084B255 /* ParseUI.framework in Frameworks */,
@@ -217,11 +219,11 @@
 		C038BF091BE80AA4004AE33E = {
 			isa = PBXGroup;
 			children = (
+				C038BF4A1BE83E62004AE33E /* Frameworks */,
 				C038BF141BE80AA4004AE33E /* GolfProfile */,
 				C038BF291BE80AA4004AE33E /* GolfProfileTests */,
 				C038BF341BE80AA4004AE33E /* GolfProfileUITests */,
 				C038BF131BE80AA4004AE33E /* Products */,
-				C038BF4A1BE83E62004AE33E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -246,6 +248,7 @@
 				C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */,
 				C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */,
 				C01F94421C1B6FE100680565 /* GolfCourseSearchVC.swift */,
+				C01F71C01C338B5000887522 /* CourseSearchTVC.swift */,
 				C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */,
 				C0AFA2E71BF0106800C9F058 /* UserScorecardDetailVC.swift */,
 				C0A288471BED2D0C0003AF11 /* FriendsVC.swift */,
@@ -355,6 +358,7 @@
 				83E0EA3F92645E9DBA0E004B /* Copy Pods Resources */,
 				C03D92251C29E5390084B255 /* ShellScript */,
 				C01F71B41C332A2B00887522 /* Embed Frameworks */,
+				C0CD846A1C3426BC008E5ECC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -516,7 +520,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 087ec597b94f91cf25cf719f28b5414d1252fe6b 933ea710c52965cf0189b9bc84c90755718cdb38d16440b2098c3517318e14fe\n\nbash ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\n";
+			shellScript = "./Fabric.framework/run 087ec597b94f91cf25cf719f28b5414d1252fe6b 933ea710c52965cf0189b9bc84c90755718cdb38d16440b2098c3517318e14fes";
+		};
+		C0CD846A1C3426BC008E5ECC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"";
 		};
 		D6E98A95BACB3526AD6698B9 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -548,6 +565,7 @@
 				C0A2884A1BED37810003AF11 /* FindFriendCell.swift in Sources */,
 				C0C74F381BF4206700EB4E11 /* LeaderboardViewController.swift in Sources */,
 				C0017C5E1BEEC5D300691F7D /* FriendScorecardCell.swift in Sources */,
+				C01F71C11C338B5000887522 /* CourseSearchTVC.swift in Sources */,
 				C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */,
 				C07E7C401C0376B500A86EB7 /* GolfScorecard.swift in Sources */,
 				C0AF95141C1B18EB008DCB4A /* SwiftyJSON.swift in Sources */,
@@ -710,14 +728,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GolfProfile",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GolfProfile",
 				);
 				INFOPLIST_FILE = GolfProfile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GolfProfile",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -732,12 +754,15 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GolfProfile",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GolfProfile",
 				);
 				INFOPLIST_FILE = GolfProfile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GolfProfile",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -748,7 +773,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = GolfProfileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfileTests;
@@ -761,7 +786,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = GolfProfileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfileTests;
