@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import Realm
+import RealmSwift
 
-class Course: RLMObject {
+class Course: Object {
     dynamic var name = ""
     dynamic var city = ""
     dynamic var state = ""

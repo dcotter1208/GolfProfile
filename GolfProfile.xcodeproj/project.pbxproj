@@ -14,6 +14,7 @@
 		C01F71BB1C33354400887522 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B81C33354400887522 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C01F71BC1C33354400887522 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B91C33354400887522 /* RealmSwift.framework */; };
 		C01F71BD1C33354400887522 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B91C33354400887522 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C01F71C11C338B5000887522 /* CourseSearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F71C01C338B5000887522 /* CourseSearchTVC.swift */; };
 		C01F94431C1B6FE100680565 /* GolfCourseSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F94421C1B6FE100680565 /* GolfCourseSearchVC.swift */; };
 		C0255B7F1C330A4500B8BCE6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0255B7E1C330A4500B8BCE6 /* Course.swift */; };
 		C038BF161BE80AA4004AE33E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF151BE80AA4004AE33E /* AppDelegate.swift */; };
@@ -106,6 +107,7 @@
 		C01E85F41C1A1A67001CBA1B /* GolfCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfCourse.swift; sourceTree = "<group>"; };
 		C01F71B81C33354400887522 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Realm.framework; sourceTree = "<group>"; };
 		C01F71B91C33354400887522 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../RealmSwift.framework; sourceTree = "<group>"; };
+		C01F71C01C338B5000887522 /* CourseSearchTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSearchTVC.swift; sourceTree = "<group>"; };
 		C01F94421C1B6FE100680565 /* GolfCourseSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfCourseSearchVC.swift; sourceTree = "<group>"; };
 		C0255B7E1C330A4500B8BCE6 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		C038BF121BE80AA4004AE33E /* GolfProfile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfProfile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,6 +248,7 @@
 				C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */,
 				C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */,
 				C01F94421C1B6FE100680565 /* GolfCourseSearchVC.swift */,
+				C01F71C01C338B5000887522 /* CourseSearchTVC.swift */,
 				C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */,
 				C0AFA2E71BF0106800C9F058 /* UserScorecardDetailVC.swift */,
 				C0A288471BED2D0C0003AF11 /* FriendsVC.swift */,
@@ -548,6 +551,7 @@
 				C0A2884A1BED37810003AF11 /* FindFriendCell.swift in Sources */,
 				C0C74F381BF4206700EB4E11 /* LeaderboardViewController.swift in Sources */,
 				C0017C5E1BEEC5D300691F7D /* FriendScorecardCell.swift in Sources */,
+				C01F71C11C338B5000887522 /* CourseSearchTVC.swift in Sources */,
 				C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */,
 				C07E7C401C0376B500A86EB7 /* GolfScorecard.swift in Sources */,
 				C0AF95141C1B18EB008DCB4A /* SwiftyJSON.swift in Sources */,
