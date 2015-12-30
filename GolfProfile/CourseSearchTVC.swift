@@ -126,7 +126,7 @@ extension CourseSearchTVC {
         let course = searchResults[indexPath.row]
         
         cell.searchCourseLabel.text = course.name
-        cell.searchCourseLocationLabel.text = "(\(course.city)"
+        cell.searchCourseLocationLabel.text = "\(course.city)" + "," + " " + "\(course.state)"
             
         return cell
             
@@ -143,6 +143,83 @@ extension CourseSearchTVC {
         
         
     }
-    
-    
+
 }
+
+extension CourseSearchTVC {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        var courseInPreviousCourses = GolfCourse()
+        
+        if searchController.active {
+            
+            let golfCourse = self.searchResults[indexPath.row]
+            
+            let previousCourse = PFObject(className: "PreviousCourse")
+            
+            for course in previousCourses {
+            
+            courseInPreviousCourses = course
+                
+            }
+            
+            if courseInPreviousCourses.courseName == golfCourse.name {
+            
+                print("ALREADY A PREVIOUS COURSE")
+            
+            }
+        
+        }
+        
+        
+    }
+
+
+}
+
+//extension CourseSearchTVC {
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        var courseInPreviousCourses = GolfCourse()
+//        
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        
+//        if searchController.active {
+//            
+//            let golfCourse = self.searchResults[indexPath.row]
+//            
+//            let previousCourse = PFObject(className:"PreviousCourse")
+//            
+//            for course in previousCourses {
+//                
+//                courseInPreviousCourses = course
+//                
+//            }
+//            
+//            if courseInPreviousCourses.courseName == golfCourse.name {
+//                
+//                print("ALREADY A PREVIOUS COURSE")
+//                print(golfCourse.name)
+//            } else {
+//                let course:GolfCourse = golfCourse
+//                previousCourses.append(golfCourse as GolfCourse)
+//                previousCourse["courseName"] = golfCourse.name
+//                previousCourse["city"] = golfCourse.city
+//                previousCourse["state"] = golfCourse.state
+//                previousCourse["golfer"] = PFUser.currentUser()
+//                previousCourse.saveInBackgroundWithBlock {
+//                    (success: Bool, error: NSError?) -> Void in
+//                    if (success) {
+//                        
+//                    } else {
+//                        print(error)
+//                    }
+//                }
+//                
+//            }
+//            
+//        }
+//    }
+//
+//
+//}
