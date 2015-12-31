@@ -12,8 +12,6 @@ class SearchCourseCell: UITableViewCell {
     @IBOutlet weak var searchCourseLabel: UILabel!
     @IBOutlet weak var searchCourseLocationLabel: UILabel!
     
-    
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()

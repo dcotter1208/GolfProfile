@@ -42,14 +42,14 @@ class CourseSearchTVC: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func configureSearchBar() {
     let searchResultsController = UITableViewController(style: .Plain)
     searchResultsController.tableView.delegate = self
     searchResultsController.tableView.dataSource = self
     searchResultsController.tableView.rowHeight = 63
     searchResultsController.tableView.registerClass(SearchCourseCell.self, forCellReuseIdentifier: "courseSearchCell")
-        
+
     searchController = UISearchController(searchResultsController: searchResultsController)
     searchController.searchResultsUpdater = self
     searchController.searchBar.sizeToFit()
@@ -69,7 +69,6 @@ class CourseSearchTVC: UITableViewController {
     }
     
 }
-
 
 // MARK: - UISearchResultsUpdating
 extension CourseSearchTVC: UISearchResultsUpdating {
@@ -99,30 +98,44 @@ extension CourseSearchTVC {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("courseSearchCell") as! SearchCourseCell
-        
         if searchController.active {
-        
+        let searchCell = self.tableView.dequeueReusableCellWithIdentifier("courseSearchCell") as! SearchCourseCell
         let course = searchResults![indexPath.row]
         
-        cell.searchCourseLabel.text = course.name
-        cell.searchCourseLocationLabel.text = "\(course.city)" + "," + " " + "\(course.state)"
+        searchCell.searchCourseLabel.text = course.name
+        searchCell.searchCourseLocationLabel.text = "\(course.city)" + "," + " " + "\(course.state)"
             
-        return cell
+        return searchCell
             
         } else {
-            
+        let previousCourseCell = self.tableView.dequeueReusableCellWithIdentifier("previousCourseCell") as! PreviousCourseCell
         let course = previousCoursesFromRealm[indexPath.row]
             
-        cell.searchCourseLabel.text = course.name
-        cell.searchCourseLocationLabel.text = "\(course.city)" + "," + " " + "\(course.state)"
+        previousCourseCell.previousCourseLabel.text = course.name
+        previousCourseCell.previousCourseLocationLabel.text = "\(course.city)" + "," + " " + "\(course.state)"
             
-        return cell
+        return previousCourseCell
             
         }
     
-        
     }
+
+}
+
+extension CourseSearchTVC {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "showNewScoreVC"  {
+            
+            let newScoreVC = segue.destinationViewController as! NewScoreViewController
+            
+            let selectedIndex = coursesTableView.indexPathForCell(sender as! UITableViewCell)
+            
+            newScoreVC.selectedCourse = previousCoursesFromRealm[selectedIndex!.row]
+            
+        }
+    }
+
 
 }
 
@@ -151,15 +164,10 @@ extension CourseSearchTVC {
                 if searchController.active == false {
                 
                 coursesTableView.reloadData()
-                }
+                  }
                 }
             }
 
-        } else {
-            
-            print(previousCoursesFromRealm[indexPath.row])
-            
-        
         }
 
     }
@@ -173,10 +181,7 @@ extension CourseSearchTVC {
             
         UITableViewCellEditingStyle.None
             
-
         } else {
-    
-        
 
         let deletedValue = previousCoursesFromRealm[indexPath.row]
         

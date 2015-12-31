@@ -370,86 +370,7 @@
             </objects>
             <point key="canvasLocation" x="-123" y="-3245"/>
         </scene>
-        <!--Golf Course SearchVC-->
-        <scene sceneID="3S7-dB-Ezx">
-            <objects>
-                <viewController id="P9H-TB-abD" customClass="GolfCourseSearchVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="LoD-Yd-rN9"/>
-                        <viewControllerLayoutGuide type="bottom" id="lFs-5r-Aih"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yXO-E7-ppy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="89" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PwB-hR-ycl">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="previousCourseCell" rowHeight="83" id="Ufu-sR-tw8" customClass="PreviousCourseCell" customModule="GolfProfile" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="83"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ufu-sR-tw8" id="Pkn-SW-x7p">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="82"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcL-Kz-dam">
-                                                    <rect key="frame" x="8" y="51" width="232" height="23"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" red="0.1764705882" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHr-SK-ZNt">
-                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="KWC-DZ-Aw3"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="dcL-Kz-dam" firstAttribute="top" secondItem="sHr-SK-ZNt" secondAttribute="bottom" constant="22" id="PRO-kj-THy"/>
-                                                <constraint firstItem="sHr-SK-ZNt" firstAttribute="leading" secondItem="dcL-Kz-dam" secondAttribute="leading" id="VMo-Xs-JKk"/>
-                                                <constraint firstItem="dcL-Kz-dam" firstAttribute="leading" secondItem="Pkn-SW-x7p" secondAttribute="leadingMargin" id="aeD-zH-R1z"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="sHr-SK-ZNt" secondAttribute="trailing" constant="-33" id="bF8-4B-7R7"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="dcL-Kz-dam" secondAttribute="trailing" constant="39" id="lHa-84-gbx"/>
-                                                <constraint firstItem="sHr-SK-ZNt" firstAttribute="top" secondItem="Pkn-SW-x7p" secondAttribute="topMargin" id="tPc-Wq-0px"/>
-                                                <constraint firstItem="dcL-Kz-dam" firstAttribute="bottom" secondItem="Pkn-SW-x7p" secondAttribute="bottomMargin" id="zip-NL-get"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="previousCourseCityLabel" destination="dcL-Kz-dam" id="v30-fP-0re"/>
-                                            <outlet property="previousCourseLabel" destination="sHr-SK-ZNt" id="d5J-JE-Lph"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="P9H-TB-abD" id="uZ2-ty-47Y"/>
-                                    <outlet property="delegate" destination="P9H-TB-abD" id="rIf-6x-bVx"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="PwB-hR-ycl" secondAttribute="bottom" id="5zn-ra-LSX"/>
-                            <constraint firstItem="PwB-hR-ycl" firstAttribute="leading" secondItem="yXO-E7-ppy" secondAttribute="leading" id="i0r-wd-g4D"/>
-                            <constraint firstAttribute="trailing" secondItem="PwB-hR-ycl" secondAttribute="trailing" id="k3m-6h-33R"/>
-                            <constraint firstItem="PwB-hR-ycl" firstAttribute="top" secondItem="yXO-E7-ppy" secondAttribute="top" id="zDz-iA-Vtq"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="7fF-WS-sV3"/>
-                    <connections>
-                        <outlet property="previousCourseListTableView" destination="PwB-hR-ycl" id="EWF-eT-2de"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HcU-Qj-cLu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="796" y="-4326"/>
-        </scene>
-        <!--Course SearchTVC-->
+        <!--Select Course-->
         <scene sceneID="EB0-Fo-rJz">
             <objects>
                 <tableViewController id="SJx-cv-IA0" customClass="CourseSearchTVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
@@ -467,13 +388,13 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVP-7j-aFt">
                                             <rect key="frame" x="8" y="8" width="304" height="21"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAf-jV-8WS">
-                                            <rect key="frame" x="8" y="37" width="304" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <rect key="frame" x="8" y="36" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.1764705882" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -484,20 +405,47 @@
                                     <outlet property="searchCourseLocationLabel" destination="cAf-jV-8WS" id="YHn-qE-HDY"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="previousCourseCell" id="2Eb-A4-SWs" customClass="PreviousCourseCell" customModule="GolfProfile" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="158" width="320" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Eb-A4-SWs" id="euQ-eE-B4C">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="65"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="186-M9-5VJ">
+                                            <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEP-8e-mUd">
+                                            <rect key="frame" x="8" y="36" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.1764705882" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="previousCourseLabel" destination="186-M9-5VJ" id="dgN-zD-vbP"/>
+                                    <outlet property="previousCourseLocationLabel" destination="gEP-8e-mUd" id="enD-2k-71a"/>
+                                    <segue destination="bcC-Qa-jI3" kind="push" identifier="showNewScoreVC" id="vHx-QM-pI4"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="SJx-cv-IA0" id="Nkr-b1-0XR"/>
                             <outlet property="delegate" destination="SJx-cv-IA0" id="hRy-2j-AHi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ffo-mg-MRg"/>
+                    <navigationItem key="navigationItem" title="Select Course" id="ffo-mg-MRg"/>
                     <connections>
                         <outlet property="coursesTableView" destination="kn4-aJ-rla" id="DE7-2S-ruA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mvi-co-Puf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="406" y="-3678"/>
+            <point key="canvasLocation" x="404" y="-3698"/>
         </scene>
         <!--New Score View Controller-->
         <scene sceneID="qg1-2L-K2A">

@@ -10,10 +10,7 @@ import UIKit
 
 class PreviousCourseCell: UITableViewCell {
     @IBOutlet weak var previousCourseLabel: UILabel!
-
-    @IBOutlet weak var previousCourseCityLabel: UILabel!
-    
-    @IBOutlet weak var previousCourseStateLabel: UILabel!
+    @IBOutlet weak var previousCourseLocationLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
