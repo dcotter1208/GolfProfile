@@ -13,8 +13,8 @@ import RealmSwift
 class CourseSearchTVC: UITableViewController {
     
     @IBOutlet var coursesTableView: UITableView!
-
-    var previousCourses = [GolfCourse]()
+    var previousCoursesFromRealm = try! Realm().objects(PreviousCourse).sorted("name", ascending: true)
+    var previousCourse = PreviousCourse()
     var searchController: UISearchController!
     
     var realmDataManager = RealmDataManager()
@@ -26,9 +26,13 @@ class CourseSearchTVC: UITableViewController {
         realmDataManager.configureRealmData()
         results = realmDataManager.results
         configureSearchBar()
-        loadUserPreviousCourses()
         
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        coursesTableView.reloadData()
+    }
+    
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
@@ -39,32 +43,6 @@ class CourseSearchTVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func loadUserPreviousCourses() {
-        previousCourses.removeAll()
-        if let query = GolfCourse.query() {
-            query.whereKey("golfer", equalTo: PFUser.currentUser()!)
-            
-            query.findObjectsInBackgroundWithBlock { (courses: [PFObject]?, error: NSError?) -> Void in
-                if error == nil {
-                    for object:PFObject in courses! {
-                        if let object = object as? GolfCourse {
-                            self.previousCourses.append(object)
-//                            print(self.previousCourses)
-                        }
-                    }
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.coursesTableView.reloadData()
-                    }
-                    
-                } else {
-                    print(error)
-                }
-            }
-        }
-        
-    }
-
-    
     func configureSearchBar() {
     let searchResultsController = UITableViewController(style: .Plain)
     searchResultsController.tableView.delegate = self
@@ -100,7 +78,6 @@ extension CourseSearchTVC: UISearchResultsUpdating {
         let searchString = searchController.searchBar.text!
         filterResultsWithSearchString(searchString)
         
-//        coursesTableView.reloadData()
         let searchResultsController = searchController.searchResultsController as! UITableViewController
         searchResultsController.tableView.reloadData()
     }
@@ -117,7 +94,7 @@ extension CourseSearchTVC {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return searchController.active ? searchResults!.count : previousCourses.count
+        return searchController.active ? searchResults!.count : previousCoursesFromRealm.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -135,9 +112,9 @@ extension CourseSearchTVC {
             
         } else {
             
-        let course = previousCourses[indexPath.row]
+        let course = previousCoursesFromRealm[indexPath.row]
             
-        cell.searchCourseLabel.text = course.courseName
+        cell.searchCourseLabel.text = course.name
         cell.searchCourseLocationLabel.text = "\(course.city)" + "," + " " + "\(course.state)"
             
         return cell
@@ -149,39 +126,64 @@ extension CourseSearchTVC {
 
 }
 
-//extension CourseSearchTVC {
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//
-//        var courseInPreviousCourses = GolfCourse()
-//        
-//        if searchController.active {
-//            
-//            let realm = try! Realm(configuration: config)
-//            let searchResults = realm.objects(Course)
-//            
-//            let golfCourse = searchResults[indexPath.row]
-//            
-//            let previousCourse = PFObject(className: "PreviousCourse")
-//            
-//            for course in previousCourses {
-//            
-//            courseInPreviousCourses = course
-//                
-//            }
-//            
-//            if courseInPreviousCourses.courseName == golfCourse.name {
-//            
-//                print("ALREADY A PREVIOUS COURSE")
-//            
-//            }
-//        
-//        }
-//        
-//        
-//    }
-//
-//
-//}
+extension CourseSearchTVC {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if searchController.active {
+            
+        let realm = try! Realm()
+            try! realm.write {
+            let addPreviousCourse = PreviousCourse()
+            
+            if searchResults![indexPath.row].name != "" {
+                
+            addPreviousCourse.name = searchResults![indexPath.row].name
+            addPreviousCourse.city = searchResults![indexPath.row].city
+            addPreviousCourse.state = searchResults![indexPath.row].state
+            
+            self.previousCourse = addPreviousCourse
+            realm.add(previousCourse)
+            print(previousCourse)
+            searchController.active = false
+            
+                if searchController.active == false {
+                
+                coursesTableView.reloadData()
+                }
+                }
+            }
+
+        } else {
+            
+            print(previousCoursesFromRealm[indexPath.row])
+            
+        
+        }
+
+    }
+}
+
+extension CourseSearchTVC {
+
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+
+        let deletedValue = previousCoursesFromRealm[indexPath.row]
+        
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            let realm = try! Realm()
+            try! realm.write {
+                realm.delete(deletedValue)
+            }
+            
+            coursesTableView.reloadData()
+            
+        }
+    }
+
+
+}
 
 //extension CourseSearchTVC {
 //    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

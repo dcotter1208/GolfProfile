@@ -48,9 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                }
 //            }
 //        }
-        
-        print(Realm.Configuration.defaultConfiguration.path!)
-        
+                
         Fabric.with([Crashlytics.self])
         
         // [Optional] Power your app with Local Datastore. For more info, go to

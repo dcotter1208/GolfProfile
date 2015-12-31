@@ -67,6 +67,7 @@
 		C0C74F3A1BF424E400EB4E11 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C74F391BF424E400EB4E11 /* LeaderboardCell.swift */; };
 		C0CD846E1C34E439008E5ECC /* courseDataBase.realm in Resources */ = {isa = PBXBuildFile; fileRef = C0CD846D1C34E427008E5ECC /* courseDataBase.realm */; };
 		C0CD84701C34F23C008E5ECC /* RealmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CD846F1C34F23C008E5ECC /* RealmDataManager.swift */; };
+		C0CD84721C357173008E5ECC /* PreviousCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CD84711C357173008E5ECC /* PreviousCourse.swift */; };
 		C0DD4D8A1C1F087200AE3799 /* SearchCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DD4D891C1F087200AE3799 /* SearchCourseCell.swift */; };
 		C0DD4D8C1C1F089800AE3799 /* PreviousCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DD4D8B1C1F089800AE3799 /* PreviousCourseCell.swift */; };
 /* End PBXBuildFile section */
@@ -168,6 +169,7 @@
 		C0C74F391BF424E400EB4E11 /* LeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		C0CD846D1C34E427008E5ECC /* courseDataBase.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = courseDataBase.realm; sourceTree = "<group>"; };
 		C0CD846F1C34F23C008E5ECC /* RealmDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDataManager.swift; sourceTree = "<group>"; };
+		C0CD84711C357173008E5ECC /* PreviousCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviousCourse.swift; sourceTree = "<group>"; };
 		C0DD4D891C1F087200AE3799 /* SearchCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCourseCell.swift; sourceTree = "<group>"; };
 		C0DD4D8B1C1F089800AE3799 /* PreviousCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviousCourseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -300,6 +302,7 @@
 				C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */,
 				C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */,
 				C0255B7E1C330A4500B8BCE6 /* Course.swift */,
+				C0CD84711C357173008E5ECC /* PreviousCourse.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0255B7F1C330A4500B8BCE6 /* Course.swift in Sources */,
+				C0CD84721C357173008E5ECC /* PreviousCourse.swift in Sources */,
 				C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */,
 				C0AF95181C1B351F008DCB4A /* DataManager.swift in Sources */,
 				C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */,
