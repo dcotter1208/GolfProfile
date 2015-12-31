@@ -42,9 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         let realm = try! Realm()
                         
                         try! realm.write {
-                            
                             realm.add(course)
-                            print(realm.objects(Course).count)
+
                         }
                     }
                 }

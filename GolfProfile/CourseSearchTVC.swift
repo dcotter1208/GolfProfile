@@ -15,13 +15,17 @@ class CourseSearchTVC: UITableViewController {
     @IBOutlet var coursesTableView: UITableView!
 
     var previousCourses = [GolfCourse]()
-    var courses = try! Realm().objects(Course).sorted("name", ascending: true)
-    var searchResults = try! Realm().objects(Course)
     var searchController: UISearchController!
+    
+    let config = Realm.Configuration(
+        path: NSBundle.mainBundle().pathForResource("courseDataBase", ofType:"realm"),
+        readOnly: true)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let realm = try! Realm(configuration: config)
+
         loadUserPreviousCourses()
         configureSearchBar()
         
@@ -46,7 +50,6 @@ class CourseSearchTVC: UITableViewController {
                     for object:PFObject in courses! {
                         if let object = object as? GolfCourse {
                             self.previousCourses.append(object)
-                            print(self.previousCourses)
                         }
                     }
                     dispatch_async(dispatch_get_main_queue()) {
@@ -61,7 +64,6 @@ class CourseSearchTVC: UITableViewController {
         
     }
 
-    
     
     func configureSearchBar() {
     let searchResultsController = UITableViewController(style: .Plain)
@@ -84,9 +86,10 @@ class CourseSearchTVC: UITableViewController {
     
     func filterResultsWithSearchString(searchString: String) {
         let predicate = NSPredicate(format: "name BEGINSWITH [c]%@", searchString) // 1
-        let realm = try! Realm()
-        
-        searchResults = realm.objects(Course).filter(predicate).sorted("name", ascending: true)
+        let realm = try! Realm(configuration: config)
+        let searchResults = realm.objects(Course)
+        print(searchResults)
+        searchResults.filter(predicate).sorted("name", ascending: true)
 
     }
     
@@ -113,16 +116,20 @@ extension CourseSearchTVC:  UISearchBarDelegate {
 
 // MARK: - UITableViewDataSource
 extension CourseSearchTVC {
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let realm = try! Realm(configuration: config)
+        let searchResults = realm.objects(Course)
+        
         return searchController.active ? searchResults.count : previousCourses.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let realm = try! Realm(configuration: config)
+        let searchResults = realm.objects(Course)
         let cell = self.tableView.dequeueReusableCellWithIdentifier("courseSearchCell") as! SearchCourseCell
 
         if searchController.active {
-        
         let course = searchResults[indexPath.row]
         
         cell.searchCourseLabel.text = course.name
@@ -146,36 +153,39 @@ extension CourseSearchTVC {
 
 }
 
-extension CourseSearchTVC {
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        var courseInPreviousCourses = GolfCourse()
-        
-        if searchController.active {
-            
-            let golfCourse = self.searchResults[indexPath.row]
-            
-            let previousCourse = PFObject(className: "PreviousCourse")
-            
-            for course in previousCourses {
-            
-            courseInPreviousCourses = course
-                
-            }
-            
-            if courseInPreviousCourses.courseName == golfCourse.name {
-            
-                print("ALREADY A PREVIOUS COURSE")
-            
-            }
-        
-        }
-        
-        
-    }
-
-
-}
+//extension CourseSearchTVC {
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//
+//        var courseInPreviousCourses = GolfCourse()
+//        
+//        if searchController.active {
+//            
+//            let realm = try! Realm(configuration: config)
+//            let searchResults = realm.objects(Course)
+//            
+//            let golfCourse = searchResults[indexPath.row]
+//            
+//            let previousCourse = PFObject(className: "PreviousCourse")
+//            
+//            for course in previousCourses {
+//            
+//            courseInPreviousCourses = course
+//                
+//            }
+//            
+//            if courseInPreviousCourses.courseName == golfCourse.name {
+//            
+//                print("ALREADY A PREVIOUS COURSE")
+//            
+//            }
+//        
+//        }
+//        
+//        
+//    }
+//
+//
+//}
 
 //extension CourseSearchTVC {
 //    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

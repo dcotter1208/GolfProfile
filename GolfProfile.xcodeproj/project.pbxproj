@@ -65,6 +65,8 @@
 		C0C368CB1C1DFF2600457244 /* courseData.json in Resources */ = {isa = PBXBuildFile; fileRef = C0C368CA1C1DFF2600457244 /* courseData.json */; };
 		C0C74F381BF4206700EB4E11 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C74F371BF4206700EB4E11 /* LeaderboardViewController.swift */; };
 		C0C74F3A1BF424E400EB4E11 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C74F391BF424E400EB4E11 /* LeaderboardCell.swift */; };
+		C0CD846E1C34E439008E5ECC /* courseDataBase.realm in Resources */ = {isa = PBXBuildFile; fileRef = C0CD846D1C34E427008E5ECC /* courseDataBase.realm */; };
+		C0CD84701C34F23C008E5ECC /* RealmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CD846F1C34F23C008E5ECC /* RealmDataManager.swift */; };
 		C0DD4D8A1C1F087200AE3799 /* SearchCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DD4D891C1F087200AE3799 /* SearchCourseCell.swift */; };
 		C0DD4D8C1C1F089800AE3799 /* PreviousCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DD4D8B1C1F089800AE3799 /* PreviousCourseCell.swift */; };
 /* End PBXBuildFile section */
@@ -164,6 +166,8 @@
 		C0C368CA1C1DFF2600457244 /* courseData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = courseData.json; sourceTree = "<group>"; };
 		C0C74F371BF4206700EB4E11 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		C0C74F391BF424E400EB4E11 /* LeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		C0CD846D1C34E427008E5ECC /* courseDataBase.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = courseDataBase.realm; sourceTree = "<group>"; };
+		C0CD846F1C34F23C008E5ECC /* RealmDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDataManager.swift; sourceTree = "<group>"; };
 		C0DD4D891C1F087200AE3799 /* SearchCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCourseCell.swift; sourceTree = "<group>"; };
 		C0DD4D8B1C1F089800AE3799 /* PreviousCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviousCourseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -240,6 +244,7 @@
 		C038BF141BE80AA4004AE33E /* GolfProfile */ = {
 			isa = PBXGroup;
 			children = (
+				C0CD846D1C34E427008E5ECC /* courseDataBase.realm */,
 				C038BF151BE80AA4004AE33E /* AppDelegate.swift */,
 				C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */,
 				C038BF751BE84287004AE33E /* LoginViewController.swift */,
@@ -256,6 +261,7 @@
 				C0AFA2E51BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift */,
 				C0C74F371BF4206700EB4E11 /* LeaderboardViewController.swift */,
 				C0AF95171C1B351F008DCB4A /* DataManager.swift */,
+				C0CD846F1C34F23C008E5ECC /* RealmDataManager.swift */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
 				C0C368CA1C1DFF2600457244 /* courseData.json */,
 				C038BF1C1BE80AA4004AE33E /* Assets.xcassets */,
@@ -454,6 +460,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0CD846E1C34E439008E5ECC /* courseDataBase.realm in Resources */,
 				C04597481BFB7C8A001A004D /* Keys.plist in Resources */,
 				C0C368CB1C1DFF2600457244 /* courseData.json in Resources */,
 				C038BF201BE80AA4004AE33E /* LaunchScreen.storyboard in Resources */,
@@ -576,6 +583,7 @@
 				C0DD4D8C1C1F089800AE3799 /* PreviousCourseCell.swift in Sources */,
 				C038BF761BE84287004AE33E /* LoginViewController.swift in Sources */,
 				C01E85F51C1A1A67001CBA1B /* GolfCourse.swift in Sources */,
+				C0CD84701C34F23C008E5ECC /* RealmDataManager.swift in Sources */,
 				C0AFA2E61BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift in Sources */,
 				C0017C5C1BEDB47C00691F7D /* FriendsCell.swift in Sources */,
 				C0C74F3A1BF424E400EB4E11 /* LeaderboardCell.swift in Sources */,
