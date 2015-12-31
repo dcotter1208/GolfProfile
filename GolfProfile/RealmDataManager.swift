@@ -9,15 +9,19 @@
 import Foundation
 import RealmSwift
 
-class RealmDataManager {
+struct RealmDataManager {
+    
+    var results = Results<(Course)>?()
     
     let config = Realm.Configuration(
         path: NSBundle.mainBundle().pathForResource("courseDataBase", ofType:"realm"),
         readOnly: true)
     
     
-    func configureRealmData() {
+    mutating func configureRealmData() {
         let realm = try! Realm(configuration: config)
+        
+        results = realm.objects(Course)
     
     }
     

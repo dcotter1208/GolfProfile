@@ -16,19 +16,17 @@ class CourseSearchTVC: UITableViewController {
 
     var previousCourses = [GolfCourse]()
     var searchController: UISearchController!
-    let courseArray = [Course]()
     
-    let config = Realm.Configuration(
-        path: NSBundle.mainBundle().pathForResource("courseDataBase", ofType:"realm"),
-        readOnly: true)
+    var realmDataManager = RealmDataManager()
+    var results = Results<(Course)>?()
+    var searchResults = Results<(Course)>?()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let realm = try! Realm(configuration: config)
-
-        loadUserPreviousCourses()
+        realmDataManager.configureRealmData()
+        results = realmDataManager.results
         configureSearchBar()
+        loadUserPreviousCourses()
         
     }
     
@@ -51,6 +49,7 @@ class CourseSearchTVC: UITableViewController {
                     for object:PFObject in courses! {
                         if let object = object as? GolfCourse {
                             self.previousCourses.append(object)
+//                            print(self.previousCourses)
                         }
                     }
                     dispatch_async(dispatch_get_main_queue()) {
@@ -87,11 +86,8 @@ class CourseSearchTVC: UITableViewController {
     
     func filterResultsWithSearchString(searchString: String) {
         let predicate = NSPredicate(format: "name BEGINSWITH [c]%@", searchString) // 1
-        let realm = try! Realm(configuration: config)
-        let searchResults = realm.objects(Course)
-        print(searchResults)
-        searchResults.filter(predicate).sorted("name", ascending: true)
 
+        searchResults = results!.filter(predicate).sorted("name", ascending: true)
     }
     
 }
@@ -104,6 +100,7 @@ extension CourseSearchTVC: UISearchResultsUpdating {
         let searchString = searchController.searchBar.text!
         filterResultsWithSearchString(searchString)
         
+//        coursesTableView.reloadData()
         let searchResultsController = searchController.searchResultsController as! UITableViewController
         searchResultsController.tableView.reloadData()
     }
@@ -119,19 +116,17 @@ extension CourseSearchTVC:  UISearchBarDelegate {
 extension CourseSearchTVC {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let realm = try! Realm(configuration: config)
-        let searchResults = realm.objects(Course)
         
-        return searchController.active ? searchResults.count : previousCourses.count
+        return searchController.active ? searchResults!.count : previousCourses.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let realm = try! Realm(configuration: config)
-        let searchResults = realm.objects(Course)
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("courseSearchCell") as! SearchCourseCell
 
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("courseSearchCell") as! SearchCourseCell
+        
         if searchController.active {
-        let course = searchResults[indexPath.row]
+        
+        let course = searchResults![indexPath.row]
         
         cell.searchCourseLabel.text = course.name
         cell.searchCourseLocationLabel.text = "\(course.city)" + "," + " " + "\(course.state)"
@@ -148,6 +143,7 @@ extension CourseSearchTVC {
         return cell
             
         }
+    
         
     }
 
