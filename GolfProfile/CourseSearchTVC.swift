@@ -16,6 +16,7 @@ class CourseSearchTVC: UITableViewController {
 
     var previousCourses = [GolfCourse]()
     var searchController: UISearchController!
+    let courseArray = [Course]()
     
     let config = Realm.Configuration(
         path: NSBundle.mainBundle().pathForResource("courseDataBase", ofType:"realm"),
@@ -147,7 +148,6 @@ extension CourseSearchTVC {
         return cell
             
         }
-        
         
     }
 
