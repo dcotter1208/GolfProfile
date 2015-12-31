@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import RealmSwift
 
 class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
@@ -18,15 +19,14 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     
     var imagePicker = UIImagePickerController()
     let date = NSDate()
-    var selectedCourse: GolfCourse?
-
+    var selectedCourse = PreviousCourse()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print(selectedCourse)
 
-        golfCourseName.text = selectedCourse?.courseName
+        golfCourseName.text = selectedCourse.name
         
         datePicker.backgroundColor = UIColor.whiteColor()
         datePicker.setValue(UIColor.blackColor(), forKeyPath: "textColor")

@@ -67,7 +67,7 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
             let previousCourseCell:PreviousCourseCell = tableView.dequeueReusableCellWithIdentifier("previousCourseCell", forIndexPath: indexPath) as! PreviousCourseCell
             
             previousCourseCell.previousCourseLabel.text = previousCourses[indexPath.row].courseName
-            previousCourseCell.previousCourseCityLabel.text = previousCourses[indexPath.row].city + "," + " " + previousCourses[indexPath.row].state
+            previousCourseCell.previousCourseLocationLabel.text = previousCourses[indexPath.row].city + "," + " " + previousCourses[indexPath.row].state
             
             return previousCourseCell
             
@@ -84,7 +84,7 @@ class GolfCourseSearchVC: UIViewController, UITableViewDelegate, UITableViewData
         
         let selectedIndex = previousCourseListTableView.indexPathForCell(sender as! UITableViewCell)
         
-        newScoreVC.selectedCourse = previousCourses[selectedIndex!.row]
+//        newScoreVC.selectedCourse = previousCourses[selectedIndex!.row]
         
     }
 }
