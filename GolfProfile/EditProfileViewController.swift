@@ -113,7 +113,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 
         golferProfileImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }
@@ -137,19 +136,16 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     //Loads the current user's profile information into the edit view's textfields
     func loadUserProfile() {
         if let userQuery = PFUser.query() {
-            userQuery.findObjectsInBackgroundWithBlock({ (userProfiles:[PFObject]?, error: NSError?) -> Void in
-                
-                for object:PFObject in userProfiles! {
-                    if let profile = object as? GolferProfile {
-                        if profile.objectId == PFUser.currentUser()?.objectId {
-                            self.loadProfileData.append(profile)
-                    
-                        self.golferNameTextField.text = profile.name
-                        self.usernameTextField.text = profile.username
+        userQuery.findObjectsInBackgroundWithBlock({ (userProfiles:[PFObject]?, error: NSError?) -> Void in
 
-                            self.golferProfileImage.file = profile.profileImage
-                            self.golferProfileImage.loadInBackground()
-           
+        for object:PFObject in userProfiles! {
+            if let profile = object as? GolferProfile {
+                if profile.objectId == PFUser.currentUser()?.objectId {
+                self.loadProfileData.append(profile)
+                self.golferNameTextField.text = profile.name
+                self.usernameTextField.text = profile.username
+                self.golferProfileImage.file = profile.profileImage
+                self.golferProfileImage.loadInBackground()
                         }
                     }
                 }
@@ -167,7 +163,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         self.golferProfileImage.layer.borderWidth = 3.0
         self.golferProfileImage.layer.borderColor = UIColor.blackColor().CGColor
         self.golferProfileImage.clipsToBounds = true
-        
     }
     
     func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {

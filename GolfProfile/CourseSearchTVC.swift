@@ -175,13 +175,21 @@ extension CourseSearchTVC {
 
 extension CourseSearchTVC {
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return !searchController.active
+    }
     
-        if searchController.active {
-            
-        UITableViewCellEditingStyle.None
-            
-        } else {
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+
+    
+//        if searchController.active {
+//            
+//        UITableViewCellEditingStyle.None
+//            
+//        }
+        
+//        else {
 
         let deletedValue = previousCoursesFromRealm[indexPath.row]
         
@@ -193,7 +201,7 @@ extension CourseSearchTVC {
             
             coursesTableView.reloadData()
                 }
-            }
+//            }
         }
     }
 
