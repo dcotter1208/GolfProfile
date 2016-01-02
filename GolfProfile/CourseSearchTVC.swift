@@ -15,8 +15,8 @@ class CourseSearchTVC: UITableViewController {
     @IBOutlet var coursesTableView: UITableView!
     var previousCoursesFromRealm = try! Realm().objects(PreviousCourse).sorted("name", ascending: true)
     var previousCourse = PreviousCourse()
+    var courseFromRealm = PreviousCourse()
     var searchController: UISearchController!
-    
     var realmDataManager = RealmDataManager()
     var results = Results<(Course)>?()
     var searchResults = Results<(Course)>?()
@@ -26,6 +26,7 @@ class CourseSearchTVC: UITableViewController {
         realmDataManager.configureRealmData()
         results = realmDataManager.results
         configureSearchBar()
+        
         
     }
     
@@ -67,6 +68,18 @@ class CourseSearchTVC: UITableViewController {
 
         searchResults = results!.filter(predicate).sorted("name", ascending: true)
     }
+    
+    func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
+        
+        let alertController = UIAlertController(title: alterTitle, message: message, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+
     
 }
 
@@ -140,38 +153,44 @@ extension CourseSearchTVC {
 }
 
 extension CourseSearchTVC {
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         if searchController.active {
             
-        let realm = try! Realm()
+            let realm = try! Realm()
             try! realm.write {
-            let addPreviousCourse = PreviousCourse()
-            
-            if searchResults![indexPath.row].name != "" {
+                let addPreviousCourse = PreviousCourse()
                 
-            addPreviousCourse.name = searchResults![indexPath.row].name
-            addPreviousCourse.city = searchResults![indexPath.row].city
-            addPreviousCourse.state = searchResults![indexPath.row].state
-            
-            self.previousCourse = addPreviousCourse
-            realm.add(previousCourse)
-            print(previousCourse)
-            searchController.active = false
+                addPreviousCourse.name = searchResults![indexPath.row].name
+                addPreviousCourse.city = searchResults![indexPath.row].city
+                addPreviousCourse.state = searchResults![indexPath.row].state
+                
+                self.previousCourse = addPreviousCourse
+
+                if previousCoursesFromRealm.contains( { $0.name == previousCourse.name }) {
+   
+                displayAlert("Whoops!", message: "\(previousCourse.name) already exists inside of your previous course list. Please choose a different course.", actionTitle: "OK")
+                    
+                } else {
+                    
+                    realm.add(previousCourse)
+                    searchController.active = false
+
+                    }
+                }
             
                 if searchController.active == false {
-                
-                coursesTableView.reloadData()
-                  }
+                    
+                    coursesTableView.reloadData()
+
                 }
             }
-
         }
-
     }
-}
+
 
 extension CourseSearchTVC {
     
@@ -180,16 +199,7 @@ extension CourseSearchTVC {
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
 
-    
-//        if searchController.active {
-//            
-//        UITableViewCellEditingStyle.None
-//            
-//        }
-        
-//        else {
 
         let deletedValue = previousCoursesFromRealm[indexPath.row]
         
@@ -201,7 +211,6 @@ extension CourseSearchTVC {
             
             coursesTableView.reloadData()
                 }
-//            }
+            }
         }
-    }
 
