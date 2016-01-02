@@ -111,7 +111,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
 //  When we click on a photo - either from the photo library or taken from the camera - it will store it as our golferProfileImage
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-
+        self.imagePicker.allowsEditing = true
+//        imagePicker.cameraOverlayView
         golferProfileImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         self.dismissViewControllerAnimated(true, completion: nil)
         
