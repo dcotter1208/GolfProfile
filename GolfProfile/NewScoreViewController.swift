@@ -9,13 +9,16 @@
 import UIKit
 import Parse
 import RealmSwift
+import ALCameraViewController
 
 class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var golfCourseName: UITextField!
     @IBOutlet weak var scorecardImage: UIImageView?
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var scoreTextField: UITextField!
+    @IBOutlet weak var scoreTextField: UITextField?
+    let croppingEnabled = true
+    let libraryEnabled: Bool = true
     
     var imagePicker = UIImagePickerController()
     let date = NSDate()
@@ -53,53 +56,54 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func saveScoreButton(sender: AnyObject) {
-
-        let golfScore = PFObject(className:"GolfScorecard")
-        golfScore["score"] = Int(scoreTextField.text!)
-        golfScore["golfer"] = PFUser.currentUser()
-        golfScore["golfCourse"] = golfCourseName.text!
-        golfScore["date"] = datePicker.date
         
-        if scorecardImage?.image == nil {
+        let golfScorecard = PFObject(className: "GolfScorecard")
+   
+        if scoreTextField?.text?.characters.count == 0 {
+         
+        displayAlert("Invalid Score", message: "You didn't enter a score.", actionTitle: "OK")
             
-            scorecardImage?.image = UIImage(named: "noScorecard")
+        } else if scoreTextField?.text?.characters.count == 1 {
+            
+        displayAlert("Invalid Score", message: "No way you're good enough to have a score of \(scoreTextField!.text!)", actionTitle: "OK")
+        
+        } else if (scoreTextField?.text?.characters.count)! > 3 || Int(scoreTextField!.text!) >= 200  {
+        
+        displayAlert("Invalid Score", message: "You entered a score of \(scoreTextField!.text!). You can't be that bad!", actionTitle: "OK")
             
         } else {
-            
-            let pickedImage = self.scorecardImage?.image
-            let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(400, 400))
-            let imageData = UIImagePNGRepresentation(scaledImage)
-            let parseImageFile = PFFile(name: "scorecard.png", data: imageData!)
-            golfScore["scorecardImage"] = parseImageFile
-       
-        }
         
-        golfScore.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                self.dismissViewControllerAnimated(true, completion: nil)
-                    
-            }
+        golfScorecard["score"] = Int(scoreTextField!.text!)
+        golfScorecard["golfer"] = PFUser.currentUser()
+        golfScorecard["golfCourse"] = golfCourseName.text
+        golfScorecard["date"] = datePicker.date
+        
+        if scorecardImage?.image != nil {
+        
+        let pickedImage = self.scorecardImage?.image
+        if let imagePicked = pickedImage {
+        let scaledImage = self.scaleImageWith(imagePicked, newSize: CGSizeMake(400, 400))
+        let imageData = UIImagePNGRepresentation(scaledImage)
+        let parseImageFile = PFFile(name: "scorecard.png", data: imageData!)
+        golfScorecard["scorecardImage"] = parseImageFile
 
-                
-            } else {
-                let alertController = UIAlertController(title: "No Network Connection", message: "Can't save score without a connection. Please try again later.", preferredStyle: .Alert)
-                
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                    
-                }
-                alertController.addAction(cancelAction)
-                self.presentViewController(alertController, animated: true) {
-
-                }
-                print(error)
-                
-            }
-        }
-
+         }
     }
+
+        golfScorecard.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                
+        if (success) {
+        dispatch_async(dispatch_get_main_queue()) {
+            
+            self.performSegueWithIdentifier("segueToProfileView", sender: self)
+            
+        }
+    } else {
+        self.displayAlert("Save Failed", message: "Please check network connection or try again", actionTitle: "OK")
+        }
+    })
+        }
+}
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
@@ -121,30 +125,12 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
 
     @IBAction func addScorecardActionSheet(sender: AnyObject) {
         
-        let actionSheet = UIAlertController(title: "New Scorecard", message: "Take a photo or choose from your library", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        
-        let cameraButton = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (ACTION) -> Void in
-            
-            self.imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+        let cameraViewController = ALCameraViewController(croppingEnabled: croppingEnabled, allowsLibraryAccess: libraryEnabled) { (image) -> Void in
+            self.scorecardImage!.image = image
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
         
-        let photoLibrary = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default, handler: { (ACTION) -> Void in
-            
-            self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            self.presentViewController(self.imagePicker, animated: true, completion: nil)
-            
-        })
-        
-        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (ACTION) -> Void in
-            
-        }
-        
-        actionSheet.addAction(cameraButton)
-        actionSheet.addAction(photoLibrary)
-        actionSheet.addAction(cancel)
-        
-        self.presentViewController(actionSheet, animated: true, completion: nil)
+        presentViewController(cameraViewController, animated: true, completion: nil)
         
     }
     
@@ -155,12 +141,22 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
-    
+    func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
+        
+        let alertController = UIAlertController(title: alterTitle, message: message, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
-
     
+
 
 }

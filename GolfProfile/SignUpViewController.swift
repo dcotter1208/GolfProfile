@@ -47,14 +47,13 @@ class SignUpViewController: UIViewController {
             
             displayAlert("Invalid", message: "Username must be greater than 5 characters", actionTitle: "OK")
 
-            
         } else if containsWhiteSpace(signUpUsernameTextField.text!) {
             
-            displayAlert("Username Invalid", message: "Username can not contain white space", actionTitle: "OK")
+            displayAlert("Username Invalid", message: "Username can not contain spaces", actionTitle: "OK")
         
         } else if containsWhiteSpace(signUpPasswordTextField.text!) {
             
-            displayAlert("Password Invalid", message: "Password can not contain white space.", actionTitle: "OK")
+            displayAlert("Password Invalid", message: "Password can not contain spaces.", actionTitle: "OK")
             
         } else if signUpPasswordTextField.text!.characters.count < 8 {
             
@@ -64,6 +63,14 @@ class SignUpViewController: UIViewController {
             
             displayAlert("Invalid", message: "Please enter a valid e-mail address", actionTitle: "OK")
 
+        } else if firstNameTextField.text?.characters.count > 12 {
+            
+            displayAlert("First name too long", message: "Please choose a first name less than 12 characters", actionTitle: "OK")
+        
+        } else if lastNameTextField.text?.characters.count > 12{
+        
+            displayAlert("Last name too long", message: "Please choose a last name less than 12 characters", actionTitle: "OK")
+            
         } else {
         
         // If creating the user was successful then we log them in and display the ProfileViewController
