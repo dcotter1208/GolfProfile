@@ -13,6 +13,7 @@ import ALCameraViewController
 
 class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var golfCourseName: UITextField!
     @IBOutlet weak var scorecardImage: UIImageView?
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -55,8 +56,8 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
 
     }
     
-    @IBAction func saveScoreButton(sender: AnyObject) {
-        
+    @IBAction func saveScoreButton(sender: UIBarButtonItem) {
+        saveButton.enabled = false
         let golfScorecard = PFObject(className: "GolfScorecard")
    
         if scoreTextField?.text?.characters.count == 0 {
@@ -93,6 +94,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         golfScorecard.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 
         if (success) {
+            self.saveButton.enabled = true
         dispatch_async(dispatch_get_main_queue()) {
             
             self.performSegueWithIdentifier("segueToProfileView", sender: self)
