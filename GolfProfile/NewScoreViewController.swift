@@ -148,6 +148,14 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
+    
+    @IBAction func dismissView(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
