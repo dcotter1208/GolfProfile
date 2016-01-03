@@ -249,8 +249,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeP-S5-uv9">
+                                <rect key="frame" x="133" y="461" width="49" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveProfileButton:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="6z5-mY-LrE"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V4B-M2-Uc9" customClass="PFImageView">
+                                <rect key="frame" x="36" y="164" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="MMq-Pb-bn6"/>
+                                    <constraint firstAttribute="width" constant="240" id="ZZg-0S-5Na"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nM-4D-DXq">
-                                <rect key="frame" x="133" y="250" width="65" height="68"/>
+                                <rect key="frame" x="124" y="250" width="65" height="68"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="Pot-VZ-5aM"/>
                                     <constraint firstAttribute="width" constant="65" id="ju9-Yf-Oyl"/>
@@ -260,33 +275,26 @@
                                     <action selector="editProfilePhoto:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="hVC-9g-vSt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeP-S5-uv9">
-                                <rect key="frame" x="141" y="439" width="49" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveProfileButton:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="6z5-mY-LrE"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V4B-M2-Uc9" customClass="PFImageView">
-                                <rect key="frame" x="40" y="159" width="250" height="250"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="centerY" secondItem="5nM-4D-DXq" secondAttribute="centerY" id="0WJ-CJ-rEu"/>
                             <constraint firstItem="NZI-gN-TUR" firstAttribute="top" secondItem="as0-K9-vkd" secondAttribute="bottom" constant="8" symbolic="YES" id="0jc-Ho-pcK"/>
-                            <constraint firstItem="HeP-S5-uv9" firstAttribute="top" secondItem="V4B-M2-Uc9" secondAttribute="bottom" constant="30" id="9ZH-jn-CXZ"/>
-                            <constraint firstItem="NZI-gN-TUR" firstAttribute="centerX" secondItem="HeP-S5-uv9" secondAttribute="centerX" id="I6r-ql-FIT"/>
-                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="centerX" secondItem="5nM-4D-DXq" secondAttribute="centerX" id="IZS-qo-4sO"/>
+                            <constraint firstAttribute="trailing" secondItem="V4B-M2-Uc9" secondAttribute="trailing" constant="44" id="1DK-ty-myw"/>
+                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="20" id="2dT-3T-Bz6"/>
+                            <constraint firstItem="NZI-gN-TUR" firstAttribute="centerX" secondItem="HeP-S5-uv9" secondAttribute="centerX" constant="8" id="I6r-ql-FIT"/>
+                            <constraint firstItem="HeP-S5-uv9" firstAttribute="top" secondItem="V4B-M2-Uc9" secondAttribute="bottom" constant="57" id="NRd-2T-yfr"/>
                             <constraint firstItem="NZI-gN-TUR" firstAttribute="leading" secondItem="as0-K9-vkd" secondAttribute="leading" id="OtR-ZE-BZq"/>
                             <constraint firstItem="as0-K9-vkd" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="4" id="TnN-cu-Yg5"/>
-                            <constraint firstItem="5nM-4D-DXq" firstAttribute="centerX" secondItem="NZI-gN-TUR" secondAttribute="centerX" id="Vgo-Gn-tqF"/>
-                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="top" secondItem="NZI-gN-TUR" secondAttribute="bottom" constant="34" id="bmJ-02-nJJ"/>
-                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="24" id="epx-8d-UoW"/>
+                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="centerY" secondItem="5nM-4D-DXq" secondAttribute="centerY" id="VbB-59-1zN"/>
+                            <constraint firstItem="5nM-4D-DXq" firstAttribute="centerX" secondItem="NZI-gN-TUR" secondAttribute="centerX" constant="-9" id="Vgo-Gn-tqF"/>
+                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="top" secondItem="NZI-gN-TUR" secondAttribute="bottom" constant="39" id="ZO4-kL-NE9"/>
+                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="top" secondItem="NZI-gN-TUR" secondAttribute="bottom" constant="39" id="fkK-PM-jGZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="V4B-M2-Uc9" secondAttribute="trailing" constant="28" id="hgM-ZE-b7e"/>
                             <constraint firstAttribute="trailingMargin" secondItem="as0-K9-vkd" secondAttribute="trailing" constant="-7" id="pLS-Zs-lKU"/>
-                            <constraint firstItem="Cgb-H8-T0Z" firstAttribute="top" secondItem="HeP-S5-uv9" secondAttribute="bottom" constant="46" id="rpb-id-iW9"/>
+                            <constraint firstItem="Cgb-H8-T0Z" firstAttribute="top" secondItem="HeP-S5-uv9" secondAttribute="bottom" constant="24" id="rpb-id-iW9"/>
                             <constraint firstItem="5nM-4D-DXq" firstAttribute="centerY" secondItem="1sD-LC-BLX" secondAttribute="centerY" id="trK-G2-pfI"/>
+                            <constraint firstItem="HeP-S5-uv9" firstAttribute="top" secondItem="V4B-M2-Uc9" secondAttribute="bottom" constant="57" id="uQK-AH-Lgz"/>
+                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leading" constant="36" id="xZo-vc-ks1"/>
                             <constraint firstItem="NZI-gN-TUR" firstAttribute="trailing" secondItem="as0-K9-vkd" secondAttribute="trailing" id="zWU-jY-YnH"/>
                         </constraints>
                     </view>
@@ -535,7 +543,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="68" id="g3e-BD-DT3"/>
                                 </constraints>
-                                <state key="normal" image="camera"/>
+                                <state key="normal" image="addPhoto"/>
                                 <connections>
                                     <action selector="addScorecardActionSheet:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="u1p-iq-KFG"/>
                                 </connections>
@@ -1436,19 +1444,19 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mw3-Dn-4EX" customClass="PFImageView">
-                                <rect key="frame" x="0.0" y="140" width="320" height="287"/>
+                                <rect key="frame" x="0.0" y="140" width="320" height="320"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="COG-nN-f6S" firstAttribute="top" secondItem="Mw3-Dn-4EX" secondAttribute="bottom" constant="141" id="VdC-sS-cLu"/>
+                            <constraint firstItem="COG-nN-f6S" firstAttribute="top" secondItem="Mw3-Dn-4EX" secondAttribute="bottom" constant="108" id="VdC-sS-cLu"/>
                             <constraint firstItem="Mw3-Dn-4EX" firstAttribute="leading" secondItem="B3a-Fu-wsX" secondAttribute="leading" id="aPQ-n5-YwY"/>
                             <constraint firstItem="Mw3-Dn-4EX" firstAttribute="top" secondItem="FM6-mF-cKn" secondAttribute="bottom" constant="82" id="b4l-vo-1QY"/>
                             <constraint firstItem="FM6-mF-cKn" firstAttribute="top" secondItem="TPF-8c-GiF" secondAttribute="bottom" constant="8" symbolic="YES" id="cOI-4p-sCF"/>
                             <constraint firstAttribute="trailing" secondItem="Mw3-Dn-4EX" secondAttribute="trailing" id="dLt-gA-4zc"/>
                             <constraint firstItem="Mw3-Dn-4EX" firstAttribute="top" secondItem="TPF-8c-GiF" secondAttribute="bottom" constant="120" id="ed9-2b-wt5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FM6-mF-cKn" secondAttribute="trailing" constant="4" id="tQz-Qk-caR"/>
-                            <constraint firstItem="Mw3-Dn-4EX" firstAttribute="centerY" secondItem="B3a-Fu-wsX" secondAttribute="centerY" id="y0I-cB-1j3"/>
+                            <constraint firstItem="Mw3-Dn-4EX" firstAttribute="centerY" secondItem="B3a-Fu-wsX" secondAttribute="centerY" constant="16" id="y0I-cB-1j3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cHw-Su-o2a"/>
@@ -1502,7 +1510,6 @@
     </scenes>
     <resources>
         <image name="addPhoto" width="128" height="128"/>
-        <image name="camera" width="128" height="128"/>
         <image name="logo" width="256" height="256"/>
         <image name="newScorecard" width="60" height="60"/>
         <image name="user_2" width="32" height="32"/>
