@@ -97,7 +97,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
             self.saveButton.enabled = true
         dispatch_async(dispatch_get_main_queue()) {
             
-            self.performSegueWithIdentifier("segueToProfileView", sender: self)
+            self.performSegueWithIdentifier("unwindFromNewScoreVCToProfileVC", sender: self)
             
         }
     } else {

@@ -575,7 +575,7 @@
                         <outlet property="scoreTextField" destination="iD6-g1-ps3" id="Qip-O9-T49"/>
                         <outlet property="scorecardImage" destination="oNY-Ip-MRz" id="Hm5-CD-Exi"/>
                         <outlet property="searchDisplayController" destination="IKV-Tk-jVU" id="DNN-Vu-jBR"/>
-                        <segue destination="uM5-YC-qdB" kind="unwind" identifier="segueToProfileView" unwindAction="unwindToProfilePage:" id="eW6-dJ-514"/>
+                        <segue destination="uM5-YC-qdB" kind="unwind" identifier="unwindFromNewScoreVCToProfileVC" unwindAction="unwindFromNewScoreToProfilePage:" id="REg-Os-pwQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tsh-K6-Kol" userLabel="First Responder" sceneMemberID="firstResponder"/>

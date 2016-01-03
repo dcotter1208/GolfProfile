@@ -145,6 +145,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
+    @IBAction func unwindFromNewScoreToProfilePage(segue: UIStoryboardSegue) {
+        
+        loadUserScorecardData()
+        
+    }
+    
     override func viewWillLayoutSubviews() {
         self.golferProfileImage.layer.cornerRadius = self.golferProfileImage.frame.size.width / 2
         self.golferProfileImage.layer.borderWidth = 3.0
