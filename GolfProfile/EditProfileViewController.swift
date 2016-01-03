@@ -60,7 +60,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             profile.name = self.golferNameTextField.text!
                             profile.username = self.usernameTextField.text!
                             let pickedImage = self.golferProfileImage.image
-                            let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(100, 100))
+                            let scaledImage = self.scaleImageWith(pickedImage!, newSize: CGSizeMake(400, 400))
                             let imageData = UIImagePNGRepresentation(scaledImage)
                             let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
                             profile.profileImage = golferImageFile!
