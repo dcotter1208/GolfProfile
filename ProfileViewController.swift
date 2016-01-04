@@ -171,7 +171,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     for data in self.profileData {
                     dispatch_async(dispatch_get_main_queue()) {
                     self.golferNameLabel.text = data.name
-                    self.usernameLabel.text = data.username
+                    self.usernameLabel.text = "Username: \(data.username!)"
                     self.golferProfileImage.file = data.profileImage
                     self.golferProfileImage.loadInBackground()
                             }

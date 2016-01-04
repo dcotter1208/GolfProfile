@@ -23,32 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-//           _ = DataManager.getGolfCoursesFromFileWithSuccess { (data) -> Void in
-//            let json = JSON(data: data)
-//            if let courseArray = json.array {
-//                for course in courseArray {
-//                    
-//                    let golfCourseName: String? = course["biz_name"].string
-//                    let city: String? = course["e_city"].string
-//                    let state: String? = course["e_state"].string
-//               
-//                    if golfCourseName != nil {
-//                        let course = Course()
-//                        course.name = golfCourseName!
-//                        course.city = city!
-//                        course.state = state!
-//
-//                        let realm = try! Realm()
-//                        
-//                        try! realm.write {
-//                            realm.add(course)
-//
-//                        }
-//                    }
-//                }
-//            }
-//        }
-                
         Fabric.with([Crashlytics.self])
         
         // [Optional] Power your app with Local Datastore. For more info, go to
