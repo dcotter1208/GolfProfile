@@ -111,11 +111,11 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         if segue.identifier == "showFriendScores"  {
             
-            let friendScoresVC = segue.destinationViewController as! FriendScoresViewController
+            let friendScoresVC = segue.destinationViewController as! FriendProfileViewController
             
             let selectedIndex = friendsTableView.indexPathForCell(sender as! UITableViewCell)
             
-            friendScoresVC.selectedfriend = friendsData[selectedIndex!.row]
+            friendScoresVC.selectedFriend = friendsData[selectedIndex!.row]
 
         }
     }

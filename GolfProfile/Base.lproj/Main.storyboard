@@ -217,11 +217,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="rwy-iO-i3x">
                     <connections>
-                        <segue destination="2Do-Yj-qGk" kind="modal" identifier="showProfilePhoto" id="PIC-cF-3e2"/>
+                        <segue destination="i50-sr-6sf" kind="modal" identifier="showProfilePhoto" id="opq-Bh-4YY"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-149" y="-3991"/>
+            <point key="canvasLocation" x="-1253" y="-4847"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="7Da-az-DK5">
@@ -304,12 +304,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="weG-8D-Fb0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9Mm-S5-HRy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="404" y="-4319"/>
+            <point key="canvasLocation" x="-700" y="-5175"/>
         </scene>
-        <!--User Scorecard DetailVC-->
+        <!--Profile Photo And Scorecard PhotoVC-->
         <scene sceneID="Hw8-ou-Kjc">
             <objects>
-                <viewController id="i50-sr-6sf" customClass="UserScorecardDetailVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="i50-sr-6sf" customClass="ProfilePhotoAndScorecardPhotoVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M4w-BA-ZlZ"/>
                         <viewControllerLayoutGuide type="bottom" id="Wha-Lo-LFD"/>
@@ -332,14 +332,14 @@
                                 <rect key="frame" x="0.0" y="70" width="320" height="490"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y20-nQ-2YM" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="68" width="320" height="320"/>
+                                        <rect key="frame" x="0.0" y="68" width="320" height="300"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="320" id="huq-4l-ZWb"/>
+                                            <constraint firstAttribute="height" constant="300" id="huq-4l-ZWb"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Y20-nQ-2YM" secondAttribute="bottom" constant="102" id="OA7-mn-guj"/>
+                                    <constraint firstAttribute="bottom" secondItem="Y20-nQ-2YM" secondAttribute="bottom" constant="122" id="OA7-mn-guj"/>
                                     <constraint firstItem="Y20-nQ-2YM" firstAttribute="centerX" secondItem="Urc-sy-HQ2" secondAttribute="centerX" id="Wa2-GG-vMf"/>
                                     <constraint firstItem="Y20-nQ-2YM" firstAttribute="top" secondItem="Urc-sy-HQ2" secondAttribute="top" constant="68" id="YIG-pt-6qu"/>
                                     <constraint firstItem="Y20-nQ-2YM" firstAttribute="leading" secondItem="Urc-sy-HQ2" secondAttribute="leading" id="enA-gG-6Az"/>
@@ -358,6 +358,7 @@
                             <constraint firstItem="Lk4-dh-faY" firstAttribute="top" secondItem="M4w-BA-ZlZ" secondAttribute="bottom" id="Ng6-TV-ha0"/>
                             <constraint firstAttribute="trailing" secondItem="Urc-sy-HQ2" secondAttribute="trailing" id="o6w-Pk-3ey"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Lk4-dh-faY" secondAttribute="trailing" constant="-4" id="ua8-io-EW7"/>
+                            <constraint firstItem="Wha-Lo-LFD" firstAttribute="top" secondItem="Y20-nQ-2YM" secondAttribute="bottom" constant="130" id="xdX-wk-Jwg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2tw-0V-3mB"/>
@@ -369,7 +370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKH-bi-VyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-123" y="-3245"/>
+            <point key="canvasLocation" x="452" y="-2983"/>
         </scene>
         <!--Select Course-->
         <scene sceneID="EB0-Fo-rJz">
@@ -446,7 +447,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mvi-co-Puf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="404" y="-3698"/>
+            <point key="canvasLocation" x="-700" y="-4554"/>
         </scene>
         <!--New Score View Controller-->
         <scene sceneID="qg1-2L-K2A">
@@ -587,12 +588,12 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="818" y="-3698"/>
+            <point key="canvasLocation" x="-286" y="-4554"/>
         </scene>
-        <!--Friend Scores View Controller-->
+        <!--Friend Profile View Controller-->
         <scene sceneID="xjV-GW-OlJ">
             <objects>
-                <viewController id="Dmd-OT-1nW" customClass="FriendScoresViewController" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Dmd-OT-1nW" customClass="FriendProfileViewController" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jgq-wO-i6G"/>
                         <viewControllerLayoutGuide type="bottom" id="cNt-bJ-Gbh"/>
@@ -686,7 +687,7 @@
                                             <outlet property="friendScorecardCellGCLabel" destination="CC5-Pl-gII" id="5ZP-hq-jjL"/>
                                             <outlet property="friendScorecardCellScoreLabel" destination="34E-2x-nDZ" id="fng-TG-xbZ"/>
                                             <outlet property="friendScorecardImageView" destination="QGm-Bt-jYW" id="DwH-XO-rUD"/>
-                                            <segue destination="mRk-aH-JLY" kind="modal" identifier="showFriendScorecardDetail" id="iIG-Ar-kvh"/>
+                                            <segue destination="i50-sr-6sf" kind="modal" identifier="showFriendScorecardDetail" id="JYV-P7-0yr"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -752,78 +753,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Wt-RV-JK3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="ftT-xy-enA">
                     <connections>
-                        <segue destination="2Do-Yj-qGk" kind="modal" identifier="showFriendProfilePhoto" id="xGv-eZ-XpP"/>
+                        <segue destination="i50-sr-6sf" kind="modal" identifier="showFriendProfilePhoto" id="d34-ln-BhW"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1988" y="-3337"/>
-        </scene>
-        <!--Friend Scorecard DetailVC-->
-        <scene sceneID="Xd8-DO-Fq9">
-            <objects>
-                <viewController id="mRk-aH-JLY" customClass="FriendScorecardDetailVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="krg-3Y-aa6"/>
-                        <viewControllerLayoutGuide type="bottom" id="XKJ-Mt-eOe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oXA-Kc-lYB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajw-gy-Gzu">
-                                <rect key="frame" x="270" y="20" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Z9A-zP-NKl"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <state key="normal" title="X">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismissView:" destination="mRk-aH-JLY" eventType="touchUpInside" id="qid-IQ-Eby"/>
-                                </connections>
-                            </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHL-Yc-Ea6">
-                                <rect key="frame" x="0.0" y="70" width="320" height="490"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kvY-jc-pT4" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="287"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="287" id="IWW-d4-9rE"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="kvY-jc-pT4" firstAttribute="top" secondItem="UHL-Yc-Ea6" secondAttribute="top" constant="28" id="2Ig-gm-loV"/>
-                                    <constraint firstItem="kvY-jc-pT4" firstAttribute="centerX" secondItem="UHL-Yc-Ea6" secondAttribute="centerX" id="i5W-1p-3K8"/>
-                                    <constraint firstAttribute="bottom" secondItem="kvY-jc-pT4" secondAttribute="bottom" constant="175" id="jGO-Fd-Qyu"/>
-                                    <constraint firstItem="kvY-jc-pT4" firstAttribute="leading" secondItem="UHL-Yc-Ea6" secondAttribute="leading" id="wrq-7w-2tH"/>
-                                    <constraint firstAttribute="trailing" secondItem="kvY-jc-pT4" secondAttribute="trailing" id="xg8-4a-6zV"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="mRk-aH-JLY" id="ZXc-fg-K9s"/>
-                                </connections>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="UHL-Yc-Ea6" secondAttribute="trailing" id="90M-ml-YKw"/>
-                            <constraint firstItem="UHL-Yc-Ea6" firstAttribute="top" secondItem="ajw-gy-Gzu" secondAttribute="bottom" constant="20" id="91B-ui-Qav"/>
-                            <constraint firstItem="XKJ-Mt-eOe" firstAttribute="top" secondItem="UHL-Yc-Ea6" secondAttribute="bottom" constant="8" symbolic="YES" id="LFp-y3-xYK"/>
-                            <constraint firstItem="ajw-gy-Gzu" firstAttribute="top" secondItem="krg-3Y-aa6" secondAttribute="bottom" id="Ys8-0C-QWd"/>
-                            <constraint firstItem="UHL-Yc-Ea6" firstAttribute="leading" secondItem="oXA-Kc-lYB" secondAttribute="leading" id="nuv-Me-1U7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ajw-gy-Gzu" secondAttribute="trailing" constant="4" id="r0y-s0-bzg"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="biL-8E-Z8H"/>
-                    <connections>
-                        <outlet property="friendScorecardScrollView" destination="UHL-Yc-Ea6" id="J1g-36-4DC"/>
-                        <outlet property="scorecardImageView" destination="kvY-jc-pT4" id="Qe7-JF-BdQ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5aU-sn-htc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2427" y="-3337"/>
+            <point key="canvasLocation" x="1348" y="-4265"/>
         </scene>
         <!--Forgot PasswordVC-->
         <scene sceneID="lLJ-PS-zXb">
@@ -875,7 +809,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6C-UD-2SS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="980" y="-5655"/>
+            <point key="canvasLocation" x="-124" y="-6511"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="j3s-8D-rXy">
@@ -966,7 +900,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKZ-cz-312" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1365" y="-5655"/>
+            <point key="canvasLocation" x="261" y="-6511"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="Huy-hn-OqW">
@@ -1090,7 +1024,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VfX-n3-Sse" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="CNe-AC-cpW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1744" y="-5655"/>
+            <point key="canvasLocation" x="640" y="-6511"/>
         </scene>
         <!--FriendsVC-->
         <scene sceneID="Z6a-zD-OQk">
@@ -1219,7 +1153,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1454" y="-2742"/>
+            <point key="canvasLocation" x="862" y="-4265"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tKQ-37-oi0">
@@ -1239,7 +1173,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaI-yO-YH6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1503" y="-5011"/>
+            <point key="canvasLocation" x="399" y="-5867"/>
         </scene>
         <!--Leaderboard-->
         <scene sceneID="p2Z-0R-TQ8">
@@ -1398,54 +1332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwC-yd-6bG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1978" y="-4070"/>
-        </scene>
-        <!--Profile PhotoVC-->
-        <scene sceneID="4SG-CX-EW7">
-            <objects>
-                <viewController id="2Do-Yj-qGk" customClass="ProfilePhotoVC" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TPF-8c-GiF"/>
-                        <viewControllerLayoutGuide type="bottom" id="COG-nN-f6S"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="B3a-Fu-wsX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FM6-mF-cKn">
-                                <rect key="frame" x="270" y="28" width="30" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <state key="normal" title="X">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismissView:" destination="2Do-Yj-qGk" eventType="touchUpInside" id="2Xz-KS-I91"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mw3-Dn-4EX" customClass="PFImageView">
-                                <rect key="frame" x="0.0" y="140" width="320" height="320"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="COG-nN-f6S" firstAttribute="top" secondItem="Mw3-Dn-4EX" secondAttribute="bottom" constant="108" id="VdC-sS-cLu"/>
-                            <constraint firstItem="Mw3-Dn-4EX" firstAttribute="leading" secondItem="B3a-Fu-wsX" secondAttribute="leading" id="aPQ-n5-YwY"/>
-                            <constraint firstItem="Mw3-Dn-4EX" firstAttribute="top" secondItem="FM6-mF-cKn" secondAttribute="bottom" constant="82" id="b4l-vo-1QY"/>
-                            <constraint firstItem="FM6-mF-cKn" firstAttribute="top" secondItem="TPF-8c-GiF" secondAttribute="bottom" constant="8" symbolic="YES" id="cOI-4p-sCF"/>
-                            <constraint firstAttribute="trailing" secondItem="Mw3-Dn-4EX" secondAttribute="trailing" id="dLt-gA-4zc"/>
-                            <constraint firstItem="Mw3-Dn-4EX" firstAttribute="top" secondItem="TPF-8c-GiF" secondAttribute="bottom" constant="120" id="ed9-2b-wt5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FM6-mF-cKn" secondAttribute="trailing" constant="4" id="tQz-Qk-caR"/>
-                            <constraint firstItem="Mw3-Dn-4EX" firstAttribute="centerY" secondItem="B3a-Fu-wsX" secondAttribute="centerY" constant="16" id="y0I-cB-1j3"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="cHw-Su-o2a"/>
-                    <connections>
-                        <outlet property="profilePhotoImageView" destination="Mw3-Dn-4EX" id="5ue-OF-2hV"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cSK-B8-zbK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-546" y="-3245"/>
+            <point key="canvasLocation" x="1338" y="-5118"/>
         </scene>
         <!--Profile-->
         <scene sceneID="U8S-YR-tVl">
@@ -1465,7 +1352,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0x0-hX-T3s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-560" y="-3991"/>
+            <point key="canvasLocation" x="-1664" y="-4847"/>
         </scene>
         <!--Friends-->
         <scene sceneID="jej-2Y-o4I">
@@ -1484,7 +1371,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pt3-AM-eXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="980" y="-2742"/>
+            <point key="canvasLocation" x="388" y="-4265"/>
         </scene>
     </scenes>
     <resources>
@@ -1496,6 +1383,6 @@
         <image name="winners_podium" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xGv-eZ-XpP"/>
+        <segue reference="JYV-P7-0yr"/>
     </inferredMetricsTieBreakers>
 </document>

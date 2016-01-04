@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class FriendScoresViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FriendProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     @IBOutlet weak var friendProfileNameLabel: UILabel!
@@ -23,7 +23,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     
     
     var friendScorecardData = [GolfScorecard]()
-    var selectedfriend = GolferProfile()
+    var selectedFriend = GolferProfile()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,17 +72,20 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "showFriendProfilePhoto" {
-            let friendProfilePhotoVC = segue.destinationViewController as! ProfilePhotoVC
             
-            friendProfilePhotoVC.selectedFriendProfile = selectedfriend
+        let profilePhotoAndScorecardPhotoVC = segue.destinationViewController as! ProfilePhotoAndScorecardPhotoVC
             
-        } else {
+        profilePhotoAndScorecardPhotoVC.selectedFriendProfile = selectedFriend
+            
+        }
         
-        let scorecardPhotoVC = segue.destinationViewController as? FriendScorecardDetailVC
+        if segue.identifier == "showFriendScorecardDetail" {
+        
+        let profilePhotoAndScorecardPhotoVC = segue.destinationViewController as? ProfilePhotoAndScorecardPhotoVC
         
         let selectedIndex = friendScorecardTableView.indexPathForCell(sender as! UITableViewCell)
         
-        scorecardPhotoVC?.friendScorecard = friendScorecardData[selectedIndex!.row]
+        profilePhotoAndScorecardPhotoVC?.friendScorecard = friendScorecardData[selectedIndex!.row]
             
         }
         
@@ -92,7 +95,7 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
         friendScorecardData.removeAll()
         
         if let query = GolfScorecard.query() {
-        query.whereKey("golfer", equalTo: selectedfriend)
+        query.whereKey("golfer", equalTo: selectedFriend)
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (friendScorecards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
@@ -112,9 +115,9 @@ class FriendScoresViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func loadFriendProfile() {
-        friendProfileNameLabel.text = selectedfriend.name
-        friendProfileUsernameLabel.text = "Username: \(selectedfriend.username!)"
-        friendProfilePhoto.file = selectedfriend.profileImage
+        friendProfileNameLabel.text = selectedFriend.name
+        friendProfileUsernameLabel.text = "Username: \(selectedFriend.username!)"
+        friendProfilePhoto.file = selectedFriend.profileImage
     }
     
     @IBAction func segmentedControl(sender: UISegmentedControl) {

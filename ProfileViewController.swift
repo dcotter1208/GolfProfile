@@ -104,7 +104,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if segue.identifier == "showScorecardDetail" {
             
-            let userScorecardDetailVC = segue.destinationViewController as? UserScorecardDetailVC
+            let userScorecardDetailVC = segue.destinationViewController as? ProfilePhotoAndScorecardPhotoVC
             
             let selectedIndex = userScoreTableView.indexPathForCell(sender as! UITableViewCell)
             
@@ -114,9 +114,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if segue.identifier == "showProfilePhoto" {
         
-            let profilePhotoVC = segue.destinationViewController as? ProfilePhotoVC
+            let profilePhotoAndScorecardPhotoVC = segue.destinationViewController as? ProfilePhotoAndScorecardPhotoVC
             
-            profilePhotoVC?.userProfileData = profileData
+            profilePhotoAndScorecardPhotoVC?.userProfileData = profileData
 
         }
         

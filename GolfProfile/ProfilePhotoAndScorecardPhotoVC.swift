@@ -10,19 +10,26 @@ import UIKit
 import Parse
 import ParseUI
 
-class UserScorecardDetailVC: UIViewController, UIScrollViewDelegate {
-    @IBOutlet weak var golfCourseNameLabel: UILabel!
-    @IBOutlet weak var scorecardScoreLabel: UILabel!
-    @IBOutlet weak var scorecardDateLabel: UILabel!
+class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
+
     @IBOutlet weak var userScorecardImageView: PFImageView!
     @IBOutlet weak var userScorecardScrollView: UIScrollView!
     
     var userScorecard = GolfScorecard?()
-        
+    var friendScorecard = GolfScorecard()
+    var userProfileData = [PFObject]()
+    var selectedFriendProfile = GolferProfile()
+
+
+    
     override func viewDidLoad() {
     super.viewDidLoad()
         
     displayUserDetailedScorecardInfo()
+    displayUserProfilePhoto()
+    loadFriendDetailedScorecardInfo()
+    userScorecardImageView.file = selectedFriendProfile.profileImage
+
     
     self.userScorecardScrollView.minimumZoomScale = 1.0
     self.userScorecardScrollView.maximumZoomScale = 6.0
@@ -53,6 +60,23 @@ class UserScorecardDetailVC: UIViewController, UIScrollViewDelegate {
         userScorecardImageView.file = userScorecard?.scorecardImage
         userScorecardImageView.loadInBackground()
 
+    }
+    
+    func displayUserProfilePhoto() {
+        
+        for data in userProfileData {
+        userScorecardImageView.file = data.objectForKey("profileImage") as? PFFile
+        userScorecardImageView.loadInBackground()
+            
+        }
+
+    }
+    
+    func loadFriendDetailedScorecardInfo() {
+
+        userScorecardImageView.file = friendScorecard.scorecardImage
+        userScorecardImageView.loadInBackground()
+        
     }
     
     override func shouldAutorotate() -> Bool {
