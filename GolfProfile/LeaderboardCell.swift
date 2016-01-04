@@ -16,10 +16,10 @@ class LeaderboardCell: UITableViewCell {
     @IBOutlet weak var leaderboardScoreLabel: UILabel!
     @IBOutlet weak var leaderboardProfileImage: PFImageView!
     @IBOutlet weak var leaderboardGolferLabel: UILabel!
-    
     @IBOutlet weak var rankLabel: UILabel!
-    
     @IBOutlet weak var starImage: UIImageView!
+    @IBOutlet weak var leaderboardUsernameLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

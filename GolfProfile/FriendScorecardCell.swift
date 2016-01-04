@@ -17,7 +17,9 @@ class FriendScorecardCell: PFTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        viewWillLayoutSubviews()
+    
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -26,4 +28,12 @@ class FriendScorecardCell: PFTableViewCell {
         // Configure the view for the selected state
     }
 
+    func viewWillLayoutSubviews() {
+        self.friendScorecardImageView.layer.cornerRadius = 3.0
+        self.friendScorecardImageView.clipsToBounds = true
+        self.friendScorecardImageView.layer.borderWidth = 1.0
+        
+    }
+    
+    
 }

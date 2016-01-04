@@ -12,7 +12,6 @@ import ParseUI
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var golferNameLabel: UILabel!
-    @IBOutlet weak var golferCountry: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var golferProfileImage: PFImageView!
     @IBOutlet weak var userScoreTableView: UITableView!

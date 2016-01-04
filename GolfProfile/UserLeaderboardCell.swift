@@ -17,13 +17,22 @@ class UserLeaderboardCell: PFTableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        viewWillLayoutSubviews()
+
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+        func viewWillLayoutSubviews() {
+        self.scorecardCellImage.layer.cornerRadius = 3.0
+        self.scorecardCellImage.clipsToBounds = true
+        self.scorecardCellImage.layer.borderWidth = 1.0
+        
     }
 
 }
