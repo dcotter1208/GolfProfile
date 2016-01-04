@@ -12,7 +12,6 @@ import ParseUI
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var golferNameLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var golferProfileImage: PFImageView!
     @IBOutlet weak var userScoreTableView: UITableView!
     @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
@@ -37,28 +36,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             loadUserScorecardData()
             
         }
-        
-//        golferProfileImage.file = PFUser.currentUser()?.objectForKey("profileImage") as? PFFile
-//        golferProfileImage.loadInBackground()
-//        golferNameLabel.text = PFUser.currentUser()?.objectForKey("name") as? String
-//        usernameLabel.text = PFUser.currentUser()?.objectForKey("username") as? String
-        
-        
+
         self.userScoreTableView.addSubview(self.refreshControl)
 
     }
     
-    override func viewDidAppear(animated: Bool) {
-        
-//        if PFUser.currentUser() != nil {
-//            getProfileFromBackground()
-//            loadUserScorecardData()
-//            
-//        }
-
-    }
-
-
     override func viewWillAppear(animated: Bool) {
         
         if PFUser.currentUser() == nil {
@@ -187,7 +169,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     for data in self.profileData {
                     dispatch_async(dispatch_get_main_queue()) {
                     self.golferNameLabel.text = data.name
-                    self.usernameLabel.text = "Username: \(data.username!)"
                     self.golferProfileImage.file = data.profileImage
                     self.golferProfileImage.loadInBackground()
                             }

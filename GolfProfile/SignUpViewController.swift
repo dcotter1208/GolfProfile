@@ -33,7 +33,7 @@ class SignUpViewController: UIViewController {
     
     func signUp() {
         let user = PFUser()
-        user.username = signUpUsernameTextField.text?.lowercaseString
+        user.username = signUpEmailTextField.text?.lowercaseString
         user.password = signUpPasswordTextField.text?.lowercaseString
         user.email = signUpEmailTextField.text?.lowercaseString
         
@@ -42,19 +42,7 @@ class SignUpViewController: UIViewController {
         let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
         user["profileImage"] = golferImageFile
         
-        if signUpUsernameTextField.text!.characters.count < 5 {
-            
-            displayAlert("Invalid", message: "Username must be greater than 5 characters", actionTitle: "OK")
-
-        } else if containsWhiteSpace(signUpUsernameTextField.text!) {
-            
-            displayAlert("Username Invalid", message: "Username can not contain spaces", actionTitle: "OK")
-        
-        } else if containsWhiteSpace(signUpPasswordTextField.text!) {
-            
-            displayAlert("Password Invalid", message: "Password can not contain spaces.", actionTitle: "OK")
-            
-        } else if signUpPasswordTextField.text!.characters.count < 8 {
+        if signUpPasswordTextField.text!.characters.count < 8 {
             
             displayAlert("Invalid Password", message: "Password must be greater than 8 characters", actionTitle: "OK")
             
@@ -72,12 +60,13 @@ class SignUpViewController: UIViewController {
             
         } else {
         
-        // If creating the user was successful then we log them in and display the ProfileViewController
             
         user.signUpInBackgroundWithBlock {(succeeded: Bool, error: NSError?) -> Void in
          if succeeded {
+            
         PFUser.logOutInBackground()
-          let alertController = UIAlertController(title: "Success!", message: "Now Please Log", preferredStyle: .Alert)
+            
+          let alertController = UIAlertController(title: "Success!", message: "Now Please Login", preferredStyle: .Alert)
                 
             let enterAppAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
                     
@@ -94,7 +83,7 @@ class SignUpViewController: UIViewController {
             
             if error?.code == 202 {
                 
-                self.displayAlert("Username Taken!", message: "Please choose a different username.", actionTitle: "OK")
+                self.displayAlert("Invalid E-mail", message: "\(self.signUpUsernameTextField.text!) is already in use", actionTitle: "OK")
 
                 }
             

@@ -230,6 +230,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C02E54951C3B220C000FCA13 /* LoginViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */,
+				C038BF751BE84287004AE33E /* LoginViewController.swift */,
+				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
+			);
+			name = LoginViewControllers;
+			sourceTree = "<group>";
+		};
 		C038BF091BE80AA4004AE33E = {
 			isa = PBXGroup;
 			children = (
@@ -257,9 +267,7 @@
 			children = (
 				C0CD846D1C34E427008E5ECC /* courseDataBase.realm */,
 				C038BF151BE80AA4004AE33E /* AppDelegate.swift */,
-				C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */,
-				C038BF751BE84287004AE33E /* LoginViewController.swift */,
-				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
+				C02E54951C3B220C000FCA13 /* LoginViewControllers */,
 				C038BF431BE80BAA004AE33E /* ProfileViewController.swift */,
 				C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */,
 				C01F71C01C338B5000887522 /* CourseSearchTVC.swift */,
