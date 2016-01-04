@@ -236,7 +236,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Golfer Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="as0-K9-vkd">
                                 <rect key="frame" x="20" y="71" width="291" height="23"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="QHS-tq-xWL"/>
+                                    <constraint firstAttribute="height" constant="23" id="YNX-Rh-yWu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -244,29 +244,24 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NZI-gN-TUR">
                                 <rect key="frame" x="20" y="102" width="291" height="23"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="v5S-Kj-j6s"/>
+                                    <constraint firstAttribute="height" constant="23" id="0Fs-xY-nYE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeP-S5-uv9">
-                                <rect key="frame" x="134" y="454" width="52" height="39"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveProfileButton:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="6z5-mY-LrE"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V4B-M2-Uc9" customClass="PFImageView">
-                                <rect key="frame" x="45" y="169" width="238" height="235"/>
+                                <rect key="frame" x="38" y="171" width="244" height="239"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="244" id="8kO-Mz-mUq"/>
+                                    <constraint firstAttribute="width" secondItem="V4B-M2-Uc9" secondAttribute="height" multiplier="244:239" id="Wuj-8V-M3S"/>
+                                    <constraint firstAttribute="height" constant="239" id="ZEU-1v-OuF"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nM-4D-DXq">
-                                <rect key="frame" x="128" y="253" width="65" height="68"/>
+                                <rect key="frame" x="138" y="268" width="45" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="65" id="AjB-DM-Ok4"/>
-                                    <constraint firstAttribute="height" constant="68" id="hax-Tt-tMn"/>
+                                    <constraint firstAttribute="height" constant="45" id="0lR-9n-Bqj"/>
+                                    <constraint firstAttribute="width" constant="45" id="foa-u0-7T6"/>
                                 </constraints>
                                 <state key="normal" image="addPhoto"/>
                                 <connections>
@@ -274,27 +269,28 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="NZI-gN-TUR" firstAttribute="leading" secondItem="as0-K9-vkd" secondAttribute="leading" id="BXx-qa-ArR"/>
-                            <constraint firstItem="HeP-S5-uv9" firstAttribute="top" secondItem="V4B-M2-Uc9" secondAttribute="bottom" constant="50" id="DTv-yp-PbW"/>
-                            <constraint firstItem="as0-K9-vkd" firstAttribute="top" secondItem="GBL-r2-d4I" secondAttribute="bottom" constant="7" id="FBv-l6-nBg"/>
-                            <constraint firstItem="NZI-gN-TUR" firstAttribute="top" secondItem="as0-K9-vkd" secondAttribute="bottom" constant="8" symbolic="YES" id="Oi8-vq-Uzq"/>
-                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="top" secondItem="NZI-gN-TUR" secondAttribute="bottom" constant="44" id="S1R-XS-cm1"/>
-                            <constraint firstItem="as0-K9-vkd" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="4" id="Uie-Vw-85P"/>
-                            <constraint firstItem="Cgb-H8-T0Z" firstAttribute="top" secondItem="HeP-S5-uv9" secondAttribute="bottom" constant="31" id="Yxc-1n-tiv"/>
-                            <constraint firstItem="as0-K9-vkd" firstAttribute="trailing" secondItem="NZI-gN-TUR" secondAttribute="trailing" id="cZj-TO-MTv"/>
-                            <constraint firstItem="5nM-4D-DXq" firstAttribute="centerY" secondItem="1sD-LC-BLX" secondAttribute="centerY" constant="3" id="d7Q-eY-jxO"/>
-                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="centerY" secondItem="5nM-4D-DXq" secondAttribute="centerY" id="eTX-rC-11a"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="as0-K9-vkd" secondAttribute="trailing" constant="-7" id="ekN-ot-a4x"/>
-                            <constraint firstItem="HeP-S5-uv9" firstAttribute="centerX" secondItem="1sD-LC-BLX" secondAttribute="centerX" id="fc8-Fk-QrA"/>
-                            <constraint firstItem="5nM-4D-DXq" firstAttribute="centerX" secondItem="1sD-LC-BLX" secondAttribute="centerX" id="ffn-AV-F9d"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="V4B-M2-Uc9" secondAttribute="trailing" constant="21" id="jes-9M-7rb"/>
-                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="29" id="qJo-b7-B19"/>
+                            <constraint firstItem="NZI-gN-TUR" firstAttribute="leading" secondItem="as0-K9-vkd" secondAttribute="leading" id="29K-6h-RQ2"/>
+                            <constraint firstItem="NZI-gN-TUR" firstAttribute="top" secondItem="as0-K9-vkd" secondAttribute="bottom" constant="8" symbolic="YES" id="3YJ-zf-V94"/>
+                            <constraint firstItem="as0-K9-vkd" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="4" id="5dS-3V-pl0"/>
+                            <constraint firstItem="5nM-4D-DXq" firstAttribute="centerY" secondItem="V4B-M2-Uc9" secondAttribute="centerY" id="84B-f6-m6R"/>
+                            <constraint firstItem="as0-K9-vkd" firstAttribute="top" secondItem="GBL-r2-d4I" secondAttribute="bottom" constant="7" id="H9h-P6-g3O"/>
+                            <constraint firstItem="NZI-gN-TUR" firstAttribute="trailing" secondItem="as0-K9-vkd" secondAttribute="trailing" id="WqH-CS-WXq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="as0-K9-vkd" secondAttribute="trailing" constant="-7" id="fnP-IN-UGG"/>
+                            <constraint firstItem="5nM-4D-DXq" firstAttribute="centerX" secondItem="V4B-M2-Uc9" secondAttribute="centerX" id="hPR-Fm-rBR"/>
+                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="centerX" secondItem="1sD-LC-BLX" secondAttribute="centerX" id="uzr-IX-04G"/>
+                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="top" secondItem="NZI-gN-TUR" secondAttribute="bottom" constant="46" id="vll-W0-cGB"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="lv7-sz-UR9"/>
+                    <navigationItem key="navigationItem" id="lv7-sz-UR9">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="BTR-5N-k9C">
+                            <connections>
+                                <action selector="saveProfileButton:" destination="iRX-cc-Y1a" id="6oC-hB-Q9j"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="golferNameTextField" destination="as0-K9-vkd" id="uHs-2D-mef"/>
@@ -662,7 +658,7 @@
                                                         <constraint firstAttribute="width" constant="50" id="2DG-fY-tpf"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
