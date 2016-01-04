@@ -34,7 +34,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        if golferProfileImage.image == nil {
+        
         loadUserProfile()
+        
+        }
+
     }
     
     override func didReceiveMemoryWarning() {

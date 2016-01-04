@@ -330,14 +330,14 @@
                                 <rect key="frame" x="0.0" y="70" width="320" height="490"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y20-nQ-2YM" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="68" width="320" height="287"/>
+                                        <rect key="frame" x="0.0" y="68" width="320" height="320"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="287" id="huq-4l-ZWb"/>
+                                            <constraint firstAttribute="height" constant="320" id="huq-4l-ZWb"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Y20-nQ-2YM" secondAttribute="bottom" constant="135" id="OA7-mn-guj"/>
+                                    <constraint firstAttribute="bottom" secondItem="Y20-nQ-2YM" secondAttribute="bottom" constant="102" id="OA7-mn-guj"/>
                                     <constraint firstItem="Y20-nQ-2YM" firstAttribute="centerX" secondItem="Urc-sy-HQ2" secondAttribute="centerX" id="Wa2-GG-vMf"/>
                                     <constraint firstItem="Y20-nQ-2YM" firstAttribute="top" secondItem="Urc-sy-HQ2" secondAttribute="top" constant="68" id="YIG-pt-6qu"/>
                                     <constraint firstItem="Y20-nQ-2YM" firstAttribute="leading" secondItem="Urc-sy-HQ2" secondAttribute="leading" id="enA-gG-6Az"/>
@@ -348,7 +348,7 @@
                                 </connections>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.1764705882" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Urc-sy-HQ2" firstAttribute="top" secondItem="M4w-BA-ZlZ" secondAttribute="bottom" constant="50" id="2Sx-h1-mvu"/>
                             <constraint firstItem="Wha-Lo-LFD" firstAttribute="top" secondItem="Urc-sy-HQ2" secondAttribute="bottom" constant="8" id="3Es-mf-dxO"/>
