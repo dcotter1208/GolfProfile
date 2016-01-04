@@ -28,12 +28,24 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        if let user = PFUser.currentUser() {
+//            user["name"] = golferNameTextField.text
+//            user["username"] = usernameTextField.text
+//            user["profileImage"] = golferProfileImage.file
+//            golferProfileImage.loadInBackground()
+//        
+//        }
+        
+
+        
         loadUserProfile()
         imagePicker.delegate = self
         
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        loadUserProfile()
         
         if golferProfileImage.image == nil {
         
@@ -80,6 +92,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                                 self.performSegueWithIdentifier("unwindSegueToProfile", sender: self)
                                 } else {
                                 self.displayAlert("Save Failed", message: "Please try again", actionTitle: "OK")
+                                print("FAILED")
                                     }
                                 })
                             }

@@ -30,13 +30,31 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(profileData)
+        
         if PFUser.currentUser() != nil {
             getProfileFromBackground()
             loadUserScorecardData()
             
         }
-
+        
+//        golferProfileImage.file = PFUser.currentUser()?.objectForKey("profileImage") as? PFFile
+//        golferProfileImage.loadInBackground()
+//        golferNameLabel.text = PFUser.currentUser()?.objectForKey("name") as? String
+//        usernameLabel.text = PFUser.currentUser()?.objectForKey("username") as? String
+        
+        
         self.userScoreTableView.addSubview(self.refreshControl)
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+//        if PFUser.currentUser() != nil {
+//            getProfileFromBackground()
+//            loadUserScorecardData()
+//            
+//        }
 
     }
 
@@ -67,7 +85,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell:UserLeaderboardCell = tableView.dequeueReusableCellWithIdentifier("userScorecardCell", forIndexPath: indexPath) as! UserLeaderboardCell
+        let cell:CurrentUserScorecardCell = tableView.dequeueReusableCellWithIdentifier("userScorecardCell", forIndexPath: indexPath) as! CurrentUserScorecardCell
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
@@ -79,7 +97,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.golfCourseCellLabel?.text = userScorecardData[indexPath.row].golfCourse
         
         cell.scorecardCellImage.image = UIImage(named: "noScorecard")
-        
         
         cell.scorecardCellImage.file = userScorecardData[indexPath.row].scorecardImage
         cell.scorecardCellImage.loadInBackground()

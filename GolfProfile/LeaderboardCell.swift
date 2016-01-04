@@ -20,16 +20,32 @@ class LeaderboardCell: UITableViewCell {
     @IBOutlet weak var starImage: UIImageView!
     @IBOutlet weak var leaderboardUsernameLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        viewWillLayoutSubviews()
+    
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func viewWillLayoutSubviews() {
+        
+        self.leaderboardGCLabel.layer.cornerRadius = 3.0
+        self.leaderboardGCLabel.layer.borderWidth = 2.0
+        self.leaderboardGCLabel.layer.borderColor = UIColor.blackColor().CGColor
+        self.leaderboardScoreLabel.layer.cornerRadius = 3.0
+        self.leaderboardScoreLabel.layer.borderWidth = 2.0
+        self.leaderboardScoreLabel.layer.borderColor = UIColor.blackColor().CGColor
+        
+        
+//        self.scorecardCellImage.layer.cornerRadius = 3.0
+//        self.scorecardCellImage.clipsToBounds = true
+//        self.scorecardCellImage.layer.borderWidth = 1.0
+        
     }
 
 }

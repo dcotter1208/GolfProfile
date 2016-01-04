@@ -20,11 +20,6 @@ class GolferProfile : PFUser {
         }
     }
     
-//    @NSManaged var age: Int
-//    @NSManaged var country: String
-//    @NSManaged var driver: String
-//    @NSManaged var irons: String
-//    @NSManaged var favoriteCourse: String
     @NSManaged var name: String
     @NSManaged var profileImage: PFFile
     

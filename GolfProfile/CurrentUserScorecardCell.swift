@@ -9,7 +9,7 @@
 import UIKit
 import ParseUI
 
-class UserLeaderboardCell: PFTableViewCell {
+class CurrentUserScorecardCell: PFTableViewCell {
     @IBOutlet weak var scorecardCellImage: PFImageView!
     @IBOutlet weak var golfCourseCellLabel: UILabel!
     @IBOutlet weak var dateCellLabel: UILabel!

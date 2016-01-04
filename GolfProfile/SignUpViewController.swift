@@ -37,7 +37,6 @@ class SignUpViewController: UIViewController {
         user.password = signUpPasswordTextField.text?.lowercaseString
         user.email = signUpEmailTextField.text?.lowercaseString
         
-        
         user["name"] = firstNameTextField.text! + " " + lastNameTextField.text!
         let imageData = UIImagePNGRepresentation(UIImage(named: "defaultUser")!)
         let golferImageFile = PFFile(name: "profileImage.png", data: imageData!)
@@ -59,7 +58,7 @@ class SignUpViewController: UIViewController {
             
             displayAlert("Invalid Password", message: "Password must be greater than 8 characters", actionTitle: "OK")
             
-        } else if signUpEmailTextField.text!.characters.count < 8 {
+        } else if isValidEmail(signUpEmailTextField.text!) == false {
             
             displayAlert("Invalid", message: "Please enter a valid e-mail address", actionTitle: "OK")
 
@@ -77,15 +76,19 @@ class SignUpViewController: UIViewController {
             
         user.signUpInBackgroundWithBlock {(succeeded: Bool, error: NSError?) -> Void in
          if succeeded {
-
-            if PFUser.currentUser() != nil {
-                dispatch_async(dispatch_get_main_queue()) {
-                    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("Home")
-                    self.presentViewController(viewController, animated: true, completion: nil)
+        PFUser.logOutInBackground()
+          let alertController = UIAlertController(title: "Success!", message: "Now Please Log", preferredStyle: .Alert)
+                
+            let enterAppAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
                     
-                }
-            }
-            
+                    self.dismissViewControllerAnimated(true, completion: nil)
+
+            })
+                
+                alertController.addAction(enterAppAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
         
          } else {
             
@@ -94,6 +97,13 @@ class SignUpViewController: UIViewController {
                 self.displayAlert("Username Taken!", message: "Please choose a different username.", actionTitle: "OK")
 
                 }
+            
+            
+            if error?.code == 203 {
+                self.displayAlert("Invalid E-mail", message: "\(self.signUpEmailTextField.text!) is already in use", actionTitle: "OK")
+                
+            }
+            
             }
         }
     }
@@ -124,6 +134,18 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    func isValidEmail(testStr:String) -> Bool {
+        
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        
+        let result = emailTest.evaluateWithObject(testStr)
+        
+        return result
+        
+    }
+    
     func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
     
         let alertController = UIAlertController(title: alterTitle, message: message, preferredStyle: .Alert)
@@ -132,9 +154,8 @@ class SignUpViewController: UIViewController {
         alertController.addAction(defaultAction)
         
         self.presentViewController(alertController, animated: true, completion: nil)
-    
-    }
-
+        
+        }
     
 }
 

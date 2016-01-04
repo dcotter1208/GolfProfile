@@ -25,7 +25,6 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func login(sender: AnyObject) {
-        
         PFUser.logInWithUsernameInBackground((self.usernameTextField.text?.lowercaseString)!, password: (self.passwordTextField.text?.lowercaseString)!) {
             (user: PFUser?, error: NSError?) -> Void in
 
