@@ -17,7 +17,6 @@ struct RealmDataManager {
         path: NSBundle.mainBundle().pathForResource("courseDataBase", ofType:"realm"),
         readOnly: true)
     
-    
     mutating func configureRealmData() {
         let realm = try! Realm(configuration: config)
         

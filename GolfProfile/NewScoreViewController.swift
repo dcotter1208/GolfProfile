@@ -20,8 +20,6 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var scoreTextField: UITextField?
     let croppingEnabled = true
     let libraryEnabled: Bool = true
-    
-    var imagePicker = UIImagePickerController()
     let date = NSDate()
     var selectedCourse = PreviousCourse()
 
@@ -37,12 +35,6 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         scorecardImage?.layer.borderWidth = 5.0
         scorecardImage?.layer.borderColor = UIColor.blackColor().CGColor
         
-        imagePicker.delegate = self
-
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,15 +55,22 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         if scoreTextField?.text?.characters.count == 0 {
          
         displayAlert("Invalid Score", message: "You didn't enter a score.", actionTitle: "OK")
+        saveButton.enabled = true
             
         } else if scoreTextField?.text?.characters.count == 1 {
             
         displayAlert("Invalid Score", message: "No way you're good enough to have a score of \(scoreTextField!.text!)", actionTitle: "OK")
+            saveButton.enabled = true
         
         } else if (scoreTextField?.text?.characters.count)! > 3 || Int(scoreTextField!.text!) >= 200  {
         
         displayAlert("Invalid Score", message: "You entered a score of \(scoreTextField!.text!). You can't be that bad!", actionTitle: "OK")
+            saveButton.enabled = true
             
+        } else if golfCourseName.text?.characters.count < 1 {
+            displayAlert("Invalid Course", message: "Please enter a valid golf course", actionTitle: "OK")
+            saveButton.enabled = true
+        
         } else {
         
         golfScorecard["score"] = Int(scoreTextField!.text!)

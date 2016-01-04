@@ -25,12 +25,10 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func login(sender: AnyObject) {
-
+        
         PFUser.logInWithUsernameInBackground((self.usernameTextField.text?.lowercaseString)!, password: (self.passwordTextField.text?.lowercaseString)!) {
             (user: PFUser?, error: NSError?) -> Void in
-            
 
-            
             if error?.code == 101 {
             
             let alertController = UIAlertController(title: "Whoops!", message: "Username or password invalid. Please try again", preferredStyle: .Alert)
