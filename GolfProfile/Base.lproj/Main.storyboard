@@ -307,7 +307,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Urc-sy-HQ2">
                                 <rect key="frame" x="0.0" y="70" width="320" height="490"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y20-nQ-2YM" customClass="PFImageView">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y20-nQ-2YM" customClass="PFImageView">
                                         <rect key="frame" x="0.0" y="68" width="320" height="320"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="320" id="huq-4l-ZWb"/>
@@ -333,7 +333,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="X"/>
                                 <connections>
-                                    <action selector="dismissButton:" destination="i50-sr-6sf" eventType="touchUpInside" id="eCS-HK-tOg"/>
+                                    <action selector="dismissButton:" destination="i50-sr-6sf" eventType="touchUpInside" id="3vV-vk-4dA"/>
                                 </connections>
                             </button>
                         </subviews>

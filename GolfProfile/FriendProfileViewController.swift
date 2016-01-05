@@ -74,7 +74,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
             
         let profilePhotoAndScorecardPhotoVC = segue.destinationViewController as! ProfilePhotoAndScorecardPhotoVC
             
-        profilePhotoAndScorecardPhotoVC.selectedFriendProfile = selectedFriend
+        profilePhotoAndScorecardPhotoVC.golferProfile = selectedFriend
             
         }
         

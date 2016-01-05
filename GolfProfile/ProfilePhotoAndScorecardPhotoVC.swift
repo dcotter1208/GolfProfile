@@ -17,30 +17,24 @@ class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var noScorecardImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
     var scorecard = GolfScorecard?()
-    var userProfileData = [PFObject]()
-    var selectedFriendProfile = GolferProfile()
+    var golferProfile = GolferProfile()
 
 
     override func viewDidLoad() {
     super.viewDidLoad()
-        
-        if scorecard?.scorecardImage == nil {
-            
+
+        if scorecard?.scorecardImage != nil || golferProfile.username != nil  {
+            dismissButton.tintColor = UIColor.whiteColor()
+            userScorecardImageView.file = scorecard?.scorecardImage
+            userScorecardImageView.file = golferProfile.profileImage
+
+        } else {
             noScorecardImageView.image = UIImage(named: "noScorecardAvailable")
             noScorecardImageView.backgroundColor = UIColor.whiteColor()
             dismissButton.tintColor = UIColor.blackColor()
-            
-        } else {
-            dismissButton.tintColor = UIColor.whiteColor()
-            displayUserDetailedScorecardInfo()
-            loadFriendDetailedScorecardInfo()
 
         }
         
-    displayUserProfilePhoto()
-    userScorecardImageView.file = selectedFriendProfile.profileImage
-
-    
     self.userScorecardScrollView.minimumZoomScale = 1.0
     self.userScorecardScrollView.maximumZoomScale = 6.0
         
@@ -64,31 +58,7 @@ class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
     return self.userScorecardImageView
         
     }
-    
-    func displayUserDetailedScorecardInfo() {
 
-        userScorecardImageView.file = scorecard?.scorecardImage
-        userScorecardImageView.loadInBackground()
-
-    }
-    
-    func displayUserProfilePhoto() {
-        
-        for data in userProfileData {
-        userScorecardImageView.file = data.objectForKey("profileImage") as? PFFile
-        userScorecardImageView.loadInBackground()
-            
-        }
-
-    }
-    
-    func loadFriendDetailedScorecardInfo() {
-
-        userScorecardImageView.file = scorecard?.scorecardImage
-        userScorecardImageView.loadInBackground()
-        
-    }
-    
     override func shouldAutorotate() -> Bool {
         return true
     }
@@ -96,5 +66,7 @@ class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.AllButUpsideDown
     }
+    
+
     
 }

@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
     @IBOutlet var photoTapGesture: UITapGestureRecognizer!
     
-    var profileData = [GolferProfile]()
+    var golferProfile = GolferProfile()
     var userScorecardData = [GolfScorecard]()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -28,9 +28,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(profileData)
-        
+                
         if PFUser.currentUser() != nil {
             
             getProfileFromBackground()
@@ -99,14 +97,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
     }
-    
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//        
-//        
-//    }
-//    
+ 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         
@@ -123,7 +114,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
             let profilePhotoAndScorecardPhotoVC = segue.destinationViewController as? ProfilePhotoAndScorecardPhotoVC
             
-            profilePhotoAndScorecardPhotoVC?.userProfileData = profileData
+            profilePhotoAndScorecardPhotoVC?.golferProfile = golferProfile
 
         }
         
@@ -165,21 +156,18 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func getProfileFromBackground() {
-        profileData.removeAll()
         if let userQuery = PFUser.query() {
             userQuery.whereKey("username", equalTo: (PFUser.currentUser()?.username)!)
             userQuery.findObjectsInBackgroundWithBlock({ (currentUserProfile:[PFObject]?, error: NSError?) -> Void in
                 if error == nil {
                     for object:PFObject in currentUserProfile! {
                     if let object = object as? GolferProfile {
-                    self.profileData.append(object)
-                    for data in self.profileData {
+                    self.golferProfile = object
                     dispatch_async(dispatch_get_main_queue()) {
-                    self.golferNameLabel.text = data.name
-                    self.golferProfileImage.file = data.profileImage
+                    self.golferNameLabel.text = self.golferProfile.name
+                    self.golferProfileImage.file = self.golferProfile.profileImage
                     self.golferProfileImage.loadInBackground()
                             }
-                        }
                     }
                 }
                     
