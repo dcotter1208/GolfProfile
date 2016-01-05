@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         print(profileData)
         
         if PFUser.currentUser() != nil {
+            
             getProfileFromBackground()
             loadUserScorecardData()
             
@@ -99,7 +100,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        
+//        
+//    }
+//    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
         
         if segue.identifier == "showScorecardDetail" {
             
@@ -107,11 +117,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
             let selectedIndex = userScoreTableView.indexPathForCell(sender as! UITableViewCell)
             
-            userScorecardDetailVC?.userScorecard = userScorecardData[selectedIndex!.row]
+            userScorecardDetailVC?.scorecard = userScorecardData[selectedIndex!.row]
             
-        }
-        
-        if segue.identifier == "showProfilePhoto" {
+        } else if segue.identifier == "showProfilePhoto" {
         
             let profilePhotoAndScorecardPhotoVC = segue.destinationViewController as? ProfilePhotoAndScorecardPhotoVC
             
@@ -120,7 +128,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
     }
-    
 
     @IBAction func logOut(sender: AnyObject) {
         
@@ -240,6 +247,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         default:
             print("ERROR")
         }
+        
+    }
+    
+    func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
+        
+        let alertController = UIAlertController(title: alterTitle, message: message, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
         
     }
 

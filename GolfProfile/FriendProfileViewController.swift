@@ -14,8 +14,6 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
 
     
     @IBOutlet weak var friendProfileNameLabel: UILabel!
-    @IBOutlet weak var friendProfileUsernameLabel: UILabel!
-    @IBOutlet weak var friendProfileCountryLabel: UILabel!
     @IBOutlet weak var friendProfilePhoto: PFImageView!
     @IBOutlet weak var friendScorecardTableView: UITableView!
     
@@ -30,11 +28,12 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
         
         loadFriendProfile()
 
-
     }
     
     override func viewWillAppear(animated: Bool) {
+        
         loadFriendScorecardData()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,7 +84,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
         
         let selectedIndex = friendScorecardTableView.indexPathForCell(sender as! UITableViewCell)
         
-        profilePhotoAndScorecardPhotoVC?.friendScorecard = friendScorecardData[selectedIndex!.row]
+        profilePhotoAndScorecardPhotoVC?.scorecard = friendScorecardData[selectedIndex!.row]
             
         }
         
@@ -116,7 +115,6 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
     
     func loadFriendProfile() {
         friendProfileNameLabel.text = selectedFriend.name
-        friendProfileUsernameLabel.text = "Username: \(selectedFriend.username!)"
         friendProfilePhoto.file = selectedFriend.profileImage
     }
     

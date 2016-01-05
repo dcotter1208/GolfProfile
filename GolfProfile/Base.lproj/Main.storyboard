@@ -110,7 +110,7 @@
                                             <outlet property="golfCourseCellLabel" destination="CNi-WP-GaS" id="XDn-w0-tWM"/>
                                             <outlet property="scoreCellLabel" destination="LeN-62-B6y" id="h9s-LL-2gU"/>
                                             <outlet property="scorecardCellImage" destination="Lxk-Jb-24V" id="iKh-yK-6W4"/>
-                                            <segue destination="i50-sr-6sf" kind="modal" identifier="showScorecardDetail" id="ioU-f9-c2g"/>
+                                            <segue destination="i50-sr-6sf" kind="modal" identifier="showScorecardDetail" id="vj5-mY-JmO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -304,28 +304,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lk4-dh-faY">
-                                <rect key="frame" x="278" y="20" width="30" height="42"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <state key="normal" title="X">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismissButton:" destination="i50-sr-6sf" eventType="touchUpInside" id="eXc-BZ-Qra"/>
-                                </connections>
-                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Urc-sy-HQ2">
                                 <rect key="frame" x="0.0" y="70" width="320" height="490"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y20-nQ-2YM" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="68" width="320" height="300"/>
+                                        <rect key="frame" x="0.0" y="68" width="320" height="320"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="huq-4l-ZWb"/>
+                                            <constraint firstAttribute="height" constant="320" id="huq-4l-ZWb"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Y20-nQ-2YM" secondAttribute="bottom" constant="122" id="OA7-mn-guj"/>
+                                    <constraint firstAttribute="bottom" secondItem="Y20-nQ-2YM" secondAttribute="bottom" constant="102" id="OA7-mn-guj"/>
                                     <constraint firstItem="Y20-nQ-2YM" firstAttribute="centerX" secondItem="Urc-sy-HQ2" secondAttribute="centerX" id="Wa2-GG-vMf"/>
                                     <constraint firstItem="Y20-nQ-2YM" firstAttribute="top" secondItem="Urc-sy-HQ2" secondAttribute="top" constant="68" id="YIG-pt-6qu"/>
                                     <constraint firstItem="Y20-nQ-2YM" firstAttribute="leading" secondItem="Urc-sy-HQ2" secondAttribute="leading" id="enA-gG-6Az"/>
@@ -335,28 +325,44 @@
                                     <outlet property="delegate" destination="i50-sr-6sf" id="dtz-fR-Rek"/>
                                 </connections>
                             </scrollView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iic-Ki-py7">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2u-4p-Z5v">
+                                <rect key="frame" x="270" y="24" width="30" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="X"/>
+                                <connections>
+                                    <action selector="dismissButton:" destination="i50-sr-6sf" eventType="touchUpInside" id="eCS-HK-tOg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Urc-sy-HQ2" firstAttribute="top" secondItem="M4w-BA-ZlZ" secondAttribute="bottom" constant="50" id="2Sx-h1-mvu"/>
                             <constraint firstItem="Wha-Lo-LFD" firstAttribute="top" secondItem="Urc-sy-HQ2" secondAttribute="bottom" constant="8" id="3Es-mf-dxO"/>
+                            <constraint firstItem="Iic-Ki-py7" firstAttribute="top" secondItem="KnP-23-1Dq" secondAttribute="top" id="Bl8-Th-dHL"/>
                             <constraint firstItem="Urc-sy-HQ2" firstAttribute="leading" secondItem="KnP-23-1Dq" secondAttribute="leading" id="JHh-f7-m9v"/>
-                            <constraint firstItem="Lk4-dh-faY" firstAttribute="top" secondItem="M4w-BA-ZlZ" secondAttribute="bottom" id="Ng6-TV-ha0"/>
+                            <constraint firstItem="Iic-Ki-py7" firstAttribute="trailing" secondItem="Urc-sy-HQ2" secondAttribute="trailing" id="QEm-Sw-Dja"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="C2u-4p-Z5v" secondAttribute="trailing" constant="4" id="WOP-ZH-CuA"/>
+                            <constraint firstItem="Iic-Ki-py7" firstAttribute="leading" secondItem="Urc-sy-HQ2" secondAttribute="leading" id="aL5-4p-4qa"/>
+                            <constraint firstItem="C2u-4p-Z5v" firstAttribute="top" secondItem="M4w-BA-ZlZ" secondAttribute="bottom" constant="4" id="e3Q-ra-7f9"/>
+                            <constraint firstItem="Iic-Ki-py7" firstAttribute="bottom" secondItem="Wha-Lo-LFD" secondAttribute="top" id="nZv-nX-lop"/>
                             <constraint firstAttribute="trailing" secondItem="Urc-sy-HQ2" secondAttribute="trailing" id="o6w-Pk-3ey"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Lk4-dh-faY" secondAttribute="trailing" constant="-4" id="ua8-io-EW7"/>
-                            <constraint firstItem="Wha-Lo-LFD" firstAttribute="top" secondItem="Y20-nQ-2YM" secondAttribute="bottom" constant="130" id="xdX-wk-Jwg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2tw-0V-3mB"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="dismissButton" destination="C2u-4p-Z5v" id="gfd-Mx-IQ1"/>
+                        <outlet property="noScorecardImageView" destination="Iic-Ki-py7" id="QrH-1g-qcb"/>
                         <outlet property="userScorecardImageView" destination="Y20-nQ-2YM" id="OfG-vw-rD6"/>
                         <outlet property="userScorecardScrollView" destination="Urc-sy-HQ2" id="08M-bU-gbc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKH-bi-VyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="454" y="-3363"/>
+            <point key="canvasLocation" x="388" y="-3516"/>
         </scene>
         <!--Select Course-->
         <scene sceneID="EB0-Fo-rJz">
@@ -588,26 +594,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Golfer:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnn-pY-i6b">
-                                <rect key="frame" x="135" y="72" width="154" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Golfer:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnn-pY-i6b">
+                                <rect key="frame" x="134" y="72" width="166" height="69"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.7843137255" blue="0.28627450980000002" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="aVZ-RI-dBB"/>
+                                    <constraint firstAttribute="height" constant="69" id="elE-Wl-St6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rx1-ji-kXx" customClass="PFImageView">
-                                <rect key="frame" x="7" y="72" width="120" height="120"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="3Zn-2c-tYx"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="ftT-xy-enA" appends="YES" id="KNT-2z-nLY"/>
-                                </connections>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aay-7N-dyj">
                                 <rect key="frame" x="0.0" y="291" width="320" height="258"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -682,16 +678,6 @@
                                     <outlet property="delegate" destination="Dmd-OT-1nW" id="T8P-B2-ywF"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BC7-nW-QYa">
-                                <rect key="frame" x="135" y="106" width="142" height="21"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.7843137255" blue="0.28627450980000002" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Odq-VN-INg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oja-tk-olJ">
                                 <rect key="frame" x="16" y="255" width="288" height="29"/>
                                 <color key="backgroundColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -706,32 +692,38 @@
                                     <action selector="segmentedControl:" destination="Dmd-OT-1nW" eventType="valueChanged" id="qyc-tr-1U4"/>
                                 </connections>
                             </segmentedControl>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rx1-ji-kXx" customClass="PFImageView">
+                                <rect key="frame" x="16" y="72" width="110" height="110"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="1cW-Hk-Ras"/>
+                                    <constraint firstAttribute="height" constant="110" id="fF8-Ma-Ute"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ftT-xy-enA" appends="YES" id="KNT-2z-nLY"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="oja-tk-olJ" firstAttribute="top" secondItem="Rx1-ji-kXx" secondAttribute="bottom" constant="63" id="4ln-PT-gsf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BC7-nW-QYa" secondAttribute="trailing" constant="27" id="AI4-hf-2RR"/>
-                            <constraint firstItem="hnn-pY-i6b" firstAttribute="leading" secondItem="BC7-nW-QYa" secondAttribute="leading" id="Asv-hq-tBS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hnn-pY-i6b" secondAttribute="trailing" constant="15" id="D94-f3-6UP"/>
-                            <constraint firstItem="Rx1-ji-kXx" firstAttribute="leading" secondItem="tsd-PD-Nzi" secondAttribute="leadingMargin" constant="-9" id="DN2-Ym-Pk4"/>
                             <constraint firstItem="oja-tk-olJ" firstAttribute="leading" secondItem="tsd-PD-Nzi" secondAttribute="leadingMargin" id="FP0-DY-87T"/>
-                            <constraint firstItem="hnn-pY-i6b" firstAttribute="top" secondItem="Rx1-ji-kXx" secondAttribute="top" id="GvU-Ct-dS2"/>
-                            <constraint firstItem="Rx1-ji-kXx" firstAttribute="top" secondItem="jgq-wO-i6G" secondAttribute="bottom" constant="8" symbolic="YES" id="J2g-e1-k5N"/>
+                            <constraint firstItem="Rx1-ji-kXx" firstAttribute="top" secondItem="jgq-wO-i6G" secondAttribute="bottom" constant="8" symbolic="YES" id="Q5Q-Dr-T6n"/>
                             <constraint firstItem="cNt-bJ-Gbh" firstAttribute="top" secondItem="aay-7N-dyj" secondAttribute="bottom" constant="-30" id="U5t-5P-OJT"/>
                             <constraint firstItem="aay-7N-dyj" firstAttribute="centerX" secondItem="oja-tk-olJ" secondAttribute="centerX" id="Upz-1h-ofM"/>
                             <constraint firstAttribute="trailing" secondItem="aay-7N-dyj" secondAttribute="trailing" id="cVr-GM-Owb"/>
+                            <constraint firstItem="Rx1-ji-kXx" firstAttribute="leading" secondItem="oja-tk-olJ" secondAttribute="leading" id="dXk-fP-XXh"/>
                             <constraint firstItem="aay-7N-dyj" firstAttribute="leading" secondItem="tsd-PD-Nzi" secondAttribute="leading" id="gd7-zI-ueW"/>
-                            <constraint firstItem="BC7-nW-QYa" firstAttribute="top" secondItem="jgq-wO-i6G" secondAttribute="bottom" constant="42" id="ndE-JF-A66"/>
-                            <constraint firstItem="hnn-pY-i6b" firstAttribute="leading" secondItem="Rx1-ji-kXx" secondAttribute="trailing" constant="8" symbolic="YES" id="nle-p8-n0x"/>
+                            <constraint firstItem="hnn-pY-i6b" firstAttribute="top" secondItem="Rx1-ji-kXx" secondAttribute="top" id="kCO-B0-hfx"/>
+                            <constraint firstItem="hnn-pY-i6b" firstAttribute="leading" secondItem="Rx1-ji-kXx" secondAttribute="trailing" constant="8" symbolic="YES" id="kk7-77-Z3o"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hnn-pY-i6b" secondAttribute="trailing" constant="4" id="sL7-Ck-oDi"/>
                             <constraint firstItem="aay-7N-dyj" firstAttribute="top" secondItem="oja-tk-olJ" secondAttribute="bottom" constant="8" symbolic="YES" id="sm4-MZ-Qe9"/>
-                            <constraint firstItem="oja-tk-olJ" firstAttribute="top" secondItem="BC7-nW-QYa" secondAttribute="bottom" constant="128" id="yiO-8W-ung"/>
+                            <constraint firstItem="oja-tk-olJ" firstAttribute="top" secondItem="Rx1-ji-kXx" secondAttribute="bottom" constant="73" id="wfZ-mS-6Yg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8Xo-R0-bVX"/>
                     <connections>
                         <outlet property="friendProfileNameLabel" destination="hnn-pY-i6b" id="TyT-CP-pjr"/>
                         <outlet property="friendProfilePhoto" destination="Rx1-ji-kXx" id="7A0-dl-oXn"/>
-                        <outlet property="friendProfileUsernameLabel" destination="BC7-nW-QYa" id="XbK-vs-Mmx"/>
                         <outlet property="friendScorecardSegmentedControl" destination="oja-tk-olJ" id="qyy-2a-s9Y"/>
                         <outlet property="friendScorecardTableView" destination="aay-7N-dyj" id="9rj-5K-aue"/>
                     </connections>
@@ -1041,7 +1033,7 @@
                                             <outlet property="friendName" destination="Bgl-uD-bSe" id="l9l-Lc-eZd"/>
                                             <outlet property="friendProfileCell" destination="C0s-Zc-W3J" id="bYp-7c-hYr"/>
                                             <outlet property="friendUserNameCellLabel" destination="TXw-ye-pxj" id="1Af-BG-mF9"/>
-                                            <segue destination="Dmd-OT-1nW" kind="push" identifier="showFriendScores" id="D9k-sl-J3Q"/>
+                                            <segue destination="Dmd-OT-1nW" kind="push" identifier="showFriendProfileVC" id="pSi-ac-bkp"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="findFriendsCell" id="m9h-Va-8nP" customClass="FindFriendCell" customModule="GolfProfile" customModuleProvider="target">
@@ -1352,6 +1344,6 @@
         <image name="winners_podium" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="opq-Bh-4YY"/>
+        <segue reference="d34-ln-BhW"/>
     </inferredMetricsTieBreakers>
 </document>

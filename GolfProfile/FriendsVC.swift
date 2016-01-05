@@ -73,7 +73,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         if isFriend(friend) {
           findFriendCell.addFollowingLabel.text = "Following"
           findFriendCell.addFollowingLabel.textColor = UIColor.whiteColor()
-
             
         } else {
             findFriendCell.addFollowingLabel.text = "Add"
@@ -109,7 +108,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "showFriendScores"  {
+        if segue.identifier == "showFriendProfileVC"  {
             
             let friendScoresVC = segue.destinationViewController as! FriendProfileViewController
             

@@ -14,20 +14,30 @@ class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var userScorecardImageView: PFImageView!
     @IBOutlet weak var userScorecardScrollView: UIScrollView!
-    
-    var userScorecard = GolfScorecard?()
-    var friendScorecard = GolfScorecard()
+    @IBOutlet weak var noScorecardImageView: UIImageView!
+    @IBOutlet weak var dismissButton: UIButton!
+    var scorecard = GolfScorecard?()
     var userProfileData = [PFObject]()
     var selectedFriendProfile = GolferProfile()
 
 
-    
     override func viewDidLoad() {
     super.viewDidLoad()
         
-    displayUserDetailedScorecardInfo()
+        if scorecard?.scorecardImage == nil {
+            
+            noScorecardImageView.image = UIImage(named: "noScorecardAvailable")
+            noScorecardImageView.backgroundColor = UIColor.whiteColor()
+            dismissButton.tintColor = UIColor.blackColor()
+            
+        } else {
+            dismissButton.tintColor = UIColor.whiteColor()
+            displayUserDetailedScorecardInfo()
+            loadFriendDetailedScorecardInfo()
+
+        }
+        
     displayUserProfilePhoto()
-    loadFriendDetailedScorecardInfo()
     userScorecardImageView.file = selectedFriendProfile.profileImage
 
     
@@ -57,7 +67,7 @@ class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
     
     func displayUserDetailedScorecardInfo() {
 
-        userScorecardImageView.file = userScorecard?.scorecardImage
+        userScorecardImageView.file = scorecard?.scorecardImage
         userScorecardImageView.loadInBackground()
 
     }
@@ -74,7 +84,7 @@ class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
     
     func loadFriendDetailedScorecardInfo() {
 
-        userScorecardImageView.file = friendScorecard.scorecardImage
+        userScorecardImageView.file = scorecard?.scorecardImage
         userScorecardImageView.loadInBackground()
         
     }
