@@ -12,8 +12,6 @@ import ParseUI
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var golferNameLabel: UILabel!
-    @IBOutlet weak var golferCountry: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var golferProfileImage: PFImageView!
     @IBOutlet weak var userScoreTableView: UITableView!
     @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
@@ -31,7 +29,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(profileData)
+        
         if PFUser.currentUser() != nil {
+            
             getProfileFromBackground()
             loadUserScorecardData()
             
@@ -40,8 +41,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         self.userScoreTableView.addSubview(self.refreshControl)
 
     }
-
-
+    
     override func viewWillAppear(animated: Bool) {
         
         if PFUser.currentUser() == nil {
@@ -68,7 +68,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell:UserLeaderboardCell = tableView.dequeueReusableCellWithIdentifier("userScorecardCell", forIndexPath: indexPath) as! UserLeaderboardCell
+        let cell:CurrentUserScorecardCell = tableView.dequeueReusableCellWithIdentifier("userScorecardCell", forIndexPath: indexPath) as! CurrentUserScorecardCell
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
@@ -80,7 +80,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.golfCourseCellLabel?.text = userScorecardData[indexPath.row].golfCourse
         
         cell.scorecardCellImage.image = UIImage(named: "noScorecard")
-        
         
         cell.scorecardCellImage.file = userScorecardData[indexPath.row].scorecardImage
         cell.scorecardCellImage.loadInBackground()
@@ -101,28 +100,34 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        
+//        
+//    }
+//    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
         
         if segue.identifier == "showScorecardDetail" {
             
-            let userScorecardDetailVC = segue.destinationViewController as? UserScorecardDetailVC
+            let userScorecardDetailVC = segue.destinationViewController as? ProfilePhotoAndScorecardPhotoVC
             
             let selectedIndex = userScoreTableView.indexPathForCell(sender as! UITableViewCell)
             
-            userScorecardDetailVC?.userScorecard = userScorecardData[selectedIndex!.row]
+            userScorecardDetailVC?.scorecard = userScorecardData[selectedIndex!.row]
             
-        }
+        } else if segue.identifier == "showProfilePhoto" {
         
-        if segue.identifier == "showProfilePhoto" {
-        
-            let profilePhotoVC = segue.destinationViewController as? ProfilePhotoVC
+            let profilePhotoAndScorecardPhotoVC = segue.destinationViewController as? ProfilePhotoAndScorecardPhotoVC
             
-            profilePhotoVC?.userProfileData = profileData
+            profilePhotoAndScorecardPhotoVC?.userProfileData = profileData
 
         }
         
     }
-    
 
     @IBAction func logOut(sender: AnyObject) {
         
@@ -142,6 +147,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func unwindToProfilePage(segue: UIStoryboardSegue) {
         
         getProfileFromBackground()
+        
+    }
+    
+    @IBAction func unwindFromNewScoreToProfilePage(segue: UIStoryboardSegue) {
+        
+        loadUserScorecardData()
         
     }
     
@@ -165,7 +176,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     for data in self.profileData {
                     dispatch_async(dispatch_get_main_queue()) {
                     self.golferNameLabel.text = data.name
-                    self.usernameLabel.text = data.username
                     self.golferProfileImage.file = data.profileImage
                     self.golferProfileImage.loadInBackground()
                             }
@@ -237,6 +247,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         default:
             print("ERROR")
         }
+        
+    }
+    
+    func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
+        
+        let alertController = UIAlertController(title: alterTitle, message: message, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
         
     }
 

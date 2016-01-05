@@ -27,10 +27,20 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         loadUserProfile()
         imagePicker.delegate = self
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+                
+        if golferProfileImage.image == nil {
+        
+        loadUserProfile()
+        
+        }
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,6 +80,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                                 self.performSegueWithIdentifier("unwindSegueToProfile", sender: self)
                                 } else {
                                 self.displayAlert("Save Failed", message: "Please try again", actionTitle: "OK")
+                                print("FAILED")
                                     }
                                 })
                             }

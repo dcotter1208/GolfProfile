@@ -67,8 +67,8 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             allScorecards.1.fetchIfNeededInBackgroundWithBlock({ (info: PFObject?, error: NSError?) -> Void in
             
             cell.leaderboardGCLabel?.text = allScorecards.0.golfCourse
-            cell.leaderboardGolferLabel.text = allScorecards.1.username
-                
+            cell.leaderboardGolferLabel.text = allScorecards.1.name
+            cell.leaderboardUsernameLabel.text = allScorecards.1.username
             cell.leaderboardProfileImage.file = allScorecards.1.profileImage
             cell.leaderboardProfileImage.loadInBackground()
             cell.leaderboardProfileImage.layer.cornerRadius = cell.leaderboardProfileImage.frame.size.width / 2
@@ -80,7 +80,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         
         }
         
-        if cell.leaderboardGolferLabel.text == PFUser.currentUser()?.username {
+        if cell.leaderboardUsernameLabel.text == PFUser.currentUser()?.username {
             
             cell.starImage.image = UIImage(named: "star")
 

@@ -48,22 +48,18 @@
 		C03D92341C29EDA60084B255 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03D92321C29ED610084B255 /* ParseUI.framework */; };
 		C042BE6D1C38DE17002CA9ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C042BE6C1C38DE17002CA9ED /* Foundation.framework */; };
 		C04597481BFB7C8A001A004D /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04597471BFB7C8A001A004D /* Keys.plist */; };
-		C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */; };
+		C06D00921BE8F8F200A514FE /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00911BE8F8F200A514FE /* FriendProfileViewController.swift */; };
 		C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00931BE9027E00A514FE /* SignUpViewController.swift */; };
 		C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */; };
-		C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */; };
+		C06D00981BE980D500A514FE /* CurrentUserScorecardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00971BE980D500A514FE /* CurrentUserScorecardCell.swift */; };
 		C07DDFA31C245AE000F69E4B /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */; };
 		C07E7C401C0376B500A86EB7 /* GolfScorecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */; };
 		C0A0AEC81C0A7E7000671B18 /* GolferProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */; };
-		C0A0AF481C0FC6D500671B18 /* ProfilePhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */; };
 		C0A288481BED2D0C0003AF11 /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288471BED2D0C0003AF11 /* FriendsVC.swift */; };
 		C0A2884A1BED37810003AF11 /* FindFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A288491BED37810003AF11 /* FindFriendCell.swift */; };
 		C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */; };
 		C0AF95141C1B18EB008DCB4A /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF95131C1B18EB008DCB4A /* SwiftyJSON.swift */; };
-		C0AF95181C1B351F008DCB4A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF95171C1B351F008DCB4A /* DataManager.swift */; };
-		C0AFA2E61BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AFA2E51BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift */; };
-		C0AFA2E81BF0106800C9F058 /* UserScorecardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AFA2E71BF0106800C9F058 /* UserScorecardDetailVC.swift */; };
-		C0C368CB1C1DFF2600457244 /* courseData.json in Resources */ = {isa = PBXBuildFile; fileRef = C0C368CA1C1DFF2600457244 /* courseData.json */; };
+		C0AFA2E81BF0106800C9F058 /* ProfilePhotoAndScorecardPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AFA2E71BF0106800C9F058 /* ProfilePhotoAndScorecardPhotoVC.swift */; };
 		C0C74F381BF4206700EB4E11 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C74F371BF4206700EB4E11 /* LeaderboardViewController.swift */; };
 		C0C74F3A1BF424E400EB4E11 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C74F391BF424E400EB4E11 /* LeaderboardCell.swift */; };
 		C0CD846E1C34E439008E5ECC /* courseDataBase.realm in Resources */ = {isa = PBXBuildFile; fileRef = C0CD846D1C34E427008E5ECC /* courseDataBase.realm */; };
@@ -153,22 +149,18 @@
 		C03D92321C29ED610084B255 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		C042BE6C1C38DE17002CA9ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C04597471BFB7C8A001A004D /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = ../Keys.plist; sourceTree = "<group>"; };
-		C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendScoresViewController.swift; sourceTree = "<group>"; };
+		C06D00911BE8F8F200A514FE /* FriendProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
 		C06D00931BE9027E00A514FE /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScoreViewController.swift; sourceTree = "<group>"; };
-		C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLeaderboardCell.swift; sourceTree = "<group>"; };
+		C06D00971BE980D500A514FE /* CurrentUserScorecardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserScorecardCell.swift; sourceTree = "<group>"; };
 		C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfScorecard.swift; sourceTree = "<group>"; };
 		C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolferProfile.swift; sourceTree = "<group>"; };
-		C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhotoVC.swift; sourceTree = "<group>"; };
 		C0A288471BED2D0C0003AF11 /* FriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
 		C0A288491BED37810003AF11 /* FindFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendCell.swift; sourceTree = "<group>"; };
 		C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C0AF95131C1B18EB008DCB4A /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		C0AF95171C1B351F008DCB4A /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		C0AFA2E51BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendScorecardDetailVC.swift; sourceTree = "<group>"; };
-		C0AFA2E71BF0106800C9F058 /* UserScorecardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserScorecardDetailVC.swift; sourceTree = "<group>"; };
-		C0C368CA1C1DFF2600457244 /* courseData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = courseData.json; sourceTree = "<group>"; };
+		C0AFA2E71BF0106800C9F058 /* ProfilePhotoAndScorecardPhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhotoAndScorecardPhotoVC.swift; sourceTree = "<group>"; };
 		C0C74F371BF4206700EB4E11 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		C0C74F391BF424E400EB4E11 /* LeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		C0CD846D1C34E427008E5ECC /* courseDataBase.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = courseDataBase.realm; sourceTree = "<group>"; };
@@ -238,6 +230,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C02E54951C3B220C000FCA13 /* LoginViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */,
+				C038BF751BE84287004AE33E /* LoginViewController.swift */,
+				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
+			);
+			name = LoginViewControllers;
+			sourceTree = "<group>";
+		};
 		C038BF091BE80AA4004AE33E = {
 			isa = PBXGroup;
 			children = (
@@ -265,23 +267,18 @@
 			children = (
 				C0CD846D1C34E427008E5ECC /* courseDataBase.realm */,
 				C038BF151BE80AA4004AE33E /* AppDelegate.swift */,
-				C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */,
-				C038BF751BE84287004AE33E /* LoginViewController.swift */,
-				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
+				C02E54951C3B220C000FCA13 /* LoginViewControllers */,
 				C038BF431BE80BAA004AE33E /* ProfileViewController.swift */,
-				C0A0AF471C0FC6D500671B18 /* ProfilePhotoVC.swift */,
 				C0ABFA591BEA708D00DFF9FF /* EditProfileViewController.swift */,
 				C01F71C01C338B5000887522 /* CourseSearchTVC.swift */,
 				C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */,
-				C0AFA2E71BF0106800C9F058 /* UserScorecardDetailVC.swift */,
 				C0A288471BED2D0C0003AF11 /* FriendsVC.swift */,
-				C06D00911BE8F8F200A514FE /* FriendScoresViewController.swift */,
-				C0AFA2E51BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift */,
+				C06D00911BE8F8F200A514FE /* FriendProfileViewController.swift */,
 				C0C74F371BF4206700EB4E11 /* LeaderboardViewController.swift */,
-				C0AF95171C1B351F008DCB4A /* DataManager.swift */,
+				C0AFA2E71BF0106800C9F058 /* ProfilePhotoAndScorecardPhotoVC.swift */,
 				C0CD846F1C34F23C008E5ECC /* RealmDataManager.swift */,
+				C0AF95131C1B18EB008DCB4A /* SwiftyJSON.swift */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
-				C0C368CA1C1DFF2600457244 /* courseData.json */,
 				C038BF1C1BE80AA4004AE33E /* Assets.xcassets */,
 				C038BF1E1BE80AA4004AE33E /* LaunchScreen.storyboard */,
 				C04597471BFB7C8A001A004D /* Keys.plist */,
@@ -313,7 +310,6 @@
 		C038BF491BE81C20004AE33E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C0AF95131C1B18EB008DCB4A /* SwiftyJSON.swift */,
 				C01E85F41C1A1A67001CBA1B /* GolfCourse.swift */,
 				C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */,
 				C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */,
@@ -360,13 +356,13 @@
 		C089CBE31BFBAF6400C23D53 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
-				C06D00971BE980D500A514FE /* UserLeaderboardCell.swift */,
+				C06D00971BE980D500A514FE /* CurrentUserScorecardCell.swift */,
+				C0DD4D891C1F087200AE3799 /* SearchCourseCell.swift */,
+				C0DD4D8B1C1F089800AE3799 /* PreviousCourseCell.swift */,
 				C0017C5B1BEDB47C00691F7D /* FriendsCell.swift */,
 				C0A288491BED37810003AF11 /* FindFriendCell.swift */,
 				C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */,
 				C0C74F391BF424E400EB4E11 /* LeaderboardCell.swift */,
-				C0DD4D891C1F087200AE3799 /* SearchCourseCell.swift */,
-				C0DD4D8B1C1F089800AE3799 /* PreviousCourseCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -484,7 +480,6 @@
 			files = (
 				C0CD846E1C34E439008E5ECC /* courseDataBase.realm in Resources */,
 				C04597481BFB7C8A001A004D /* Keys.plist in Resources */,
-				C0C368CB1C1DFF2600457244 /* courseData.json in Resources */,
 				C038BF201BE80AA4004AE33E /* LaunchScreen.storyboard in Resources */,
 				C038BF1D1BE80AA4004AE33E /* Assets.xcassets in Resources */,
 				C038BF1B1BE80AA4004AE33E /* Main.storyboard in Resources */,
@@ -589,13 +584,12 @@
 				C0255B7F1C330A4500B8BCE6 /* Course.swift in Sources */,
 				C0CD84721C357173008E5ECC /* PreviousCourse.swift in Sources */,
 				C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */,
-				C0AF95181C1B351F008DCB4A /* DataManager.swift in Sources */,
 				C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */,
 				C0A2884A1BED37810003AF11 /* FindFriendCell.swift in Sources */,
 				C0C74F381BF4206700EB4E11 /* LeaderboardViewController.swift in Sources */,
 				C0017C5E1BEEC5D300691F7D /* FriendScorecardCell.swift in Sources */,
 				C01F71C11C338B5000887522 /* CourseSearchTVC.swift in Sources */,
-				C06D00981BE980D500A514FE /* UserLeaderboardCell.swift in Sources */,
+				C06D00981BE980D500A514FE /* CurrentUserScorecardCell.swift in Sources */,
 				C07E7C401C0376B500A86EB7 /* GolfScorecard.swift in Sources */,
 				C0AF95141C1B18EB008DCB4A /* SwiftyJSON.swift in Sources */,
 				C0DD4D8A1C1F087200AE3799 /* SearchCourseCell.swift in Sources */,
@@ -606,15 +600,13 @@
 				C038BF761BE84287004AE33E /* LoginViewController.swift in Sources */,
 				C01E85F51C1A1A67001CBA1B /* GolfCourse.swift in Sources */,
 				C0CD84701C34F23C008E5ECC /* RealmDataManager.swift in Sources */,
-				C0AFA2E61BEFE6EF00C9F058 /* FriendScorecardDetailVC.swift in Sources */,
 				C0017C5C1BEDB47C00691F7D /* FriendsCell.swift in Sources */,
 				C0C74F3A1BF424E400EB4E11 /* LeaderboardCell.swift in Sources */,
 				C07DDFA31C245AE000F69E4B /* ForgotPasswordVC.swift in Sources */,
 				C0A288481BED2D0C0003AF11 /* FriendsVC.swift in Sources */,
-				C0AFA2E81BF0106800C9F058 /* UserScorecardDetailVC.swift in Sources */,
-				C06D00921BE8F8F200A514FE /* FriendScoresViewController.swift in Sources */,
+				C0AFA2E81BF0106800C9F058 /* ProfilePhotoAndScorecardPhotoVC.swift in Sources */,
+				C06D00921BE8F8F200A514FE /* FriendProfileViewController.swift in Sources */,
 				C038BF161BE80AA4004AE33E /* AppDelegate.swift in Sources */,
-				C0A0AF481C0FC6D500671B18 /* ProfilePhotoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,8 +756,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GolfProfile",
-					"$(PROJECT_DIR)/build/Release-iphoneos",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = GolfProfile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -776,6 +766,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -790,8 +781,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GolfProfile",
-					"$(PROJECT_DIR)/build/Release-iphoneos",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = GolfProfile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -802,6 +791,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -809,10 +799,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/build/Release-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = GolfProfileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfileTests;
@@ -825,10 +812,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/build/Release-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = GolfProfileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfileTests;

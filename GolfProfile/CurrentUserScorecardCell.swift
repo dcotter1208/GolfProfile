@@ -9,7 +9,7 @@
 import UIKit
 import ParseUI
 
-class UserLeaderboardCell: PFTableViewCell {
+class CurrentUserScorecardCell: PFTableViewCell {
     @IBOutlet weak var scorecardCellImage: PFImageView!
     @IBOutlet weak var golfCourseCellLabel: UILabel!
     @IBOutlet weak var dateCellLabel: UILabel!
@@ -17,13 +17,22 @@ class UserLeaderboardCell: PFTableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        viewWillLayoutSubviews()
+
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+        func viewWillLayoutSubviews() {
+        self.scorecardCellImage.layer.cornerRadius = 3.0
+        self.scorecardCellImage.clipsToBounds = true
+        self.scorecardCellImage.layer.borderWidth = 1.0
+        
     }
 
 }
