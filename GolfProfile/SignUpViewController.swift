@@ -34,7 +34,7 @@ class SignUpViewController: UIViewController {
     func signUp() {
         let user = PFUser()
         user.username = signUpEmailTextField.text?.lowercaseString
-        user.password = signUpPasswordTextField.text?.lowercaseString
+        user.password = signUpPasswordTextField.text
         user.email = signUpEmailTextField.text?.lowercaseString
         
         user["name"] = firstNameTextField.text! + " " + lastNameTextField.text!

@@ -28,7 +28,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        Reachability.isConnectedToNetwork()
+        
         if PFUser.currentUser() != nil {
             
             getProfileFromBackground()
@@ -54,7 +56,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,8 +100,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        
         
         if segue.identifier == "showScorecardDetail" {
             
@@ -171,6 +171,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
                     
             } else {
+                    if error?.code == 100 {
+                        
+                    self.displayAlert("No Network Connection", message: "Please check connection.", actionTitle: "OK")
+                    
+                    }
             print(error)
                 
             }

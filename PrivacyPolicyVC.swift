@@ -13,7 +13,7 @@ class PrivacyPolicyVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let url = NSURL (string: "https://www.iubenda.com/privacy-policy/7772504")
         let requestObj = NSURLRequest(URL: url!)
         webView.loadRequest(requestObj)
@@ -29,6 +29,12 @@ class PrivacyPolicyVC: UIViewController {
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
+    }
+    
+    
+    func webViewDidStartLoading() {
+    
+    
     }
 
 }

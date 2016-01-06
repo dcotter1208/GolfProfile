@@ -861,14 +861,20 @@
                                     <segue destination="cfY-sT-J3e" kind="modal" id="jY0-na-pRw"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Wt0-kH-LjV">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="u4R-DB-TE8" firstAttribute="top" secondItem="gps-xn-jCs" secondAttribute="bottom" constant="8" symbolic="YES" id="3zM-d2-gt1"/>
+                            <constraint firstItem="Wt0-kH-LjV" firstAttribute="centerY" secondItem="eyi-e7-0Je" secondAttribute="centerY" id="6US-NP-s1V"/>
                             <constraint firstItem="9sG-8O-0No" firstAttribute="centerX" secondItem="9wl-Cb-NDb" secondAttribute="centerX" id="9WP-eL-IKi"/>
                             <constraint firstItem="9wl-Cb-NDb" firstAttribute="centerX" secondItem="MCw-go-GES" secondAttribute="centerX" id="BA8-GR-Xgs"/>
                             <constraint firstItem="HOz-7y-k3f" firstAttribute="top" secondItem="MCw-go-GES" secondAttribute="bottom" constant="8" symbolic="YES" id="DG2-vR-RE5"/>
                             <constraint firstItem="9sG-8O-0No" firstAttribute="centerX" secondItem="HOz-7y-k3f" secondAttribute="centerX" id="Jg0-VX-GxT"/>
+                            <constraint firstItem="Wt0-kH-LjV" firstAttribute="centerX" secondItem="9wl-Cb-NDb" secondAttribute="centerX" id="LPK-j6-0st"/>
                             <constraint firstItem="Ur7-7o-K94" firstAttribute="top" secondItem="jRc-St-o7H" secondAttribute="bottom" constant="84" id="Ryx-4C-jJI"/>
                             <constraint firstItem="9sG-8O-0No" firstAttribute="trailing" secondItem="u4R-DB-TE8" secondAttribute="trailing" id="SoG-5i-Yyt"/>
                             <constraint firstItem="MCw-go-GES" firstAttribute="top" secondItem="9sG-8O-0No" secondAttribute="bottom" constant="8" symbolic="YES" id="Tv5-vk-hA6"/>
@@ -884,6 +890,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="abA-AE-i6T"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Wt0-kH-LjV" id="n0l-5S-2TM"/>
                         <outlet property="passwordTextField" destination="9sG-8O-0No" id="oPN-by-Wrg"/>
                         <outlet property="usernameTextField" destination="u4R-DB-TE8" id="BX5-Wu-owd"/>
                     </connections>
@@ -1034,6 +1041,10 @@
                                     <action selector="dismissView:" destination="cfY-sT-J3e" eventType="touchUpInside" id="spv-bE-EuN"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="JOY-WG-odq">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1419,7 +1430,7 @@
         <image name="winners_podium" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WP3-N4-QDL"/>
+        <segue reference="jY0-na-pRw"/>
         <segue reference="vj5-mY-JmO"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C0017C5C1BEDB47C00691F7D /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0017C5B1BEDB47C00691F7D /* FriendsCell.swift */; };
 		C0017C5E1BEEC5D300691F7D /* FriendScorecardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */; };
-		C01E85F51C1A1A67001CBA1B /* GolfCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01E85F41C1A1A67001CBA1B /* GolfCourse.swift */; };
 		C01F71BA1C33354400887522 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B81C33354400887522 /* Realm.framework */; };
 		C01F71BB1C33354400887522 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B81C33354400887522 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C01F71BC1C33354400887522 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01F71B91C33354400887522 /* RealmSwift.framework */; };
@@ -18,6 +17,7 @@
 		C0255B7F1C330A4500B8BCE6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0255B7E1C330A4500B8BCE6 /* Course.swift */; };
 		C02E54941C38EB2B000FCA13 /* ALCameraViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02E54931C38EB2B000FCA13 /* ALCameraViewController.framework */; };
 		C02E54971C3CE919000FCA13 /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E54961C3CE919000FCA13 /* PrivacyPolicyVC.swift */; };
+		C02E549B1C3D86A3000FCA13 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E549A1C3D86A3000FCA13 /* Reachability.swift */; };
 		C038BF161BE80AA4004AE33E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038BF151BE80AA4004AE33E /* AppDelegate.swift */; };
 		C038BF1B1BE80AA4004AE33E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C038BF191BE80AA4004AE33E /* Main.storyboard */; };
 		C038BF1D1BE80AA4004AE33E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C038BF1C1BE80AA4004AE33E /* Assets.xcassets */; };
@@ -107,13 +107,13 @@
 		64CBA8A5703403B4A985B725 /* Pods-GolfProfile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolfProfile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GolfProfile/Pods-GolfProfile.debug.xcconfig"; sourceTree = "<group>"; };
 		C0017C5B1BEDB47C00691F7D /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		C0017C5D1BEEC5D300691F7D /* FriendScorecardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendScorecardCell.swift; sourceTree = "<group>"; };
-		C01E85F41C1A1A67001CBA1B /* GolfCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfCourse.swift; sourceTree = "<group>"; };
 		C01F71B81C33354400887522 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Realm.framework; sourceTree = "<group>"; };
 		C01F71B91C33354400887522 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../RealmSwift.framework; sourceTree = "<group>"; };
 		C01F71C01C338B5000887522 /* CourseSearchTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSearchTVC.swift; sourceTree = "<group>"; };
 		C0255B7E1C330A4500B8BCE6 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		C02E54931C38EB2B000FCA13 /* ALCameraViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALCameraViewController.framework; path = "Pods/../build/Debug-iphoneos/ALCameraViewController.framework"; sourceTree = SOURCE_ROOT; };
 		C02E54961C3CE919000FCA13 /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrivacyPolicyVC.swift; path = ../PrivacyPolicyVC.swift; sourceTree = "<group>"; };
+		C02E549A1C3D86A3000FCA13 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = ../Reachability.swift; sourceTree = "<group>"; };
 		C038BF121BE80AA4004AE33E /* GolfProfile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfProfile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C038BF151BE80AA4004AE33E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C038BF1A1BE80AA4004AE33E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -281,6 +281,7 @@
 				C0CD846F1C34F23C008E5ECC /* RealmDataManager.swift */,
 				C0AF95131C1B18EB008DCB4A /* SwiftyJSON.swift */,
 				C02E54961C3CE919000FCA13 /* PrivacyPolicyVC.swift */,
+				C02E549A1C3D86A3000FCA13 /* Reachability.swift */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
 				C038BF1C1BE80AA4004AE33E /* Assets.xcassets */,
 				C038BF1E1BE80AA4004AE33E /* LaunchScreen.storyboard */,
@@ -313,7 +314,6 @@
 		C038BF491BE81C20004AE33E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C01E85F41C1A1A67001CBA1B /* GolfCourse.swift */,
 				C07E7C3F1C0376B500A86EB7 /* GolfScorecard.swift */,
 				C0A0AEC71C0A7E7000671B18 /* GolferProfile.swift */,
 				C0255B7E1C330A4500B8BCE6 /* Course.swift */,
@@ -589,6 +589,7 @@
 				C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */,
 				C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */,
 				C0A2884A1BED37810003AF11 /* FindFriendCell.swift in Sources */,
+				C02E549B1C3D86A3000FCA13 /* Reachability.swift in Sources */,
 				C0C74F381BF4206700EB4E11 /* LeaderboardViewController.swift in Sources */,
 				C0017C5E1BEEC5D300691F7D /* FriendScorecardCell.swift in Sources */,
 				C01F71C11C338B5000887522 /* CourseSearchTVC.swift in Sources */,
@@ -602,7 +603,6 @@
 				C0A0AEC81C0A7E7000671B18 /* GolferProfile.swift in Sources */,
 				C0DD4D8C1C1F089800AE3799 /* PreviousCourseCell.swift in Sources */,
 				C038BF761BE84287004AE33E /* LoginViewController.swift in Sources */,
-				C01E85F51C1A1A67001CBA1B /* GolfCourse.swift in Sources */,
 				C0CD84701C34F23C008E5ECC /* RealmDataManager.swift in Sources */,
 				C0017C5C1BEDB47C00691F7D /* FriendsCell.swift in Sources */,
 				C0C74F3A1BF424E400EB4E11 /* LeaderboardCell.swift in Sources */,
