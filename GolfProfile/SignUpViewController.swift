@@ -20,7 +20,6 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityIndicator.hidden = true
 
     }
 
@@ -49,26 +48,22 @@ class SignUpViewController: UIViewController {
         
         if signUpPasswordTextField.text!.characters.count < 8 {
             
-            activityIndicator.hidden = true
             activityIndicator.stopAnimating()
             
             displayAlert("Invalid Password", message: "Password must be greater than 8 characters", actionTitle: "OK")
             
         } else if isValidEmail(signUpEmailTextField.text!) == false {
-            activityIndicator.hidden = true
             activityIndicator.stopAnimating()
             
             displayAlert("Invalid", message: "Please enter a valid e-mail address", actionTitle: "OK")
 
         } else if firstNameTextField.text?.characters.count > 12 {
-            activityIndicator.hidden = true
             activityIndicator.stopAnimating()
             
             displayAlert("First name too long", message: "Please choose a first name less than 12 characters", actionTitle: "OK")
         
         } else if lastNameTextField.text?.characters.count > 12{
         
-            activityIndicator.hidden = true
             activityIndicator.stopAnimating()
             
             displayAlert("Last name too long", message: "Please choose a last name less than 12 characters", actionTitle: "OK")
@@ -78,7 +73,6 @@ class SignUpViewController: UIViewController {
             
         user.signUpInBackgroundWithBlock {(succeeded: Bool, error: NSError?) -> Void in
          if succeeded {
-        self.activityIndicator.hidden = true
         self.activityIndicator.stopAnimating()
         PFUser.logOutInBackground()
             
@@ -98,7 +92,6 @@ class SignUpViewController: UIViewController {
          } else {
             
             if error?.code == 202 {
-                self.activityIndicator.hidden = true
                 self.activityIndicator.stopAnimating()
                 self.displayAlert("Invalid E-mail", message: "\(self.signUpEmailTextField.text!) is already in use", actionTitle: "OK")
 
@@ -106,7 +99,6 @@ class SignUpViewController: UIViewController {
             
             
             if error?.code == 203 {
-                self.activityIndicator.hidden = true
                 self.activityIndicator.stopAnimating()
                 self.displayAlert("Invalid E-mail", message: "\(self.signUpEmailTextField.text!) is already in use", actionTitle: "OK")
                 

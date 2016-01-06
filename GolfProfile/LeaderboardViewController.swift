@@ -13,6 +13,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     
 
     @IBOutlet weak var leaderboardTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -85,6 +86,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func loadLeaderboardData() {
+        activityIndicator.startAnimating()
         leaderboardData.removeAll()
         
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
@@ -97,7 +99,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         subQuery.orderByAscending("score")
         subQuery.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                
+            self.activityIndicator.stopAnimating()
             for object:PFObject in scoreCards! {
                 if let object = object as? GolfScorecard {
                 if let golfer = object["golfer"] as? GolferProfile {
@@ -113,6 +115,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                 }
                 
             } else {
+                self.activityIndicator.stopAnimating()
                 print(error)
         }
     }

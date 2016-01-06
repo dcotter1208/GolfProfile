@@ -37,7 +37,7 @@ class PrivacyPolicyVC: UIViewController, UIWebViewDelegate {
     func webViewDidFinishLoad(webView: UIWebView) {
         
         activityIndicator.stopAnimating()
-        activityIndicator.hidden = true
+//        activityIndicator.hidden = true
         
     }
     

@@ -92,7 +92,7 @@
                                                     <color key="textColor" red="1" green="0.45361328124999889" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXu-Pe-Rpj">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXu-Pe-Rpj">
                                                     <rect key="frame" x="62" y="44" width="200" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
                                                     <color key="textColor" red="0.1764705882" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -101,13 +101,17 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="CNi-WP-GaS" firstAttribute="leading" secondItem="Lxk-Jb-24V" secondAttribute="trailing" constant="4" id="2b4-ja-y7v"/>
+                                                <constraint firstItem="LeN-62-B6y" firstAttribute="leading" secondItem="fXu-Pe-Rpj" secondAttribute="trailing" constant="8" symbolic="YES" id="5My-ed-xMX"/>
                                                 <constraint firstItem="CNi-WP-GaS" firstAttribute="centerY" secondItem="LeN-62-B6y" secondAttribute="centerY" constant="-13" id="7Eh-8s-XGB"/>
                                                 <constraint firstItem="wdk-fD-9FK" firstAttribute="leading" secondItem="CNi-WP-GaS" secondAttribute="trailing" constant="4" id="HB6-L2-vUk"/>
+                                                <constraint firstItem="fXu-Pe-Rpj" firstAttribute="leading" secondItem="CNi-WP-GaS" secondAttribute="leading" id="IzK-t8-aOu"/>
                                                 <constraint firstItem="wdk-fD-9FK" firstAttribute="trailing" secondItem="4JO-49-q58" secondAttribute="trailingMargin" id="LgD-6l-0zo"/>
+                                                <constraint firstItem="fXu-Pe-Rpj" firstAttribute="bottom" secondItem="Lxk-Jb-24V" secondAttribute="bottom" id="Mos-wU-q6X"/>
                                                 <constraint firstItem="LeN-62-B6y" firstAttribute="top" secondItem="4JO-49-q58" secondAttribute="topMargin" constant="18" id="Nr6-Xq-Yhy"/>
                                                 <constraint firstItem="wdk-fD-9FK" firstAttribute="centerX" secondItem="LeN-62-B6y" secondAttribute="centerX" id="SeY-Xh-rKH"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="wdk-fD-9FK" secondAttribute="bottom" constant="42" id="Uln-uN-zOg"/>
                                                 <constraint firstItem="LeN-62-B6y" firstAttribute="leading" secondItem="CNi-WP-GaS" secondAttribute="trailing" constant="12" id="ZKy-Yw-Ta0"/>
+                                                <constraint firstItem="fXu-Pe-Rpj" firstAttribute="top" secondItem="4JO-49-q58" secondAttribute="topMargin" constant="36" id="feL-DH-c7u"/>
                                                 <constraint firstItem="Lxk-Jb-24V" firstAttribute="top" secondItem="4JO-49-q58" secondAttribute="topMargin" constant="7" id="nUe-IS-yeX"/>
                                                 <constraint firstItem="CNi-WP-GaS" firstAttribute="top" secondItem="4JO-49-q58" secondAttribute="topMargin" constant="6" id="rfO-no-TkZ"/>
                                                 <constraint firstItem="Lxk-Jb-24V" firstAttribute="leading" secondItem="4JO-49-q58" secondAttribute="leadingMargin" id="sAp-oZ-3aU"/>
@@ -150,10 +154,15 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LfP-w4-hEf">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <accessibility key="accessibilityConfiguration" label=""/>
                         <constraints>
+                            <constraint firstItem="LfP-w4-hEf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4s5-dV-FtZ"/>
                             <constraint firstItem="rFU-Bp-Y1T" firstAttribute="top" secondItem="6On-bM-dXX" secondAttribute="bottom" constant="8" symbolic="YES" id="ADr-Yf-LEe"/>
                             <constraint firstItem="cPD-Yx-flP" firstAttribute="top" secondItem="rFU-Bp-Y1T" secondAttribute="bottom" constant="8" symbolic="YES" id="Cgk-my-Hff"/>
                             <constraint firstItem="xOz-qy-Dht" firstAttribute="centerX" secondItem="6On-bM-dXX" secondAttribute="centerX" id="H60-nS-Aux"/>
@@ -168,6 +177,7 @@
                             <constraint firstItem="rFU-Bp-Y1T" firstAttribute="centerX" secondItem="cPD-Yx-flP" secondAttribute="centerX" id="ss7-01-jzM"/>
                             <constraint firstItem="ap1-Kk-PUv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tsu-3g-1yf"/>
                             <constraint firstItem="rFU-Bp-Y1T" firstAttribute="trailing" secondItem="6On-bM-dXX" secondAttribute="trailing" id="uzs-YP-9wO"/>
+                            <constraint firstItem="LfP-w4-hEf" firstAttribute="centerX" secondItem="rFU-Bp-Y1T" secondAttribute="centerX" id="wGf-06-Mzg"/>
                             <constraint firstItem="rFU-Bp-Y1T" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="xyc-5k-ef5"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cPD-Yx-flP" secondAttribute="bottom" id="zI8-gx-AWu"/>
                         </constraints>
@@ -196,6 +206,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="LfP-w4-hEf" id="0cU-bo-w4P"/>
                         <outlet property="golferNameLabel" destination="i4L-Tf-33L" id="TgU-T2-26H"/>
                         <outlet property="golferProfileImage" destination="ap1-Kk-PUv" id="Fhm-aO-zrt"/>
                         <outlet property="photoTapGesture" destination="rwy-iO-i3x" id="VQr-32-qtb"/>
@@ -259,6 +270,10 @@
                                     <action selector="editProfilePhoto:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="hVC-9g-vSt"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vhu-cv-H6M">
+                                <rect key="frame" x="142" y="266" width="37" height="37"/>
+                                <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -266,10 +281,12 @@
                             <constraint firstItem="NZI-gN-TUR" firstAttribute="top" secondItem="as0-K9-vkd" secondAttribute="bottom" constant="8" symbolic="YES" id="3YJ-zf-V94"/>
                             <constraint firstItem="as0-K9-vkd" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="4" id="5dS-3V-pl0"/>
                             <constraint firstItem="5nM-4D-DXq" firstAttribute="centerY" secondItem="V4B-M2-Uc9" secondAttribute="centerY" id="84B-f6-m6R"/>
+                            <constraint firstItem="vhu-cv-H6M" firstAttribute="centerX" secondItem="1sD-LC-BLX" secondAttribute="centerX" id="FEC-on-4DF"/>
                             <constraint firstItem="as0-K9-vkd" firstAttribute="top" secondItem="GBL-r2-d4I" secondAttribute="bottom" constant="7" id="H9h-P6-g3O"/>
                             <constraint firstItem="NZI-gN-TUR" firstAttribute="trailing" secondItem="as0-K9-vkd" secondAttribute="trailing" id="WqH-CS-WXq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="as0-K9-vkd" secondAttribute="trailing" constant="-7" id="fnP-IN-UGG"/>
                             <constraint firstItem="5nM-4D-DXq" firstAttribute="centerX" secondItem="V4B-M2-Uc9" secondAttribute="centerX" id="hPR-Fm-rBR"/>
+                            <constraint firstItem="vhu-cv-H6M" firstAttribute="centerY" secondItem="1sD-LC-BLX" secondAttribute="centerY" id="uYP-Pb-32f"/>
                             <constraint firstItem="V4B-M2-Uc9" firstAttribute="centerX" secondItem="1sD-LC-BLX" secondAttribute="centerX" id="uzr-IX-04G"/>
                             <constraint firstItem="V4B-M2-Uc9" firstAttribute="top" secondItem="NZI-gN-TUR" secondAttribute="bottom" constant="46" id="vll-W0-cGB"/>
                         </constraints>
@@ -284,6 +301,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="vhu-cv-H6M" id="e8l-SU-dUi"/>
                         <outlet property="golferNameTextField" destination="as0-K9-vkd" id="uHs-2D-mef"/>
                         <outlet property="golferProfileImage" destination="V4B-M2-Uc9" id="4vU-rw-Q7X"/>
                         <outlet property="usernameTextField" destination="NZI-gN-TUR" id="PDl-Ug-bu8"/>
@@ -522,6 +540,10 @@
                                     <action selector="addScorecardActionSheet:" destination="bcC-Qa-jI3" eventType="touchUpInside" id="u1p-iq-KFG"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rEJ-3f-GHz">
+                                <rect key="frame" x="142" y="227" width="37" height="37"/>
+                                <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -533,10 +555,12 @@
                             <constraint firstItem="jjQ-R6-MlW" firstAttribute="centerX" secondItem="SFX-sI-rAI" secondAttribute="centerX" id="IQI-HP-DpI"/>
                             <constraint firstItem="oNY-Ip-MRz" firstAttribute="leading" secondItem="SFX-sI-rAI" secondAttribute="leadingMargin" constant="48" id="Jhm-Ep-8W5"/>
                             <constraint firstItem="iD6-g1-ps3" firstAttribute="leading" secondItem="SFX-sI-rAI" secondAttribute="leadingMargin" constant="53" id="MiC-gK-ViT"/>
+                            <constraint firstItem="rEJ-3f-GHz" firstAttribute="trailing" secondItem="ehd-5r-HKt" secondAttribute="trailing" id="Px5-Uc-x7F"/>
                             <constraint firstItem="mlw-w4-qsv" firstAttribute="leading" secondItem="SFX-sI-rAI" secondAttribute="leading" id="V5F-rX-h17"/>
                             <constraint firstItem="uZb-am-ef5" firstAttribute="centerX" secondItem="SFX-sI-rAI" secondAttribute="centerX" id="Viy-QK-yIE"/>
                             <constraint firstItem="iD6-g1-ps3" firstAttribute="top" secondItem="uZb-am-ef5" secondAttribute="bottom" constant="8" symbolic="YES" id="WGt-sg-eyM"/>
                             <constraint firstItem="mlw-w4-qsv" firstAttribute="top" secondItem="iD6-g1-ps3" secondAttribute="bottom" constant="8" symbolic="YES" id="a15-aa-ehY"/>
+                            <constraint firstItem="rEJ-3f-GHz" firstAttribute="centerY" secondItem="mlw-w4-qsv" secondAttribute="centerY" id="dlq-6c-v1i"/>
                             <constraint firstItem="ehd-5r-HKt" firstAttribute="centerX" secondItem="TWK-x6-OGv" secondAttribute="centerX" id="eKm-IP-KWb"/>
                             <constraint firstItem="ehd-5r-HKt" firstAttribute="centerY" secondItem="oNY-Ip-MRz" secondAttribute="centerY" id="gQ5-HL-4AU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oNY-Ip-MRz" secondAttribute="trailing" constant="47" id="hZB-np-p7M"/>
@@ -563,6 +587,7 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="rEJ-3f-GHz" id="5EH-O8-fw6"/>
                         <outlet property="datePicker" destination="mlw-w4-qsv" id="xju-zE-nfS"/>
                         <outlet property="golfCourseName" destination="rDR-2Z-mX1" id="hxQ-L8-Ddc"/>
                         <outlet property="saveButton" destination="HB8-mj-jBb" id="CYr-gq-UTq"/>
@@ -706,13 +731,19 @@
                                     <action selector="segmentedControl:" destination="Dmd-OT-1nW" eventType="valueChanged" id="qyc-tr-1U4"/>
                                 </connections>
                             </segmentedControl>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fEV-tq-Hrn">
+                                <rect key="frame" x="142" y="354" width="37" height="37"/>
+                                <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="oja-tk-olJ" firstAttribute="leading" secondItem="tsd-PD-Nzi" secondAttribute="leadingMargin" constant="-4" id="FP0-DY-87T"/>
                             <constraint firstItem="Rx1-ji-kXx" firstAttribute="top" secondItem="jgq-wO-i6G" secondAttribute="bottom" constant="8" symbolic="YES" id="Q5Q-Dr-T6n"/>
+                            <constraint firstItem="fEV-tq-Hrn" firstAttribute="centerX" secondItem="oja-tk-olJ" secondAttribute="centerX" id="ReI-gX-frS"/>
                             <constraint firstItem="cNt-bJ-Gbh" firstAttribute="top" secondItem="aay-7N-dyj" secondAttribute="bottom" id="U5t-5P-OJT"/>
                             <constraint firstItem="aay-7N-dyj" firstAttribute="centerX" secondItem="oja-tk-olJ" secondAttribute="centerX" id="Upz-1h-ofM"/>
+                            <constraint firstItem="fEV-tq-Hrn" firstAttribute="centerY" secondItem="aay-7N-dyj" secondAttribute="centerY" id="c0P-ZP-Mdg"/>
                             <constraint firstAttribute="trailing" secondItem="aay-7N-dyj" secondAttribute="trailing" id="cVr-GM-Owb"/>
                             <constraint firstItem="Rx1-ji-kXx" firstAttribute="leading" secondItem="oja-tk-olJ" secondAttribute="leading" constant="4" id="dXk-fP-XXh"/>
                             <constraint firstItem="aay-7N-dyj" firstAttribute="leading" secondItem="tsd-PD-Nzi" secondAttribute="leading" id="gd7-zI-ueW"/>
@@ -725,6 +756,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="8Xo-R0-bVX"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="fEV-tq-Hrn" id="V9W-Te-wW9"/>
                         <outlet property="friendProfileNameLabel" destination="hnn-pY-i6b" id="TyT-CP-pjr"/>
                         <outlet property="friendProfilePhoto" destination="Rx1-ji-kXx" id="7A0-dl-oXn"/>
                         <outlet property="friendScorecardSegmentedControl" destination="oja-tk-olJ" id="qyy-2a-s9Y"/>
@@ -861,7 +893,7 @@
                                     <segue destination="cfY-sT-J3e" kind="modal" id="jY0-na-pRw"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Wt0-kH-LjV">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Wt0-kH-LjV">
                                 <rect key="frame" x="142" y="265" width="37" height="37"/>
                                 <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -974,7 +1006,7 @@
                                     <segue destination="cfY-sT-J3e" kind="modal" id="WP3-N4-QDL"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ccz-V5-1IY">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ccz-V5-1IY">
                                 <rect key="frame" x="142" y="265" width="37" height="37"/>
                                 <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -1051,7 +1083,7 @@
                                     <action selector="dismissView:" destination="cfY-sT-J3e" eventType="touchUpInside" id="spv-bE-EuN"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="JOY-WG-odq">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="JOY-WG-odq">
                                 <rect key="frame" x="142" y="265" width="37" height="37"/>
                                 <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -1189,17 +1221,24 @@
                                     <outlet property="delegate" destination="2nK-tA-FpD" id="ROT-Qt-XE0"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="204-ov-oDo">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="5Uq-Ns-glz" secondAttribute="bottom" id="6iG-WB-RHK"/>
                             <constraint firstItem="5Uq-Ns-glz" firstAttribute="top" secondItem="dE0-ma-qC7" secondAttribute="top" id="B2Y-xG-TJb"/>
+                            <constraint firstItem="204-ov-oDo" firstAttribute="centerX" secondItem="5Uq-Ns-glz" secondAttribute="centerX" id="R8n-jT-AzO"/>
                             <constraint firstItem="5Uq-Ns-glz" firstAttribute="leading" secondItem="dE0-ma-qC7" secondAttribute="leading" id="aDC-nv-EUo"/>
+                            <constraint firstItem="204-ov-oDo" firstAttribute="centerY" secondItem="5Uq-Ns-glz" secondAttribute="centerY" id="g4q-J1-Jep"/>
                             <constraint firstAttribute="trailing" secondItem="5Uq-Ns-glz" secondAttribute="trailing" id="xG0-FL-7gN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xol-J2-GOI"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="204-ov-oDo" id="Kci-8b-Eyt"/>
                         <outlet property="friendsTableView" destination="5Uq-Ns-glz" id="Nud-nd-FOW"/>
                         <outlet property="searchDisplayController" destination="0pk-1w-EA0" id="KBE-QN-1Io"/>
                     </connections>
@@ -1372,13 +1411,19 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VNv-jC-Eu4">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Fka-Qb-gt6" secondAttribute="trailing" id="4DK-k6-kGF"/>
                             <constraint firstItem="Fka-Qb-gt6" firstAttribute="top" secondItem="w6s-vg-YDO" secondAttribute="bottom" constant="14" id="EY5-Uf-aoO"/>
                             <constraint firstItem="Fka-Qb-gt6" firstAttribute="leading" secondItem="Fyp-Oo-G28" secondAttribute="leading" id="Nwd-cV-93I"/>
+                            <constraint firstItem="VNv-jC-Eu4" firstAttribute="centerY" secondItem="Fyp-Oo-G28" secondAttribute="centerY" id="T0V-cV-3dL"/>
                             <constraint firstItem="EBg-wc-PPT" firstAttribute="top" secondItem="Fka-Qb-gt6" secondAttribute="bottom" id="Wry-4C-ZkE"/>
+                            <constraint firstItem="VNv-jC-Eu4" firstAttribute="centerX" secondItem="w6s-vg-YDO" secondAttribute="centerX" id="alR-Ey-cLx"/>
                             <constraint firstItem="w6s-vg-YDO" firstAttribute="centerX" secondItem="Fka-Qb-gt6" secondAttribute="centerX" id="ciz-Ss-5OY"/>
                             <constraint firstItem="Fka-Qb-gt6" firstAttribute="top" secondItem="IhB-6a-QtE" secondAttribute="bottom" constant="80" id="ebw-LZ-SMx"/>
                             <constraint firstItem="w6s-vg-YDO" firstAttribute="top" secondItem="IhB-6a-QtE" secondAttribute="bottom" id="gyz-zs-Xid"/>
@@ -1387,6 +1432,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Leaderboard" image="winners_podium" id="oXu-yF-dGp"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="VNv-jC-Eu4" id="3ug-vT-kkw"/>
                         <outlet property="leaderboardTableView" destination="Fka-Qb-gt6" id="mmD-30-n8g"/>
                     </connections>
                 </viewController>
@@ -1444,6 +1490,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WP3-N4-QDL"/>
-        <segue reference="vj5-mY-JmO"/>
+        <segue reference="d34-ln-BhW"/>
     </inferredMetricsTieBreakers>
 </document>

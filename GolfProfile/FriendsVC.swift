@@ -13,6 +13,7 @@ import ParseUI
 class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
 
     @IBOutlet weak var friendsTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
         
     var allUsers = [GolferProfile]()
     var filteredUsers = [GolferProfile]()
@@ -171,6 +172,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 }
     
     func loadFriendsData() {
+        activityIndicator.startAnimating()
         friendsData.removeAll()
         
         if let friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation {
@@ -179,7 +181,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             userQuery.orderByAscending("username")
             userQuery.findObjectsInBackgroundWithBlock { (friends: [PFObject]?, error: NSError?) -> Void in
                 if error == nil {
-                    
+                    self.activityIndicator.stopAnimating()
                     for object:PFObject in friends! {
                         if let object = object as? GolferProfile {
                             self.friendsData.append(object)

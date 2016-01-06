@@ -17,6 +17,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var friendProfilePhoto: PFImageView!
     @IBOutlet weak var friendScorecardTableView: UITableView!
     @IBOutlet weak var friendScorecardSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var friendScorecardData = [GolfScorecard]()
     var selectedFriend = GolferProfile()
@@ -89,6 +90,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func loadFriendScorecardData() {
+        activityIndicator.startAnimating()
         friendScorecardData.removeAll()
         
         if let query = GolfScorecard.query() {
@@ -96,7 +98,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (friendScorecards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                
+                self.activityIndicator.stopAnimating()
                 for object:PFObject in friendScorecards! {
                     if let scorecard = object as? GolfScorecard {
                         self.friendScorecardData.append(scorecard)
@@ -105,6 +107,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 }
             } else {
+                self.activityIndicator.stopAnimating()
                 print(error)
             }
         }

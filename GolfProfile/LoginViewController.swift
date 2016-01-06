@@ -16,7 +16,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.hidden = true
 
     }
 
@@ -35,7 +34,6 @@ class LoginViewController: UIViewController {
 
             if error?.code == 101 {
             self.activityIndicator.stopAnimating()
-            self.activityIndicator.hidden = true
             let alertController = UIAlertController(title: "Whoops!", message: "Username or password invalid. Please try again", preferredStyle: .Alert)
                 
             let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
@@ -46,7 +44,6 @@ class LoginViewController: UIViewController {
             
             } else if error?.code == 100 {
                 self.activityIndicator.stopAnimating()
-                self.activityIndicator.hidden = true
                 self.displayAlert("No Network Connection", message: "Please check connection", actionTitle: "OK")
             
             }

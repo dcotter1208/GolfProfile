@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var userScoreTableView: UITableView!
     @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
     @IBOutlet var photoTapGesture: UITapGestureRecognizer!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var golferProfile = GolferProfile()
     var userScorecardData = [GolfScorecard]()
@@ -28,8 +29,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        Reachability.isConnectedToNetwork()
         
         if PFUser.currentUser() != nil {
             
@@ -155,14 +154,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func getProfileFromBackground() {
+        activityIndicator.startAnimating()
         if let userQuery = PFUser.query() {
             userQuery.whereKey("username", equalTo: (PFUser.currentUser()?.username)!)
             userQuery.findObjectsInBackgroundWithBlock({ (currentUserProfile:[PFObject]?, error: NSError?) -> Void in
                 if error == nil {
+//                    self.activityIndicator.stopAnimating()
                     for object:PFObject in currentUserProfile! {
                     if let object = object as? GolferProfile {
                     self.golferProfile = object
                     dispatch_async(dispatch_get_main_queue()) {
+                    self.activityIndicator.stopAnimating()
                     self.golferNameLabel.text = self.golferProfile.name
                     self.golferProfileImage.file = self.golferProfile.profileImage
                     self.golferProfileImage.loadInBackground()
@@ -171,6 +173,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
                     
             } else {
+                    self.activityIndicator.stopAnimating()
                     if error?.code == 100 {
                         
                     self.displayAlert("No Network Connection", message: "Please check connection.", actionTitle: "OK")
@@ -184,6 +187,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func loadUserScorecardData() {
+        self.activityIndicator.startAnimating()
         userScorecardData.removeAll()
         
         if let query = GolfScorecard.query() {
@@ -193,6 +197,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         query.findObjectsInBackgroundWithBlock { (scorecards: [PFObject]?, error: NSError?) -> Void in
         if error == nil {
+            self.activityIndicator.stopAnimating()
             for object:PFObject in scorecards! {
             if let object = object as? GolfScorecard {
             self.userScorecardData.append(object)
@@ -205,6 +210,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     }
                 
                 } else {
+                self.activityIndicator.stopAnimating()
                     print(error)
                 }
             }
