@@ -974,16 +974,22 @@
                                     <segue destination="cfY-sT-J3e" kind="modal" id="WP3-N4-QDL"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ccz-V5-1IY">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="AQD-Ci-kBm" firstAttribute="leading" secondItem="j53-jM-a3O" secondAttribute="leading" id="1sn-Cl-3L2"/>
+                            <constraint firstItem="Ccz-V5-1IY" firstAttribute="centerY" secondItem="eeE-lq-PP2" secondAttribute="centerY" id="2fV-Bk-RT7"/>
                             <constraint firstItem="JVJ-Mb-XSy" firstAttribute="centerX" secondItem="eeE-lq-PP2" secondAttribute="centerX" id="34z-Vj-yRg"/>
                             <constraint firstItem="7YL-2i-ERg" firstAttribute="top" secondItem="j53-jM-a3O" secondAttribute="bottom" constant="8" symbolic="YES" id="CNh-ND-RCA"/>
                             <constraint firstItem="AQD-Ci-kBm" firstAttribute="centerX" secondItem="eeE-lq-PP2" secondAttribute="centerX" id="Er0-fP-XPz"/>
                             <constraint firstItem="7YL-2i-ERg" firstAttribute="leading" secondItem="efk-t4-E5u" secondAttribute="leading" id="GlE-cG-Qvh"/>
                             <constraint firstItem="j53-jM-a3O" firstAttribute="top" secondItem="AQD-Ci-kBm" secondAttribute="bottom" constant="8" symbolic="YES" id="IVq-tn-Hln"/>
                             <constraint firstItem="efk-t4-E5u" firstAttribute="top" secondItem="7YL-2i-ERg" secondAttribute="bottom" constant="8" symbolic="YES" id="JKh-He-pVB"/>
+                            <constraint firstItem="Ccz-V5-1IY" firstAttribute="centerX" secondItem="7YL-2i-ERg" secondAttribute="centerX" id="Nbq-43-koI"/>
                             <constraint firstItem="j53-jM-a3O" firstAttribute="centerX" secondItem="eeE-lq-PP2" secondAttribute="centerX" id="SA3-z0-br7"/>
                             <constraint firstItem="y7h-XY-tyi" firstAttribute="top" secondItem="nGI-6E-K8h" secondAttribute="bottom" constant="13" id="X1P-9z-CIv"/>
                             <constraint firstItem="y7h-XY-tyi" firstAttribute="trailing" secondItem="nGI-6E-K8h" secondAttribute="trailing" id="X1b-eG-zsg"/>
@@ -1004,6 +1010,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="W0J-qs-Kpw"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Ccz-V5-1IY" id="sBF-tN-TJI"/>
                         <outlet property="firstNameTextField" destination="j53-jM-a3O" id="FIU-Hk-50I"/>
                         <outlet property="lastNameTextField" destination="7YL-2i-ERg" id="C59-Tw-iCL"/>
                         <outlet property="signUpEmailTextField" destination="y7h-XY-tyi" id="CEQ-S3-AeO"/>
@@ -1030,6 +1037,9 @@
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8h-6T-txT">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="cfY-sT-J3e" id="Iau-Vz-ESK"/>
+                                </connections>
                             </webView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GZ-7J-lCV">
                                 <rect key="frame" x="270" y="20" width="30" height="36"/>
@@ -1041,7 +1051,7 @@
                                     <action selector="dismissView:" destination="cfY-sT-J3e" eventType="touchUpInside" id="spv-bE-EuN"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="JOY-WG-odq">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="JOY-WG-odq">
                                 <rect key="frame" x="142" y="265" width="37" height="37"/>
                                 <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -1049,7 +1059,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="k8h-6T-txT" secondAttribute="trailing" id="38W-45-dft"/>
+                            <constraint firstItem="JOY-WG-odq" firstAttribute="centerX" secondItem="k8h-6T-txT" secondAttribute="centerX" id="8QV-fK-Pws"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1GZ-7J-lCV" secondAttribute="trailing" constant="4" id="AfY-Vr-tJt"/>
+                            <constraint firstItem="JOY-WG-odq" firstAttribute="centerY" secondItem="k8h-6T-txT" secondAttribute="centerY" id="ENl-7D-vJk"/>
                             <constraint firstItem="k8h-6T-txT" firstAttribute="top" secondItem="OA6-Xg-9UE" secondAttribute="top" id="IVb-EH-utE"/>
                             <constraint firstItem="k8h-6T-txT" firstAttribute="bottom" secondItem="anE-Fx-iUU" secondAttribute="top" id="PJF-Zu-mBo"/>
                             <constraint firstItem="1GZ-7J-lCV" firstAttribute="top" secondItem="k19-8r-lbO" secondAttribute="bottom" id="aSO-lK-JqX"/>
@@ -1057,6 +1069,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="JOY-WG-odq" id="yfP-1v-ySZ"/>
                         <outlet property="webView" destination="k8h-6T-txT" id="QJ9-JM-5Bb"/>
                     </connections>
                 </viewController>
@@ -1430,7 +1443,7 @@
         <image name="winners_podium" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jY0-na-pRw"/>
+        <segue reference="WP3-N4-QDL"/>
         <segue reference="vj5-mY-JmO"/>
     </inferredMetricsTieBreakers>
 </document>

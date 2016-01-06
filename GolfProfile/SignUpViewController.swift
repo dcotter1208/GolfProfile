@@ -10,14 +10,17 @@ import UIKit
 import Parse
 
 class SignUpViewController: UIViewController {
-    @IBOutlet weak var signUpUsernameTextField: UITextField!
     @IBOutlet weak var signUpPasswordTextField: UITextField!
     @IBOutlet weak var signUpEmailTextField: UITextField!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.hidden = true
 
     }
 
@@ -32,6 +35,8 @@ class SignUpViewController: UIViewController {
     }
     
     func signUp() {
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
         let user = PFUser()
         user.username = signUpEmailTextField.text?.lowercaseString
         user.password = signUpPasswordTextField.text
@@ -44,18 +49,28 @@ class SignUpViewController: UIViewController {
         
         if signUpPasswordTextField.text!.characters.count < 8 {
             
+            activityIndicator.hidden = true
+            activityIndicator.stopAnimating()
+            
             displayAlert("Invalid Password", message: "Password must be greater than 8 characters", actionTitle: "OK")
             
         } else if isValidEmail(signUpEmailTextField.text!) == false {
+            activityIndicator.hidden = true
+            activityIndicator.stopAnimating()
             
             displayAlert("Invalid", message: "Please enter a valid e-mail address", actionTitle: "OK")
 
         } else if firstNameTextField.text?.characters.count > 12 {
+            activityIndicator.hidden = true
+            activityIndicator.stopAnimating()
             
             displayAlert("First name too long", message: "Please choose a first name less than 12 characters", actionTitle: "OK")
         
         } else if lastNameTextField.text?.characters.count > 12{
         
+            activityIndicator.hidden = true
+            activityIndicator.stopAnimating()
+            
             displayAlert("Last name too long", message: "Please choose a last name less than 12 characters", actionTitle: "OK")
             
         } else {
@@ -63,7 +78,8 @@ class SignUpViewController: UIViewController {
             
         user.signUpInBackgroundWithBlock {(succeeded: Bool, error: NSError?) -> Void in
          if succeeded {
-            
+        self.activityIndicator.hidden = true
+        self.activityIndicator.stopAnimating()
         PFUser.logOutInBackground()
             
           let alertController = UIAlertController(title: "Success!", message: "Now Please Login", preferredStyle: .Alert)
@@ -82,13 +98,16 @@ class SignUpViewController: UIViewController {
          } else {
             
             if error?.code == 202 {
-                
-                self.displayAlert("Invalid E-mail", message: "\(self.signUpUsernameTextField.text!) is already in use", actionTitle: "OK")
+                self.activityIndicator.hidden = true
+                self.activityIndicator.stopAnimating()
+                self.displayAlert("Invalid E-mail", message: "\(self.signUpEmailTextField.text!) is already in use", actionTitle: "OK")
 
                 }
             
             
             if error?.code == 203 {
+                self.activityIndicator.hidden = true
+                self.activityIndicator.stopAnimating()
                 self.displayAlert("Invalid E-mail", message: "\(self.signUpEmailTextField.text!) is already in use", actionTitle: "OK")
                 
             }
