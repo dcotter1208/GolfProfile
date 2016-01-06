@@ -16,9 +16,8 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var friendProfileNameLabel: UILabel!
     @IBOutlet weak var friendProfilePhoto: PFImageView!
     @IBOutlet weak var friendScorecardTableView: UITableView!
-    
     @IBOutlet weak var friendScorecardSegmentedControl: UISegmentedControl!
-    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var friendScorecardData = [GolfScorecard]()
     var selectedFriend = GolferProfile()
@@ -74,7 +73,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
             
         let profilePhotoAndScorecardPhotoVC = segue.destinationViewController as! ProfilePhotoAndScorecardPhotoVC
             
-        profilePhotoAndScorecardPhotoVC.selectedFriendProfile = selectedFriend
+        profilePhotoAndScorecardPhotoVC.golferProfile = selectedFriend
             
         }
         
@@ -91,6 +90,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func loadFriendScorecardData() {
+        activityIndicator.startAnimating()
         friendScorecardData.removeAll()
         
         if let query = GolfScorecard.query() {
@@ -98,7 +98,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (friendScorecards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                
+                self.activityIndicator.stopAnimating()
                 for object:PFObject in friendScorecards! {
                     if let scorecard = object as? GolfScorecard {
                         self.friendScorecardData.append(scorecard)
@@ -107,6 +107,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 }
             } else {
+                self.activityIndicator.stopAnimating()
                 print(error)
             }
         }
@@ -145,7 +146,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillLayoutSubviews() {
         self.friendProfilePhoto.layer.cornerRadius = self.friendProfilePhoto.frame.size.width / 2
         self.friendProfilePhoto.layer.borderWidth = 3.0
-        self.friendProfilePhoto.layer.borderColor = UIColor.whiteColor().CGColor
+        self.friendProfilePhoto.layer.borderColor = UIColor.orangeColor().CGColor
         self.friendProfilePhoto.clipsToBounds = true
         
     }

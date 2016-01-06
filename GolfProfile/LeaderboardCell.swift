@@ -18,7 +18,6 @@ class LeaderboardCell: UITableViewCell {
     @IBOutlet weak var leaderboardGolferLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var starImage: UIImageView!
-    @IBOutlet weak var leaderboardUsernameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,11 +39,11 @@ class LeaderboardCell: UITableViewCell {
         self.leaderboardScoreLabel.layer.cornerRadius = 3.0
         self.leaderboardScoreLabel.layer.borderWidth = 2.0
         self.leaderboardScoreLabel.layer.borderColor = UIColor.blackColor().CGColor
+        self.leaderboardProfileImage.layer.cornerRadius = self.leaderboardProfileImage.frame.size.width / 2
+        self.leaderboardProfileImage.clipsToBounds = true
+        self.leaderboardProfileImage.layer.borderColor = UIColor.orangeColor().CGColor
+        self.leaderboardProfileImage.layer.borderWidth = 3
         
-        
-//        self.scorecardCellImage.layer.cornerRadius = 3.0
-//        self.scorecardCellImage.clipsToBounds = true
-//        self.scorecardCellImage.layer.borderWidth = 1.0
         
     }
 

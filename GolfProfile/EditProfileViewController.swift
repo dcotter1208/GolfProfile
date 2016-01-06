@@ -17,6 +17,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var golferProfileImage: PFImageView!
     @IBOutlet weak var golferNameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     var editProfileData = [GolferProfile]()
     var loadProfileData = [GolferProfile]()
@@ -27,7 +28,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         loadUserProfile()
         imagePicker.delegate = self
         
@@ -59,7 +60,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     //THIS UPDATES AND SAVES THE CHANGES TO THE USER'S PROFILE
     @IBAction func saveProfileButton(sender: AnyObject) {
-        
+        activityIndicator.startAnimating()
         if let editUserQuery = PFUser.query() {
             editUserQuery.findObjectsInBackgroundWithBlock { (profilesToEdit: [PFObject]?, error: NSError?) -> Void in
                 if error == nil {
@@ -77,8 +78,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                                 
                             object.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                              if success {
+                                self.activityIndicator.stopAnimating()
                                 self.performSegueWithIdentifier("unwindSegueToProfile", sender: self)
                                 } else {
+                                self.activityIndicator.stopAnimating()
                                 self.displayAlert("Save Failed", message: "Please try again", actionTitle: "OK")
                                 print("FAILED")
                                     }
@@ -87,6 +90,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         }
                     }
                 } else {
+                    self.activityIndicator.stopAnimating()
                     print(error)
                 }
             }
@@ -95,7 +99,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     
     @IBAction func editProfilePhoto(sender: UIButton) {
-        
+       
         let cameraViewController = ALCameraViewController(croppingEnabled: croppingEnabled, allowsLibraryAccess: libraryEnabled) { (image) -> Void in
             self.golferProfileImage.image = image
             self.dismissViewControllerAnimated(true, completion: nil)
@@ -124,10 +128,18 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     //Loads the current user's profile information into the edit view's textfields
     func loadUserProfile() {
+        activityIndicator.startAnimating()
         if let userQuery = PFUser.query() {
         userQuery.findObjectsInBackgroundWithBlock({ (userProfiles:[PFObject]?, error: NSError?) -> Void in
+            
+            if error != nil {
+            self.activityIndicator.stopAnimating()
+            self.displayAlert("Load Failed", message: "Please try again", actionTitle: "OK")
+            self.loadUserProfile()
+            } else {
 
         for object:PFObject in userProfiles! {
+            self.activityIndicator.stopAnimating()
             if let profile = object as? GolferProfile {
                 if profile.objectId == PFUser.currentUser()?.objectId {
                 self.loadProfileData.append(profile)
@@ -138,15 +150,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         }
                     }
                 }
+            }
             })
         }
     }
     
-    @IBAction func cancelButton(sender: AnyObject) {
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-    }
     override func viewWillLayoutSubviews() {
         self.golferProfileImage.layer.borderWidth = 3.0
         self.golferProfileImage.layer.borderColor = UIColor.orangeColor().CGColor

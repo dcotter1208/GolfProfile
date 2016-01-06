@@ -13,6 +13,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     
 
     @IBOutlet weak var leaderboardTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -27,6 +28,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         
     }
@@ -68,29 +70,23 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             
             cell.leaderboardGCLabel?.text = allScorecards.0.golfCourse
             cell.leaderboardGolferLabel.text = allScorecards.1.name
-            cell.leaderboardUsernameLabel.text = allScorecards.1.username
             cell.leaderboardProfileImage.file = allScorecards.1.profileImage
             cell.leaderboardProfileImage.loadInBackground()
-            cell.leaderboardProfileImage.layer.cornerRadius = cell.leaderboardProfileImage.frame.size.width / 2
-            cell.leaderboardProfileImage.clipsToBounds = true
-            cell.leaderboardProfileImage.layer.borderWidth = 3
-            cell.leaderboardProfileImage.layer.borderColor = UIColor.orangeColor().CGColor
 
+                if PFUser.currentUser()?.objectId == allScorecards.1.objectId {
+
+                  cell.starImage.image = UIImage(named: "star")
+                    
+                    }
             })
         
         }
         
-        if cell.leaderboardUsernameLabel.text == PFUser.currentUser()?.username {
-            
-            cell.starImage.image = UIImage(named: "star")
-
-            
-        }
-
         return cell
     }
     
     func loadLeaderboardData() {
+        activityIndicator.startAnimating()
         leaderboardData.removeAll()
         
         friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation
@@ -103,7 +99,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         subQuery.orderByAscending("score")
         subQuery.findObjectsInBackgroundWithBlock { (scoreCards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                
+            self.activityIndicator.stopAnimating()
             for object:PFObject in scoreCards! {
                 if let object = object as? GolfScorecard {
                 if let golfer = object["golfer"] as? GolferProfile {
@@ -119,6 +115,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                 }
                 
             } else {
+                self.activityIndicator.stopAnimating()
                 print(error)
         }
     }

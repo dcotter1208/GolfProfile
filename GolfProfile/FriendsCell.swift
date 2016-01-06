@@ -10,19 +10,28 @@ import UIKit
 import ParseUI
 
 class FriendsCell: PFTableViewCell {
-    @IBOutlet weak var friendUserNameCellLabel: UILabel!
     @IBOutlet weak var friendProfileCell: PFImageView!
     @IBOutlet weak var friendName: UILabel!
     
     override func awakeFromNib() {
 
-        // Initialization code
+        viewWillLayoutSubviews()
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func viewWillLayoutSubviews() {
+        
+        self.friendProfileCell.layer.cornerRadius = self.friendProfileCell.frame.size.width / 2
+        self.friendProfileCell.clipsToBounds = true
+        self.friendProfileCell.layer.borderColor = UIColor.orangeColor().CGColor
+        self.friendProfileCell.layer.borderWidth = 3
+        
     }
 
 }

@@ -16,8 +16,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var userScoreTableView: UITableView!
     @IBOutlet weak var scoreViewSegmentedControl: UISegmentedControl!
     @IBOutlet var photoTapGesture: UITapGestureRecognizer!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var profileData = [GolferProfile]()
+    var golferProfile = GolferProfile()
     var userScorecardData = [GolfScorecard]()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -28,8 +29,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(profileData)
         
         if PFUser.currentUser() != nil {
             
@@ -56,7 +55,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,10 +73,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         dateFormatter.dateFormat = "MM-dd-yyyy"
         
         cell.dateCellLabel?.text = dateFormatter.stringFromDate(userScorecardData[indexPath.row].date)
-        
         cell.scoreCellLabel?.text = "\(userScorecardData[indexPath.row].score)"
-        
         cell.golfCourseCellLabel?.text = userScorecardData[indexPath.row].golfCourse
+        cell.courseLocationLabel.text = userScorecardData[indexPath.row].courseLocation
         
         cell.scorecardCellImage.image = UIImage(named: "noScorecard")
         
@@ -99,17 +97,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
     }
-    
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//        
-//        
-//    }
-//    
+ 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        
         
         if segue.identifier == "showScorecardDetail" {
             
@@ -123,7 +112,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
             let profilePhotoAndScorecardPhotoVC = segue.destinationViewController as? ProfilePhotoAndScorecardPhotoVC
             
-            profilePhotoAndScorecardPhotoVC?.userProfileData = profileData
+            profilePhotoAndScorecardPhotoVC?.golferProfile = golferProfile
 
         }
         
@@ -165,25 +154,31 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func getProfileFromBackground() {
-        profileData.removeAll()
+        activityIndicator.startAnimating()
         if let userQuery = PFUser.query() {
             userQuery.whereKey("username", equalTo: (PFUser.currentUser()?.username)!)
             userQuery.findObjectsInBackgroundWithBlock({ (currentUserProfile:[PFObject]?, error: NSError?) -> Void in
                 if error == nil {
+//                    self.activityIndicator.stopAnimating()
                     for object:PFObject in currentUserProfile! {
                     if let object = object as? GolferProfile {
-                    self.profileData.append(object)
-                    for data in self.profileData {
+                    self.golferProfile = object
                     dispatch_async(dispatch_get_main_queue()) {
-                    self.golferNameLabel.text = data.name
-                    self.golferProfileImage.file = data.profileImage
+                    self.activityIndicator.stopAnimating()
+                    self.golferNameLabel.text = self.golferProfile.name
+                    self.golferProfileImage.file = self.golferProfile.profileImage
                     self.golferProfileImage.loadInBackground()
                             }
-                        }
                     }
                 }
                     
             } else {
+                    self.activityIndicator.stopAnimating()
+                    if error?.code == 100 {
+                        
+                    self.displayAlert("No Network Connection", message: "Please check connection.", actionTitle: "OK")
+                    
+                    }
             print(error)
                 
             }
@@ -192,6 +187,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func loadUserScorecardData() {
+        self.activityIndicator.startAnimating()
         userScorecardData.removeAll()
         
         if let query = GolfScorecard.query() {
@@ -201,6 +197,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         query.findObjectsInBackgroundWithBlock { (scorecards: [PFObject]?, error: NSError?) -> Void in
         if error == nil {
+            self.activityIndicator.stopAnimating()
             for object:PFObject in scorecards! {
             if let object = object as? GolfScorecard {
             self.userScorecardData.append(object)
@@ -213,6 +210,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     }
                 
                 } else {
+                self.activityIndicator.stopAnimating()
                     print(error)
                 }
             }

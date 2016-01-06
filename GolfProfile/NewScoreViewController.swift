@@ -18,6 +18,8 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var scorecardImage: UIImageView?
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var scoreTextField: UITextField?
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
     let croppingEnabled = true
     let libraryEnabled: Bool = true
     let date = NSDate()
@@ -25,8 +27,6 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(selectedCourse)
 
         golfCourseName.text = selectedCourse.name
         
@@ -49,27 +49,29 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func saveScoreButton(sender: UIBarButtonItem) {
+        activityIndicator.startAnimating()
         saveButton.enabled = false
         let golfScorecard = PFObject(className: "GolfScorecard")
    
         if scoreTextField?.text?.characters.count == 0 {
-         
+        activityIndicator.stopAnimating()
         displayAlert("Invalid Score", message: "You didn't enter a score.", actionTitle: "OK")
         saveButton.enabled = true
             
         } else if scoreTextField?.text?.characters.count == 1 {
-            
+        activityIndicator.stopAnimating()
         displayAlert("Invalid Score", message: "No way you're good enough to have a score of \(scoreTextField!.text!)", actionTitle: "OK")
             saveButton.enabled = true
         
         } else if (scoreTextField?.text?.characters.count)! > 3 || Int(scoreTextField!.text!) >= 200  {
-        
+        activityIndicator.stopAnimating()
         displayAlert("Invalid Score", message: "You entered a score of \(scoreTextField!.text!). You can't be that bad!", actionTitle: "OK")
             saveButton.enabled = true
             
         } else if golfCourseName.text?.characters.count < 1 {
-            displayAlert("Invalid Course", message: "Please enter a valid golf course", actionTitle: "OK")
-            saveButton.enabled = true
+        activityIndicator.stopAnimating()
+        displayAlert("Invalid Course", message: "Please enter a valid golf course", actionTitle: "OK")
+        saveButton.enabled = true
         
         } else {
         
@@ -77,6 +79,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         golfScorecard["golfer"] = PFUser.currentUser()
         golfScorecard["golfCourse"] = golfCourseName.text
         golfScorecard["date"] = datePicker.date
+        golfScorecard["courseLocation"] = "\(selectedCourse.city)" + "," + " " + "\(selectedCourse.state)"
         
         if scorecardImage?.image != nil {
         
@@ -93,6 +96,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         golfScorecard.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 
         if (success) {
+            self.activityIndicator.stopAnimating()
             self.saveButton.enabled = true
         dispatch_async(dispatch_get_main_queue()) {
             
@@ -100,6 +104,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
             
         }
     } else {
+        self.activityIndicator.stopAnimating()
         self.displayAlert("Save Failed", message: "Please check network connection or try again", actionTitle: "OK")
         }
     })
