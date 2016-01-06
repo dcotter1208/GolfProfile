@@ -60,14 +60,11 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             
         let findFriendCell: FindFriendCell = tableView.dequeueReusableCellWithIdentifier("findFriendsCell", forIndexPath: indexPath) as! FindFriendCell
         findFriendCell.tintColor = UIColor.whiteColor()
-        findFriendCell.findUsernameCellLabel.text = "Username: \(filteredUsers[indexPath.row].username!)"
         findFriendCell.findFriendName.text = filteredUsers[indexPath.row].name
         
         findFriendCell.findFriendProfileCellImage.file = filteredUsers[indexPath.row].profileImage
         findFriendCell.findFriendProfileCellImage.loadInBackground()
-        findFriendCell.findFriendProfileCellImage.layer.cornerRadius = findFriendCell.findFriendProfileCellImage.frame.size.width / 2
-        findFriendCell.findFriendProfileCellImage.clipsToBounds = true
-        
+
         for friend in filteredUsers {
             
         if isFriend(friend) {
@@ -87,19 +84,12 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         } else {
         
         let friendCell:FriendsCell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as! FriendsCell
-        friendCell.tintColor = UIColor.whiteColor()
-        
             
-        friendCell.friendUserNameCellLabel.text = "Username: \(friendsData[indexPath.row].username!)"
+        friendCell.tintColor = UIColor.whiteColor()
         friendCell.friendName.text = friendsData[indexPath.row].name
-
         friendCell.friendProfileCell.file = friendsData[indexPath.row].profileImage
         friendCell.friendProfileCell.loadInBackground()
-        friendCell.friendProfileCell.layer.cornerRadius = friendCell.friendProfileCell.frame.size.width / 2
-        friendCell.friendProfileCell.layer.borderColor = UIColor.orangeColor().CGColor
-        friendCell.friendProfileCell.layer.borderWidth = 3
-        friendCell.friendProfileCell.clipsToBounds = true
-        
+
         return friendCell
             
         }

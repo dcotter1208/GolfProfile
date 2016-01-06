@@ -25,8 +25,6 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(selectedCourse)
 
         golfCourseName.text = selectedCourse.name
         
@@ -77,6 +75,7 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         golfScorecard["golfer"] = PFUser.currentUser()
         golfScorecard["golfCourse"] = golfCourseName.text
         golfScorecard["date"] = datePicker.date
+        golfScorecard["courseLocation"] = "\(selectedCourse.city)" + "," + " " + "\(selectedCourse.state)"
         
         if scorecardImage?.image != nil {
         

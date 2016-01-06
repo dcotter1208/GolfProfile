@@ -26,6 +26,7 @@ class GolfScorecard : PFObject, PFSubclassing {
     @NSManaged var score: Int
     @NSManaged var date: NSDate
     @NSManaged var golfCourse: String
+    @NSManaged var courseLocation: String
     @NSManaged var scorecardImage: PFFile
     @NSManaged var golfer: PFUser
     

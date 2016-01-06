@@ -11,14 +11,15 @@ import Parse
 import ParseUI
 
 class FindFriendCell: UITableViewCell {
-    @IBOutlet weak var findUsernameCellLabel: UILabel!
     @IBOutlet weak var findFriendProfileCellImage: PFImageView!
     @IBOutlet weak var addFollowingLabel: UILabel!
     @IBOutlet weak var findFriendName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        viewWillLayoutSubviews()
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -26,5 +27,15 @@ class FindFriendCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func viewWillLayoutSubviews() {
+        
+        self.findFriendProfileCellImage.layer.cornerRadius = self.findFriendProfileCellImage.frame.size.width / 2
+        self.findFriendProfileCellImage.clipsToBounds = true
+        self.findFriendProfileCellImage.layer.borderColor = UIColor.orangeColor().CGColor
+        self.findFriendProfileCellImage.layer.borderWidth = 3
+        
+    }
+
 
 }

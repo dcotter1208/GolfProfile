@@ -16,9 +16,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var friendProfileNameLabel: UILabel!
     @IBOutlet weak var friendProfilePhoto: PFImageView!
     @IBOutlet weak var friendScorecardTableView: UITableView!
-    
     @IBOutlet weak var friendScorecardSegmentedControl: UISegmentedControl!
-    
     
     var friendScorecardData = [GolfScorecard]()
     var selectedFriend = GolferProfile()
@@ -145,7 +143,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillLayoutSubviews() {
         self.friendProfilePhoto.layer.cornerRadius = self.friendProfilePhoto.frame.size.width / 2
         self.friendProfilePhoto.layer.borderWidth = 3.0
-        self.friendProfilePhoto.layer.borderColor = UIColor.whiteColor().CGColor
+        self.friendProfilePhoto.layer.borderColor = UIColor.orangeColor().CGColor
         self.friendProfilePhoto.clipsToBounds = true
         
     }

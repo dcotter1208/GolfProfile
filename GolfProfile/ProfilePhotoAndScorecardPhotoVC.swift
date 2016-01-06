@@ -16,19 +16,20 @@ class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var userScorecardScrollView: UIScrollView!
     @IBOutlet weak var noScorecardImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
+    
     var scorecard = GolfScorecard?()
     var golferProfile = GolferProfile()
 
-
     override func viewDidLoad() {
     super.viewDidLoad()
-
+        
         if scorecard?.scorecardImage != nil || golferProfile.username != nil  {
             dismissButton.tintColor = UIColor.whiteColor()
             userScorecardImageView.file = scorecard?.scorecardImage
             userScorecardImageView.file = golferProfile.profileImage
 
         } else {
+            
             noScorecardImageView.image = UIImage(named: "noScorecardAvailable")
             noScorecardImageView.backgroundColor = UIColor.whiteColor()
             dismissButton.tintColor = UIColor.blackColor()
@@ -55,18 +56,10 @@ class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         
+        
     return self.userScorecardImageView
         
     }
-
-    override func shouldAutorotate() -> Bool {
-        return true
-    }
-    
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.AllButUpsideDown
-    }
-    
 
     
 }

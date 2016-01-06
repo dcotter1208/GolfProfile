@@ -29,6 +29,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
         
         
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,25 +69,18 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             
             cell.leaderboardGCLabel?.text = allScorecards.0.golfCourse
             cell.leaderboardGolferLabel.text = allScorecards.1.name
-            cell.leaderboardUsernameLabel.text = allScorecards.1.username
             cell.leaderboardProfileImage.file = allScorecards.1.profileImage
             cell.leaderboardProfileImage.loadInBackground()
-            cell.leaderboardProfileImage.layer.cornerRadius = cell.leaderboardProfileImage.frame.size.width / 2
-            cell.leaderboardProfileImage.clipsToBounds = true
-            cell.leaderboardProfileImage.layer.borderWidth = 3
-            cell.leaderboardProfileImage.layer.borderColor = UIColor.orangeColor().CGColor
 
+                if PFUser.currentUser()?.objectId == allScorecards.1.objectId {
+
+                  cell.starImage.image = UIImage(named: "star")
+                    
+                    }
             })
         
         }
         
-        if cell.leaderboardUsernameLabel.text == PFUser.currentUser()?.username {
-            
-            cell.starImage.image = UIImage(named: "star")
-
-            
-        }
-
         return cell
     }
     

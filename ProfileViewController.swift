@@ -72,10 +72,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         dateFormatter.dateFormat = "MM-dd-yyyy"
         
         cell.dateCellLabel?.text = dateFormatter.stringFromDate(userScorecardData[indexPath.row].date)
-        
         cell.scoreCellLabel?.text = "\(userScorecardData[indexPath.row].score)"
-        
         cell.golfCourseCellLabel?.text = userScorecardData[indexPath.row].golfCourse
+        cell.courseLocationLabel.text = userScorecardData[indexPath.row].courseLocation
         
         cell.scorecardCellImage.image = UIImage(named: "noScorecard")
         

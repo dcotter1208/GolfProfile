@@ -14,6 +14,7 @@ class CurrentUserScorecardCell: PFTableViewCell {
     @IBOutlet weak var golfCourseCellLabel: UILabel!
     @IBOutlet weak var dateCellLabel: UILabel!
     @IBOutlet weak var scoreCellLabel: UILabel!
+    @IBOutlet weak var courseLocationLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
