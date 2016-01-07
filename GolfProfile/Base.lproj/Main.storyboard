@@ -1335,14 +1335,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Pbl-V7-jct">
-                                <rect key="frame" x="12" y="58" width="296" height="131"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Pbl-V7-jct">
+                                <rect key="frame" x="12" y="58" width="288" height="292"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="131" id="SQj-Ap-mXE"/>
-                                </constraints>
-                                <string key="text">"Sorry to see you leave! Deleting your account will permanently delete all account information. This includes your scorecards you have logged, friends and any other information stored on your account. This information cannot be recovered. To permanently delete your account type in your e-mail address and password and select “Delete Account”.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <string key="text">"Sorry to see you leave! Deleting your account will permanently delete all account information. This includes your scorecards you have logged, friends and any other information stored on your account. This information cannot be recovered. To permanently delete your PeerGolfer account select “Delete Account”.</string>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNB-mv-G8E">
@@ -1358,23 +1355,8 @@
                                     <action selector="dismissView:" destination="cLz-j7-QaY" eventType="touchUpInside" id="tdD-5e-8gE"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QDO-lV-1J9">
-                                <rect key="frame" x="12" y="209" width="296" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BeD-7h-1Yp">
-                                <rect key="frame" x="12" y="247" width="296" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8eU-NB-Sbv">
-                                <rect key="frame" x="12" y="285" width="296" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XkM-8S-qBY">
-                                <rect key="frame" x="108" y="329" width="105" height="30"/>
+                                <rect key="frame" x="108" y="401" width="105" height="30"/>
                                 <state key="normal" title="Delete Account">
                                     <color key="titleColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -1385,29 +1367,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="BeD-7h-1Yp" firstAttribute="leading" secondItem="8eU-NB-Sbv" secondAttribute="leading" id="0Op-Bz-SlA"/>
-                            <constraint firstItem="QDO-lV-1J9" firstAttribute="leading" secondItem="Pbl-V7-jct" secondAttribute="leading" id="0kq-cz-S0M"/>
-                            <constraint firstItem="BeD-7h-1Yp" firstAttribute="leading" secondItem="QDO-lV-1J9" secondAttribute="leading" id="1nE-ga-QS4"/>
-                            <constraint firstItem="8eU-NB-Sbv" firstAttribute="top" secondItem="BeD-7h-1Yp" secondAttribute="bottom" constant="8" symbolic="YES" id="4Oh-P5-h8a"/>
+                            <constraint firstItem="KKI-LM-x9s" firstAttribute="top" secondItem="XkM-8S-qBY" secondAttribute="bottom" constant="137" id="8sR-Un-5Sf"/>
                             <constraint firstItem="pNB-mv-G8E" firstAttribute="top" secondItem="4Ce-wi-1k9" secondAttribute="bottom" id="FJO-ug-jJQ"/>
-                            <constraint firstItem="XkM-8S-qBY" firstAttribute="centerX" secondItem="8eU-NB-Sbv" secondAttribute="centerX" id="NQE-0g-CQL"/>
-                            <constraint firstItem="8eU-NB-Sbv" firstAttribute="trailing" secondItem="BeD-7h-1Yp" secondAttribute="trailing" id="NpZ-0f-sbs"/>
-                            <constraint firstItem="Pbl-V7-jct" firstAttribute="leading" secondItem="7io-Bb-o4a" secondAttribute="leadingMargin" constant="-4" id="OQa-K0-JPF"/>
-                            <constraint firstItem="Pbl-V7-jct" firstAttribute="trailing" secondItem="QDO-lV-1J9" secondAttribute="trailing" id="Tmg-km-Urw"/>
-                            <constraint firstItem="XkM-8S-qBY" firstAttribute="top" secondItem="8eU-NB-Sbv" secondAttribute="bottom" constant="14" id="Xrb-Iz-dwb"/>
-                            <constraint firstItem="BeD-7h-1Yp" firstAttribute="trailing" secondItem="QDO-lV-1J9" secondAttribute="trailing" id="g5G-cp-W7I"/>
-                            <constraint firstItem="BeD-7h-1Yp" firstAttribute="centerX" secondItem="7io-Bb-o4a" secondAttribute="centerX" id="iDy-fx-sRi"/>
+                            <constraint firstItem="XkM-8S-qBY" firstAttribute="centerX" secondItem="7io-Bb-o4a" secondAttribute="centerX" id="JV7-cb-l3S"/>
+                            <constraint firstItem="Pbl-V7-jct" firstAttribute="trailing" secondItem="pNB-mv-G8E" secondAttribute="trailing" id="Kp6-aB-HU7"/>
+                            <constraint firstItem="XkM-8S-qBY" firstAttribute="top" secondItem="Pbl-V7-jct" secondAttribute="bottom" constant="51" id="a5z-Z7-f69"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pNB-mv-G8E" secondAttribute="trailing" constant="4" id="iqf-Su-oDX"/>
-                            <constraint firstItem="Pbl-V7-jct" firstAttribute="top" secondItem="pNB-mv-G8E" secondAttribute="bottom" constant="8" symbolic="YES" id="jpJ-RD-ueY"/>
-                            <constraint firstItem="QDO-lV-1J9" firstAttribute="top" secondItem="Pbl-V7-jct" secondAttribute="bottom" constant="20" id="s1A-Pk-blu"/>
-                            <constraint firstItem="BeD-7h-1Yp" firstAttribute="top" secondItem="QDO-lV-1J9" secondAttribute="bottom" constant="8" symbolic="YES" id="sAH-qU-mDl"/>
+                            <constraint firstItem="Pbl-V7-jct" firstAttribute="top" secondItem="pNB-mv-G8E" secondAttribute="bottom" constant="8" symbolic="YES" id="tf6-jc-AfT"/>
+                            <constraint firstItem="Pbl-V7-jct" firstAttribute="leading" secondItem="7io-Bb-o4a" secondAttribute="leadingMargin" constant="-4" id="vRV-1E-E8S"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="deleteAccountTextView" destination="Pbl-V7-jct" id="Xqf-39-izy"/>
-                        <outlet property="emailAddressTextField" destination="QDO-lV-1J9" id="Xo8-Md-4aB"/>
-                        <outlet property="passwordTextFieldOne" destination="BeD-7h-1Yp" id="KTq-2K-F9h"/>
-                        <outlet property="passwordTextFieldTwo" destination="8eU-NB-Sbv" id="mfY-aC-O0U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0u-E9-IAm" userLabel="First Responder" sceneMemberID="firstResponder"/>

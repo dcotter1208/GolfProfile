@@ -18,8 +18,6 @@ class DeletAccountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewWillLayoutSubviews()
-
 
     }
 
@@ -36,7 +34,6 @@ class DeletAccountVC: UIViewController {
     
     @IBAction func deleteAccount(sender: AnyObject) {
 
-//if PFUser.currentUser()?.username == emailAddressTextField.text && PFUser.currentUser()?.password == passwordTextFieldOne.text && PFUser.currentUser()?.password == passwordTextFieldTwo.text {
 
     PFUser.currentUser()?.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 
@@ -63,21 +60,11 @@ class DeletAccountVC: UIViewController {
         }
 
             })
-            
-//    }
-    
+        
         
         
     }
-    
-    
-    override func viewWillLayoutSubviews() {
-        
-        deleteAccountTextView.layer.cornerRadius = 3.0
-        deleteAccountTextView.layer.borderWidth = 3.0
-        deleteAccountTextView.layer.borderColor = UIColor.blackColor().CGColor
 
-    }
     
     func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
         
