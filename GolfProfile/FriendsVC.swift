@@ -95,16 +95,25 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         if editingStyle == UITableViewCellEditingStyle.Delete {
             print(friendToDelete)
             relation.removeObject(friendToDelete)
-            print(relation.removeObject(friendToDelete))
             PFUser.currentUser()!.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 if error != nil {
                     print(error)
                 }
             })
             
-            friendsData = friendsData.filter({ $0 != friendToDelete })
-
-            friendsTableView.reloadData()
+            let alertController = UIAlertController(title: nil, message: "Are you sure you want to remove \(friendToDelete.name) as a friend?", preferredStyle: .Alert)
+            let cancelRemoveFriendAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+            let removeFriendAction = UIAlertAction(title: "Yes", style: .Default, handler: { (UIAlertAction) -> Void in
+                self.allNonFriendUsers.append(friendToDelete)
+                self.friendsData = self.friendsData.filter({ $0 != friendToDelete })
+                self.friendsTableView.reloadData()
+                
+            })
+            
+            alertController.addAction(cancelRemoveFriendAction)
+            alertController.addAction(removeFriendAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
         }
     }
     
@@ -135,7 +144,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             relation.addObject(user)
             allNonFriendUsers = allNonFriendUsers.filter({ $0 != user })
 
-            let alertController = UIAlertController(title: nil, message: "\(user.name) is now a Friend", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: nil, message: "\(user.name) is now a friend", preferredStyle: .Alert)
             let addFriendAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
                 
             self.filteredUsers = self.filteredUsers.filter({ $0 != user })
