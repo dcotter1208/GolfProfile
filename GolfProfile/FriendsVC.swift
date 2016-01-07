@@ -226,12 +226,20 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchString = searchController.searchBar.text
         
+//        if searchString?.characters.count == 0 {
+//            friendsTableView.reloadData()
+//        
+//        } else
+            if searchString?.characters.count >= 2 || searchString?.characters.count == 0 {
         // Filter the allUsers array and get only those users' username that match the search text.
         filteredUsers = allUsers.filter({(user) -> Bool in
             let nameText: NSString = user.name
             
             return (nameText.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+            
         })
+            
+        }
         // Reload the tableview.
         friendsTableView.reloadData()
     }

@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         
         if PFUser.currentUser() != nil {
-            
+                        
             getProfileFromBackground()
             loadUserScorecardData()
             
@@ -116,21 +116,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
         }
         
-    }
-
-    @IBAction func logOut(sender: AnyObject) {
-        
-        PFUser.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
-            if let error = error {
-                print(error)
-            
-            } else {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
-                    self.presentViewController(viewController, animated: true, completion: nil)
-                })
-            }
-        }
     }
     
     @IBAction func unwindToProfilePage(segue: UIStoryboardSegue) {
@@ -226,6 +211,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         refreshControl.endRefreshing()
         
     }
+    
+    
+    @IBAction func refreshScreen(sender: AnyObject) {
+        loadUserScorecardData()
+        getProfileFromBackground()
+        
+    }
+    
     
     @IBAction func scoreViewSegmentedControlPushed(sender: AnyObject) {
         
