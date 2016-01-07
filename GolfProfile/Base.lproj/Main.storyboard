@@ -185,30 +185,12 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="wxj-MT-dRe">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" id="Rec-UW-1ej">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="llG-IV-FBo">
-                                <rect key="frame" x="16" y="7" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Log Out">
-                                    <color key="titleColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="logOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9CW-Qp-Rzv"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="jFJ-yb-OtI">
+                            <color key="tintColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="logOut:" destination="BYZ-38-t0r" id="W6c-Ss-DWM"/>
+                                <action selector="refreshScreen:" destination="BYZ-38-t0r" id="JbM-dr-bYS"/>
                             </connections>
                         </barButtonItem>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ned-7W-wbW">
-                            <rect key="frame" x="144" y="6" width="32" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="tintColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" image="refresh"/>
-                            <connections>
-                                <action selector="refreshScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="84f-1c-gy3"/>
-                            </connections>
-                        </button>
                         <barButtonItem key="rightBarButtonItem" image="settings" id="iUb-d5-8zQ">
                             <color key="tintColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -234,7 +216,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1253" y="-4847"/>
+            <point key="canvasLocation" x="-4165" y="-5207"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="7Da-az-DK5">
@@ -264,25 +246,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V4B-M2-Uc9" customClass="PFImageView">
-                                <rect key="frame" x="38" y="171" width="244" height="239"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="244" id="7Vp-tg-zhh"/>
-                                    <constraint firstAttribute="height" constant="239" id="Yfg-ky-Pd2"/>
-                                    <constraint firstAttribute="width" secondItem="V4B-M2-Uc9" secondAttribute="height" multiplier="244:239" id="qiz-S7-oDQ"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nM-4D-DXq">
-                                <rect key="frame" x="138" y="268" width="45" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="2zG-0N-Zyt"/>
-                                    <constraint firstAttribute="height" constant="45" id="n7n-m0-E2e"/>
-                                </constraints>
-                                <state key="normal" image="addPhoto"/>
-                                <connections>
-                                    <action selector="editProfilePhoto:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="hVC-9g-vSt"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vhu-cv-H6M">
                                 <rect key="frame" x="142" y="266" width="37" height="37"/>
                                 <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -307,18 +270,56 @@
                                     <segue destination="cfY-sT-J3e" kind="modal" id="7my-Xy-cbh"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V4B-M2-Uc9" customClass="PFImageView">
+                                <rect key="frame" x="38" y="146" width="244" height="239"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="244" id="7Vp-tg-zhh"/>
+                                    <constraint firstAttribute="height" constant="239" id="Yfg-ky-Pd2"/>
+                                    <constraint firstAttribute="width" secondItem="V4B-M2-Uc9" secondAttribute="height" multiplier="244:239" id="qiz-S7-oDQ"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nM-4D-DXq">
+                                <rect key="frame" x="138" y="243" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="2zG-0N-Zyt"/>
+                                    <constraint firstAttribute="height" constant="45" id="n7n-m0-E2e"/>
+                                </constraints>
+                                <state key="normal" image="addPhoto"/>
+                                <connections>
+                                    <action selector="editProfilePhoto:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="hVC-9g-vSt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0X-o5-QuM">
+                                <rect key="frame" x="38" y="393" width="244" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="233-Si-jil"/>
+                                    <constraint firstAttribute="width" secondItem="c0X-o5-QuM" secondAttribute="height" multiplier="122:15" id="cTq-RF-uif"/>
+                                    <constraint firstAttribute="width" constant="244" id="zbx-Ou-cWS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveProfileButton:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="wls-FO-EMe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="top" secondItem="GBL-r2-d4I" secondAttribute="bottom" constant="107" id="4Hn-pe-WIa"/>
+                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="top" secondItem="GBL-r2-d4I" secondAttribute="bottom" constant="82" id="4Hn-pe-WIa"/>
                             <constraint firstItem="as0-K9-vkd" firstAttribute="top" secondItem="GBL-r2-d4I" secondAttribute="bottom" constant="7" id="BNC-r0-KKx"/>
                             <constraint firstItem="61L-my-SVl" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="14" id="Bzd-mh-mPR"/>
+                            <constraint firstItem="c0X-o5-QuM" firstAttribute="top" secondItem="V4B-M2-Uc9" secondAttribute="bottom" constant="8" symbolic="YES" id="DVZ-vh-271"/>
                             <constraint firstItem="as0-K9-vkd" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="4" id="EOf-tn-uFr"/>
                             <constraint firstItem="NZI-gN-TUR" firstAttribute="top" secondItem="as0-K9-vkd" secondAttribute="bottom" constant="8" symbolic="YES" id="F63-dw-Amh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="as0-K9-vkd" secondAttribute="trailing" constant="-7" id="HGd-1B-E9s"/>
                             <constraint firstItem="Cgb-H8-T0Z" firstAttribute="top" secondItem="61L-my-SVl" secondAttribute="bottom" constant="11" id="M99-iL-f6j"/>
                             <constraint firstItem="V4B-M2-Uc9" firstAttribute="centerX" secondItem="1sD-LC-BLX" secondAttribute="centerX" id="Pm8-e9-mPS"/>
                             <constraint firstItem="vhu-cv-H6M" firstAttribute="centerX" secondItem="5nM-4D-DXq" secondAttribute="centerX" id="bl0-Ed-PWh"/>
+                            <constraint firstItem="c0X-o5-QuM" firstAttribute="trailing" secondItem="V4B-M2-Uc9" secondAttribute="trailing" id="c6D-gk-nbb"/>
+                            <constraint firstItem="c0X-o5-QuM" firstAttribute="leading" secondItem="V4B-M2-Uc9" secondAttribute="leading" id="ci3-gl-We4"/>
                             <constraint firstItem="5nM-4D-DXq" firstAttribute="centerX" secondItem="V4B-M2-Uc9" secondAttribute="centerX" id="e6d-OQ-Pa3"/>
                             <constraint firstItem="vhu-cv-H6M" firstAttribute="centerY" secondItem="1sD-LC-BLX" secondAttribute="centerY" id="fB6-Ob-FzQ"/>
                             <constraint firstItem="vhu-cv-H6M" firstAttribute="centerX" secondItem="1sD-LC-BLX" secondAttribute="centerX" id="fQs-On-l21"/>
@@ -332,9 +333,9 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="lv7-sz-UR9">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="BTR-5N-k9C">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="BTR-5N-k9C">
                             <connections>
-                                <action selector="saveProfileButton:" destination="iRX-cc-Y1a" id="6oC-hB-Q9j"/>
+                                <action selector="logOut:" destination="iRX-cc-Y1a" id="5yz-0w-Vpn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -343,6 +344,7 @@
                         <outlet property="activityIndicator" destination="vhu-cv-H6M" id="e8l-SU-dUi"/>
                         <outlet property="golferNameTextField" destination="as0-K9-vkd" id="uHs-2D-mef"/>
                         <outlet property="golferProfileImage" destination="V4B-M2-Uc9" id="4vU-rw-Q7X"/>
+                        <outlet property="saveButton" destination="c0X-o5-QuM" id="YIJ-xd-hez"/>
                         <outlet property="usernameTextField" destination="NZI-gN-TUR" id="PDl-Ug-bu8"/>
                         <segue destination="9Mm-S5-HRy" kind="unwind" identifier="unwindSegueToProfile" unwindAction="unwindToProfilePage:" id="X2g-AO-pHo"/>
                     </connections>
@@ -350,7 +352,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="weG-8D-Fb0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9Mm-S5-HRy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-712" y="-5457"/>
+            <point key="canvasLocation" x="-3624" y="-5817"/>
         </scene>
         <!--Profile Photo And Scorecard PhotoVC-->
         <scene sceneID="Hw8-ou-Kjc">
@@ -422,7 +424,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKH-bi-VyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="-3516"/>
+            <point key="canvasLocation" x="-2524" y="-3876"/>
         </scene>
         <!--Select Course-->
         <scene sceneID="EB0-Fo-rJz">
@@ -499,7 +501,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mvi-co-Puf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-700" y="-4554"/>
+            <point key="canvasLocation" x="-3612" y="-4914"/>
         </scene>
         <!--New Score View Controller-->
         <scene sceneID="qg1-2L-K2A">
@@ -647,7 +649,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-286" y="-4554"/>
+            <point key="canvasLocation" x="-3198" y="-4914"/>
         </scene>
         <!--Friend Profile View Controller-->
         <scene sceneID="xjV-GW-OlJ">
@@ -809,7 +811,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1348" y="-4265"/>
+            <point key="canvasLocation" x="-1564" y="-4625"/>
         </scene>
         <!--Forgot PasswordVC-->
         <scene sceneID="lLJ-PS-zXb">
@@ -861,7 +863,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6C-UD-2SS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="29" y="-6537"/>
+            <point key="canvasLocation" x="-2883" y="-6897"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="j3s-8D-rXy">
@@ -968,7 +970,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKZ-cz-312" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="394" y="-6537"/>
+            <point key="canvasLocation" x="-2518" y="-6897"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="Huy-hn-OqW">
@@ -1091,7 +1093,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VfX-n3-Sse" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="CNe-AC-cpW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="789" y="-6537"/>
+            <point key="canvasLocation" x="-2123" y="-6897"/>
         </scene>
         <!--Privacy PolicyVC-->
         <scene sceneID="swe-KY-XSU">
@@ -1146,7 +1148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6N-77-FDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1195" y="-6529"/>
+            <point key="canvasLocation" x="-1717" y="-6889"/>
         </scene>
         <!--FriendsVC-->
         <scene sceneID="Z6a-zD-OQk">
@@ -1300,7 +1302,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="862" y="-4265"/>
+            <point key="canvasLocation" x="-2050" y="-4625"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tKQ-37-oi0">
@@ -1320,7 +1322,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaI-yO-YH6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="399" y="-5867"/>
+            <point key="canvasLocation" x="-2513" y="-6227"/>
         </scene>
         <!--Delet AccountVC-->
         <scene sceneID="2H9-jB-K9Y">
@@ -1411,7 +1413,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0u-E9-IAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-677" y="-6167"/>
+            <point key="canvasLocation" x="-3589" y="-6527"/>
         </scene>
         <!--Leaderboard-->
         <scene sceneID="p2Z-0R-TQ8">
@@ -1568,7 +1570,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwC-yd-6bG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1338" y="-5118"/>
+            <point key="canvasLocation" x="-1574" y="-5478"/>
         </scene>
         <!--Profile-->
         <scene sceneID="U8S-YR-tVl">
@@ -1588,7 +1590,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0x0-hX-T3s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1664" y="-4847"/>
+            <point key="canvasLocation" x="-4576" y="-5207"/>
         </scene>
         <!--Friends-->
         <scene sceneID="jej-2Y-o4I">
@@ -1607,14 +1609,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pt3-AM-eXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="-4265"/>
+            <point key="canvasLocation" x="-2524" y="-4625"/>
         </scene>
     </scenes>
     <resources>
         <image name="addPhoto" width="128" height="128"/>
         <image name="logo" width="256" height="256"/>
         <image name="newScorecard" width="60" height="60"/>
-        <image name="refresh" width="32" height="32"/>
         <image name="settings" width="48" height="48"/>
         <image name="user_2" width="32" height="32"/>
         <image name="users_three_2" width="32" height="32"/>

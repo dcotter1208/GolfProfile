@@ -18,6 +18,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var golferNameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var saveButton: UIButton!
 
     var editProfileData = [GolferProfile]()
     var loadProfileData = [GolferProfile]()
@@ -156,9 +157,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     override func viewWillLayoutSubviews() {
+        self.golferProfileImage.layer.cornerRadius = 3.0
         self.golferProfileImage.layer.borderWidth = 3.0
         self.golferProfileImage.layer.borderColor = UIColor.orangeColor().CGColor
         self.golferProfileImage.clipsToBounds = true
+        self.saveButton.layer.borderWidth = 3.0
+        self.saveButton.layer.cornerRadius = 3.0
+        self.saveButton.layer.borderColor = UIColor.whiteColor().CGColor
+        
     }
     
     func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
@@ -171,6 +177,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         self.presentViewController(alertController, animated: true, completion: nil)
         
     }
+    
+    @IBAction func logOut(sender: AnyObject) {
+        
+        PFUser.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
+            if let error = error {
+                print(error)
+                
+            } else {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+                    self.presentViewController(viewController, animated: true, completion: nil)
+                })
+            }
+        }
+    }
+    
+    
     
 }
 
