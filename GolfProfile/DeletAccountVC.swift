@@ -11,9 +11,6 @@ import Parse
 
 class DeletAccountVC: UIViewController {
     @IBOutlet weak var deleteAccountTextView: UITextView!
-    @IBOutlet weak var emailAddressTextField: UITextField!
-    @IBOutlet weak var passwordTextFieldOne: UITextField!
-    @IBOutlet weak var passwordTextFieldTwo: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
