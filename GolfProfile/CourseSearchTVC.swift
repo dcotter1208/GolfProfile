@@ -211,6 +211,6 @@ extension CourseSearchTVC {
             
             coursesTableView.reloadData()
                 }
-            }
-        }
+    }
+}
 

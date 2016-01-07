@@ -83,6 +83,31 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 
     }
     
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return !searchController.active
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let friendToDelete = friendsData[indexPath.row]
+        let relation: PFRelation = PFUser.currentUser()!.relationForKey("friendsRelation")
+
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            print(friendToDelete)
+            relation.removeObject(friendToDelete)
+            print(relation.removeObject(friendToDelete))
+            PFUser.currentUser()!.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                }
+            })
+            
+            friendsData = friendsData.filter({ $0 != friendToDelete })
+
+            friendsTableView.reloadData()
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "showFriendProfileVC"  {
@@ -111,18 +136,15 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             allNonFriendUsers = allNonFriendUsers.filter({ $0 != user })
 
             let alertController = UIAlertController(title: nil, message: "\(user.name) is now a Friend", preferredStyle: .Alert)
-            
-            let enterAppAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
+            let addFriendAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
                 
-                
-                self.filteredUsers = self.filteredUsers.filter({ $0 != user })
-                self.friendsTableView.reloadData()
+            self.filteredUsers = self.filteredUsers.filter({ $0 != user })
+            self.friendsTableView.reloadData()
                 
 
             })
             
-            alertController.addAction(enterAppAction)
-            
+            alertController.addAction(addFriendAction)
             self.presentViewController(alertController, animated: true, completion: nil)
 
 
@@ -186,20 +208,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             }
         }
     }
-    }
-    
-        //Function to check if a user is a or isn't a current friend. If they are then we are using this method to display a checkmark by their name in our editFriendsVC
-    
-    func isFriend(user: PFUser) -> Bool {
-        for friend in friendsData {
-            if friend.objectId == user.objectId {
-                return true
-            }
-            
-        }
-        
-        return false
-        
     }
     
     func configureSearchController() {
