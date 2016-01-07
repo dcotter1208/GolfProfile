@@ -15,7 +15,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBOutlet weak var friendsTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
         
-    var allUsers = [GolferProfile]()
+    var allNonFriendUsers = [GolferProfile]()
     var filteredUsers = [GolferProfile]()
     var friendsData = [GolferProfile]()
     var friendsRelation = PFRelation()
@@ -24,7 +24,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         loadFriendsData()
         loadUserData()
         configureSearchController()
@@ -58,27 +58,13 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if shouldShowSearchResults {
-            
+
         let findFriendCell: FindFriendCell = tableView.dequeueReusableCellWithIdentifier("findFriendsCell", forIndexPath: indexPath) as! FindFriendCell
         findFriendCell.tintColor = UIColor.whiteColor()
         findFriendCell.findFriendName.text = filteredUsers[indexPath.row].name
         
         findFriendCell.findFriendProfileCellImage.file = filteredUsers[indexPath.row].profileImage
         findFriendCell.findFriendProfileCellImage.loadInBackground()
-
-        for friend in filteredUsers {
-            
-        if isFriend(friend) {
-          findFriendCell.addFollowingLabel.text = "Following"
-          findFriendCell.addFollowingLabel.textColor = UIColor.whiteColor()
-            
-        } else {
-            findFriendCell.addFollowingLabel.text = "Add"
-            findFriendCell.addFollowingLabel.textColor = UIColor.whiteColor()
-            
-         }
-    
-        }
 
          return findFriendCell
             
@@ -116,28 +102,29 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         if shouldShowSearchResults {
             
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! FindFriendCell
-        
         let user = self.filteredUsers[indexPath.row]
         
         let relation: PFRelation = PFUser.currentUser()!.relationForKey("friendsRelation")
-            
-        if isFriend(user) {
-            cell.addFollowingLabel.text = "Add"
 
-            for friend in friendsData {
-                if friend.objectId == user.objectId {
-                relation.removeObject(friend)
-                    
-         //filter through the original showFriends array and remove that selected "friend" from the array.
-            friendsData = friendsData.filter({ $0 != friend })
-
-                }
-            }
-        } else {
-            cell.addFollowingLabel.text = "Following"
             friendsData.append(user)
             relation.addObject(user)
+            allNonFriendUsers = allNonFriendUsers.filter({ $0 != user })
+
+            let alertController = UIAlertController(title: nil, message: "\(user.name) is now a Friend", preferredStyle: .Alert)
+            
+            let enterAppAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
+                
+                
+                self.filteredUsers = self.filteredUsers.filter({ $0 != user })
+                self.friendsTableView.reloadData()
+                
+
+            })
+            
+            alertController.addAction(enterAppAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+
 
         }
             PFUser.currentUser()!.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
@@ -145,31 +132,35 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                     print(error)
                 }
             })
-        }
     }
     
-
     func loadUserData() {
-        allUsers.removeAll()
+    allNonFriendUsers.removeAll()
         
+        if let friendsRelation = PFUser.currentUser()?.objectForKey("friendsRelation") as? PFRelation {
+        let friendQuery = friendsRelation.query()
         if let userQuery = PFUser.query() {
-        userQuery.whereKey("username", notEqualTo: (PFUser.currentUser()?.username)!)
-        userQuery.findObjectsInBackgroundWithBlock { (users: [PFObject]?, error: NSError?) -> Void in
+        userQuery.whereKey("username", doesNotMatchKey: "username", inQuery: friendQuery!)
+        userQuery.findObjectsInBackgroundWithBlock({ (nonFriendUsers: [PFObject]?, error: NSError?) -> Void in
+           
             if error == nil {
-                
-                for object:PFObject in users! {
-                    if let user = object as? GolferProfile {
-                            self.allUsers.append(user)
-                        
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.friendsTableView.reloadData()
+                for object:PFObject in nonFriendUsers! {
+                    if let nonFriendUser = object as? GolferProfile {
+                    self.allNonFriendUsers.append(nonFriendUser)
+                        for user in self.allNonFriendUsers {
+                        if user.objectId == PFUser.currentUser()?.objectId {
+                        self.allNonFriendUsers = self.allNonFriendUsers.filter({$0 != user})
+                            
+                            }
                         }
+                    
                     }
                 }
             }
+        })
+            }
         }
     }
-}
     
     func loadFriendsData() {
         activityIndicator.startAnimating()
@@ -226,13 +217,10 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchString = searchController.searchBar.text
         
-//        if searchString?.characters.count == 0 {
-//            friendsTableView.reloadData()
-//        
-//        } else
-            if searchString?.characters.count >= 2 || searchString?.characters.count == 0 {
         // Filter the allUsers array and get only those users' username that match the search text.
-        filteredUsers = allUsers.filter({(user) -> Bool in
+
+            if searchString?.characters.count >= 2 || searchString?.characters.count == 0 {
+        filteredUsers = allNonFriendUsers.filter({(user) -> Bool in
             let nameText: NSString = user.name
             
             return (nameText.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
