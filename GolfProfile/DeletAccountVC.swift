@@ -19,8 +19,7 @@ class DeletAccountVC: UIViewController {
         super.viewDidLoad()
         
         viewWillLayoutSubviews()
-        
-     deleteAccountTextView.text = "Sorry to see you leave! Deleting your account will permanently delete all account information. This includes your scorecards you have logged, friends and any other information stored on your account. This information cannot be recovered. To permanently delete your account type in your e-mail address and password and select “Delete”."
+
 
     }
 

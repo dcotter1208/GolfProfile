@@ -227,6 +227,15 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
+    
+    @IBAction func refreshScreen(sender: AnyObject) {
+        
+        loadUserScorecardData()
+        getProfileFromBackground()
+        
+    }
+    
+    
     @IBAction func scoreViewSegmentedControlPushed(sender: AnyObject) {
         
         switch (scoreViewSegmentedControl.selectedSegmentIndex) {
