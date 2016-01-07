@@ -32,6 +32,7 @@ class DeletAccountVC: UIViewController {
     @IBAction func deleteAccount(sender: AnyObject) {
         
     let alertController1 = UIAlertController(title: "Last chance!", message: "Confirm PeerGolfer account deletion by selecting 'Delete'", preferredStyle: .Alert)
+    let cancelDeletion = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
     let deleteAccountAction = UIAlertAction(title: "Delete", style: .Default) { (UIAlertAction) -> Void in
         
         PFUser.currentUser()?.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
@@ -52,7 +53,9 @@ class DeletAccountVC: UIViewController {
 
     }
         
+        alertController1.addAction(cancelDeletion)
         alertController1.addAction(deleteAccountAction)
+
         
         self.presentViewController(alertController1, animated: true, completion: nil)
         
