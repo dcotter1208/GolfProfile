@@ -185,16 +185,16 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="wxj-MT-dRe">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="jFJ-yb-OtI">
-                            <color key="tintColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="refreshScreen:" destination="BYZ-38-t0r" id="JbM-dr-bYS"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="settings" id="iUb-d5-8zQ">
+                        <barButtonItem key="leftBarButtonItem" image="settings" id="iUb-d5-8zQ">
                             <color key="tintColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="iRX-cc-Y1a" kind="push" id="3AQ-j2-SnZ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="jFJ-yb-OtI">
+                            <color key="tintColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="refreshScreen:" destination="BYZ-38-t0r" id="JbM-dr-bYS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -246,10 +246,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vhu-cv-H6M">
-                                <rect key="frame" x="142" y="266" width="37" height="37"/>
-                                <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V4B-M2-Uc9" customClass="PFImageView">
+                                <rect key="frame" x="38" y="146" width="244" height="239"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="244" id="7Vp-tg-zhh"/>
+                                    <constraint firstAttribute="height" constant="239" id="Yfg-ky-Pd2"/>
+                                    <constraint firstAttribute="width" secondItem="V4B-M2-Uc9" secondAttribute="height" multiplier="244:239" id="qiz-S7-oDQ"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nM-4D-DXq">
+                                <rect key="frame" x="138" y="243" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="2zG-0N-Zyt"/>
+                                    <constraint firstAttribute="height" constant="45" id="n7n-m0-E2e"/>
+                                </constraints>
+                                <state key="normal" image="addPhoto"/>
+                                <connections>
+                                    <action selector="editProfilePhoto:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="hVC-9g-vSt"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grY-5j-9gA">
                                 <rect key="frame" x="230" y="492" width="74" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -270,25 +285,6 @@
                                     <segue destination="cfY-sT-J3e" kind="modal" id="7my-Xy-cbh"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V4B-M2-Uc9" customClass="PFImageView">
-                                <rect key="frame" x="38" y="146" width="244" height="239"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="244" id="7Vp-tg-zhh"/>
-                                    <constraint firstAttribute="height" constant="239" id="Yfg-ky-Pd2"/>
-                                    <constraint firstAttribute="width" secondItem="V4B-M2-Uc9" secondAttribute="height" multiplier="244:239" id="qiz-S7-oDQ"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nM-4D-DXq">
-                                <rect key="frame" x="138" y="243" width="45" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="2zG-0N-Zyt"/>
-                                    <constraint firstAttribute="height" constant="45" id="n7n-m0-E2e"/>
-                                </constraints>
-                                <state key="normal" image="addPhoto"/>
-                                <connections>
-                                    <action selector="editProfilePhoto:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="hVC-9g-vSt"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0X-o5-QuM">
                                 <rect key="frame" x="38" y="393" width="244" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -305,6 +301,10 @@
                                     <action selector="saveProfileButton:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="wls-FO-EMe"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="kPw-qW-ySf">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -315,14 +315,13 @@
                             <constraint firstItem="as0-K9-vkd" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="4" id="EOf-tn-uFr"/>
                             <constraint firstItem="NZI-gN-TUR" firstAttribute="top" secondItem="as0-K9-vkd" secondAttribute="bottom" constant="8" symbolic="YES" id="F63-dw-Amh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="as0-K9-vkd" secondAttribute="trailing" constant="-7" id="HGd-1B-E9s"/>
+                            <constraint firstItem="kPw-qW-ySf" firstAttribute="centerY" secondItem="1sD-LC-BLX" secondAttribute="centerY" id="I8L-vW-BQf"/>
                             <constraint firstItem="Cgb-H8-T0Z" firstAttribute="top" secondItem="61L-my-SVl" secondAttribute="bottom" constant="11" id="M99-iL-f6j"/>
                             <constraint firstItem="V4B-M2-Uc9" firstAttribute="centerX" secondItem="1sD-LC-BLX" secondAttribute="centerX" id="Pm8-e9-mPS"/>
-                            <constraint firstItem="vhu-cv-H6M" firstAttribute="centerX" secondItem="5nM-4D-DXq" secondAttribute="centerX" id="bl0-Ed-PWh"/>
+                            <constraint firstItem="kPw-qW-ySf" firstAttribute="centerX" secondItem="5nM-4D-DXq" secondAttribute="centerX" id="WYJ-dw-CHN"/>
                             <constraint firstItem="c0X-o5-QuM" firstAttribute="trailing" secondItem="V4B-M2-Uc9" secondAttribute="trailing" id="c6D-gk-nbb"/>
                             <constraint firstItem="c0X-o5-QuM" firstAttribute="leading" secondItem="V4B-M2-Uc9" secondAttribute="leading" id="ci3-gl-We4"/>
                             <constraint firstItem="5nM-4D-DXq" firstAttribute="centerX" secondItem="V4B-M2-Uc9" secondAttribute="centerX" id="e6d-OQ-Pa3"/>
-                            <constraint firstItem="vhu-cv-H6M" firstAttribute="centerY" secondItem="1sD-LC-BLX" secondAttribute="centerY" id="fB6-Ob-FzQ"/>
-                            <constraint firstItem="vhu-cv-H6M" firstAttribute="centerX" secondItem="1sD-LC-BLX" secondAttribute="centerX" id="fQs-On-l21"/>
                             <constraint firstItem="Cgb-H8-T0Z" firstAttribute="top" secondItem="grY-5j-9gA" secondAttribute="bottom" constant="8" symbolic="YES" id="hSz-i4-raw"/>
                             <constraint firstItem="NZI-gN-TUR" firstAttribute="trailing" secondItem="as0-K9-vkd" secondAttribute="trailing" id="kkB-Ym-Fv2"/>
                             <constraint firstItem="5nM-4D-DXq" firstAttribute="centerY" secondItem="V4B-M2-Uc9" secondAttribute="centerY" id="ni0-eA-Bnd"/>
@@ -341,7 +340,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="vhu-cv-H6M" id="e8l-SU-dUi"/>
+                        <outlet property="activityIndicator" destination="kPw-qW-ySf" id="gnn-J5-vMx"/>
                         <outlet property="golferNameTextField" destination="as0-K9-vkd" id="uHs-2D-mef"/>
                         <outlet property="golferProfileImage" destination="V4B-M2-Uc9" id="4vU-rw-Q7X"/>
                         <outlet property="saveButton" destination="c0X-o5-QuM" id="YIJ-xd-hez"/>
