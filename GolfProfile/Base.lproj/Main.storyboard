@@ -1338,7 +1338,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Pbl-V7-jct">
                                 <rect key="frame" x="12" y="58" width="288" height="292"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">"Sorry to see you leave! Deleting your account will permanently delete all account information. This includes your scorecards you have logged, friends and any other information stored on your account. This information cannot be recovered. To permanently delete your PeerGolfer account select “Delete Account”.</string>
+                                <string key="text">"Sorry to see you leave! Deleting your account will permanently delete all account information. This includes your scorecards you have logged and any other information stored on your account. This information cannot be recovered. To permanently delete your PeerGolfer account select “Delete Account”.</string>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

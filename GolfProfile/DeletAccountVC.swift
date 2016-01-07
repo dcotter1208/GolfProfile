@@ -33,49 +33,35 @@ class DeletAccountVC: UIViewController {
     }
     
     @IBAction func deleteAccount(sender: AnyObject) {
-
-
-    PFUser.currentUser()?.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                
-                if success {
-                
-                let alertController = UIAlertController(title: "Success!", message: "Now Please Login", preferredStyle: .Alert)
-                    
-                let enterAppAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
-                        
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
-                        self.presentViewController(viewController, animated: true, completion: nil)
-                    })
-
+        
+    let alertController1 = UIAlertController(title: "Last chance!", message: "Confirm PeerGolfer account deletion by selecting 'Delete'", preferredStyle: .Alert)
+    let deleteAccountAction = UIAlertAction(title: "Delete", style: .Default) { (UIAlertAction) -> Void in
+        
+        PFUser.currentUser()?.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            
+            if success {
+            
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+                    self.presentViewController(viewController, animated: true, completion: nil)
                 })
-                    
-                    alertController.addAction(enterAppAction)
-                    
-                    self.presentViewController(alertController, animated: true, completion: nil)
-
-                } else {
-                print(error)
                 
-        }
+            } else {
+                
+                print(error)
+            
+            }
+        })
 
-            })
+    }
         
+        alertController1.addAction(deleteAccountAction)
+        
+        self.presentViewController(alertController1, animated: true, completion: nil)
         
         
     }
 
-    
-    func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
-        
-        let alertController = UIAlertController(title: alterTitle, message: message, preferredStyle: .Alert)
-        
-        let defaultAction = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
-        alertController.addAction(defaultAction)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-        
-    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
