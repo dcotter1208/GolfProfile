@@ -29,6 +29,15 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for (_,i) in leaderboardData {
+        
+            if PFUser.currentUser()?.username == i.username {
+            
+                
+            
+            }
+        
+        }
         
         
     }
@@ -72,12 +81,8 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             cell.leaderboardGolferLabel.text = allScorecards.1.name
             cell.leaderboardProfileImage.file = allScorecards.1.profileImage
             cell.leaderboardProfileImage.loadInBackground()
+                
 
-                if PFUser.currentUser()?.objectId == allScorecards.1.objectId {
-
-                  cell.starImage.image = UIImage(named: "star")
-                    
-                    }
             })
         
         }
@@ -108,7 +113,8 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                     dispatch_async(dispatch_get_main_queue()) {
                     
                         self.leaderboardTableView.reloadData()
-                    }
+                        
+                        }
                     }
                 }
 
