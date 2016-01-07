@@ -48,6 +48,7 @@
 		C03D92341C29EDA60084B255 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03D92321C29ED610084B255 /* ParseUI.framework */; };
 		C042BE6D1C38DE17002CA9ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C042BE6C1C38DE17002CA9ED /* Foundation.framework */; };
 		C04597481BFB7C8A001A004D /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04597471BFB7C8A001A004D /* Keys.plist */; };
+		C06C0F471C3DEB7400283E34 /* DeletAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06C0F461C3DEB7400283E34 /* DeletAccountVC.swift */; };
 		C06D00921BE8F8F200A514FE /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00911BE8F8F200A514FE /* FriendProfileViewController.swift */; };
 		C06D00941BE9027E00A514FE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00931BE9027E00A514FE /* SignUpViewController.swift */; };
 		C06D00961BE90A6E00A514FE /* NewScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */; };
@@ -110,7 +111,7 @@
 		C01F71B91C33354400887522 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../RealmSwift.framework; sourceTree = "<group>"; };
 		C01F71C01C338B5000887522 /* CourseSearchTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSearchTVC.swift; sourceTree = "<group>"; };
 		C0255B7E1C330A4500B8BCE6 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
-		C02E54931C38EB2B000FCA13 /* ALCameraViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALCameraViewController.framework; path = "Pods/../build/Debug-iphoneos/ALCameraViewController.framework"; sourceTree = SOURCE_ROOT; };
+		C02E54931C38EB2B000FCA13 /* ALCameraViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALCameraViewController.framework; path = "build/Debug-iphoneos/ALCameraViewController.framework"; sourceTree = SOURCE_ROOT; };
 		C02E54961C3CE919000FCA13 /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrivacyPolicyVC.swift; path = ../PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		C038BF121BE80AA4004AE33E /* GolfProfile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfProfile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C038BF151BE80AA4004AE33E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +150,7 @@
 		C03D92321C29ED610084B255 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		C042BE6C1C38DE17002CA9ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C04597471BFB7C8A001A004D /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = ../Keys.plist; sourceTree = "<group>"; };
+		C06C0F461C3DEB7400283E34 /* DeletAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletAccountVC.swift; sourceTree = "<group>"; };
 		C06D00911BE8F8F200A514FE /* FriendProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
 		C06D00931BE9027E00A514FE /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C06D00951BE90A6E00A514FE /* NewScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScoreViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				C07DDFA21C245AE000F69E4B /* ForgotPasswordVC.swift */,
 				C038BF751BE84287004AE33E /* LoginViewController.swift */,
 				C06D00931BE9027E00A514FE /* SignUpViewController.swift */,
+				C06C0F461C3DEB7400283E34 /* DeletAccountVC.swift */,
 			);
 			name = LoginViewControllers;
 			sourceTree = "<group>";
@@ -453,7 +456,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C038BF0D1BE80AA4004AE33E /* Build configuration list for PBXProject "GolfProfile" */;
+			buildConfigurationList = C038BF0D1BE80AA4004AE33E /* Build configuration list for PBXProject "PeerGolfer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -581,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C06C0F471C3DEB7400283E34 /* DeletAccountVC.swift in Sources */,
 				C0255B7F1C330A4500B8BCE6 /* Course.swift in Sources */,
 				C0CD84721C357173008E5ECC /* PreviousCourse.swift in Sources */,
 				C0ABFA5A1BEA708D00DFF9FF /* EditProfileViewController.swift in Sources */,
@@ -850,7 +854,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C038BF0D1BE80AA4004AE33E /* Build configuration list for PBXProject "GolfProfile" */ = {
+		C038BF0D1BE80AA4004AE33E /* Build configuration list for PBXProject "PeerGolfer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C038BF381BE80AA4004AE33E /* Debug */,

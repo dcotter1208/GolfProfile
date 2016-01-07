@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         
         if PFUser.currentUser() != nil {
-            
+                        
             getProfileFromBackground()
             loadUserScorecardData()
             
