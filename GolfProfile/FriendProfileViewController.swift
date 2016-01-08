@@ -148,9 +148,15 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
         self.friendProfilePhoto.layer.borderWidth = 3.0
         self.friendProfilePhoto.layer.borderColor = UIColor.orangeColor().CGColor
         self.friendProfilePhoto.clipsToBounds = true
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 39/255, green: 170/255, blue: 207/255, alpha: 1)
         
     }
     
+    @IBAction func refreshView(sender: AnyObject) {
+        
+        loadFriendProfile()
+        loadFriendScorecardData()
+    }
     
     
     

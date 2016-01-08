@@ -164,6 +164,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         self.saveButton.layer.borderWidth = 3.0
         self.saveButton.layer.cornerRadius = 3.0
         self.saveButton.layer.borderColor = UIColor.whiteColor().CGColor
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 39/255, green: 170/255, blue: 207/255, alpha: 1)
         
     }
     
