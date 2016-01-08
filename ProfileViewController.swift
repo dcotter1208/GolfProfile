@@ -144,7 +144,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             userQuery.whereKey("username", equalTo: (PFUser.currentUser()?.username)!)
             userQuery.findObjectsInBackgroundWithBlock({ (currentUserProfile:[PFObject]?, error: NSError?) -> Void in
                 if error == nil {
-//                    self.activityIndicator.stopAnimating()
                     for object:PFObject in currentUserProfile! {
                     if let object = object as? GolferProfile {
                     self.golferProfile = object
@@ -214,6 +213,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     @IBAction func refreshScreen(sender: AnyObject) {
+        scoreViewSegmentedControl.selectedSegmentIndex = 0
         loadUserScorecardData()
         getProfileFromBackground()
         
