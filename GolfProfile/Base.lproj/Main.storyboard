@@ -221,7 +221,7 @@
         <!--Edit Profile View Controller-->
         <scene sceneID="7Da-az-DK5">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="iRX-cc-Y1a" customClass="EditProfileViewController" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iRX-cc-Y1a" customClass="EditProfileViewController" customModule="GolfProfile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GBL-r2-d4I"/>
                         <viewControllerLayoutGuide type="bottom" id="Cgb-H8-T0Z"/>
@@ -247,15 +247,15 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V4B-M2-Uc9" customClass="PFImageView">
-                                <rect key="frame" x="38" y="146" width="244" height="239"/>
+                                <rect key="frame" x="46" y="133" width="239" height="234"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="244" id="7Vp-tg-zhh"/>
-                                    <constraint firstAttribute="height" constant="239" id="Yfg-ky-Pd2"/>
+                                    <constraint firstAttribute="width" constant="239" id="7Vp-tg-zhh"/>
+                                    <constraint firstAttribute="height" constant="234" id="Yfg-ky-Pd2"/>
                                     <constraint firstAttribute="width" secondItem="V4B-M2-Uc9" secondAttribute="height" multiplier="244:239" id="qiz-S7-oDQ"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nM-4D-DXq">
-                                <rect key="frame" x="138" y="243" width="45" height="45"/>
+                                <rect key="frame" x="143" y="227" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="2zG-0N-Zyt"/>
                                     <constraint firstAttribute="height" constant="45" id="n7n-m0-E2e"/>
@@ -265,33 +265,13 @@
                                     <action selector="editProfilePhoto:" destination="iRX-cc-Y1a" eventType="touchUpInside" id="hVC-9g-vSt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grY-5j-9gA">
-                                <rect key="frame" x="230" y="492" width="74" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="Delete Account">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="cLz-j7-QaY" kind="modal" id="OWe-Ij-xTI"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61L-my-SVl">
-                                <rect key="frame" x="30" y="489" width="68" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="Privacy Policy">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="cfY-sT-J3e" kind="modal" id="7my-Xy-cbh"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0X-o5-QuM">
-                                <rect key="frame" x="38" y="393" width="244" height="30"/>
+                                <rect key="frame" x="46" y="375" width="239" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="233-Si-jil"/>
-                                    <constraint firstAttribute="width" secondItem="c0X-o5-QuM" secondAttribute="height" multiplier="122:15" id="cTq-RF-uif"/>
-                                    <constraint firstAttribute="width" constant="244" id="zbx-Ou-cWS"/>
+                                    <constraint firstAttribute="width" secondItem="c0X-o5-QuM" secondAttribute="height" multiplier="122:15" constant="-5" id="cTq-RF-uif"/>
+                                    <constraint firstAttribute="width" constant="239" id="zbx-Ou-cWS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Save">
@@ -302,31 +282,51 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="kPw-qW-ySf">
-                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <rect key="frame" x="147" y="265" width="37" height="37"/>
                                 <color key="color" red="1" green="0.4536132812" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grY-5j-9gA">
+                                <rect key="frame" x="213" y="493" width="81" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Delete Account">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cLz-j7-QaY" kind="modal" id="OWe-Ij-xTI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61L-my-SVl">
+                                <rect key="frame" x="30" y="493" width="73" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Privacy Policy">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cfY-sT-J3e" kind="modal" id="7my-Xy-cbh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.66666666669999997" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="top" secondItem="GBL-r2-d4I" secondAttribute="bottom" constant="82" id="4Hn-pe-WIa"/>
+                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="top" secondItem="GBL-r2-d4I" secondAttribute="bottom" constant="69" id="4Hn-pe-WIa"/>
                             <constraint firstItem="as0-K9-vkd" firstAttribute="top" secondItem="GBL-r2-d4I" secondAttribute="bottom" constant="7" id="BNC-r0-KKx"/>
-                            <constraint firstItem="61L-my-SVl" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="14" id="Bzd-mh-mPR"/>
-                            <constraint firstItem="c0X-o5-QuM" firstAttribute="top" secondItem="V4B-M2-Uc9" secondAttribute="bottom" constant="8" symbolic="YES" id="DVZ-vh-271"/>
+                            <constraint firstItem="c0X-o5-QuM" firstAttribute="top" secondItem="V4B-M2-Uc9" secondAttribute="bottom" constant="8" id="DVZ-vh-271"/>
                             <constraint firstItem="as0-K9-vkd" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="4" id="EOf-tn-uFr"/>
                             <constraint firstItem="NZI-gN-TUR" firstAttribute="top" secondItem="as0-K9-vkd" secondAttribute="bottom" constant="8" symbolic="YES" id="F63-dw-Amh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="as0-K9-vkd" secondAttribute="trailing" constant="-7" id="HGd-1B-E9s"/>
                             <constraint firstItem="kPw-qW-ySf" firstAttribute="centerY" secondItem="1sD-LC-BLX" secondAttribute="centerY" id="I8L-vW-BQf"/>
-                            <constraint firstItem="Cgb-H8-T0Z" firstAttribute="top" secondItem="61L-my-SVl" secondAttribute="bottom" constant="11" id="M99-iL-f6j"/>
-                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="centerX" secondItem="1sD-LC-BLX" secondAttribute="centerX" id="Pm8-e9-mPS"/>
+                            <constraint firstItem="61L-my-SVl" firstAttribute="leading" secondItem="1sD-LC-BLX" secondAttribute="leadingMargin" constant="14" id="NKG-iH-Gtg"/>
+                            <constraint firstItem="Cgb-H8-T0Z" firstAttribute="top" secondItem="grY-5j-9gA" secondAttribute="bottom" id="Phc-VU-Fnk"/>
+                            <constraint firstItem="V4B-M2-Uc9" firstAttribute="centerX" secondItem="1sD-LC-BLX" secondAttribute="centerX" constant="5.5" id="Pm8-e9-mPS"/>
                             <constraint firstItem="kPw-qW-ySf" firstAttribute="centerX" secondItem="5nM-4D-DXq" secondAttribute="centerX" id="WYJ-dw-CHN"/>
                             <constraint firstItem="c0X-o5-QuM" firstAttribute="trailing" secondItem="V4B-M2-Uc9" secondAttribute="trailing" id="c6D-gk-nbb"/>
                             <constraint firstItem="c0X-o5-QuM" firstAttribute="leading" secondItem="V4B-M2-Uc9" secondAttribute="leading" id="ci3-gl-We4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="grY-5j-9gA" secondAttribute="trailing" constant="10" id="diq-3k-6I3"/>
                             <constraint firstItem="5nM-4D-DXq" firstAttribute="centerX" secondItem="V4B-M2-Uc9" secondAttribute="centerX" id="e6d-OQ-Pa3"/>
-                            <constraint firstItem="Cgb-H8-T0Z" firstAttribute="top" secondItem="grY-5j-9gA" secondAttribute="bottom" constant="8" symbolic="YES" id="hSz-i4-raw"/>
+                            <constraint firstItem="Cgb-H8-T0Z" firstAttribute="top" secondItem="61L-my-SVl" secondAttribute="bottom" id="hiP-qh-O96"/>
                             <constraint firstItem="NZI-gN-TUR" firstAttribute="trailing" secondItem="as0-K9-vkd" secondAttribute="trailing" id="kkB-Ym-Fv2"/>
                             <constraint firstItem="5nM-4D-DXq" firstAttribute="centerY" secondItem="V4B-M2-Uc9" secondAttribute="centerY" id="ni0-eA-Bnd"/>
                             <constraint firstItem="as0-K9-vkd" firstAttribute="leading" secondItem="NZI-gN-TUR" secondAttribute="leading" id="rXr-gT-L3h"/>
-                            <constraint firstItem="grY-5j-9gA" firstAttribute="trailing" secondItem="1sD-LC-BLX" secondAttribute="trailingMargin" id="uyD-oh-Tvv"/>
                             <constraint firstItem="NZI-gN-TUR" firstAttribute="top" secondItem="GBL-r2-d4I" secondAttribute="bottom" constant="38" id="w6M-9m-Pvo"/>
                         </constraints>
                     </view>
@@ -338,7 +338,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="kPw-qW-ySf" id="gnn-J5-vMx"/>
                         <outlet property="golferNameTextField" destination="as0-K9-vkd" id="uHs-2D-mef"/>

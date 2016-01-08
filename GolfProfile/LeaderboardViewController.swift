@@ -11,10 +11,12 @@ import Parse
 
 class LeaderboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-
     @IBOutlet weak var leaderboardTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    var leaderboardData = [(GolfScorecard, GolferProfile)]()
+    var friendsRelation = PFRelation?()
+    var golferInfo = [PFObject]()
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -22,24 +24,15 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         return refreshControl
     }()
     
-    var leaderboardData = [(GolfScorecard, GolferProfile)]()
-    var friendsRelation = PFRelation?()
-    var golferInfo = [PFObject]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         for (_,i) in leaderboardData {
         
-            if PFUser.currentUser()?.username == i.username {
-            
-                
+        if PFUser.currentUser()?.username == i.username {
             
             }
-        
         }
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,30 +42,29 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(animated: Bool) {
         
         self.leaderboardTableView.addSubview(self.refreshControl)
-
         loadLeaderboardData()
         
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return leaderboardData.count
+        
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        
         let cell:LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("leaderboardCell", forIndexPath: indexPath) as! LeaderboardCell
         
         if let allScorecards:(GolfScorecard, GolferProfile) = self.leaderboardData[indexPath.row] {
-        
 
             cell.rankLabel.text = "\(indexPath.row + 1)"
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM/dd/yyyy"
+            
             cell.leaderboardDateLabel?.text = dateFormatter.stringFromDate(allScorecards.0.date)
-        
             cell.leaderboardScoreLabel?.text = "\(allScorecards.0.score)"
 
             allScorecards.1.fetchIfNeededInBackgroundWithBlock({ (info: PFObject?, error: NSError?) -> Void in
@@ -82,9 +74,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             cell.leaderboardProfileImage.file = allScorecards.1.profileImage
             cell.leaderboardProfileImage.loadInBackground()
                 
-
             })
-        
         }
         
         return cell
@@ -106,26 +96,37 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             if error == nil {
             self.activityIndicator.stopAnimating()
             for object:PFObject in scoreCards! {
-                if let object = object as? GolfScorecard {
-                if let golfer = object["golfer"] as? GolferProfile {
-                self.leaderboardData.append(object,golfer)
+            if let object = object as? GolfScorecard {
+            if let golfer = object["golfer"] as? GolferProfile {
+            self.leaderboardData.append(object,golfer)
                     
-                    dispatch_async(dispatch_get_main_queue()) {
+                dispatch_async(dispatch_get_main_queue()) {
                     
-                        self.leaderboardTableView.reloadData()
+                self.leaderboardTableView.reloadData()
                         
                         }
                     }
                 }
-
-                }
+            }
                 
-            } else {
-                self.activityIndicator.stopAnimating()
-                print(error)
+        } else {
+                
+        self.activityIndicator.stopAnimating()
+        self.displayAlert("Failed To Load", message: "Failed to load leaderbord data. Please try again", actionTitle: "OK")
+                
         }
     }
 }
+    
+    func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
+        
+        let alertController = UIAlertController(title: alterTitle, message: message, preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
         
