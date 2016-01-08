@@ -81,7 +81,11 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         golfScorecard["golfer"] = PFUser.currentUser()
         golfScorecard["golfCourse"] = golfCourseName.text
         golfScorecard["date"] = datePicker.date
+        if selectedCourse.city == "" && selectedCourse.state == "" {
+        golfScorecard["courseLocation"] = ""
+        } else {
         golfScorecard["courseLocation"] = "\(selectedCourse.city)" + "," + " " + "\(selectedCourse.state)"
+        }
         
         if scorecardImage?.image != nil {
         
@@ -105,8 +109,12 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
                 
             userAddedCourse = addPreviousCourse
         
-            if previousCoursesFromRealm.contains( { $0.name != userAddedCourse.name }) {
-
+            if previousCoursesFromRealm.contains( { $0.name == userAddedCourse.name }) {
+                print(previousCoursesFromRealm)
+                print(userAddedCourse.name)
+                print("ALREADY A PREVIOUS COURSE")
+                
+            } else {
                 realm.add(userAddedCourse)
                 
                 }

@@ -75,7 +75,20 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.dateCellLabel?.text = dateFormatter.stringFromDate(userScorecardData[indexPath.row].date)
         cell.scoreCellLabel?.text = "\(userScorecardData[indexPath.row].score)"
         cell.golfCourseCellLabel?.text = userScorecardData[indexPath.row].golfCourse
-        cell.courseLocationLabel.text = userScorecardData[indexPath.row].courseLocation
+        
+        for courseLocation in userScorecardData {
+        
+            if courseLocation.courseLocation == "," {
+            
+            cell.courseLocationLabel.text = ""
+            
+            } else {
+                
+                cell.courseLocationLabel.text = userScorecardData[indexPath.row].courseLocation
+            
+            }
+        
+        }
         
         cell.scorecardCellImage.image = UIImage(named: "noScorecard")
         
@@ -185,6 +198,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             for object:PFObject in scorecards! {
             if let object = object as? GolfScorecard {
             self.userScorecardData.append(object)
+
                     }
                 }
             dispatch_async(dispatch_get_main_queue()) {
