@@ -14,7 +14,6 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpEmailTextField: UITextField!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
-
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -29,14 +28,17 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpButton(sender: AnyObject) {
+        
         signUp()
         
     }
     
     func signUp() {
+        let user = PFUser()
+        
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
-        let user = PFUser()
+        
         user.username = signUpEmailTextField.text?.lowercaseString
         user.password = signUpPasswordTextField.text
         user.email = signUpEmailTextField.text?.lowercaseString
@@ -70,25 +72,23 @@ class SignUpViewController: UIViewController {
             
         } else {
         
-            
         user.signUpInBackgroundWithBlock {(succeeded: Bool, error: NSError?) -> Void in
          if succeeded {
         self.activityIndicator.stopAnimating()
         PFUser.logOutInBackground()
             
-          let alertController = UIAlertController(title: "Success!", message: "Now Please Login", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Success!", message: "Now Please Login", preferredStyle: .Alert)
                 
-            let enterAppAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
+        let enterAppAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
                     
-                    self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismissViewControllerAnimated(true, completion: nil)
 
             })
                 
-                alertController.addAction(enterAppAction)
+            alertController.addAction(enterAppAction)
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
-                
-        
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
          } else {
             
             if error?.code == 202 {
@@ -97,21 +97,21 @@ class SignUpViewController: UIViewController {
 
                 }
             
-            
             if error?.code == 203 {
                 self.activityIndicator.stopAnimating()
                 self.displayAlert("Invalid E-mail", message: "\(self.signUpEmailTextField.text!) is already in use", actionTitle: "OK")
                 
-            }
-            
+                }
             }
         }
     }
 }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
+        
     }
     
     @IBAction func dismissView(sender: AnyObject) {

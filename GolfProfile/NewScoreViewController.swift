@@ -11,7 +11,7 @@ import Parse
 import RealmSwift
 import ALCameraViewController
 
-class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
+class NewScoreViewController: UIViewController {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var golfCourseName: UITextField!
@@ -31,9 +31,6 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
 
         golfCourseName.text = selectedCourse.name
-        
-        datePicker.backgroundColor = UIColor.whiteColor()
-        datePicker.setValue(UIColor.blackColor(), forKeyPath: "textColor")
         scorecardImage?.layer.borderWidth = 5.0
         scorecardImage?.layer.borderColor = UIColor.blackColor().CGColor
         
@@ -51,26 +48,31 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func saveScoreButton(sender: UIBarButtonItem) {
+        
         activityIndicator.startAnimating()
         saveButton.enabled = false
         let golfScorecard = PFObject(className: "GolfScorecard")
    
         if scoreTextField?.text?.characters.count == 0 {
+            
         activityIndicator.stopAnimating()
         displayAlert("Invalid Score", message: "You didn't enter a score.", actionTitle: "OK")
         saveButton.enabled = true
             
         } else if scoreTextField?.text?.characters.count == 1 {
+            
         activityIndicator.stopAnimating()
         displayAlert("Invalid Score", message: "No way you're good enough to have a score of \(scoreTextField!.text!)", actionTitle: "OK")
             saveButton.enabled = true
         
         } else if (scoreTextField?.text?.characters.count)! > 3 || Int(scoreTextField!.text!) >= 200  {
+            
         activityIndicator.stopAnimating()
         displayAlert("Invalid Score", message: "You entered a score of \(scoreTextField!.text!). You can't be that bad!", actionTitle: "OK")
             saveButton.enabled = true
             
         } else if golfCourseName.text?.characters.count < 1 {
+            
         activityIndicator.stopAnimating()
         displayAlert("Invalid Course", message: "Please enter a valid golf course", actionTitle: "OK")
         saveButton.enabled = true
@@ -99,52 +101,45 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
          }
     }
             
-            let realm = try! Realm()
-            try! realm.write {
-            let addPreviousCourse = PreviousCourse()
+        let realm = try! Realm()
+        try! realm.write {
+        let addPreviousCourse = PreviousCourse()
                 
-            addPreviousCourse.name = golfCourseName.text!
-            addPreviousCourse.city = ""
-            addPreviousCourse.state = ""
+        addPreviousCourse.name = golfCourseName.text!
+        addPreviousCourse.city = ""
+        addPreviousCourse.state = ""
                 
-            userAddedCourse = addPreviousCourse
+        userAddedCourse = addPreviousCourse
         
-            if previousCoursesFromRealm.contains( { $0.name == userAddedCourse.name }) {
-                print(previousCoursesFromRealm)
-                print(userAddedCourse.name)
-                print("ALREADY A PREVIOUS COURSE")
+        if previousCoursesFromRealm.contains( { $0.name == userAddedCourse.name }) {
                 
-            } else {
-                realm.add(userAddedCourse)
-                
-                }
+        } else {
+            
+        realm.add(userAddedCourse)
+            
             }
+        }
 
         golfScorecard.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 
         if (success) {
-            self.activityIndicator.stopAnimating()
-            self.saveButton.enabled = true
+        self.activityIndicator.stopAnimating()
+        self.saveButton.enabled = true
         dispatch_async(dispatch_get_main_queue()) {
             
-            self.performSegueWithIdentifier("unwindFromNewScoreVCToProfileVC", sender: self)
+        self.performSegueWithIdentifier("unwindFromNewScoreVCToProfileVC", sender: self)
             
         }
+            
     } else {
+            
         self.activityIndicator.stopAnimating()
         self.displayAlert("Save Failed", message: "Please check network connection or try again", actionTitle: "OK")
-        }
-    })
-        }
-}
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
-        scorecardImage?.image = image
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
+            
+            }
+        })
     }
-    
+}
 
     func scaleImageWith(image: UIImage, newSize: CGSize) -> UIImage {
         
@@ -159,8 +154,9 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func addScorecardActionSheet(sender: AnyObject) {
         
         let cameraViewController = ALCameraViewController(croppingEnabled: croppingEnabled, allowsLibraryAccess: libraryEnabled) { (image) -> Void in
-            self.scorecardImage!.image = image
-            self.dismissViewControllerAnimated(true, completion: nil)
+        self.scorecardImage!.image = image
+        self.dismissViewControllerAnimated(true, completion: nil)
+            
         }
         
         presentViewController(cameraViewController, animated: true, completion: nil)
@@ -186,8 +182,10 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
+        
     }
     
 

@@ -13,6 +13,7 @@ import RealmSwift
 class CourseSearchTVC: UITableViewController {
     
     @IBOutlet var coursesTableView: UITableView!
+    
     var previousCoursesFromRealm = try! Realm().objects(PreviousCourse).sorted("name", ascending: true)
     var previousCourse = PreviousCourse()
     var courseFromRealm = PreviousCourse()
@@ -23,50 +24,46 @@ class CourseSearchTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         realmDataManager.configureRealmData()
         results = realmDataManager.results
         configureSearchBar()
         
-        
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        coursesTableView.reloadData()
-    }
-    
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
     
     func configureSearchBar() {
+        
     let searchResultsController = UITableViewController(style: .Plain)
     searchResultsController.tableView.delegate = self
     searchResultsController.tableView.dataSource = self
     searchResultsController.tableView.rowHeight = 63
     searchResultsController.tableView.registerClass(SearchCourseCell.self, forCellReuseIdentifier: "courseSearchCell")
-
     searchController = UISearchController(searchResultsController: searchResultsController)
     searchController.searchResultsUpdater = self
     searchController.searchBar.sizeToFit()
     searchController.searchBar.tintColor = UIColor.blackColor()
     searchController.searchBar.delegate = self
     searchController.searchBar.barTintColor = UIColor(red: 255, green: 116.0/255.0, blue: 0, alpha: 1.0)
-        coursesTableView.tableHeaderView = searchController.searchBar
-        
+    coursesTableView.tableHeaderView = searchController.searchBar
     definesPresentationContext = true
 
     }
     
     func filterResultsWithSearchString(searchString: String) {
+        
         let predicate = NSPredicate(format: "name BEGINSWITH [c]%@", searchString) // 1
 
         searchResults = results!.filter(predicate).sorted("name", ascending: true)
+        
     }
     
     func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
@@ -80,7 +77,6 @@ class CourseSearchTVC: UITableViewController {
         
     }
 
-    
 }
 
 // MARK: - UISearchResultsUpdating
@@ -157,8 +153,6 @@ extension CourseSearchTVC {
             
         }
     }
-
-
 }
 
 extension CourseSearchTVC {
@@ -169,32 +163,32 @@ extension CourseSearchTVC {
         
         if searchController.active {
             
-            let realm = try! Realm()
-            try! realm.write {
-                let addPreviousCourse = PreviousCourse()
+        let realm = try! Realm()
+        try! realm.write {
+        let addPreviousCourse = PreviousCourse()
                 
-                addPreviousCourse.name = searchResults![indexPath.row].name
-                addPreviousCourse.city = searchResults![indexPath.row].city
-                addPreviousCourse.state = searchResults![indexPath.row].state
+        addPreviousCourse.name = searchResults![indexPath.row].name
+        addPreviousCourse.city = searchResults![indexPath.row].city
+        addPreviousCourse.state = searchResults![indexPath.row].state
                 
-                self.previousCourse = addPreviousCourse
+        self.previousCourse = addPreviousCourse
 
-                if previousCoursesFromRealm.contains( { $0.name == previousCourse.name }) {
+        if previousCoursesFromRealm.contains( { $0.name == previousCourse.name }) {
    
-                displayAlert("Whoops!", message: "\(previousCourse.name) already exists inside of your previous course list. Please choose a different course.", actionTitle: "OK")
+        displayAlert("Whoops!", message: "\(previousCourse.name) already exists inside of your previous course list. Please choose a different course.", actionTitle: "OK")
                     
-                } else {
+        } else {
                     
-                    realm.add(previousCourse)
-                    searchController.active = false
+        realm.add(previousCourse)
+        searchController.active = false
 
-                    }
-                }
+        }
+    }
             
-                if searchController.active == false {
-                    
-                    coursesTableView.reloadData()
-
+        if searchController.active == false {
+        
+        coursesTableView.reloadData()
+            
                 }
             }
         }
@@ -204,22 +198,24 @@ extension CourseSearchTVC {
 extension CourseSearchTVC {
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
         return !searchController.active
+    
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-
 
         let deletedValue = previousCoursesFromRealm[indexPath.row]
         
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let realm = try! Realm()
             try! realm.write {
-                realm.delete(deletedValue)
+            realm.delete(deletedValue)
+                
             }
             
             coursesTableView.reloadData()
-                }
+        }
     }
 }
 

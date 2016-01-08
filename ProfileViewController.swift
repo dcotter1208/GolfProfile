@@ -47,8 +47,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
-                self.presentViewController(viewController, animated: true, completion: nil)
+            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+            self.presentViewController(viewController, animated: true, completion: nil)
+                
             })
         }
     }
@@ -60,7 +61,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-            return userScorecardData.count
+        return userScorecardData.count
 
     }
     
@@ -84,14 +85,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
             } else {
                 
-                cell.courseLocationLabel.text = userScorecardData[indexPath.row].courseLocation
+            cell.courseLocationLabel.text = userScorecardData[indexPath.row].courseLocation
             
             }
         
         }
         
         cell.scorecardCellImage.image = UIImage(named: "noScorecard")
-        
         cell.scorecardCellImage.file = userScorecardData[indexPath.row].scorecardImage
         cell.scorecardCellImage.loadInBackground()
         
@@ -102,11 +102,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
-            let selectedScorecard:PFObject = userScorecardData[indexPath.row] as PFObject
+        let selectedScorecard:PFObject = userScorecardData[indexPath.row] as PFObject
             
-            selectedScorecard.deleteInBackground()
-            userScorecardData.removeAtIndex(indexPath.row)
-            userScoreTableView.reloadData()
+        selectedScorecard.deleteInBackground()
+        userScorecardData.removeAtIndex(indexPath.row)
+        userScoreTableView.reloadData()
             
         }
     }
@@ -144,6 +144,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillLayoutSubviews() {
+        
         self.golferProfileImage.layer.cornerRadius = self.golferProfileImage.frame.size.width / 2
         self.golferProfileImage.layer.borderWidth = 3.0
         self.golferProfileImage.layer.borderColor = UIColor.orangeColor().CGColor
@@ -165,7 +166,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.golferNameLabel.text = self.golferProfile.name
                     self.golferProfileImage.file = self.golferProfile.profileImage
                     self.golferProfileImage.loadInBackground()
-                            }
+                        }
                     }
                 }
                     
@@ -176,9 +177,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.displayAlert("No Network Connection", message: "Please check connection.", actionTitle: "OK")
                     
                     }
-            print(error)
-                
-            }
+                }
             })
         }
     }
@@ -194,27 +193,29 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         query.findObjectsInBackgroundWithBlock { (scorecards: [PFObject]?, error: NSError?) -> Void in
         if error == nil {
-            self.activityIndicator.stopAnimating()
-            for object:PFObject in scorecards! {
-            if let object = object as? GolfScorecard {
-            self.userScorecardData.append(object)
+            
+        self.activityIndicator.stopAnimating()
+        for object:PFObject in scorecards! {
+        if let object = object as? GolfScorecard {
+        self.userScorecardData.append(object)
 
-                    }
                 }
+            }
             dispatch_async(dispatch_get_main_queue()) {
                     
-                self.userScoreTableView.reloadData()
+            self.userScoreTableView.reloadData()
                         
-                    }
+                }
                 
-                } else {
-                self.activityIndicator.stopAnimating()
-                    print(error)
+            } else {
+            
+            self.activityIndicator.stopAnimating()
+
                 }
             }
         }
-        }
     }
+}
     
     func handleRefresh(refreshControl: UIRefreshControl) {
         
@@ -227,6 +228,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     @IBAction func refreshScreen(sender: AnyObject) {
+        
         scoreViewSegmentedControl.selectedSegmentIndex = 0
         loadUserScorecardData()
         getProfileFromBackground()
@@ -250,7 +252,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             userScoreTableView.reloadData()
             
         default:
-            print("ERROR")
+            displayAlert("Whoops!", message: "There was an unknown error", actionTitle: "OK")
         }
         
     }
