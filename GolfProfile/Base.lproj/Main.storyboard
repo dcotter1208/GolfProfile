@@ -800,7 +800,13 @@
                             <constraint firstItem="oja-tk-olJ" firstAttribute="top" secondItem="Rx1-ji-kXx" secondAttribute="bottom" constant="8" id="wfZ-mS-6Yg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="8Xo-R0-bVX"/>
+                    <navigationItem key="navigationItem" id="8Xo-R0-bVX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="12i-lT-Tex">
+                            <connections>
+                                <action selector="refreshView:" destination="Dmd-OT-1nW" id="BIT-ZG-QzS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="fEV-tq-Hrn" id="V9W-Te-wW9"/>
                         <outlet property="friendProfileNameLabel" destination="hnn-pY-i6b" id="TyT-CP-pjr"/>
@@ -1598,8 +1604,8 @@
         <image name="winners_podium" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vj5-mY-JmO"/>
-        <segue reference="7my-Xy-cbh"/>
+        <segue reference="d34-ln-BhW"/>
         <segue reference="vHx-QM-pI4"/>
+        <segue reference="7my-Xy-cbh"/>
     </inferredMetricsTieBreakers>
 </document>

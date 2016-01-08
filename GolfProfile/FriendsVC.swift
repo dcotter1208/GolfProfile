@@ -234,8 +234,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         let searchString = searchController.searchBar.text
         
         // Filter the allUsers array and get only those users' username that match the search text.
-
-            if searchString?.characters.count >= 2 || searchString?.characters.count == 0 {
+        
         filteredUsers = allNonFriendUsers.filter({(user) -> Bool in
             let nameText: NSString = user.name
             
@@ -243,7 +242,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             
         })
             
-        }
         // Reload the tableview.
         friendsTableView.reloadData()
     }
