@@ -47,7 +47,7 @@ class DeletAccountVC: UIViewController {
                 
             } else {
                 
-                print(error)
+            self.displayAlert(nil, message: "Account Deletion Failed", actionTitle: "OK")
             
             }
         })
@@ -57,6 +57,17 @@ class DeletAccountVC: UIViewController {
         alertController1.addAction(cancelDeletion)
         alertController1.addAction(deleteAccountAction)
         self.presentViewController(alertController1, animated: true, completion: nil)
+        
+    }
+    
+    func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
+        
+        let alertController = UIAlertController(title: alterTitle, message: message, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
         
     }
 

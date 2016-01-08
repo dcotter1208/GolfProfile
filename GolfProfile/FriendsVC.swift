@@ -90,11 +90,10 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         let relation: PFRelation = PFUser.currentUser()!.relationForKey("friendsRelation")
 
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            print(friendToDelete)
             relation.removeObject(friendToDelete)
             PFUser.currentUser()!.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 if error != nil {
-                    print(error)
+                    self.displayAlert(nil, message: "Failed to remove \(friendToDelete.name) as a friend", actionTitle: "OK")
                 }
             })
             
