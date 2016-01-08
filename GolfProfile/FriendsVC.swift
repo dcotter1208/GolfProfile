@@ -224,6 +224,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Find Friends"
+        searchController.searchBar.barTintColor = UIColor(red: 255, green: 116.0/255.0, blue: 0, alpha: 1.0)
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
         
