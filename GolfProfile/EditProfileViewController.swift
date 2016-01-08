@@ -81,7 +81,7 @@ class EditProfileViewController: UIViewController {
                                 } else {
                                 self.activityIndicator.stopAnimating()
                                 self.displayAlert("Save Failed", message: "Please try again", actionTitle: "OK")
-                                print("FAILED")
+                                
                                     }
                                 })
                             }
@@ -89,7 +89,8 @@ class EditProfileViewController: UIViewController {
                     }
                 } else {
                     self.activityIndicator.stopAnimating()
-                    print(error)
+                    self.displayAlert("Save Failed", message: "Please try again", actionTitle: "OK")
+
                 }
             }
         }
