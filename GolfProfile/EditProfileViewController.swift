@@ -12,7 +12,7 @@ import ParseUI
 import ALCameraViewController
 
 
-class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProfileViewController: UIViewController {
     
     @IBOutlet weak var golferProfileImage: PFImageView!
     @IBOutlet weak var golferNameTextField: UITextField!
@@ -22,8 +22,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     var editProfileData = [GolferProfile]()
     var loadProfileData = [GolferProfile]()
-    var object: PFObject!
-    var imagePicker = UIImagePickerController()
     let croppingEnabled = true
     let libraryEnabled: Bool = true
     
@@ -31,7 +29,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         super.viewDidLoad()
         
         loadUserProfile()
-        imagePicker.delegate = self
         
     }
     
@@ -137,26 +134,28 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             self.activityIndicator.stopAnimating()
             self.displayAlert("Load Failed", message: "Please try again", actionTitle: "OK")
             self.loadUserProfile()
+                
             } else {
 
-        for object:PFObject in userProfiles! {
+            for object:PFObject in userProfiles! {
             self.activityIndicator.stopAnimating()
             if let profile = object as? GolferProfile {
-                if profile.objectId == PFUser.currentUser()?.objectId {
-                self.loadProfileData.append(profile)
-                self.golferNameTextField.text = profile.name
-                self.usernameTextField.text = profile.username
-                self.golferProfileImage.file = profile.profileImage
-                self.golferProfileImage.loadInBackground()
+            if profile.objectId == PFUser.currentUser()?.objectId {
+            self.loadProfileData.append(profile)
+            self.golferNameTextField.text = profile.name
+            self.usernameTextField.text = profile.username
+            self.golferProfileImage.file = profile.profileImage
+            self.golferProfileImage.loadInBackground()
                         }
                     }
                 }
             }
-            })
-        }
+        })
     }
+}
     
     override func viewWillLayoutSubviews() {
+        
         self.golferProfileImage.layer.cornerRadius = 5.0
         self.golferProfileImage.layer.borderWidth = 3.0
         self.golferProfileImage.layer.borderColor = UIColor.orangeColor().CGColor
@@ -182,13 +181,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func logOut(sender: AnyObject) {
         
         PFUser.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
-            if let error = error {
-                print(error)
+        if error != nil {
+            
+        self.displayAlert("Log Out Failed", message: "Please try again", actionTitle: "OK")
                 
-            } else {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
-                    self.presentViewController(viewController, animated: true, completion: nil)
+        } else {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+        self.presentViewController(viewController, animated: true, completion: nil)
                 })
             }
         }

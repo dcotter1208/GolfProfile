@@ -14,7 +14,6 @@ class PrivacyPolicyVC: UIViewController, UIWebViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.hidden = true
         
         let url = NSURL (string: "https://www.iubenda.com/privacy-policy/7772504")
         let requestObj = NSURLRequest(URL: url!)
@@ -30,14 +29,12 @@ class PrivacyPolicyVC: UIViewController, UIWebViewDelegate {
     func webViewDidStartLoad(webView: UIWebView) {
 
         activityIndicator.startAnimating()
-        activityIndicator.hidden = false
         
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
         
         activityIndicator.stopAnimating()
-//        activityIndicator.hidden = true
         
     }
     

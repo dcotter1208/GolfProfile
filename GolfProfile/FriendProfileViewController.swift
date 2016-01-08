@@ -21,20 +21,22 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
     
     var friendScorecardData = [GolfScorecard]()
     var selectedFriend = GolferProfile()
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadFriendProfile()
+        loadFriendScorecardData()
+        self.friendScorecardTableView.addSubview(self.refreshControl)
+
 
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        
-        loadFriendScorecardData()
-        
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,7 +47,6 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
         return friendScorecardData.count
         
     }
-    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -98,25 +99,55 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (friendScorecards: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                self.activityIndicator.stopAnimating()
-                for object:PFObject in friendScorecards! {
-                    if let scorecard = object as? GolfScorecard {
-                        self.friendScorecardData.append(scorecard)
-                        self.friendScorecardTableView.reloadData()
-                    }
-                
+            self.activityIndicator.stopAnimating()
+            for object:PFObject in friendScorecards! {
+            if let scorecard = object as? GolfScorecard {
+            self.friendScorecardData.append(scorecard)
+            self.friendScorecardTableView.reloadData()
                 }
-            } else {
-                self.activityIndicator.stopAnimating()
-                print(error)
+            }
+        } else {
+                
+            self.activityIndicator.stopAnimating()
+            self.displayAlert("Load Failed", message: "Failed to load friend's scorecards. Please try again", actionTitle: "OK")
+                
             }
         }
-        }
     }
+}
     
     func loadFriendProfile() {
         friendProfileNameLabel.text = selectedFriend.name
         friendProfilePhoto.file = selectedFriend.profileImage
+    }
+    
+    func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
+        
+        let alertController = UIAlertController(title: alterTitle, message: message, preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+    override func viewWillLayoutSubviews() {
+        
+        self.friendProfilePhoto.layer.cornerRadius = self.friendProfilePhoto.frame.size.width / 2
+        self.friendProfilePhoto.layer.borderWidth = 3.0
+        self.friendProfilePhoto.layer.borderColor = UIColor.orangeColor().CGColor
+        self.friendProfilePhoto.clipsToBounds = true
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 39/255, green: 170/255, blue: 207/255, alpha: 1)
+        
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        
+        loadFriendScorecardData()
+        self.friendScorecardTableView.reloadData()
+        friendScorecardSegmentedControl.selectedSegmentIndex = 0
+        refreshControl.endRefreshing()
+        
     }
     
     @IBAction func segmentedControl(sender: UISegmentedControl) {
@@ -136,28 +167,19 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
             friendScorecardTableView.reloadData()
         
         default:
-            print("ERROR")
+            displayAlert("Whoops!", message: "Unknown error", actionTitle: "OK")
             
         }
-        
-        
-    }
-    
-    override func viewWillLayoutSubviews() {
-        self.friendProfilePhoto.layer.cornerRadius = self.friendProfilePhoto.frame.size.width / 2
-        self.friendProfilePhoto.layer.borderWidth = 3.0
-        self.friendProfilePhoto.layer.borderColor = UIColor.orangeColor().CGColor
-        self.friendProfilePhoto.clipsToBounds = true
-        self.navigationController?.navigationBar.tintColor = UIColor(red: 39/255, green: 170/255, blue: 207/255, alpha: 1)
         
     }
     
     @IBAction func refreshView(sender: AnyObject) {
         
+        friendScorecardSegmentedControl.selectedSegmentIndex = 0
         loadFriendProfile()
         loadFriendScorecardData()
+        
     }
     
-    
-    
+
 }

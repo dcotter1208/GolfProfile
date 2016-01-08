@@ -23,18 +23,18 @@ class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
     super.viewDidLoad()
         
-        if scorecard?.scorecardImage != nil || golferProfile.username != nil  {
-            dismissButton.tintColor = UIColor.whiteColor()
-            userScorecardImageView.file = scorecard?.scorecardImage
-            userScorecardImageView.file = golferProfile.profileImage
+    if scorecard?.scorecardImage != nil || golferProfile.username != nil  {
+    dismissButton.tintColor = UIColor.whiteColor()
+    userScorecardImageView.file = scorecard?.scorecardImage
+    userScorecardImageView.file = golferProfile.profileImage
 
-        } else {
-            
-            noScorecardImageView.image = UIImage(named: "noScorecardAvailable")
-            noScorecardImageView.backgroundColor = UIColor.whiteColor()
-            dismissButton.tintColor = UIColor.blackColor()
+    } else {
+        
+    noScorecardImageView.image = UIImage(named: "noScorecardAvailable")
+    noScorecardImageView.backgroundColor = UIColor.whiteColor()
+    dismissButton.tintColor = UIColor.blackColor()
 
-        }
+    }
         
     self.userScorecardScrollView.minimumZoomScale = 1.0
     self.userScorecardScrollView.maximumZoomScale = 6.0
@@ -55,7 +55,6 @@ class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        
         
     return self.userScorecardImageView
         

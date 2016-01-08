@@ -30,7 +30,6 @@
 		C038BF541BE83F1A004AE33E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF531BE83F1A004AE33E /* CoreLocation.framework */; };
 		C038BF561BE83F20004AE33E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF551BE83F20004AE33E /* QuartzCore.framework */; };
 		C038BF581BE83F25004AE33E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF571BE83F25004AE33E /* Security.framework */; };
-		C038BF5A1BE83F2C004AE33E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF591BE83F2C004AE33E /* StoreKit.framework */; };
 		C038BF5C1BE83F36004AE33E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF5B1BE83F36004AE33E /* SystemConfiguration.framework */; };
 		C038BF5E1BE83F40004AE33E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF5D1BE83F40004AE33E /* libz.tbd */; };
 		C038BF601BE83F4A004AE33E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C038BF5F1BE83F4A004AE33E /* libsqlite3.tbd */; };
@@ -132,7 +131,6 @@
 		C038BF531BE83F1A004AE33E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C038BF551BE83F20004AE33E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C038BF571BE83F25004AE33E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		C038BF591BE83F2C004AE33E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C038BF5B1BE83F36004AE33E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C038BF5D1BE83F40004AE33E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C038BF5F1BE83F4A004AE33E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -189,7 +187,6 @@
 				C038BF711BE84072004AE33E /* ParseTwitterUtils.framework in Frameworks */,
 				C038BF5E1BE83F40004AE33E /* libz.tbd in Frameworks */,
 				C038BF5C1BE83F36004AE33E /* SystemConfiguration.framework in Frameworks */,
-				C038BF5A1BE83F2C004AE33E /* StoreKit.framework in Frameworks */,
 				C038BF581BE83F25004AE33E /* Security.framework in Frameworks */,
 				C038BF6C1BE84072004AE33E /* Bolts.framework in Frameworks */,
 				C03D92301C29E6000084B255 /* Fabric.framework in Frameworks */,
@@ -280,8 +277,8 @@
 				C0C74F371BF4206700EB4E11 /* LeaderboardViewController.swift */,
 				C0AFA2E71BF0106800C9F058 /* ProfilePhotoAndScorecardPhotoVC.swift */,
 				C0CD846F1C34F23C008E5ECC /* RealmDataManager.swift */,
-				C0AF95131C1B18EB008DCB4A /* SwiftyJSON.swift */,
 				C02E54961C3CE919000FCA13 /* PrivacyPolicyVC.swift */,
+				C0AF95131C1B18EB008DCB4A /* SwiftyJSON.swift */,
 				C038BF191BE80AA4004AE33E /* Main.storyboard */,
 				C038BF1C1BE80AA4004AE33E /* Assets.xcassets */,
 				C038BF1E1BE80AA4004AE33E /* LaunchScreen.storyboard */,
@@ -343,7 +340,6 @@
 				C038BF5F1BE83F4A004AE33E /* libsqlite3.tbd */,
 				C038BF5D1BE83F40004AE33E /* libz.tbd */,
 				C038BF5B1BE83F36004AE33E /* SystemConfiguration.framework */,
-				C038BF591BE83F2C004AE33E /* StoreKit.framework */,
 				C038BF571BE83F25004AE33E /* Security.framework */,
 				C038BF551BE83F20004AE33E /* QuartzCore.framework */,
 				C038BF531BE83F1A004AE33E /* CoreLocation.framework */,
@@ -445,6 +441,11 @@
 					C038BF111BE80AA4004AE33E = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = GNE8UF82DF;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					C038BF251BE80AA4004AE33E = {
 						CreatedOnToolsVersion = 7.1;

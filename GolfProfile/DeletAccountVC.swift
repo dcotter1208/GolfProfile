@@ -15,12 +15,11 @@ class DeletAccountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
     
     @IBAction func dismissView(sender: AnyObject) {
@@ -35,13 +34,15 @@ class DeletAccountVC: UIViewController {
     let cancelDeletion = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
     let deleteAccountAction = UIAlertAction(title: "Delete", style: .Default) { (UIAlertAction) -> Void in
         
-        PFUser.currentUser()?.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+    PFUser.currentUser()?.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
             
-            if success {
+        if success {
             
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
-                    self.presentViewController(viewController, animated: true, completion: nil)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+            self.presentViewController(viewController, animated: true, completion: nil)
+                
                 })
                 
             } else {
@@ -55,10 +56,7 @@ class DeletAccountVC: UIViewController {
         
         alertController1.addAction(cancelDeletion)
         alertController1.addAction(deleteAccountAction)
-
-        
         self.presentViewController(alertController1, animated: true, completion: nil)
-        
         
     }
 
@@ -67,6 +65,5 @@ class DeletAccountVC: UIViewController {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
-
 
 }
