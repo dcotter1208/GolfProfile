@@ -125,7 +125,16 @@ extension CourseSearchTVC {
         let course = previousCoursesFromRealm[indexPath.row]
             
         previousCourseCell.previousCourseLabel.text = course.name
+            
+        if course.city == "" && course.state == "" {
+                
+        previousCourseCell.previousCourseLocationLabel.text = ""
+                
+            } else {
+            
         previousCourseCell.previousCourseLocationLabel.text = "\(course.city)" + "," + " " + "\(course.state)"
+                
+            }
             
         return previousCourseCell
             

@@ -493,7 +493,13 @@
                             <outlet property="delegate" destination="SJx-cv-IA0" id="hRy-2j-AHi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select Course" id="ffo-mg-MRg"/>
+                    <navigationItem key="navigationItem" title="Select Course" id="ffo-mg-MRg">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nVd-1R-MX5">
+                            <connections>
+                                <segue destination="bcC-Qa-jI3" kind="push" id="O4I-1a-MoA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="coursesTableView" destination="kn4-aJ-rla" id="DE7-2S-ruA"/>
                     </connections>
@@ -1594,5 +1600,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="vj5-mY-JmO"/>
         <segue reference="7my-Xy-cbh"/>
+        <segue reference="vHx-QM-pI4"/>
     </inferredMetricsTieBreakers>
 </document>

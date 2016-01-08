@@ -20,9 +20,11 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var scoreTextField: UITextField?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
+    var previousCoursesFromRealm = try! Realm().objects(PreviousCourse).sorted("name", ascending: true)
     let croppingEnabled = true
     let libraryEnabled: Bool = true
     let date = NSDate()
+    var userAddedCourse = PreviousCourse()
     var selectedCourse = PreviousCourse()
 
     override func viewDidLoad() {
@@ -92,6 +94,23 @@ class NewScoreViewController: UIViewController, UIImagePickerControllerDelegate,
 
          }
     }
+            
+            let realm = try! Realm()
+            try! realm.write {
+            let addPreviousCourse = PreviousCourse()
+                
+            addPreviousCourse.name = golfCourseName.text!
+            addPreviousCourse.city = ""
+            addPreviousCourse.state = ""
+                
+            userAddedCourse = addPreviousCourse
+        
+            if previousCoursesFromRealm.contains( { $0.name != userAddedCourse.name }) {
+
+                realm.add(userAddedCourse)
+                
+                }
+            }
 
         golfScorecard.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 

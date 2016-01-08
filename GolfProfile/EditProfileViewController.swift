@@ -157,7 +157,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     override func viewWillLayoutSubviews() {
-        self.golferProfileImage.layer.cornerRadius = 3.0
+        self.golferProfileImage.layer.cornerRadius = 5.0
         self.golferProfileImage.layer.borderWidth = 3.0
         self.golferProfileImage.layer.borderColor = UIColor.orangeColor().CGColor
         self.golferProfileImage.clipsToBounds = true

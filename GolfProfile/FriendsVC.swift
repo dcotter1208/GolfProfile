@@ -150,7 +150,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             self.filteredUsers = self.filteredUsers.filter({ $0 != user })
             self.friendsTableView.reloadData()
                 
-
             })
             
             alertController.addAction(addFriendAction)
