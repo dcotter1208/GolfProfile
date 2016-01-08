@@ -767,7 +767,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GolfProfile",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.PeerGolfer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -792,7 +792,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GolfProfile",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.GolfProfile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donovan.cotter.PeerGolfer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
