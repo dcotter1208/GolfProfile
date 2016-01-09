@@ -22,12 +22,16 @@ class ProfilePhotoAndScorecardPhotoVC: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
     super.viewDidLoad()
-        
-    if scorecard?.scorecardImage != nil || golferProfile.username != nil  {
+    if scorecard?.scorecardImage != nil  {
     dismissButton.tintColor = UIColor.whiteColor()
     userScorecardImageView.file = scorecard?.scorecardImage
+    userScorecardImageView.loadInBackground()
+        
+    } else if golferProfile.username != nil{
+    dismissButton.tintColor = UIColor.whiteColor()
     userScorecardImageView.file = golferProfile.profileImage
-
+    userScorecardImageView.loadInBackground()
+        
     } else {
         
     noScorecardImageView.image = UIImage(named: "noScorecardAvailable")

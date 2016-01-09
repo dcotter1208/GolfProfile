@@ -1604,8 +1604,8 @@
         <image name="winners_podium" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="d34-ln-BhW"/>
-        <segue reference="vHx-QM-pI4"/>
+        <segue reference="vj5-mY-JmO"/>
         <segue reference="7my-Xy-cbh"/>
+        <segue reference="vHx-QM-pI4"/>
     </inferredMetricsTieBreakers>
 </document>

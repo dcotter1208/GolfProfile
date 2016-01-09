@@ -110,9 +110,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+    }
  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+
         if segue.identifier == "showScorecardDetail" {
             
             let userScorecardDetailVC = segue.destinationViewController as? ProfilePhotoAndScorecardPhotoVC
