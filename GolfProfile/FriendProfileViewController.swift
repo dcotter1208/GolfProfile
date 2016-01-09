@@ -119,6 +119,7 @@ class FriendProfileViewController: UIViewController, UITableViewDelegate, UITabl
     func loadFriendProfile() {
         friendProfileNameLabel.text = selectedFriend.name
         friendProfilePhoto.file = selectedFriend.profileImage
+        friendProfilePhoto.loadInBackground()
     }
     
     func displayAlert(alterTitle: String?, message: String?, actionTitle: String?) {
